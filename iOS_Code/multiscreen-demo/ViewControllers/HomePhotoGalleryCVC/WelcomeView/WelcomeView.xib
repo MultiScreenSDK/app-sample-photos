@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view alpha="0.89999999999999991" contentMode="scaleToFill" id="iN0-l3-epB" customClass="WelcomeView" customModule="multiscreen_demo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Jv-pu-dsi">
+                    <rect key="frame" x="122" y="254" width="76" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="76" id="2VQ-cl-iAJ"/>
+                        <constraint firstAttribute="height" constant="21" id="Vsl-nw-r4i"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wellcomeTop" translatesAutoresizingMaskIntoConstraints="NO" id="t2p-GJ-Hhf">
+                    <rect key="frame" x="86" y="50" width="226" height="173"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJ9-Fn-xP5">
+                    <rect key="frame" x="45" y="428" width="230" height="38"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="38" id="dP9-31-K3g"/>
+                    </constraints>
+                    <state key="normal" title="Get Start!">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="getStart:" destination="iN0-l3-epB" eventType="touchUpInside" id="S90-Lx-QOJ"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBh-Rw-pnw">
+                    <rect key="frame" x="10" y="280" width="301" height="142"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="142" id="02Z-87-o6C"/>
+                        <constraint firstAttribute="height" constant="142" id="lqN-Pl-vND"/>
+                        <constraint firstAttribute="width" constant="301" id="vEK-Md-P9v"/>
+                    </constraints>
+                    <string key="text">Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per.</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="jJ9-Fn-xP5" firstAttribute="centerX" secondItem="EBh-Rw-pnw" secondAttribute="centerX" id="0HL-Ca-c95"/>
+                <constraint firstItem="t2p-GJ-Hhf" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailingMargin" id="19a-UC-FdB"/>
+                <constraint firstItem="EBh-Rw-pnw" firstAttribute="centerX" secondItem="2Jv-pu-dsi" secondAttribute="centerX" id="89s-gd-c8v"/>
+                <constraint firstItem="2Jv-pu-dsi" firstAttribute="top" secondItem="t2p-GJ-Hhf" secondAttribute="bottom" constant="31" id="HDb-nN-aDk"/>
+                <constraint firstItem="jJ9-Fn-xP5" firstAttribute="top" secondItem="EBh-Rw-pnw" secondAttribute="bottom" constant="6" id="KTX-Ly-bme"/>
+                <constraint firstAttribute="bottom" secondItem="jJ9-Fn-xP5" secondAttribute="bottom" constant="14" id="efq-i3-j6t"/>
+                <constraint firstItem="EBh-Rw-pnw" firstAttribute="top" secondItem="2Jv-pu-dsi" secondAttribute="bottom" constant="5" id="i5z-oQ-Lin"/>
+                <constraint firstItem="jJ9-Fn-xP5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="lzq-rF-EHV"/>
+                <constraint firstItem="t2p-GJ-Hhf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="86" id="mNB-rR-cOU"/>
+                <constraint firstItem="t2p-GJ-Hhf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="50" id="suW-Zg-1yz"/>
+                <constraint firstItem="jJ9-Fn-xP5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="45" id="wP9-gV-2rD"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="getStartButton" destination="jJ9-Fn-xP5" id="6vK-iF-VWx"/>
+            </connections>
+            <point key="canvasLocation" x="475" y="446"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="wellcomeTop" width="562" height="496"/>
+    </resources>
+</document>
