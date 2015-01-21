@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9A67BB9B1A66B9660045510B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A67BB9A1A66B9660045510B /* AppDelegate.swift */; };
 		9A67BBA01A66B9660045510B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A67BB9E1A66B9660045510B /* Main.storyboard */; };
-		9A67BBA21A66B9660045510B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A67BBA11A66B9660045510B /* Images.xcassets */; };
 		9A67BBA51A66B9660045510B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A67BBA31A66B9660045510B /* LaunchScreen.xib */; };
 		9A67BBB11A66B9660045510B /* multiscreen_demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A67BBB01A66B9660045510B /* multiscreen_demoTests.swift */; };
 		9A67BBC91A66BB080045510B /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A67BBC81A66BB080045510B /* Gallery.swift */; };
@@ -38,6 +37,7 @@
 		9AF6FC691A6EA07400A8EDFB /* HomePhotoGalleryHeaderCRV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6FC681A6EA07400A8EDFB /* HomePhotoGalleryHeaderCRV.swift */; };
 		9AF6FC7D1A6EBE5900A8EDFB /* ServicesFoundVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6FC7B1A6EBE5900A8EDFB /* ServicesFoundVC.swift */; };
 		9AF6FC851A6EE16400A8EDFB /* CommonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF6FC841A6EE16400A8EDFB /* CommonVC.swift */; };
+		9AF6FC891A70429700A8EDFB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AF6FC881A70429700A8EDFB /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +68,6 @@
 		9A67BB991A66B9660045510B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A67BB9A1A66B9660045510B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A67BB9F1A66B9660045510B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9A67BBA11A66B9660045510B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A67BBA41A66B9660045510B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9A67BBAA1A66B9660045510B /* multiscreen-demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "multiscreen-demoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A67BBAF1A66B9660045510B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -99,6 +98,7 @@
 		9AF6FC681A6EA07400A8EDFB /* HomePhotoGalleryHeaderCRV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePhotoGalleryHeaderCRV.swift; sourceTree = "<group>"; };
 		9AF6FC7B1A6EBE5900A8EDFB /* ServicesFoundVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesFoundVC.swift; sourceTree = "<group>"; };
 		9AF6FC841A6EE16400A8EDFB /* CommonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonVC.swift; sourceTree = "<group>"; };
+		9AF6FC881A70429700A8EDFB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,8 +147,8 @@
 				9A67BBBC1A66BA360045510B /* Model */,
 				9A67BB9A1A66B9660045510B /* AppDelegate.swift */,
 				9A67BB9E1A66B9660045510B /* Main.storyboard */,
-				9A67BBA11A66B9660045510B /* Images.xcassets */,
 				9A67BBA31A66B9660045510B /* LaunchScreen.xib */,
+				9AF6FC881A70429700A8EDFB /* Images.xcassets */,
 				9A67BB981A66B9660045510B /* Supporting Files */,
 			);
 			path = "multiscreen-demo";
@@ -357,8 +357,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A67BBA01A66B9660045510B /* Main.storyboard in Resources */,
+				9AF6FC891A70429700A8EDFB /* Images.xcassets in Resources */,
 				9A67BBA51A66B9660045510B /* LaunchScreen.xib in Resources */,
-				9A67BBA21A66B9660045510B /* Images.xcassets in Resources */,
 				9AF6FC421A6D669F00A8EDFB /* WelcomeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,7 +460,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -481,7 +481,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "202ccad9-c291-4ecc-ad7d-93866f44d60f";
+				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -518,7 +518,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "202ccad9-c291-4ecc-ad7d-93866f44d60f";
+				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -528,11 +528,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
 				INFOPLIST_FILE = "multiscreen-demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "202ccad9-c291-4ecc-ad7d-93866f44d60f";
+				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
 			};
 			name = Debug;
 		};
@@ -540,11 +540,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
 				INFOPLIST_FILE = "multiscreen-demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "202ccad9-c291-4ecc-ad7d-93866f44d60f";
+				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
 			};
 			name = Release;
 		};

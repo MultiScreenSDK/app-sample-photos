@@ -15,7 +15,7 @@ class PhotoGalleryDetailsVC: CommonVC , UIPageViewControllerDataSource, UIPageVi
     
     //number of assets in current album
     var numberOfAssets: Int = 0
-   
+    
     // Timer to send the image to the TV after a few seconds
     var timer: NSTimer!
     
@@ -51,6 +51,10 @@ class PhotoGalleryDetailsVC: CommonVC , UIPageViewControllerDataSource, UIPageVi
         view.addSubview(pageViewController!.view)
         pageViewController!.didMoveToParentViewController(self)
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
     }
     
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer!) -> Bool {
@@ -116,12 +120,20 @@ class PhotoGalleryDetailsVC: CommonVC , UIPageViewControllerDataSource, UIPageVi
     }
     
     func startTimer(){
-        timer = NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: Selector("sendToTv"), userInfo: nil, repeats: false)
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("sendToTv"), userInfo: nil, repeats: false)
     }
     
     func sendToTv() {
-        self.displayAlertWithTitle("Send", message: "The Image Was send to the tv")
+        
+        if(tvIntegration.isApplicationConnected() == true){
+            var currentView: PhotoPageContentVC = pageViewController?.viewControllers.last! as PhotoPageContentVC
+            
+            gallery.requestImageAtIndex(gallery.currentAlbum,index: currentView.pageIndex, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!) -> Void in
+                self.tvIntegration.sendPhotoToTv(image)
+            })
+        }
     }
+    
     
     override func viewWillDisappear(animated: Bool) {
         timer.invalidate()

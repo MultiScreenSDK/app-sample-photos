@@ -17,7 +17,7 @@ class CommonVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
   
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNavbarButton", name: "devicesFoundChanged", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNavbarButton", name: "updateCastButton", object: nil)
         
     }
     
@@ -49,7 +49,14 @@ class CommonVC: UIViewController {
         
         if(tvIntegration.getServices().count > 0){
             
-            let imageCastButton = UIImage(named: "btn_cast_icon") as UIImage?
+            var imageCastButton: UIImage!
+
+            if(tvIntegration.isApplicationConnected() == true){
+                imageCastButton = UIImage(named: "btn_cast_on")
+            }else{
+                imageCastButton = UIImage(named: "btn_cast_off")
+            }
+            
             
             var addCastButton: UIBarButtonItem = UIBarButtonItem(image: imageCastButton, style: .Plain, target: self, action: "showServicesFound" )
          
@@ -60,9 +67,25 @@ class CommonVC: UIViewController {
     }
     
     func showServicesFound(){
-        let servicesFoundVC = self.storyboard?.instantiateViewControllerWithIdentifier("ServicesFoundVC") as ServicesFoundVC
         
-        self.navigationController?.presentViewController(servicesFoundVC, animated: true, completion: nil)
+        if(tvIntegration.isApplicationConnected() == true){
+            tvIntegration.closeApplication({ (success: Bool!) -> Void in
+                
+            NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
+                
+                if((success) == true){
+                    self.displayAlertWithTitle("Connect",
+                        message: "TV disconnected")
+                }
+            })
+            
+        }else{
+            let servicesFoundVC = self.storyboard?.instantiateViewControllerWithIdentifier("ServicesFoundVC") as ServicesFoundVC
+            
+            self.navigationController?.presentViewController(servicesFoundVC, animated: true, completion: nil)
+        }
+        
+        
     }
     
     func showSettings(){

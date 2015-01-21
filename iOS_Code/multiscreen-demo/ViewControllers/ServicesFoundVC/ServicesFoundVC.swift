@@ -10,6 +10,7 @@ import UIKit
 
 class ServicesFoundVC: CommonVC, UIPickerViewDataSource,UIPickerViewDelegate {
     
+    @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var TVPickerView: UIPickerView!
     var pickerData:[String] = []
    
@@ -19,6 +20,10 @@ class ServicesFoundVC: CommonVC, UIPickerViewDataSource,UIPickerViewDelegate {
         // Do any additional setup after loading the view.
         TVPickerView.dataSource = self
         TVPickerView.delegate = self
+        
+        connectButton.layer.cornerRadius = 4
+        connectButton.layer.borderWidth = 0.5
+        connectButton.layer.borderColor = UIColor.whiteColor().CGColor
         
         for (value) in tvIntegration.getServices() {
             pickerData.append(value.name)
@@ -33,12 +38,13 @@ class ServicesFoundVC: CommonVC, UIPickerViewDataSource,UIPickerViewDelegate {
         let selectedRow : Int = TVPickerView.selectedRowInComponent(0)
         tvIntegration.createApplication(tvIntegration.getServiceWithIndex(selectedRow), completionHandler: { (success: Bool!) -> Void in
             
-            if((success) == true){
+            NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
+            
+            if((success) == false){
                 self.displayAlertWithTitle("Connect",
-                    message: "TV connected : \(self.pickerData[selectedRow])")
+                    message: "TV not connected : \(self.pickerData[selectedRow])")
             }else{
-                self.displayAlertWithTitle("Connect",
-                    message: "TV not connectedself. : \(self.pickerData[selectedRow])")
+                self.dismissViewControllerAnimated(true, completion: nil)
             }
         })
     }

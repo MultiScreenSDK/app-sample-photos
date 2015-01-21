@@ -11,10 +11,10 @@ import UIKit
 class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
     
     var appURL: String =  "http://multiscreen.samsung.com/app-sample-photos/tv/index.html"
-    var channelId: String = " com.samsung.multiscreen.photos"
-    
+    var channelId: String = "com.samsung.multiscreen.photos"
+    var app : Application!
     let search = Service.search()
-    var isConnecting = false
+    var isConnected = false
     
     class var sharedInstance: TVIntegration {
         struct Static {
@@ -42,6 +42,10 @@ class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
 
     }
     
+    func isApplicationConnected()->Bool {
+        return isConnected;
+    }
+    
     func getServices() -> [Service]{
         return search.services
     }
@@ -53,13 +57,13 @@ class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
     func onServiceLost(service: Service) {
         println("SERVICE OUT NAME : \(service.name)")
         // Post a notification
-        NSNotificationCenter.defaultCenter().postNotificationName("devicesFoundChanged", object: self)
+        NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
     }
     
     func onServiceFound(service: Service) {
         println("SERVICE IN NAME : \(service.name)")
         // Post a notification
-        NSNotificationCenter.defaultCenter().postNotificationName("devicesFoundChanged", object: self)
+        NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
     }
     
     private func updateCastStatus() {
@@ -77,11 +81,30 @@ class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
     }
     
     func createApplication(service: Service,completionHandler: ((Bool!) -> Void)!){
-        
-        var app: Application = service.createApplication(appURL, channelURI: channelId)!
+        app = service.createApplication(NSURL(string: appURL)!, channelURI: channelId)!
         app.connect(["name":UIDevice.currentDevice().name])
         app.start { (success, error) -> Void in
+           self.isConnected = success
            completionHandler(success)
         }
-    }    
+    }
+    
+    
+    func closeApplication(completionHandler: ((Bool!) -> Void)!){
+        app.stop({ (success, error) -> Void in })
+        app.disconnect({ (channel, error) -> Void in
+            if(error == nil){
+                self.isConnected = false
+                completionHandler(true)
+            }else{
+                completionHandler(false)
+            }
+        })
+    }
+    
+    func sendPhotoToTv(image :UIImage){
+        if (isConnected){
+            app.publish(event: "showPhoto", message: nil, data: UIImageJPEGRepresentation(image,0.6))
+        }
+    }
 }

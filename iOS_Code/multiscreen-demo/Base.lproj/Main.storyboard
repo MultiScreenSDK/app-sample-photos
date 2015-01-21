@@ -68,6 +68,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="TVPickerView" destination="AEn-GR-7n4" id="qbE-2d-EeG"/>
+                        <outlet property="connectButton" destination="GS3-zy-z2R" id="gCP-5b-JHN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MRD-GJ-wMz" userLabel="First Responder" sceneMemberID="firstResponder"/>
