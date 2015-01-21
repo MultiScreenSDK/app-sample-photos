@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import AssetsLibrary
 
 let reuseIdentifier = "HomePhotoGalleryCVCCell"
 let reuseIdentifierHeader = "HomePhotoGalleryCVCHeader"
@@ -44,6 +44,10 @@ class HomePhotoGalleryCVC: CommonVC, UICollectionViewDataSource, UICollectionVie
             }
         }
         
+       // NSNotificationCenter.defaultCenter().addObserverForName(ALAssetsLibraryChangedNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (mote :NSNotification!) -> Void in
+         //   self.collectionView!.reloadData()
+       // }
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -61,6 +65,10 @@ class HomePhotoGalleryCVC: CommonVC, UICollectionViewDataSource, UICollectionVie
             defaults.setBool(true, forKey: "hideWelcomeView")
             
         }
+    }
+    
+    deinit {
+       // NSNotificationCenter.defaultCenter().removeObserver(self, name: ALAssetsLibraryChangedNotification, object: nil)
     }
     
     // MARK: UICollectionViewDataSource

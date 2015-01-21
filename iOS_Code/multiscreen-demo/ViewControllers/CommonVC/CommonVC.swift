@@ -12,15 +12,12 @@ import UIKit
 
 class CommonVC: UIViewController {
     
-    // Timer to check for TV around
-    var timerServices: NSTimer!
-    
     var tvIntegration = TVIntegration.sharedInstance
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        startTimerServices()
+  
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateNavbarButton", name: "devicesFoundChanged", object: nil)
         
     }
     
@@ -40,10 +37,6 @@ class CommonVC: UIViewController {
         alertView.show()
     }
     
-    func startTimerServices(){
-        timerServices = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: Selector("updateNavbarButton"), userInfo: nil, repeats: true)
-    }
-    
     func updateNavbarButton() {
         // println("[NavBar] NavBArUpdating")
         
@@ -55,7 +48,6 @@ class CommonVC: UIViewController {
         
         
         if(tvIntegration.getServices().count > 0){
-            
             
             let imageCastButton = UIImage(named: "btn_cast_icon") as UIImage?
             

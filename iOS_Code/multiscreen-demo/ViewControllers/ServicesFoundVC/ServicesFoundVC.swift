@@ -26,17 +26,23 @@ class ServicesFoundVC: CommonVC, UIPickerViewDataSource,UIPickerViewDelegate {
     }
     
     @IBAction func close(sender: AnyObject) {
-        
-        self.dismissViewControllerAnimated(true, completion: nil)
-        
+       self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func startConnection(sender: AnyObject){
+        let selectedRow : Int = TVPickerView.selectedRowInComponent(0)
+        tvIntegration.createApplication(tvIntegration.getServiceWithIndex(selectedRow), completionHandler: { (success: Bool!) -> Void in
+            
+            if((success) == true){
+                self.displayAlertWithTitle("Connect",
+                    message: "TV connected : \(self.pickerData[selectedRow])")
+            }else{
+                self.displayAlertWithTitle("Connect",
+                    message: "TV not connectedself. : \(self.pickerData[selectedRow])")
+            }
+        })
     }
 
-    @IBAction func connect(sender: AnyObject) {
-        let selectedRow : Int = TVPickerView.selectedRowInComponent(0)
-        self.displayAlertWithTitle("Connect",
-            message: "TV connected : \(pickerData[selectedRow])")
-        
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

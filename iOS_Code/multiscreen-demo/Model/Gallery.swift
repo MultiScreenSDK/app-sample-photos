@@ -93,22 +93,39 @@ class Gallery: NSObject {
             (asset: ALAsset!, index: Int, stop: UnsafeMutablePointer<ObjCBool>) in
             if (asset != nil) {
                 
-                var cgImage: CGImageRef //ALAssetRepresentation = result.defaultRepresentation()
+                var image: UIImage
                 
                 if(isThumbnail){
-                    cgImage = asset.thumbnail().takeUnretainedValue()
+                   image = self.getThumnailFromAsset(asset)
                 }else{
-                    var assetRep :ALAssetRepresentation = asset.defaultRepresentation()
-                    cgImage = assetRep.fullScreenImage().takeUnretainedValue()
+                   image = self.getImageFromAsset(asset)
                 }
                 
-                var image = UIImage(CGImage:cgImage)
                 dispatch_async(dispatch_get_main_queue(),{
                     return completionHandler(image,nil)
                 })
                 
             }
         })
+    }
+    
+    func getImageFromAsset(asset: ALAsset!)->UIImage{
+        var cgImage: CGImageRef
+        if (asset.defaultRepresentation() != nil){
+            var assetRep :ALAssetRepresentation = asset.defaultRepresentation()
+            cgImage = assetRep.fullScreenImage().takeUnretainedValue()
+            return UIImage(CGImage:cgImage)!
+        }
+        return getThumnailFromAsset(asset)
+    }
+    
+    func getThumnailFromAsset(asset: ALAsset!)->UIImage{
+        var cgImage: CGImageRef
+        if (asset.thumbnail() != nil){
+            cgImage = asset.thumbnail().takeUnretainedValue()
+            return UIImage(CGImage:cgImage)!
+        }
+        return UIImage(named: "placeholder-image")!
     }
     
 }

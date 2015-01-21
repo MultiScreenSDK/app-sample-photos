@@ -10,11 +10,10 @@ import UIKit
 
 class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
     
-    var appURL: String = "http://prod-multiscreen-examples.s3-website-us-west-1.amazonaws.com/examples/helloworld/tv/"
-    var channelId: String = "com.samsung.multiscreen.helloworld"
+    var appURL: String =  "http://multiscreen.samsung.com/app-sample-photos/tv/index.html"
+    var channelId: String = " com.samsung.multiscreen.photos"
     
     let search = Service.search()
-    var app: Application!
     var isConnecting = false
     
     class var sharedInstance: TVIntegration {
@@ -47,16 +46,20 @@ class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
         return search.services
     }
     
+    func getServiceWithIndex(index : Int)->Service{
+        return search.services[index]
+    }
+    
     func onServiceLost(service: Service) {
         println("SERVICE OUT NAME : \(service.name)")
         // Post a notification
-       // NSNotificationCenter.defaultCenter().postNotificationName("serviceChanged", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("devicesFoundChanged", object: self)
     }
     
     func onServiceFound(service: Service) {
         println("SERVICE IN NAME : \(service.name)")
         // Post a notification
-        //NSNotificationCenter.defaultCenter().postNotificationName("serviceChanged", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("devicesFoundChanged", object: self)
     }
     
     private func updateCastStatus() {
@@ -73,4 +76,12 @@ class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
 */
     }
     
+    func createApplication(service: Service,completionHandler: ((Bool!) -> Void)!){
+        
+        var app: Application = service.createApplication(appURL, channelURI: channelId)!
+        app.connect(["name":UIDevice.currentDevice().name])
+        app.start { (success, error) -> Void in
+           completionHandler(success)
+        }
+    }    
 }

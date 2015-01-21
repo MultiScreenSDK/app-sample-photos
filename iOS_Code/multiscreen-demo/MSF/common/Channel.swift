@@ -209,6 +209,7 @@ class RPCResultHandler {
         if let stringMessage = JSON.stringify(messageEnvelope) {
             transport.send(stringMessage)
             rpcHandlers[uuid] = RPCResultHandler(handler)
+   
         }
     }
 
