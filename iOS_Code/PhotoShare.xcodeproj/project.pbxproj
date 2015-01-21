@@ -64,12 +64,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9A67BB951A66B9660045510B /* multiscreen-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "multiscreen-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A67BB951A66B9660045510B /* PhotoShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A67BB991A66B9660045510B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A67BB9A1A66B9660045510B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A67BB9F1A66B9660045510B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A67BBA41A66B9660045510B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		9A67BBAA1A66B9660045510B /* multiscreen-demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "multiscreen-demoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A67BBAA1A66B9660045510B /* PhotoShareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoShareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A67BBAF1A66B9660045510B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A67BBB01A66B9660045510B /* multiscreen_demoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = multiscreen_demoTests.swift; sourceTree = "<group>"; };
 		9A67BBC81A66BB080045510B /* Gallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
@@ -133,8 +133,8 @@
 		9A67BB961A66B9660045510B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A67BB951A66B9660045510B /* multiscreen-demo.app */,
-				9A67BBAA1A66B9660045510B /* multiscreen-demoTests.xctest */,
+				9A67BB951A66B9660045510B /* PhotoShare.app */,
+				9A67BBAA1A66B9660045510B /* PhotoShareTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -276,9 +276,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9A67BB941A66B9660045510B /* multiscreen-demo */ = {
+		9A67BB941A66B9660045510B /* PhotoShare */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A67BBB41A66B9660045510B /* Build configuration list for PBXNativeTarget "multiscreen-demo" */;
+			buildConfigurationList = 9A67BBB41A66B9660045510B /* Build configuration list for PBXNativeTarget "PhotoShare" */;
 			buildPhases = (
 				9A67BB911A66B9660045510B /* Sources */,
 				9A67BB921A66B9660045510B /* Frameworks */,
@@ -289,14 +289,14 @@
 			);
 			dependencies = (
 			);
-			name = "multiscreen-demo";
+			name = PhotoShare;
 			productName = "multiscreen-demo";
-			productReference = 9A67BB951A66B9660045510B /* multiscreen-demo.app */;
+			productReference = 9A67BB951A66B9660045510B /* PhotoShare.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9A67BBA91A66B9660045510B /* multiscreen-demoTests */ = {
+		9A67BBA91A66B9660045510B /* PhotoShareTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9A67BBB71A66B9660045510B /* Build configuration list for PBXNativeTarget "multiscreen-demoTests" */;
+			buildConfigurationList = 9A67BBB71A66B9660045510B /* Build configuration list for PBXNativeTarget "PhotoShareTests" */;
 			buildPhases = (
 				9A67BBA61A66B9660045510B /* Sources */,
 				9A67BBA71A66B9660045510B /* Frameworks */,
@@ -307,9 +307,9 @@
 			dependencies = (
 				9A67BBAC1A66B9660045510B /* PBXTargetDependency */,
 			);
-			name = "multiscreen-demoTests";
+			name = PhotoShareTests;
 			productName = "multiscreen-demoTests";
-			productReference = 9A67BBAA1A66B9660045510B /* multiscreen-demoTests.xctest */;
+			productReference = 9A67BBAA1A66B9660045510B /* PhotoShareTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -332,7 +332,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9A67BB901A66B9660045510B /* Build configuration list for PBXProject "multiscreen-demo" */;
+			buildConfigurationList = 9A67BB901A66B9660045510B /* Build configuration list for PBXProject "PhotoShare" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -345,8 +345,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9A67BB941A66B9660045510B /* multiscreen-demo */,
-				9A67BBA91A66B9660045510B /* multiscreen-demoTests */,
+				9A67BB941A66B9660045510B /* PhotoShare */,
+				9A67BBA91A66B9660045510B /* PhotoShareTests */,
 			);
 		};
 /* End PBXProject section */
@@ -418,7 +418,7 @@
 /* Begin PBXTargetDependency section */
 		9A67BBAC1A66B9660045510B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9A67BB941A66B9660045510B /* multiscreen-demo */;
+			target = 9A67BB941A66B9660045510B /* PhotoShare */;
 			targetProxy = 9A67BBAB1A66B9660045510B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -460,7 +460,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -481,7 +481,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
+				PROVISIONING_PROFILE = "202ccad9-c291-4ecc-ad7d-93866f44d60f";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -504,7 +504,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -518,7 +518,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
+				PROVISIONING_PROFILE = "202ccad9-c291-4ecc-ad7d-93866f44d60f";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -528,11 +528,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
 				INFOPLIST_FILE = "multiscreen-demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
+				PRODUCT_NAME = PhotoShare;
+				PROVISIONING_PROFILE = "202ccad9-c291-4ecc-ad7d-93866f44d60f";
 			};
 			name = Debug;
 		};
@@ -540,11 +540,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
 				INFOPLIST_FILE = "multiscreen-demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
+				PRODUCT_NAME = PhotoShare;
+				PROVISIONING_PROFILE = "202ccad9-c291-4ecc-ad7d-93866f44d60f";
 			};
 			name = Release;
 		};
@@ -564,7 +564,7 @@
 				);
 				INFOPLIST_FILE = "multiscreen-demoTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = PhotoShareTests;
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/multiscreen-demo.app/multiscreen-demo";
 			};
@@ -582,7 +582,7 @@
 				);
 				INFOPLIST_FILE = "multiscreen-demoTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = PhotoShareTests;
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/multiscreen-demo.app/multiscreen-demo";
 			};
@@ -591,7 +591,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9A67BB901A66B9660045510B /* Build configuration list for PBXProject "multiscreen-demo" */ = {
+		9A67BB901A66B9660045510B /* Build configuration list for PBXProject "PhotoShare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A67BBB21A66B9660045510B /* Debug */,
@@ -600,7 +600,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A67BBB41A66B9660045510B /* Build configuration list for PBXNativeTarget "multiscreen-demo" */ = {
+		9A67BBB41A66B9660045510B /* Build configuration list for PBXNativeTarget "PhotoShare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A67BBB51A66B9660045510B /* Debug */,
@@ -609,7 +609,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9A67BBB71A66B9660045510B /* Build configuration list for PBXNativeTarget "multiscreen-demoTests" */ = {
+		9A67BBB71A66B9660045510B /* Build configuration list for PBXNativeTarget "PhotoShareTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9A67BBB81A66B9660045510B /* Debug */,

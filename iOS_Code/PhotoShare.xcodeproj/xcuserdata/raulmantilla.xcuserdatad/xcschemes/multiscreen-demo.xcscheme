@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9A67BB941A66B9660045510B"
-               BuildableName = "multiscreen-demo.app"
-               BlueprintName = "multiscreen-demo"
-               ReferencedContainer = "container:multiscreen-demo.xcodeproj">
+               BuildableName = "PhotoShare.app"
+               BlueprintName = "PhotoShare"
+               ReferencedContainer = "container:PhotoShare.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9A67BBA91A66B9660045510B"
-               BuildableName = "multiscreen-demoTests.xctest"
-               BlueprintName = "multiscreen-demoTests"
-               ReferencedContainer = "container:multiscreen-demo.xcodeproj">
+               BuildableName = "PhotoShareTests.xctest"
+               BlueprintName = "PhotoShareTests"
+               ReferencedContainer = "container:PhotoShare.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -45,7 +45,7 @@
                BlueprintIdentifier = "9A67BC181A685FAE0045510B"
                BuildableName = "MSFTests.xctest"
                BlueprintName = "MSFTests"
-               ReferencedContainer = "container:multiscreen-demo.xcodeproj">
+               ReferencedContainer = "container:PhotoShare.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -61,9 +61,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9A67BBA91A66B9660045510B"
-               BuildableName = "multiscreen-demoTests.xctest"
-               BlueprintName = "multiscreen-demoTests"
-               ReferencedContainer = "container:multiscreen-demo.xcodeproj">
+               BuildableName = "PhotoShareTests.xctest"
+               BlueprintName = "PhotoShareTests"
+               ReferencedContainer = "container:PhotoShare.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -73,7 +73,7 @@
                BlueprintIdentifier = "9A67BC181A685FAE0045510B"
                BuildableName = "MSFTests.xctest"
                BlueprintName = "MSFTests"
-               ReferencedContainer = "container:multiscreen-demo.xcodeproj">
+               ReferencedContainer = "container:PhotoShare.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -81,9 +81,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9A67BB941A66B9660045510B"
-            BuildableName = "multiscreen-demo.app"
-            BlueprintName = "multiscreen-demo"
-            ReferencedContainer = "container:multiscreen-demo.xcodeproj">
+            BuildableName = "PhotoShare.app"
+            BlueprintName = "PhotoShare"
+            ReferencedContainer = "container:PhotoShare.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -100,9 +100,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9A67BB941A66B9660045510B"
-            BuildableName = "multiscreen-demo.app"
-            BlueprintName = "multiscreen-demo"
-            ReferencedContainer = "container:multiscreen-demo.xcodeproj">
+            BuildableName = "PhotoShare.app"
+            BlueprintName = "PhotoShare"
+            ReferencedContainer = "container:PhotoShare.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -118,9 +118,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9A67BB941A66B9660045510B"
-            BuildableName = "multiscreen-demo.app"
-            BlueprintName = "multiscreen-demo"
-            ReferencedContainer = "container:multiscreen-demo.xcodeproj">
+            BuildableName = "PhotoShare.app"
+            BlueprintName = "PhotoShare"
+            ReferencedContainer = "container:PhotoShare.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

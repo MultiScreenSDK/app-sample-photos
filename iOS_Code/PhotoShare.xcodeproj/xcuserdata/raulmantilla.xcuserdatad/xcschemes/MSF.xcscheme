@@ -17,7 +17,7 @@
                BlueprintIdentifier = "9A67BC0E1A685FAE0045510B"
                BuildableName = "MSF.framework"
                BlueprintName = "MSF"
-               ReferencedContainer = "container:multiscreen-demo.xcodeproj">
+               ReferencedContainer = "container:PhotoShare.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "9A67BC0E1A685FAE0045510B"
             BuildableName = "MSF.framework"
             BlueprintName = "MSF"
-            ReferencedContainer = "container:multiscreen-demo.xcodeproj">
+            ReferencedContainer = "container:PhotoShare.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -63,7 +63,7 @@
             BlueprintIdentifier = "9A67BC0E1A685FAE0045510B"
             BuildableName = "MSF.framework"
             BlueprintName = "MSF"
-            ReferencedContainer = "container:multiscreen-demo.xcodeproj">
+            ReferencedContainer = "container:PhotoShare.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
