@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A67BB941A66B9660045510B"
-               BuildableName = "PhotoShare.app"
-               BlueprintName = "PhotoShare"
-               ReferencedContainer = "container:PhotoShare.xcodeproj">
+               BlueprintIdentifier = "9AC49E521A71A5A800F391C0"
+               BuildableName = "MultiScreenPhoto.app"
+               BlueprintName = "MultiScreenPhoto"
+               ReferencedContainer = "container:MultiScreenPhoto.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -28,24 +28,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A67BBA91A66B9660045510B"
-               BuildableName = "PhotoShareTests.xctest"
-               BlueprintName = "PhotoShareTests"
-               ReferencedContainer = "container:PhotoShare.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A67BC181A685FAE0045510B"
-               BuildableName = "MSFTests.xctest"
-               BlueprintName = "MSFTests"
-               ReferencedContainer = "container:PhotoShare.xcodeproj">
+               BlueprintIdentifier = "9AC49E671A71A5A800F391C0"
+               BuildableName = "MultiScreenPhotoTests.xctest"
+               BlueprintName = "MultiScreenPhotoTests"
+               ReferencedContainer = "container:MultiScreenPhoto.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -60,30 +46,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A67BBA91A66B9660045510B"
-               BuildableName = "PhotoShareTests.xctest"
-               BlueprintName = "PhotoShareTests"
-               ReferencedContainer = "container:PhotoShare.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9A67BC181A685FAE0045510B"
-               BuildableName = "MSFTests.xctest"
-               BlueprintName = "MSFTests"
-               ReferencedContainer = "container:PhotoShare.xcodeproj">
+               BlueprintIdentifier = "9AC49E671A71A5A800F391C0"
+               BuildableName = "MultiScreenPhotoTests.xctest"
+               BlueprintName = "MultiScreenPhotoTests"
+               ReferencedContainer = "container:MultiScreenPhoto.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A67BB941A66B9660045510B"
-            BuildableName = "PhotoShare.app"
-            BlueprintName = "PhotoShare"
-            ReferencedContainer = "container:PhotoShare.xcodeproj">
+            BlueprintIdentifier = "9AC49E521A71A5A800F391C0"
+            BuildableName = "MultiScreenPhoto.app"
+            BlueprintName = "MultiScreenPhoto"
+            ReferencedContainer = "container:MultiScreenPhoto.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -99,10 +75,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A67BB941A66B9660045510B"
-            BuildableName = "PhotoShare.app"
-            BlueprintName = "PhotoShare"
-            ReferencedContainer = "container:PhotoShare.xcodeproj">
+            BlueprintIdentifier = "9AC49E521A71A5A800F391C0"
+            BuildableName = "MultiScreenPhoto.app"
+            BlueprintName = "MultiScreenPhoto"
+            ReferencedContainer = "container:MultiScreenPhoto.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -117,10 +93,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9A67BB941A66B9660045510B"
-            BuildableName = "PhotoShare.app"
-            BlueprintName = "PhotoShare"
-            ReferencedContainer = "container:PhotoShare.xcodeproj">
+            BlueprintIdentifier = "9AC49E521A71A5A800F391C0"
+            BuildableName = "MultiScreenPhoto.app"
+            BlueprintName = "MultiScreenPhoto"
+            ReferencedContainer = "container:MultiScreenPhoto.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:PhotoShare.xcodeproj">
+      location = "self:MultiScreenPhoto.xcodeproj">
    </FileRef>
 </Workspace>

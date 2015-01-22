@@ -1,19 +1,18 @@
 //
 //  AppDelegate.swift
-//  multiscreen-demo
+//  MultiScreenPhoto
 //
-//  Created by Raul Mantilla on 14/01/15.
+//  Created by Raul Mantilla on 22/01/15.
 //  Copyright (c) 2015 Koombea. All rights reserved.
 //
 
 import UIKit
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
+
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.

@@ -4,12 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>MSF.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
-		</dict>
-		<key>multiscreen-demo.xcscheme</key>
+		<key>MultiScreenPhoto.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -17,22 +12,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>9A67BB941A66B9660045510B</key>
+		<key>9AC49E521A71A5A800F391C0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9A67BBA91A66B9660045510B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9A67BC0E1A685FAE0045510B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9A67BC181A685FAE0045510B</key>
+		<key>9AC49E671A71A5A800F391C0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

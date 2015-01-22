@@ -1,15 +1,15 @@
 //
-//  multiscreen_demoTests.swift
-//  multiscreen-demoTests
+//  MultiScreenPhotoTests.swift
+//  MultiScreenPhotoTests
 //
-//  Created by Raul Mantilla on 14/01/15.
+//  Created by Raul Mantilla on 22/01/15.
 //  Copyright (c) 2015 Koombea. All rights reserved.
 //
 
 import UIKit
 import XCTest
 
-class multiscreen_demoTests: XCTestCase {
+class MultiScreenPhotoTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
