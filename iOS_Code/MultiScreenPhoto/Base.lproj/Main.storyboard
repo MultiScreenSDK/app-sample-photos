@@ -9,7 +9,7 @@
         <!--Services FoundVC-->
         <scene sceneID="iEB-WX-2aq">
             <objects>
-                <viewController storyboardIdentifier="ServicesFoundVC" id="b5O-ar-V94" customClass="ServicesFoundVC" customModule="multiscreen_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ServicesFoundVC" id="b5O-ar-V94" customClass="ServicesFoundVC" customModule="MultiScreenPhoto" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6sP-Mf-2RR"/>
                         <viewControllerLayoutGuide type="bottom" id="V2m-zY-rD4"/>
@@ -78,7 +78,7 @@
         <!--Photo Gallery DetailsVC-->
         <scene sceneID="Kv3-OZ-j9u">
             <objects>
-                <viewController id="VQl-Gh-u6W" customClass="PhotoGalleryDetailsVC" customModule="multiscreen_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VQl-Gh-u6W" customClass="PhotoGalleryDetailsVC" customModule="MultiScreenPhoto" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lqa-j1-BFL"/>
                         <viewControllerLayoutGuide type="bottom" id="uLl-xh-FSM"/>
@@ -99,7 +99,7 @@
         <!--Photos-->
         <scene sceneID="LyV-TD-tJ9">
             <objects>
-                <viewController id="eae-ks-7gC" customClass="HomePhotoGalleryCVC" customModule="multiscreen_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="eae-ks-7gC" customClass="HomePhotoGalleryCVC" customModule="MultiScreenPhoto" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bV2-uX-qvq"/>
                         <viewControllerLayoutGuide type="bottom" id="ga2-OC-3mn"/>
@@ -109,28 +109,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ehP-91-vVy">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="667"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nEf-UI-xFs">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8rM-or-Q0q" customClass="MyFlowLayout" customModule="MultiScreenPhoto" customModuleProvider="target">
                                     <size key="itemSize" width="80" height="80"/>
                                     <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomePhotoGalleryCVCCell" id="dSb-rf-Q8Q" customClass="HomePhotoGalleryCVCCell" customModule="multiscreen_demo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomePhotoGalleryCVCCellMin" id="dSb-rf-Q8Q" customClass="HomePhotoGalleryCVCCell" customModule="MultiScreenPhoto" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mpT-6D-n8Q">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mpT-6D-n8Q">
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="mpT-6D-n8Q" secondAttribute="bottom" id="DOE-Tp-hcP"/>
+                                            <constraint firstItem="mpT-6D-n8Q" firstAttribute="leading" secondItem="dSb-rf-Q8Q" secondAttribute="leading" id="KX0-7v-iWS"/>
+                                            <constraint firstAttribute="trailing" secondItem="mpT-6D-n8Q" secondAttribute="trailing" id="dHG-t5-h02"/>
+                                            <constraint firstItem="mpT-6D-n8Q" firstAttribute="top" secondItem="dSb-rf-Q8Q" secondAttribute="top" id="yw4-E5-nvE"/>
+                                        </constraints>
                                         <size key="customSize" width="80" height="80"/>
                                         <connections>
                                             <outlet property="imageView" destination="mpT-6D-n8Q" id="dVC-rs-GrZ"/>
@@ -138,20 +144,19 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomePhotoGalleryCVCHeader" id="K1D-ZX-zQj" customClass="HomePhotoGalleryHeaderCRV" customModule="multiscreen_demo" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomePhotoGalleryCVCHeader" id="fMl-ry-L4Z" customClass="HomePhotoGalleryHeaderCRV" customModule="MultiScreenPhoto" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="64" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zv-v1-ezb">
-                                            <rect key="frame" x="19" y="14" width="274" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fG6-lL-5WK">
+                                            <rect key="frame" x="18" y="14" width="297" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <connections>
-                                        <outlet property="title" destination="1zv-v1-ezb" id="RXa-Kd-Awl"/>
+                                        <outlet property="title" destination="fG6-lL-5WK" id="9z9-KP-6pQ"/>
                                     </connections>
                                 </collectionReusableView>
                                 <connections>
@@ -164,8 +169,8 @@
                         <constraints>
                             <constraint firstItem="ehP-91-vVy" firstAttribute="leading" secondItem="jXN-w8-2Hu" secondAttribute="leadingMargin" constant="-16" id="JvT-8f-dUA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ehP-91-vVy" secondAttribute="trailing" constant="-16" id="Vqk-Qy-6Ry"/>
-                            <constraint firstItem="ehP-91-vVy" firstAttribute="top" secondItem="bV2-uX-qvq" secondAttribute="bottom" constant="-64" id="f9u-qW-tth"/>
-                            <constraint firstItem="ga2-OC-3mn" firstAttribute="top" secondItem="ehP-91-vVy" secondAttribute="bottom" id="wH2-V3-lNa"/>
+                            <constraint firstItem="ehP-91-vVy" firstAttribute="top" secondItem="bV2-uX-qvq" secondAttribute="bottom" id="f9u-qW-tth"/>
+                            <constraint firstItem="ga2-OC-3mn" firstAttribute="top" secondItem="ehP-91-vVy" secondAttribute="bottom" constant="-64" id="wH2-V3-lNa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Photos" id="vNy-9S-o8M"/>

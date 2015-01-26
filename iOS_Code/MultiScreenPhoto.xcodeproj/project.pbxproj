@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A56D0D51A72E3490026EFF3 /* MyFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D0D41A72E3490026EFF3 /* MyFlowLayout.swift */; };
+		9A56D0D61A72E3490026EFF3 /* MyFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D0D41A72E3490026EFF3 /* MyFlowLayout.swift */; };
 		9AC49E591A71A5A800F391C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E581A71A5A800F391C0 /* AppDelegate.swift */; };
 		9AC49E5B1A71A5A800F391C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E5A1A71A5A800F391C0 /* ViewController.swift */; };
 		9AC49E5E1A71A5A800F391C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AC49E5C1A71A5A800F391C0 /* Main.storyboard */; };
@@ -65,6 +67,8 @@
 		9AC49ECD1A71A60D00F391C0 /* PhotoPageContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB51A71A60D00F391C0 /* PhotoPageContentVC.swift */; };
 		9AC49ECE1A71A60D00F391C0 /* ServicesFoundVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB71A71A60D00F391C0 /* ServicesFoundVC.swift */; };
 		9AC49ECF1A71A60D00F391C0 /* ServicesFoundVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB71A71A60D00F391C0 /* ServicesFoundVC.swift */; };
+		9AC49ED81A71AACB00F391C0 /* RFQuiltLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49ED71A71AACB00F391C0 /* RFQuiltLayout.m */; };
+		9AC49ED91A71AACB00F391C0 /* RFQuiltLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49ED71A71AACB00F391C0 /* RFQuiltLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A56D0D41A72E3490026EFF3 /* MyFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyFlowLayout.swift; sourceTree = "<group>"; };
 		9AC49E531A71A5A800F391C0 /* MultiScreenPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiScreenPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC49E571A71A5A800F391C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AC49E581A71A5A800F391C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +119,9 @@
 		9AC49EB41A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGalleryDetailsVC.swift; sourceTree = "<group>"; };
 		9AC49EB51A71A60D00F391C0 /* PhotoPageContentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPageContentVC.swift; sourceTree = "<group>"; };
 		9AC49EB71A71A60D00F391C0 /* ServicesFoundVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesFoundVC.swift; sourceTree = "<group>"; };
+		9AC49ED61A71AACB00F391C0 /* RFQuiltLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFQuiltLayout.h; sourceTree = "<group>"; };
+		9AC49ED71A71AACB00F391C0 /* RFQuiltLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFQuiltLayout.m; sourceTree = "<group>"; };
+		9AC49EDD1A71AE9D00F391C0 /* MultiScreenPhoto-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MultiScreenPhoto-Bridging-Header.h"; path = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +145,7 @@
 		9AC49E4A1A71A5A800F391C0 = {
 			isa = PBXGroup;
 			children = (
+				9AC49EDD1A71AE9D00F391C0 /* MultiScreenPhoto-Bridging-Header.h */,
 				9AC49E551A71A5A800F391C0 /* MultiScreenPhoto */,
 				9AC49E6B1A71A5A800F391C0 /* MultiScreenPhotoTests */,
 				9AC49E541A71A5A800F391C0 /* Products */,
@@ -196,6 +205,7 @@
 		9AC49E781A71A5F500F391C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9AC49ED51A71AACB00F391C0 /* RFQuiltLayout */,
 				9AC49E791A71A60000F391C0 /* MSF */,
 			);
 			path = Frameworks;
@@ -262,6 +272,7 @@
 		9AC49EAC1A71A60D00F391C0 /* HomePhotoGalleryCVC */ = {
 			isa = PBXGroup;
 			children = (
+				9A56D0D41A72E3490026EFF3 /* MyFlowLayout.swift */,
 				9AC49EAD1A71A60D00F391C0 /* HomePhotoGalleryCVC.swift */,
 				9AC49EAE1A71A60D00F391C0 /* HomePhotoGalleryCVCCell.swift */,
 				9AC49EAF1A71A60D00F391C0 /* HomePhotoGalleryHeaderCRV.swift */,
@@ -294,6 +305,15 @@
 				9AC49EB71A71A60D00F391C0 /* ServicesFoundVC.swift */,
 			);
 			path = ServicesFoundVC;
+			sourceTree = "<group>";
+		};
+		9AC49ED51A71AACB00F391C0 /* RFQuiltLayout */ = {
+			isa = PBXGroup;
+			children = (
+				9AC49ED61A71AACB00F391C0 /* RFQuiltLayout.h */,
+				9AC49ED71A71AACB00F391C0 /* RFQuiltLayout.m */,
+			);
+			path = RFQuiltLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,6 +427,7 @@
 				9AC49E9D1A71A60000F391C0 /* Service.swift in Sources */,
 				9AC49E891A71A60000F391C0 /* Application.swift in Sources */,
 				9AC49ECA1A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift in Sources */,
+				9A56D0D51A72E3490026EFF3 /* MyFlowLayout.swift in Sources */,
 				9AC49E9F1A71A60000F391C0 /* ServiceSearch.swift in Sources */,
 				9AC49E8B1A71A60000F391C0 /* Channel.swift in Sources */,
 				9AC49E8D1A71A60000F391C0 /* ChannelClient.swift in Sources */,
@@ -415,6 +436,7 @@
 				9AC49E951A71A60000F391C0 /* MDNSDiscoveryProvider.swift in Sources */,
 				9AC49EA11A71A60000F391C0 /* WebSocketTransport.swift in Sources */,
 				9AC49E5B1A71A5A800F391C0 /* ViewController.swift in Sources */,
+				9AC49ED81A71AACB00F391C0 /* RFQuiltLayout.m in Sources */,
 				9AC49EBA1A71A60D00F391C0 /* Gallery8.swift in Sources */,
 				9AC49ECE1A71A60D00F391C0 /* ServicesFoundVC.swift in Sources */,
 				9AC49ECC1A71A60D00F391C0 /* PhotoPageContentVC.swift in Sources */,
@@ -449,7 +471,9 @@
 				9AC49EB91A71A60D00F391C0 /* Gallery.swift in Sources */,
 				9AC49ECF1A71A60D00F391C0 /* ServicesFoundVC.swift in Sources */,
 				9AC49EBF1A71A60D00F391C0 /* CommonVC.swift in Sources */,
+				9AC49ED91A71AACB00F391C0 /* RFQuiltLayout.m in Sources */,
 				9AC49EC51A71A60D00F391C0 /* HomePhotoGalleryHeaderCRV.swift in Sources */,
+				9A56D0D61A72E3490026EFF3 /* MyFlowLayout.swift in Sources */,
 				9AC49ECB1A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift in Sources */,
 				9AC49ECD1A71A60D00F391C0 /* PhotoPageContentVC.swift in Sources */,
 				9AC49E8C1A71A60000F391C0 /* Channel.swift in Sources */,
@@ -533,6 +557,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -570,6 +595,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -584,6 +610,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
+				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -597,6 +624,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
+				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -659,6 +687,7 @@
 				9AC49E741A71A5A800F391C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9AC49E751A71A5A800F391C0 /* Build configuration list for PBXNativeTarget "MultiScreenPhotoTests" */ = {
 			isa = XCConfigurationList;
@@ -667,6 +696,7 @@
 				9AC49E771A71A5A800F391C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -9,7 +9,8 @@
 import UIKit
 import AssetsLibrary
 
-let reuseIdentifier = "HomePhotoGalleryCVCCell"
+let reuseIdentifierMin = "HomePhotoGalleryCVCCellMin"
+let reuseIdentifierMax = "HomePhotoGalleryCVCCellMax"
 let reuseIdentifierHeader = "HomePhotoGalleryCVCHeader"
 
 
@@ -44,11 +45,48 @@ class HomePhotoGalleryCVC: CommonVC, UICollectionViewDataSource, UICollectionVie
             }
         }
         
-       // NSNotificationCenter.defaultCenter().addObserverForName(ALAssetsLibraryChangedNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (mote :NSNotification!) -> Void in
-         //   self.collectionView!.reloadData()
-       // }
         
+        let flow:MyFlowLayout = self.collectionView!.collectionViewLayout as MyFlowLayout
+        //self.setUpFlowLayout(flow)
     }
+    
+    
+    
+    /*
+    func setUpFlowLayout(flow:UICollectionViewFlowLayout) {
+        flow.headerReferenceSize = CGSizeMake(50,50) // larger - we will place label within this
+        flow.sectionInset = UIEdgeInsetsMake(0, 2, 2, 0) // looks nicer
+        // uncomment to crash
+        // flow.estimatedItemSize = CGSizeMake(100,30)
+    }
+    
+    
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
+ /*
+    func collectionView(collectionView: UICollectionView, layout: UICollectionViewLayout, blockSizeForItemAtIndexPath: NSIndexPath) -> CGSize{
+   */
+        var widthLarge = CGFloat(186)
+        var widthSmall = CGFloat(93)
+        
+        switch (indexPath.row % 10) {
+        case 0:  return CGSizeMake(widthLarge,widthLarge);
+        case 1:  return CGSizeMake(widthSmall,widthSmall);
+        case 2:  return CGSizeMake(widthSmall,widthSmall);
+        case 3:  return CGSizeMake(widthSmall,widthSmall);
+        case 4:  return CGSizeMake(widthSmall,widthSmall);
+        case 5:  return CGSizeMake(widthSmall,widthSmall);
+        case 6:  return CGSizeMake(widthSmall,widthSmall);
+        case 7:  return CGSizeMake(widthLarge,widthLarge);
+        case 8:  return CGSizeMake(widthSmall,widthSmall);
+        case 9:  return CGSizeMake(widthSmall,widthSmall);
+        default: return CGSizeMake(widthSmall,widthSmall);
+
+        }
+
+    }
+    */
+
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -83,13 +121,27 @@ class HomePhotoGalleryCVC: CommonVC, UICollectionViewDataSource, UICollectionVie
     
      func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell : HomePhotoGalleryCVCCell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as HomePhotoGalleryCVCCell
+        var cell : HomePhotoGalleryCVCCell
+        
+        var modIndexRow = indexPath.row % 10
+        /*
+        if(modIndexRow == 0 || modIndexRow == 7){
+             cell  = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifierMax, forIndexPath: indexPath) as HomePhotoGalleryCVCCell
+            
+        }else{
+*/
+             cell  = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifierMin, forIndexPath: indexPath) as HomePhotoGalleryCVCCell
+            
+  //      }
         
         // return the current image from the asset
         gallery.requestImageAtIndex(indexPath.section,index: indexPath.row, isThumbnail: true, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!) -> Void in
             cell.imageView.image = image
+            //cell.clipsToBounds = true
+            //cell.backgroundColor = UIColor(patternImage: image)
+            
+            
         })
-        
         return cell
     }
     
