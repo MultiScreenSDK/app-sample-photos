@@ -1,0 +1,15 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context="com.samsung.appsamplephotos.fragments.ScreenSlidePageFragment">
+
+    <ImageView
+        android:id="@+id/previewImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:src="@drawable/btn_cast_on" />
+
+</FrameLayout>
+<!-- From: file:/Users/Nestor/koombea/native/android/appsamplephotos/app/src/main/res/layout/fragment_screen_slide_page.xml -->
