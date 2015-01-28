@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>ABD3AC07-E30E-461C-87AC-422ACB12B75C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MultiScreenPhoto</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3FAAD5477B4F65E0010C0C731CDFCF7DA6429707</key>
+		<string>github.com:MultiScreenSDK/app-sample-photos.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iOS/MultiScreenPhoto.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3FAAD5477B4F65E0010C0C731CDFCF7DA6429707</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:MultiScreenSDK/app-sample-photos.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3FAAD5477B4F65E0010C0C731CDFCF7DA6429707</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3FAAD5477B4F65E0010C0C731CDFCF7DA6429707</string>
+			<key>IDESourceControlWCCName</key>
+			<string>app-sample-photos</string>
+		</dict>
+	</array>
+</dict>
+</plist>
