@@ -99,7 +99,6 @@
         
         func requestImageAtIndex(album: Int, index: Int, isThumbnail: Bool ,completionHandler: ((UIImage!, [NSObject : AnyObject]!) -> Void)!){
             
-            //println("[requestImageAtIndex] albums: \(album), image index : \(index)")
             let assetsGroup:ALAssetsGroup = albums[album]
             
             if(getNumOfAssetsByAlbum(album) > index){
@@ -118,7 +117,6 @@
                         dispatch_async(dispatch_get_main_queue(),{
                             return completionHandler(image,nil)
                         })
-                        
                     }
                 })
             }else{

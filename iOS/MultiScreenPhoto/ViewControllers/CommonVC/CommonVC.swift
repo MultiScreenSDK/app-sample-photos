@@ -97,8 +97,11 @@ class CommonVC: UIViewController {
     }
     
     func showSettings(){
-        self.displayAlertWithTitle("Settings",
-            message: "Available soon!")
+       // self.displayAlertWithTitle("Settings",
+          //  message: "Available soon!")
+        
+        let detailController = HowToVC(nibName: "HowToVC", bundle: NSBundle.mainBundle())
+        self.navigationController?.pushViewController(detailController, animated:true)
     }
     
     deinit {

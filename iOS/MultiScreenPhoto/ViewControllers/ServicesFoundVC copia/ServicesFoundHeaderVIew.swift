@@ -17,28 +17,28 @@ class ServicesFoundHeaderVIew: UIView {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var service: UILabel!
+    @IBOutlet weak var connectedLabel: UILabel!
     @IBOutlet weak var disconnectButton: UIButton!
     @IBOutlet weak var line: UIImageView!
-    @IBOutlet weak var switchToView: UIView!
     
     var delegate : ServicesFoundHeaderVIewDelegate!
     
     var isConnected: Bool = false {
         didSet {
+            connectedLabel.hidden = !isConnected
             disconnectButton.hidden = !isConnected
             service.hidden = !isConnected
             line.hidden = !isConnected
-            switchToView.hidden = !isConnected
             
-            disconnectButton.layer.cornerRadius = 2
+            disconnectButton.layer.cornerRadius = 4
             disconnectButton.layer.borderWidth = 0.5
-            disconnectButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+            disconnectButton.layer.borderColor = UIColor.whiteColor().CGColor
             
             if(isConnected){
-                title.text = "Connected to:"
+                title.text = "CONNECTED TO"
                 icon.image = UIImage(named: "btn_cast_on")
             }else{
-                title.text = "Select TV"
+                title.text = "SELECT THE TV"
                 icon.image = UIImage(named: "btn_cast_off")
             }
             

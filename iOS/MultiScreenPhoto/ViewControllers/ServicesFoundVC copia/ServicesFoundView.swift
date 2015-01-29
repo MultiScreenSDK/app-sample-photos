@@ -15,7 +15,6 @@ var tvIntegration = TVIntegration.sharedInstance
 class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, ServicesFoundHeaderVIewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    var services = [AnyObject]()
     
     class func loadFromNibNamed(nibNamed: String, bundle : NSBundle? = nil) -> UIView? {
         return UINib(
@@ -27,12 +26,6 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
     override func awakeFromNib(){
         super.awakeFromNib()
         self.tableView.registerNib(UINib(nibName: servicesFoundTVCellID, bundle: nil), forCellReuseIdentifier: servicesFoundTVCellID)
-        services = tvIntegration.getServicesNotConnected()
-    }
-    
-    func refreshTableView(){
-        services = tvIntegration.getServicesNotConnected()
-        tableView.reloadData()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -40,7 +33,10 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return services.count;
+        
+        print(tvIntegration.getServices().count)
+        
+        return 3;
     }
     
     
@@ -48,15 +44,14 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
         
         var cell : ServicesFoundTVCell
         cell = tableView.dequeueReusableCellWithIdentifier(servicesFoundTVCellID, forIndexPath: indexPath) as ServicesFoundTVCell
-        cell.title.text = "\(services[indexPath.row].name)"
-        
+        cell.title.text = "\(tvIntegration.getServiceWithIndex(indexPath.row).name)"
         return cell
         
     }
     
     func tableView(tableView: UITableView!, heightForHeaderInSection section: Int) -> CGFloat {
         if(tvIntegration.isApplicationConnected() == true){
-            return 180
+            return 155
         }else{
             return 55
         }
@@ -67,14 +62,14 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
         var headerView = viewArray[0] as ServicesFoundHeaderVIew
         headerView.isConnected = tvIntegration.isApplicationConnected()
         if(tvIntegration.isApplicationConnected() == true){
-            headerView.service.text =  tvIntegration.getApplicationCurrentService().name
+             headerView.service.text =  tvIntegration.getApplicationCurrentService().name
         }
         headerView.delegate = self
         return headerView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        tvIntegration.createApplication(services[indexPath.row] as Service, completionHandler: { (success: Bool!) -> Void in
+        tvIntegration.createApplication(tvIntegration.getServiceWithIndex(indexPath.row), completionHandler: { (success: Bool!) -> Void in
             NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
             if((success) == true){
                 self.removeFromSuperview()
@@ -83,9 +78,10 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
     }
     
     func closeApplication(){
+        
         tvIntegration.closeApplication({ (success: Bool!) -> Void in
-            NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
-            self.removeFromSuperview()
+        NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
+        self.removeFromSuperview()
         })
     }
     

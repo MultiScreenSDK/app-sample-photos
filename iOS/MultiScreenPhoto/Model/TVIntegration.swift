@@ -14,8 +14,6 @@ class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
     var channelId: String = "com.samsung.multiscreen.photos"
     var app : Application!
     let search = Service.search()
-    var isConnected = false
-    var connectionName = String()
     
     class var sharedInstance: TVIntegration {
         struct Static {
@@ -37,18 +35,33 @@ class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
         // Start the TV discovery process
         search.delegate = self
         search.start()
-        
-        // Adding an observer
-        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "serviceChanged", name: "serviceChanged", object: nil)
-
     }
     
     func isApplicationConnected()->Bool {
-        return isConnected;
+        return app != nil && app!.isConnected;
+    }
+    
+    func getApplicationCurrentService()->Service{
+        return app.service
     }
     
     func getServices() -> [Service]{
         return search.services
+    }
+    
+    func getServicesNotConnected() -> [Service]{
+        
+        var servicesArray = [Service]()
+        for (value) in getServices() {
+            if(isApplicationConnected() == true){
+                if(getApplicationCurrentService().id != value.id){
+                servicesArray.append(value)
+                }
+            }else{
+                servicesArray.append(value)
+            }
+        }
+        return servicesArray
     }
     
     func getServiceWithIndex(index : Int)->Service{
@@ -67,26 +80,11 @@ class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
         NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
     }
     
-    private func updateCastStatus() {
-        /*
-        var castStatus = CastStatus.notReady
-        if app != nil && app!.isConnected {
-            castStatus = CastStatus.connected
-        } else if isConnecting {
-            castStatus = CastStatus.connecting
-        } else if search.services.count > 0 {
-            castStatus = CastStatus.readyToConnect
-        }
-        castButton.castStatus = castStatus
-*/
-    }
     
     func createApplication(service: Service,completionHandler: ((Bool!) -> Void)!){
-        
         app = service.createApplication(NSURL(string: appURL)!, channelURI: channelId)!
         app.connect(["name":UIDevice.currentDevice().name])
         app.start { (success, error) -> Void in
-           self.isConnected = success
            completionHandler(success)
         }
     }
@@ -96,18 +94,33 @@ class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
         app.stop({ (success, error) -> Void in })
         app.disconnect({ (channel, error) -> Void in
             if(error == nil){
-                self.isConnected = false
                 completionHandler(true)
             }else{
                 completionHandler(false)
             }
         })
-        tvIntegration.connectionName = ""
     }
     
     func sendPhotoToTv(image :UIImage){
-        if (isConnected){
+        if (isApplicationConnected()){
             app.publish(event: "showPhoto", message: nil, data: UIImageJPEGRepresentation(image,0.6))
         }
     }
+    
+    
+    /*
+    private func updateCastStatus() {
+    
+    var castStatus = CastStatus.notReady
+    if app != nil && app!.isConnected {
+    castStatus = CastStatus.connected
+    } else if isConnecting {
+    castStatus = CastStatus.connecting
+    } else if search.services.count > 0 {
+    castStatus = CastStatus.readyToConnect
+    }
+    castButton.castStatus = castStatus
+    
+    }
+    */
 }

@@ -25,7 +25,7 @@
                             </connections>
                         </button>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DNG-4q-jd7">
-                            <rect key="frame" x="40" y="99" width="241" height="465"/>
+                            <rect key="frame" x="40" y="193" width="241" height="368"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -39,21 +39,27 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="Y70-Gd-rfd" secondAttribute="trailing" constant="20" id="ILv-yj-xEn"/>
-                        <constraint firstAttribute="bottom" secondItem="DNG-4q-jd7" secondAttribute="bottom" constant="2" id="JNb-2y-bYU"/>
-                        <constraint firstItem="DNG-4q-jd7" firstAttribute="leading" secondItem="p57-yo-B2O" secondAttribute="leading" constant="40" id="RYs-uL-qsQ"/>
-                        <constraint firstItem="DNG-4q-jd7" firstAttribute="top" secondItem="p57-yo-B2O" secondAttribute="top" constant="99" id="ZGe-R1-ydR"/>
-                        <constraint firstAttribute="trailing" secondItem="DNG-4q-jd7" secondAttribute="trailing" constant="39" id="b1M-ab-qC7"/>
-                        <constraint firstItem="Y70-Gd-rfd" firstAttribute="top" secondItem="p57-yo-B2O" secondAttribute="top" constant="20" id="iFp-iD-LNx"/>
+                        <constraint firstItem="Y70-Gd-rfd" firstAttribute="top" secondItem="p57-yo-B2O" secondAttribute="top" constant="20" id="KeG-xR-CQu"/>
+                        <constraint firstAttribute="centerX" secondItem="DNG-4q-jd7" secondAttribute="centerX" id="WYU-C6-WkQ"/>
+                        <constraint firstAttribute="bottom" secondItem="DNG-4q-jd7" secondAttribute="bottom" constant="5" id="YPf-Jw-xez"/>
+                        <constraint firstAttribute="trailing" secondItem="Y70-Gd-rfd" secondAttribute="trailing" constant="20" id="azN-QI-bWC"/>
+                        <constraint firstAttribute="bottom" secondItem="DNG-4q-jd7" secondAttribute="bottom" constant="147" id="gsj-o3-0Xc"/>
+                        <constraint firstAttribute="centerY" secondItem="DNG-4q-jd7" secondAttribute="centerY" constant="-0.5" id="mAa-bK-D3g"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="gsj-o3-0Xc"/>
+                            <exclude reference="mAa-bK-D3g"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="p57-yo-B2O" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7ng-6a-zDq"/>
-                <constraint firstAttribute="trailing" secondItem="p57-yo-B2O" secondAttribute="trailing" id="VRZ-tU-q7p"/>
-                <constraint firstAttribute="bottom" secondItem="p57-yo-B2O" secondAttribute="bottom" constant="2" id="jaE-Ly-O5k"/>
-                <constraint firstItem="p57-yo-B2O" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zWM-ge-cGb"/>
+                <constraint firstItem="p57-yo-B2O" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Ih4-HZ-IWk"/>
+                <constraint firstAttribute="bottom" secondItem="p57-yo-B2O" secondAttribute="bottom" constant="2" id="Isj-N3-I5B"/>
+                <constraint firstItem="p57-yo-B2O" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Tpn-AN-0kn"/>
+                <constraint firstAttribute="trailing" secondItem="p57-yo-B2O" secondAttribute="trailing" id="tTA-hB-fjE"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <userDefinedRuntimeAttributes>
@@ -62,7 +68,7 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="tableView" destination="DNG-4q-jd7" id="cWa-du-l1a"/>
+                <outlet property="tableView" destination="DNG-4q-jd7" id="bgw-5o-Ov8"/>
             </connections>
         </view>
     </objects>

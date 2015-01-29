@@ -25,6 +25,10 @@
 		9A76A8FB1A7A9AA7007B05D4 /* ServicesFoundHeaderVIew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A76A8F91A7A9AA7007B05D4 /* ServicesFoundHeaderVIew.xib */; };
 		9A76A8FD1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76A8FC1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift */; };
 		9A76A8FE1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76A8FC1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift */; };
+		9A76A9021A7AEEBD007B05D4 /* HowToVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76A9001A7AEEBD007B05D4 /* HowToVC.swift */; };
+		9A76A9031A7AEEBD007B05D4 /* HowToVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76A9001A7AEEBD007B05D4 /* HowToVC.swift */; };
+		9A76A9041A7AEEBD007B05D4 /* HowToVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A76A9011A7AEEBD007B05D4 /* HowToVC.xib */; };
+		9A76A9051A7AEEBD007B05D4 /* HowToVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A76A9011A7AEEBD007B05D4 /* HowToVC.xib */; };
 		9AC49E591A71A5A800F391C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E581A71A5A800F391C0 /* AppDelegate.swift */; };
 		9AC49E5B1A71A5A800F391C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E5A1A71A5A800F391C0 /* ViewController.swift */; };
 		9AC49E5E1A71A5A800F391C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AC49E5C1A71A5A800F391C0 /* Main.storyboard */; };
@@ -97,6 +101,8 @@
 		9A76A8F41A7A83D8007B05D4 /* ServicesFoundTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServicesFoundTVCell.xib; sourceTree = "<group>"; };
 		9A76A8F91A7A9AA7007B05D4 /* ServicesFoundHeaderVIew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServicesFoundHeaderVIew.xib; sourceTree = "<group>"; };
 		9A76A8FC1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesFoundHeaderVIew.swift; sourceTree = "<group>"; };
+		9A76A9001A7AEEBD007B05D4 /* HowToVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HowToVC.swift; sourceTree = "<group>"; };
+		9A76A9011A7AEEBD007B05D4 /* HowToVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HowToVC.xib; sourceTree = "<group>"; };
 		9AC49E531A71A5A800F391C0 /* MultiScreenPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiScreenPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC49E571A71A5A800F391C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AC49E581A71A5A800F391C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +155,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A76A8FF1A7AEE99007B05D4 /* HowToVC */ = {
+			isa = PBXGroup;
+			children = (
+				9A76A9001A7AEEBD007B05D4 /* HowToVC.swift */,
+				9A76A9011A7AEEBD007B05D4 /* HowToVC.xib */,
+			);
+			path = HowToVC;
+			sourceTree = "<group>";
+		};
 		9AC49E4A1A71A5A800F391C0 = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +272,7 @@
 		9AC49EA91A71A60D00F391C0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9A76A8FF1A7AEE99007B05D4 /* HowToVC */,
 				9AC49EAA1A71A60D00F391C0 /* CommonVC */,
 				9AC49EAC1A71A60D00F391C0 /* HomePhotoGalleryCVC */,
 				9AC49EB31A71A60D00F391C0 /* PhotoGalleryDetailsVC */,
@@ -404,6 +420,7 @@
 				9A76A8FA1A7A9AA7007B05D4 /* ServicesFoundHeaderVIew.xib in Resources */,
 				9AC49E631A71A5A800F391C0 /* LaunchScreen.xib in Resources */,
 				9AC49E601A71A5A800F391C0 /* Images.xcassets in Resources */,
+				9A76A9041A7AEEBD007B05D4 /* HowToVC.xib in Resources */,
 				9AC49EC81A71A60D00F391C0 /* WelcomeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A76A8FB1A7A9AA7007B05D4 /* ServicesFoundHeaderVIew.xib in Resources */,
+				9A76A9051A7AEEBD007B05D4 /* HowToVC.xib in Resources */,
 				9A76A8F81A7A83D8007B05D4 /* ServicesFoundTVCell.xib in Resources */,
 				9AC49EC91A71A60D00F391C0 /* WelcomeView.xib in Resources */,
 				9A76A8EF1A7A818D007B05D4 /* ServicesFoundView.xib in Resources */,
@@ -436,6 +454,7 @@
 				9AC49ECA1A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift in Sources */,
 				9AC49E9F1A71A60000F391C0 /* ServiceSearch.swift in Sources */,
 				9A56D16B1A77E6C50026EFF3 /* CustomHeaderCell.swift in Sources */,
+				9A76A9021A7AEEBD007B05D4 /* HowToVC.swift in Sources */,
 				9AC49E8B1A71A60000F391C0 /* Channel.swift in Sources */,
 				9AC49E8D1A71A60000F391C0 /* ChannelClient.swift in Sources */,
 				9AC49EBC1A71A60D00F391C0 /* TVIntegration.swift in Sources */,
@@ -475,6 +494,7 @@
 				9A76A8FE1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift in Sources */,
 				9AC49E9E1A71A60000F391C0 /* Service.swift in Sources */,
 				9A56D1691A77E5180026EFF3 /* HomePhotoGalleryTVCell.swift in Sources */,
+				9A76A9031A7AEEBD007B05D4 /* HowToVC.swift in Sources */,
 				9A76A8F61A7A83D8007B05D4 /* ServicesFoundTVCell.swift in Sources */,
 				9AC49EB91A71A60D00F391C0 /* Gallery.swift in Sources */,
 				9AC49EBF1A71A60D00F391C0 /* CommonVC.swift in Sources */,
