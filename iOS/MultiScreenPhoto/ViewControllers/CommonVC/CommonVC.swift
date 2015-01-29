@@ -13,6 +13,7 @@ import UIKit
 class CommonVC: UIViewController {
     
     var tvIntegration = TVIntegration.sharedInstance
+    var serviceFoundView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +68,14 @@ class CommonVC: UIViewController {
     
     func showServicesFound(){
         
+        
+            self.serviceFoundView = ServicesFoundView.loadFromNibNamed("ServicesFoundView")
+            self.serviceFoundView.frame = view.frame
+            view.window?.addSubview(serviceFoundView)
+        
+        
+        /*
+        
         if(tvIntegration.isApplicationConnected() == true){
             tvIntegration.closeApplication({ (success: Bool!) -> Void in
                 
@@ -84,7 +93,7 @@ class CommonVC: UIViewController {
             self.navigationController?.presentViewController(servicesFoundVC, animated: true, completion: nil)
         }
         
-        
+        */
     }
     
     func showSettings(){

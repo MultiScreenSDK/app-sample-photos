@@ -15,6 +15,7 @@ class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
     var app : Application!
     let search = Service.search()
     var isConnected = false
+    var connectionName = String()
     
     class var sharedInstance: TVIntegration {
         struct Static {
@@ -81,6 +82,7 @@ class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
     }
     
     func createApplication(service: Service,completionHandler: ((Bool!) -> Void)!){
+        
         app = service.createApplication(NSURL(string: appURL)!, channelURI: channelId)!
         app.connect(["name":UIDevice.currentDevice().name])
         app.start { (success, error) -> Void in
@@ -100,6 +102,7 @@ class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
                 completionHandler(false)
             }
         })
+        tvIntegration.connectionName = ""
     }
     
     func sendPhotoToTv(image :UIImage){

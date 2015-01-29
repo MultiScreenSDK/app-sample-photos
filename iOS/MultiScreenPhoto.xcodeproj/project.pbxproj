@@ -13,6 +13,18 @@
 		9A56D16C1A77E6C50026EFF3 /* CustomHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D16A1A77E6C50026EFF3 /* CustomHeaderCell.swift */; };
 		9A56D16E1A77EC180026EFF3 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D16D1A77EC180026EFF3 /* CustomTableViewCell.swift */; };
 		9A56D16F1A77EC180026EFF3 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D16D1A77EC180026EFF3 /* CustomTableViewCell.swift */; };
+		9A76A8EE1A7A818D007B05D4 /* ServicesFoundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A76A8ED1A7A818D007B05D4 /* ServicesFoundView.xib */; };
+		9A76A8EF1A7A818D007B05D4 /* ServicesFoundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A76A8ED1A7A818D007B05D4 /* ServicesFoundView.xib */; };
+		9A76A8F11A7A81A8007B05D4 /* ServicesFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76A8F01A7A81A8007B05D4 /* ServicesFoundView.swift */; };
+		9A76A8F21A7A81A8007B05D4 /* ServicesFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76A8F01A7A81A8007B05D4 /* ServicesFoundView.swift */; };
+		9A76A8F51A7A83D8007B05D4 /* ServicesFoundTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76A8F31A7A83D8007B05D4 /* ServicesFoundTVCell.swift */; };
+		9A76A8F61A7A83D8007B05D4 /* ServicesFoundTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76A8F31A7A83D8007B05D4 /* ServicesFoundTVCell.swift */; };
+		9A76A8F71A7A83D8007B05D4 /* ServicesFoundTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A76A8F41A7A83D8007B05D4 /* ServicesFoundTVCell.xib */; };
+		9A76A8F81A7A83D8007B05D4 /* ServicesFoundTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A76A8F41A7A83D8007B05D4 /* ServicesFoundTVCell.xib */; };
+		9A76A8FA1A7A9AA7007B05D4 /* ServicesFoundHeaderVIew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A76A8F91A7A9AA7007B05D4 /* ServicesFoundHeaderVIew.xib */; };
+		9A76A8FB1A7A9AA7007B05D4 /* ServicesFoundHeaderVIew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A76A8F91A7A9AA7007B05D4 /* ServicesFoundHeaderVIew.xib */; };
+		9A76A8FD1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76A8FC1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift */; };
+		9A76A8FE1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76A8FC1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift */; };
 		9AC49E591A71A5A800F391C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E581A71A5A800F391C0 /* AppDelegate.swift */; };
 		9AC49E5B1A71A5A800F391C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E5A1A71A5A800F391C0 /* ViewController.swift */; };
 		9AC49E5E1A71A5A800F391C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AC49E5C1A71A5A800F391C0 /* Main.storyboard */; };
@@ -63,10 +75,6 @@
 		9AC49ECB1A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB41A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift */; };
 		9AC49ECC1A71A60D00F391C0 /* PhotoPageContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB51A71A60D00F391C0 /* PhotoPageContentVC.swift */; };
 		9AC49ECD1A71A60D00F391C0 /* PhotoPageContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB51A71A60D00F391C0 /* PhotoPageContentVC.swift */; };
-		9AC49ECE1A71A60D00F391C0 /* ServicesFoundVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB71A71A60D00F391C0 /* ServicesFoundVC.swift */; };
-		9AC49ECF1A71A60D00F391C0 /* ServicesFoundVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB71A71A60D00F391C0 /* ServicesFoundVC.swift */; };
-		9AC49ED81A71AACB00F391C0 /* RFQuiltLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49ED71A71AACB00F391C0 /* RFQuiltLayout.m */; };
-		9AC49ED91A71AACB00F391C0 /* RFQuiltLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49ED71A71AACB00F391C0 /* RFQuiltLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +91,12 @@
 		9A56D1671A77E5170026EFF3 /* HomePhotoGalleryTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePhotoGalleryTVCell.swift; sourceTree = "<group>"; };
 		9A56D16A1A77E6C50026EFF3 /* CustomHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomHeaderCell.swift; sourceTree = "<group>"; };
 		9A56D16D1A77EC180026EFF3 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		9A76A8ED1A7A818D007B05D4 /* ServicesFoundView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServicesFoundView.xib; sourceTree = "<group>"; };
+		9A76A8F01A7A81A8007B05D4 /* ServicesFoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesFoundView.swift; sourceTree = "<group>"; };
+		9A76A8F31A7A83D8007B05D4 /* ServicesFoundTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesFoundTVCell.swift; sourceTree = "<group>"; };
+		9A76A8F41A7A83D8007B05D4 /* ServicesFoundTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServicesFoundTVCell.xib; sourceTree = "<group>"; };
+		9A76A8F91A7A9AA7007B05D4 /* ServicesFoundHeaderVIew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServicesFoundHeaderVIew.xib; sourceTree = "<group>"; };
+		9A76A8FC1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesFoundHeaderVIew.swift; sourceTree = "<group>"; };
 		9AC49E531A71A5A800F391C0 /* MultiScreenPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiScreenPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC49E571A71A5A800F391C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AC49E581A71A5A800F391C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,10 +129,6 @@
 		9AC49EB21A71A60D00F391C0 /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
 		9AC49EB41A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGalleryDetailsVC.swift; sourceTree = "<group>"; };
 		9AC49EB51A71A60D00F391C0 /* PhotoPageContentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPageContentVC.swift; sourceTree = "<group>"; };
-		9AC49EB71A71A60D00F391C0 /* ServicesFoundVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesFoundVC.swift; sourceTree = "<group>"; };
-		9AC49ED61A71AACB00F391C0 /* RFQuiltLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFQuiltLayout.h; sourceTree = "<group>"; };
-		9AC49ED71A71AACB00F391C0 /* RFQuiltLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFQuiltLayout.m; sourceTree = "<group>"; };
-		9AC49EDD1A71AE9D00F391C0 /* MultiScreenPhoto-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MultiScreenPhoto-Bridging-Header.h"; path = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +152,6 @@
 		9AC49E4A1A71A5A800F391C0 = {
 			isa = PBXGroup;
 			children = (
-				9AC49EDD1A71AE9D00F391C0 /* MultiScreenPhoto-Bridging-Header.h */,
 				9AC49E551A71A5A800F391C0 /* MultiScreenPhoto */,
 				9AC49E6B1A71A5A800F391C0 /* MultiScreenPhotoTests */,
 				9AC49E541A71A5A800F391C0 /* Products */,
@@ -202,7 +211,6 @@
 		9AC49E781A71A5F500F391C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9AC49ED51A71AACB00F391C0 /* RFQuiltLayout */,
 				9AC49E791A71A60000F391C0 /* MSF */,
 			);
 			path = Frameworks;
@@ -298,18 +306,14 @@
 		9AC49EB61A71A60D00F391C0 /* ServicesFoundVC */ = {
 			isa = PBXGroup;
 			children = (
-				9AC49EB71A71A60D00F391C0 /* ServicesFoundVC.swift */,
+				9A76A8ED1A7A818D007B05D4 /* ServicesFoundView.xib */,
+				9A76A8F01A7A81A8007B05D4 /* ServicesFoundView.swift */,
+				9A76A8F31A7A83D8007B05D4 /* ServicesFoundTVCell.swift */,
+				9A76A8F41A7A83D8007B05D4 /* ServicesFoundTVCell.xib */,
+				9A76A8F91A7A9AA7007B05D4 /* ServicesFoundHeaderVIew.xib */,
+				9A76A8FC1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift */,
 			);
 			path = ServicesFoundVC;
-			sourceTree = "<group>";
-		};
-		9AC49ED51A71AACB00F391C0 /* RFQuiltLayout */ = {
-			isa = PBXGroup;
-			children = (
-				9AC49ED61A71AACB00F391C0 /* RFQuiltLayout.h */,
-				9AC49ED71A71AACB00F391C0 /* RFQuiltLayout.m */,
-			);
-			path = RFQuiltLayout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,7 +398,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A76A8F71A7A83D8007B05D4 /* ServicesFoundTVCell.xib in Resources */,
 				9AC49E5E1A71A5A800F391C0 /* Main.storyboard in Resources */,
+				9A76A8EE1A7A818D007B05D4 /* ServicesFoundView.xib in Resources */,
+				9A76A8FA1A7A9AA7007B05D4 /* ServicesFoundHeaderVIew.xib in Resources */,
 				9AC49E631A71A5A800F391C0 /* LaunchScreen.xib in Resources */,
 				9AC49E601A71A5A800F391C0 /* Images.xcassets in Resources */,
 				9AC49EC81A71A60D00F391C0 /* WelcomeView.xib in Resources */,
@@ -405,7 +412,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A76A8FB1A7A9AA7007B05D4 /* ServicesFoundHeaderVIew.xib in Resources */,
+				9A76A8F81A7A83D8007B05D4 /* ServicesFoundTVCell.xib in Resources */,
 				9AC49EC91A71A60D00F391C0 /* WelcomeView.xib in Resources */,
+				9A76A8EF1A7A818D007B05D4 /* ServicesFoundView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +430,7 @@
 				9AC49E9B1A71A60000F391C0 /* RPCMessaje.swift in Sources */,
 				9AC49EA31A71A60000F391C0 /* WebSocket.swift in Sources */,
 				9A56D16E1A77EC180026EFF3 /* CustomTableViewCell.swift in Sources */,
+				9A76A8F11A7A81A8007B05D4 /* ServicesFoundView.swift in Sources */,
 				9AC49E9D1A71A60000F391C0 /* Service.swift in Sources */,
 				9AC49E891A71A60000F391C0 /* Application.swift in Sources */,
 				9AC49ECA1A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift in Sources */,
@@ -428,12 +439,12 @@
 				9AC49E8B1A71A60000F391C0 /* Channel.swift in Sources */,
 				9AC49E8D1A71A60000F391C0 /* ChannelClient.swift in Sources */,
 				9AC49EBC1A71A60D00F391C0 /* TVIntegration.swift in Sources */,
+				9A76A8FD1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift in Sources */,
 				9AC49E951A71A60000F391C0 /* MDNSDiscoveryProvider.swift in Sources */,
 				9AC49EA11A71A60000F391C0 /* WebSocketTransport.swift in Sources */,
 				9AC49E5B1A71A5A800F391C0 /* ViewController.swift in Sources */,
-				9AC49ED81A71AACB00F391C0 /* RFQuiltLayout.m in Sources */,
 				9A56D1681A77E5180026EFF3 /* HomePhotoGalleryTVCell.swift in Sources */,
-				9AC49ECE1A71A60D00F391C0 /* ServicesFoundVC.swift in Sources */,
+				9A76A8F51A7A83D8007B05D4 /* ServicesFoundTVCell.swift in Sources */,
 				9AC49ECC1A71A60D00F391C0 /* PhotoPageContentVC.swift in Sources */,
 				9AC49E591A71A5A800F391C0 /* AppDelegate.swift in Sources */,
 				9AC49E911A71A60000F391C0 /* Device.swift in Sources */,
@@ -461,12 +472,12 @@
 				9AC49EC11A71A60D00F391C0 /* HomePhotoGalleryCVC.swift in Sources */,
 				9AC49EA01A71A60000F391C0 /* ServiceSearch.swift in Sources */,
 				9AC49EC71A71A60D00F391C0 /* WelcomeView.swift in Sources */,
+				9A76A8FE1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift in Sources */,
 				9AC49E9E1A71A60000F391C0 /* Service.swift in Sources */,
 				9A56D1691A77E5180026EFF3 /* HomePhotoGalleryTVCell.swift in Sources */,
+				9A76A8F61A7A83D8007B05D4 /* ServicesFoundTVCell.swift in Sources */,
 				9AC49EB91A71A60D00F391C0 /* Gallery.swift in Sources */,
-				9AC49ECF1A71A60D00F391C0 /* ServicesFoundVC.swift in Sources */,
 				9AC49EBF1A71A60D00F391C0 /* CommonVC.swift in Sources */,
-				9AC49ED91A71AACB00F391C0 /* RFQuiltLayout.m in Sources */,
 				9AC49ECB1A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift in Sources */,
 				9AC49ECD1A71A60D00F391C0 /* PhotoPageContentVC.swift in Sources */,
 				9AC49E8C1A71A60000F391C0 /* Channel.swift in Sources */,
@@ -476,6 +487,7 @@
 				9A56D16C1A77E6C50026EFF3 /* CustomHeaderCell.swift in Sources */,
 				9AC49EBD1A71A60D00F391C0 /* TVIntegration.swift in Sources */,
 				9AC49E9A1A71A60000F391C0 /* Requester.swift in Sources */,
+				9A76A8F21A7A81A8007B05D4 /* ServicesFoundView.swift in Sources */,
 				9AC49E6F1A71A5A800F391C0 /* MultiScreenPhotoTests.swift in Sources */,
 				9AC49E9C1A71A60000F391C0 /* RPCMessaje.swift in Sources */,
 			);
@@ -551,7 +563,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -589,7 +601,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -604,7 +616,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
-				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -618,7 +630,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
-				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
