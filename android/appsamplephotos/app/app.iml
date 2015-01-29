@@ -85,15 +85,16 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="picasso-2.4.1-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="core-1.0.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" exported="" name="layouts-1.0.0-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-19.1.0" level="project" />
     <orderEntry type="library" exported="" name="support-v4-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="stickylistheaders-2.5.2" level="project" />
-    <orderEntry type="library" exported="" name="android-msf-api-2.0.9" level="project" />
+    <orderEntry type="library" exported="" name="android-msf-api-2.0.10" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-21.0.3" level="project" />
+    <orderEntry type="library" exported="" name="universal-image-loader-1.9.1" level="project" />
     <orderEntry type="library" exported="" name="recyclerview-v7-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="android-support-v7-gridlayout" level="project" />
+    <orderEntry type="module" module-name="layouts" exported="" />
   </component>
 </module>
 

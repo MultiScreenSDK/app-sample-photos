@@ -6,17 +6,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 
 import com.samsung.appsamplephotos.R;
 import com.samsung.appsamplephotos.adapters.GalleryAdapter;
+import com.samsung.appsamplephotos.adapters.PhotoAdapter;
 import com.samsung.appsamplephotos.controllers.Callback;
 import com.samsung.appsamplephotos.controllers.MultiScreenController;
 import com.samsung.appsamplephotos.controllers.PhotoController;
@@ -25,18 +31,19 @@ import com.samsung.appsamplephotos.models.Gallery;
 import com.samsung.appsamplephotos.utils.Constants;
 import com.samsung.multiscreen.Service;
 
+import org.lucasr.twowayview.widget.TwoWayView;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import se.emilsjolander.stickylistheaders.ExpandableStickyListHeadersListView;
-import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 
 public class MainActivity extends Activity {
 
-    private GalleryAdapter galleryAdapter;
-    private ArrayList<Gallery> galleries = new ArrayList<Gallery>();
-    private ExpandableStickyListHeadersListView galleryListView;
+    //private GalleryAdapter galleryAdapter;
+    PhotoAdapter photoAdapter;
+    public TwoWayView galleryGridView;
+    //private ArrayList<Gallery> galleries = new ArrayList<Gallery>();
+    //private ExpandableStickyListHeadersListView galleryListView;
     private SharedPreferences prefs;
     private Menu menu;
     private MenuItem connectivityMenuItem;
@@ -44,11 +51,12 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        prefs = getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
+        gotoGuide();
         setContentView(R.layout.activity_main);
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
                 new IntentFilter(Constants.SERVICE_SELECTED));
         setupView();
-        //gotoGuide();
     }
 
     public void setupView() {
@@ -56,8 +64,10 @@ public class MainActivity extends Activity {
         new findDevicesTask().execute();
         findPhotos();
 
-        prefs = getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
-        galleryListView = (ExpandableStickyListHeadersListView)findViewById(R.id.galleryListView);
+        galleryGridView  = (TwoWayView) findViewById(R.id.my_recycler_view);
+
+
+        /*galleryListView = (ExpandableStickyListHeadersListView)findViewById(R.id.galleryListView);
         galleryListView.setOnHeaderClickListener(new StickyListHeadersListView.OnHeaderClickListener() {
             @Override
             public void onHeaderClick(StickyListHeadersListView l, View header, int itemPosition, long headerId, boolean currentlySticky) {
@@ -67,7 +77,7 @@ public class MainActivity extends Activity {
                     galleryListView.collapse(headerId);
                 }
             }
-        });
+        });*/
     }
 
     protected void gotoGuide() {
@@ -79,11 +89,24 @@ public class MainActivity extends Activity {
     }
 
     public void reloadAdapter() {
-        if (galleryAdapter != null) {
-            galleryAdapter.notifyDataSetChanged();
+        if (photoAdapter != null) {
+            photoAdapter.notifyDataSetChanged();
         } else {
-            galleryAdapter = new GalleryAdapter(this,galleries);
-            galleryListView.setAdapter(galleryAdapter);
+            /*galleryAdapter = new GalleryAdapter(this,galleries);
+            galleryListView.setAdapter(galleryAdapter);*/
+
+            photoAdapter = new PhotoAdapter(this,(TwoWayView)galleryGridView,PhotoController.getInstance().getPhotos());
+            galleryGridView.setAdapter(photoAdapter);
+
+            /*WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+            Display display = wm.getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            int width = size.x;
+
+            ViewGroup.LayoutParams params = galleryGridView.getLayoutParams();
+            params.height = photoAdapter.getItemCount() > 5 ? (((photoAdapter.getItemCount() / 5) + 1) * (width / 2)) : (width / 2);
+            galleryGridView.setLayoutParams(params);*/
         }
     }
 
@@ -106,7 +129,7 @@ public class MainActivity extends Activity {
                     @Override
                     public void onSuccess() {
                         if (MultiScreenController.getInstance().getCastStatus() == MultiScreenController.castStatusTypes.SERVICESFOUND) {
-                            connectivityMenuItem.setIcon(getResources().getDrawable(R.drawable.btn_cast_off));
+                            connectivityMenuItem.setIcon(getResources().getDrawable(R.drawable.ic_cast_off));
                         } else if (MultiScreenController.getInstance().getCastStatus() == MultiScreenController.castStatusTypes.NOSERVICES) {
                             connectivityMenuItem.setVisible(false);
                         }
@@ -157,8 +180,8 @@ public class MainActivity extends Activity {
         PhotoController.getInstance().findPhotos(this, new Callback() {
             @Override
             public void onSuccess() {
-                galleries.clear();
-                galleries = PhotoController.getInstance().getGalleries();
+                //galleries.clear();
+                //galleries = PhotoController.getInstance().getGalleries();
                 reloadAdapter();
             }
 
@@ -173,7 +196,7 @@ public class MainActivity extends Activity {
         MultiScreenController.getInstance().connectApplication(this, new Callback() {
             @Override
             public void onSuccess() {
-                connectivityMenuItem.setIcon(getResources().getDrawable(R.drawable.btn_cast_on));
+                connectivityMenuItem.setIcon(getResources().getDrawable(R.drawable.ic_cast_on));
                 launchApplication();
             }
 
