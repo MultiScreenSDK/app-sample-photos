@@ -15,12 +15,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.samsung.appsamplephotos.R;
 import com.samsung.appsamplephotos.activities.ScreenSlideActivity;
 import com.samsung.appsamplephotos.models.Photo;
 import com.samsung.appsamplephotos.utils.Constants;
 import com.squareup.picasso.Picasso;
 
+import org.lucasr.twowayview.TwoWayLayoutManager;
 import org.lucasr.twowayview.widget.StaggeredGridLayoutManager;
 import org.lucasr.twowayview.widget.TwoWayView;
 
@@ -34,14 +39,28 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
 
     private Context context;
     private ArrayList<Photo> photos;
-    RecyclerView mRecyclerView;
+    TwoWayView mRecyclerView;
     private int height;
-    private int n = 7;
+    ImageLoader picture = ImageLoader.getInstance();
+    DisplayImageOptions options;
 
     public PhotoAdapter(Context context, TwoWayView recyclerView, ArrayList<Photo> photos){
         this.context    = context;
         this.photos  = photos;
         this.mRecyclerView = recyclerView;
+        this.picture.init(ImageLoaderConfiguration.createDefault(context));
+        optionImages();
+    }
+
+    private void optionImages(){
+        DisplayImageOptions.Builder builder = new DisplayImageOptions.Builder();
+        //builder.showStubImage(R.drawable.img_commerce_placeholde);
+        //builder.showImageForEmptyUri(R.drawable.img_commerce_placeholde);
+        //builder.showImageOnFail(R.drawable.img_commerce_placeholde);
+        builder.cacheOnDisc(true);
+        builder.cacheInMemory(true);
+        builder.imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2);
+        this.options = builder.build();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -58,9 +77,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
     public PhotoAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.cell_photo_layout, parent, false);
-        // set the view's size, margins, paddings and layout parameters
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     @Override
@@ -79,17 +96,14 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
         int width = size.x;
         int height = size.y;
 
-        /*boolean isVertical = true;
+        /*boolean isVertical = (mRecyclerView.getOrientation() == TwoWayLayoutManager.Orientation.VERTICAL);
         final View itemView = viewHolder.itemView;
 
         final int itemId = position;
 
-        boolean isFirstColumn = false;
-
             final int dimenId;
             if (itemId % 3 == 0) {
                 dimenId = R.dimen.staggered_child_medium;
-                isFirstColumn = true;
             } else if (itemId % 5 == 0) {
                 dimenId = R.dimen.staggered_child_large;
             } else if (itemId % 7 == 0) {
@@ -106,22 +120,18 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
             }
 
             final int size = this.context.getResources().getDimensionPixelSize(dimenId);
+        final StaggeredGridLayoutManager.LayoutParams lp =
+                (StaggeredGridLayoutManager.LayoutParams) itemView.getLayoutParams();
 
-
-
-            ViewGroup.LayoutParams lp = viewHolder.photoImageView.getLayoutParams();
-
-            if (!isVertical) {
-                //lp .setFullSpan(false);
-                lp.width = size;
-                //itemView.setLayoutParams(lp);
-            } else {
-                //itlp.setFullSpan(true);
-                lp.width = size;
-                lp.height = size;
-                if (isFirstColumn) this.height = this.height + size;
-                //itemView.setLayoutParams(itlp);
-            }*/
+        if (!isVertical) {
+            lp.span = span;
+            lp.width = size;
+            itemView.setLayoutParams(lp);
+        } else {
+            lp.span = span;
+            lp.height = size;
+            itemView.setLayoutParams(lp);
+        }*/
         //viewHolder.viewHolder.setLayoutParams(itlp);
         //viewHolder.photoImageView.setLayoutParams(lp);
 
@@ -138,11 +148,10 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
 
         } else {
 
-            if (position == n) {
+            if (position == (   (position / 5) * 5) + 2) {
                 lp.height = width / 2;
                 lp.width = width / 2;
                 lp.span = 2;
-                n += 10;
             } else {
                 lp.height = width / 4;
                 lp.width = width / 4;
@@ -157,13 +166,16 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
 
         itemView.setLayoutParams(lp);
 
+        viewHolder.photoImageView.setImageBitmap(null);
 
-            Picasso.with(context).load(new File(photo.getUri().toString()))
+        /*Picasso.with(holder.restaurantImage.getContext()).load(restaurant.restaurantCoverImage.url).fit().centerInside().into(holder.restaurantImage);
+        holder.restaurantImage.setTag(restaurant);*/
+
+        //picture.displayImage("file:/" + photo.getUri().toString(), viewHolder.photoImageView, this.options);
+        Picasso.with(viewHolder.photoImageView.getContext()).load(new File(photo.getUri().toString()))
                 .resize(lp.height,lp.width)
                 .centerCrop()
                 .into(viewHolder.photoImageView);
-
-
 
         viewHolder.viewHolder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,11 +185,6 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
                 context.startActivity(intent);
             }
         });
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
     }
 
     @Override

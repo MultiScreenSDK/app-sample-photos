@@ -2,6 +2,7 @@ package com.samsung.appsamplephotos.adapters;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Display;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.samsung.appsamplephotos.R;
 import com.samsung.appsamplephotos.models.Gallery;
 
+import org.lucasr.twowayview.widget.DividerItemDecoration;
 import org.lucasr.twowayview.widget.TwoWayView;
 
 import java.util.ArrayList;

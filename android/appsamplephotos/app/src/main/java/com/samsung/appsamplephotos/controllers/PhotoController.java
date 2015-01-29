@@ -2,6 +2,8 @@ package com.samsung.appsamplephotos.controllers;
 
 import android.app.Activity;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
@@ -81,6 +83,24 @@ public class PhotoController {
                     photo.setDate(cursor.getString(COLUMN_DATE));
                     photo.setThumb(cursor.getString(COLUMN_THUMB));
                     photo.setTitle(cursor.getString(COLUMN_BUCKET));
+                    //photo.setImage(resizeBitmap(photo.getUri().toString()));
+
+                    String[] projection2 = {
+                            MediaStore.Images.Thumbnails.THUMB_DATA,
+                            MediaStore.Images.Thumbnails.DATA
+                    };
+
+                    Cursor cursor2 = MediaStore.Images.Thumbnails.queryMiniThumbnail(
+                            activity.getContentResolver(), photo.getResourceId(),
+                            MediaStore.Images.Thumbnails.MINI_KIND,
+                            null);
+                    if( cursor2 != null && cursor2.getCount() > 0 ) {
+                        cursor2.moveToFirst();//**EDIT**
+                        String uri = cursor2.getString( cursor.getColumnIndex( MediaStore.Images.Thumbnails.DATA ) );
+                        photo.setThumb(uri);
+                    }
+
+                    photo.setPosition(cursor.getPosition());
                     arrayPhoto.add(photo);
                 }
             }
@@ -89,7 +109,8 @@ public class PhotoController {
 
         @Override
         protected void onPostExecute(Void result) {
-            groupImagesByDate();
+            //groupImagesByDate();
+            callback.onSuccess();
         }
     }
 
@@ -153,6 +174,28 @@ public class PhotoController {
 
     public Photo getPhotoByPosition(int position) {
         return arrayPhoto.get(position);
+    }
+
+    public Bitmap resizeBitmap(String photoPath) {
+
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(photoPath, bmOptions);
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+        int targetW = (int) (photoW * 0.4);
+        int targetH = (int) (photoH * 0.4);
+
+        int scaleFactor = 1;
+        if ((targetW > 0) || (targetH > 0)) {
+            scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+        }
+
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+        bmOptions.inPurgeable = true;
+
+        return BitmapFactory.decodeFile(photoPath, bmOptions);
     }
 
 }
