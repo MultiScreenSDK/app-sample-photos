@@ -528,7 +528,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Koombea Inc.";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -549,7 +549,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "202ccad9-c291-4ecc-ad7d-93866f44d60f";
+				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -573,7 +573,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Koombea Inc.";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -587,7 +587,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "202ccad9-c291-4ecc-ad7d-93866f44d60f";
+				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
@@ -599,11 +599,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
 				INFOPLIST_FILE = MultiScreenPhoto/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "202ccad9-c291-4ecc-ad7d-93866f44d60f";
+				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
 				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
 			};
 			name = Debug;
@@ -613,11 +613,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
 				INFOPLIST_FILE = MultiScreenPhoto/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "202ccad9-c291-4ecc-ad7d-93866f44d60f";
+				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
 				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
 			};
 			name = Release;

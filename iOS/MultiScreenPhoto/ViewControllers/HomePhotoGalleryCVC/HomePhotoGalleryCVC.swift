@@ -38,8 +38,8 @@ class HomePhotoGalleryCVC: CommonVC, UITableViewDataSource, UITableViewDelegate,
         
         
         tvIntegration.start()
-        tableView.estimatedRowHeight = screenSize.size.width/2;
-        tableView.rowHeight = UITableViewAutomaticDimension;
+        //tableView.estimatedRowHeight = screenSize.size.width/2;
+        //tableView.rowHeight = UITableViewAutomaticDimension;
         
         // Requesting photo library access and retrieving albums
         gallery.retrieveAlbums { (result:Bool!) -> Void in
@@ -89,6 +89,10 @@ class HomePhotoGalleryCVC: CommonVC, UITableViewDataSource, UITableViewDelegate,
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return numOfRowsInSection(section)
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+        return screenSize.size.width/2
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
@@ -188,11 +192,14 @@ class HomePhotoGalleryCVC: CommonVC, UITableViewDataSource, UITableViewDelegate,
             removedCell!.layer.zPosition = -1
         })
        */
-        self.tableView!.beginUpdates()
-        self.tableView!.deleteRowsAtIndexPaths(indexArray, withRowAnimation: UITableViewRowAnimation.None)
-        self.tableView!.endUpdates()
         
-        self.tableView!.reloadData()
+        UIView.animateWithDuration(0.0, animations: { () -> Void in
+            self.tableView!.beginUpdates()
+            self.tableView!.deleteRowsAtIndexPaths(indexArray, withRowAnimation: UITableViewRowAnimation.None)
+            self.tableView!.endUpdates()
+        }) { (result) -> Void in
+            self.tableView!.reloadData()
+        }
         
     }
     
@@ -210,10 +217,14 @@ class HomePhotoGalleryCVC: CommonVC, UITableViewDataSource, UITableViewDelegate,
             indexArray.append(indexPath)
         }
         
-        self.tableView!.beginUpdates()
-        self.tableView!.insertRowsAtIndexPaths(indexArray, withRowAnimation: UITableViewRowAnimation.None)
-        self.tableView!.reloadData()
-        self.tableView!.endUpdates()
+        UIView.animateWithDuration(0.0, animations: { () -> Void in
+            self.tableView!.beginUpdates()
+            self.tableView!.insertRowsAtIndexPaths(indexArray, withRowAnimation: UITableViewRowAnimation.None)
+            self.tableView!.endUpdates()
+            }) { (result) -> Void in
+                self.tableView!.reloadData()
+        }
+        
         
     }
     

@@ -22,7 +22,7 @@ class CustomHeaderCell: UITableViewCell {
     @IBOutlet weak var imageViewSeparator : UIImageView!
     
     var delegate: CustomHeaderCellDelegate!
-    var section : Int!
+    var section = 0
     var state = false
     
     override func awakeFromNib() {
