@@ -27,18 +27,18 @@ class CustomTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         imageView0.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
-        imageView0.layer.borderWidth = 1
+        imageView0.layer.borderWidth = 0.5
         imageView1.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
 
-        imageView1.layer.borderWidth = 1
+        imageView1.layer.borderWidth = 0.5
         imageView2.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
-        imageView2.layer.borderWidth = 1
+        imageView2.layer.borderWidth = 0.5
         imageView3.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
 
-        imageView3.layer.borderWidth = 1
+        imageView3.layer.borderWidth = 0.5
         imageView4.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
 
-        imageView4.layer.borderWidth = 1
+        imageView4.layer.borderWidth = 0.5
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
