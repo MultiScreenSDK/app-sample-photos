@@ -1,5 +1,8 @@
 package com.samsung.appsamplephotos.utils;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 
@@ -36,5 +39,9 @@ public class MultiscreenUtils {
         } catch (Exception e) {
         }
         return uri;
+    }
+
+    public static Typeface customFont(Context context) {
+        return Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Light.ttf");
     }
 }

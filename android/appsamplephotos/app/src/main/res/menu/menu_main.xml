@@ -5,10 +5,7 @@
         android:showAsAction="always"
         android:visible="false"
         android:title="@string/action_connectivity" />
-    <item android:id="@+id/action_about"
-        android:title="@string/action_about"
-        android:showAsAction="never" />
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_help"
+    <item android:id="@+id/action_more"
+        android:title="@string/action_more"
         android:showAsAction="never" />
 </menu>

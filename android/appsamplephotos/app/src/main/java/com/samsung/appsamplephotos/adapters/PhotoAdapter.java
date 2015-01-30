@@ -24,6 +24,7 @@ import com.samsung.appsamplephotos.activities.ScreenSlideActivity;
 import com.samsung.appsamplephotos.models.Photo;
 import com.samsung.appsamplephotos.utils.Constants;
 import com.squareup.picasso.Picasso;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter;
 
 import org.lucasr.twowayview.TwoWayLayoutManager;
 import org.lucasr.twowayview.widget.StaggeredGridLayoutManager;
@@ -35,12 +36,11 @@ import java.util.ArrayList;
 /**
  * Created by Koombea on 1/14/15.
  */
-public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
+public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private Context context;
+    private final Context context;
     private ArrayList<Photo> photos;
     TwoWayView mRecyclerView;
-    private int height;
     ImageLoader picture = ImageLoader.getInstance();
     DisplayImageOptions options;
 
@@ -73,15 +73,31 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
         }
     }
 
+    public static class HeaderViewHolder extends RecyclerView.ViewHolder {
+        public ImageView photoImageView;
+        public View viewHolder;
+        public HeaderViewHolder(View v, Context context1) {
+            super(v);
+            viewHolder = v;
+            photoImageView = (ImageView) v.findViewById(R.id.photoImageView);
+            photoImageView.setImageDrawable(context1.getResources().getDrawable(R.drawable.ic_launcher));
+        }
+    }
+
     @Override
-    public PhotoAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.cell_photo_layout, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int position) {
+
+            Grid((ViewHolder)viewHolder,position);
+    }
+
+    public void Grid(ViewHolder viewHolder, int position){
         final View itemView = viewHolder.itemView;
         //holder.title.setText(mItems.get(position).toString());
 

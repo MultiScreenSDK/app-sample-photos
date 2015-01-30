@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>-->
 
-    <org.lucasr.twowayview.widget.TwoWayView
+    <!--<org.lucasr.twowayview.widget.TwoWayView
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,6 +19,13 @@
         app:twowayview_layoutManager="StaggeredGridLayoutManager"
         app:twowayview_numColumns="4"
         app:twowayview_numRows="0"
-        android:padding="0.5dp" />
+        android:padding="0.5dp" />-->
+
+    <FrameLayout android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true">
+
+    </FrameLayout>
 
 </RelativeLayout>

@@ -2,7 +2,6 @@ package com.samsung.appsamplephotos.adapters;
 
 import android.content.Context;
 import android.graphics.Point;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Display;
@@ -15,18 +14,16 @@ import android.widget.TextView;
 
 import com.samsung.appsamplephotos.R;
 import com.samsung.appsamplephotos.models.Gallery;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter;
 
-import org.lucasr.twowayview.widget.DividerItemDecoration;
 import org.lucasr.twowayview.widget.TwoWayView;
 
 import java.util.ArrayList;
 
-import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
-
 /**
  * Created by Koombea on 1/14/15.
  */
-public class GalleryAdapter extends BaseAdapter implements StickyListHeadersAdapter {
+public class GalleryAdapter extends BaseAdapter implements StickyRecyclerHeadersAdapter<RecyclerView.ViewHolder> {
 
     private LayoutInflater inflater;
     private Context context;
@@ -53,7 +50,7 @@ public class GalleryAdapter extends BaseAdapter implements StickyListHeadersAdap
         return position;
     }
 
-    @Override
+    /*@Override
     public View getHeaderView(int position, View convertView, ViewGroup viewGroup) {
         HeaderViewHolder holder;
         if (convertView == null) {
@@ -67,11 +64,26 @@ public class GalleryAdapter extends BaseAdapter implements StickyListHeadersAdap
         Gallery gallery = galleries.get(position);
         holder.headerTitle.setText(gallery.getName().toString());
         return convertView;
-    }
+    }*/
 
     @Override
     public long getHeaderId(int i) {
         return i;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateHeaderViewHolder(ViewGroup viewGroup) {
+        return null;
+    }
+
+    @Override
+    public void onBindHeaderViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return 0;
     }
 
     static class ViewHolder {
@@ -85,8 +97,8 @@ public class GalleryAdapter extends BaseAdapter implements StickyListHeadersAdap
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View row = convertView;
-        ViewHolder holder;
+       View row = convertView;
+        /*ViewHolder holder;
         if (row == null) {
             row                   = inflater.inflate(R.layout.cell_gallery_layout, parent,false);
             holder                = new ViewHolder();
@@ -102,7 +114,7 @@ public class GalleryAdapter extends BaseAdapter implements StickyListHeadersAdap
         /*holder.mLayoutManager = new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
         holder.galleryGridView.setLayoutManager(holder.mLayoutManager);*/
 
-        PhotoAdapter photoAdapter = new PhotoAdapter(this.context,(TwoWayView)holder.galleryGridView,gallery.photos);
+        /*PhotoAdapter photoAdapter = new PhotoAdapter(this.context,(TwoWayView)holder.galleryGridView,gallery.photos);
         holder.galleryGridView.setAdapter(photoAdapter);
 
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -113,7 +125,7 @@ public class GalleryAdapter extends BaseAdapter implements StickyListHeadersAdap
 
         ViewGroup.LayoutParams params = holder.galleryGridView.getLayoutParams();
         params.height = photoAdapter.getItemCount() > 5 ? (((photoAdapter.getItemCount() / 5) + 1) * (width / 2)) : (width / 2);
-        holder.galleryGridView.setLayoutParams(params);
+        holder.galleryGridView.setLayoutParams(params);*/
 
 
         return row;

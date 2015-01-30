@@ -89,13 +89,19 @@ public class ScreenSlideActivity extends FragmentActivity {
 
         @Override
         protected byte[] doInBackground(Uri... params) {
-            Uri uri = params[0];
-            Bitmap bmp = BitmapFactory.decodeFile(uri.toString());
+            byte[] data;
+            try {
+                Uri uri = params[0];
+                Bitmap bmp = BitmapFactory.decodeFile(uri.toString());
 
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            bmp.compress(Bitmap.CompressFormat.JPEG, 80, bos);
-            bmp.recycle();
-            byte[] data = bos.toByteArray();
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                bmp.compress(Bitmap.CompressFormat.JPEG, 80, bos);
+                bmp.recycle();
+                data = bos.toByteArray();
+            } catch (OutOfMemoryError e) {
+                Log.e(Constants.APP_TAG,"OutofMemory handled");
+                data = null;
+            }
             return data;
         }
 

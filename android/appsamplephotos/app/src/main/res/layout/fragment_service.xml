@@ -1,32 +1,140 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_gray"
-    android:alpha="0.8"
     android:padding="0dp"
     tools:context="com.samsung.appsamplephotos.fragments.DeviceFragment">
 
-    <TextView
-        android:id="@+id/welcome_label"
+    <RelativeLayout
+        android:id="@+id/backgroundLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:alpha="1.0"
-        android:text="@string/welcome_label" />
-
-    <ProgressBar
-        android:id="@+id/loadingIndicator"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/welcome_label"
-        android:paddingTop="@dimen/activity_vertical_margin" />
-
-    <ListView
-        android:id="@+id/deviceListView"
-        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_below="@+id/loadingIndicator"
-        android:paddingTop="@dimen/activity_vertical_margin" />
+        android:background="@color/black"
+        android:alpha="0.9" />
+
+    <LinearLayout
+        android:id="@+id/containerLayout"
+        android:layout_width="248dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/connectedToLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_gray"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ic_cast_on" />
+
+                <TextView
+                    android:id="@+id/connectedToTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:textSize="16sp"
+                    android:text="@string/connected_to" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_white" />
+
+            <TextView
+                android:id="@+id/tvSelectedTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="[TV Living Room]"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/disconnectButton"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="DISCONNECT"
+                android:textColor="@color/white"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/btn_background"
+                android:layout_marginBottom="20dp" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/dividerBlackLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black" />
+    
+        <LinearLayout
+            android:id="@+id/selectedToLayout"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:background="@color/gray"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/titleBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ic_cast_off" />
+
+                <TextView
+                    android:id="@+id/selectedTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:textSize="16sp"
+                    android:text="@string/select_tv" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/dividerLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/line_white" />
+
+            <ListView
+                android:id="@+id/deviceListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

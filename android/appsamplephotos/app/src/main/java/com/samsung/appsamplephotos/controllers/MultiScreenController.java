@@ -43,7 +43,6 @@ public class MultiScreenController {
     private Application application;
     private Service service;
     private Search search;
-    protected ProgressDialog progress;
 
     private castStatusTypes castStatus;
 
@@ -70,6 +69,10 @@ public class MultiScreenController {
 
     public List<Service> getServices() {
         return search.getServices();
+    }
+
+    public Service getService() {
+        return this.service ;
     }
 
     public void setCastStatus(castStatusTypes castStatus) {

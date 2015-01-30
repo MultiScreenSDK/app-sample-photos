@@ -26,10 +26,12 @@
             android:text="@string/welcome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="left"
             android:textSize="16sp"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
             android:layout_marginTop="@dimen/welcome_padding_top"
-            android:gravity="center" />
+            android:gravity="left" />
 
         <TextView
             android:id="@+id/paragraphTextVieW"
@@ -38,13 +40,40 @@
             android:layout_height="wrap_content"
             android:paddingLeft="32dp"
             android:paddingRight="32dp"
+            android:layout_marginTop="@dimen/welcome_padding_top"
+            android:layout_gravity="left"
+            android:gravity="left" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="32dp"
+            android:paddingRight="32dp"
+            android:orientation="horizontal"
+            android:gravity="center"
             android:layout_gravity="center"
-            android:gravity="center" />
+            android:layout_marginTop="@dimen/welcome_padding_top">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_cast_on"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/noteTextVieW"
+                android:text="@string/note_legend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_gravity="center_vertical" />
+
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/paragraphTextVieW"
             android:layout_centerHorizontal="true">
 
             <Button

@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.samsung.appsamplephotos.R;
 import com.samsung.appsamplephotos.utils.Constants;
 
+import static com.samsung.appsamplephotos.utils.MultiscreenUtils.customFont;
+
 public class WelcomeActivity extends FragmentActivity {
 
     private Button startButton;
@@ -42,9 +44,8 @@ public class WelcomeActivity extends FragmentActivity {
                 finish();
             }
         });
-        Typeface myTypefaceLight = Typeface.createFromAsset(this.getAssets(), "fonts/Roboto-Light.ttf");
-        titleTextView.setTypeface(myTypefaceLight);
-        paragraphTextVieW.setTypeface(myTypefaceLight);
+        titleTextView.setTypeface(customFont(this));
+        paragraphTextVieW.setTypeface(customFont(this));
     }
 
 

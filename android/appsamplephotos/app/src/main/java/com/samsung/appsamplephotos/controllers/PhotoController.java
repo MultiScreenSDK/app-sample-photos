@@ -109,8 +109,8 @@ public class PhotoController {
 
         @Override
         protected void onPostExecute(Void result) {
-            //groupImagesByDate();
-            callback.onSuccess();
+            groupImagesByDate();
+            //callback.onSuccess();
         }
     }
 
