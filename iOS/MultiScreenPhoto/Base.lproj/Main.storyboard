@@ -7,6 +7,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Photo Gallery DetailsVC-->
         <scene sceneID="Kv3-OZ-j9u">
@@ -52,16 +57,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hvT-zV-xSy">
-                                                    <rect key="frame" x="343" y="21" width="24" height="14"/>
+                                                    <rect key="frame" x="341" y="21" width="24" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="14" id="D7F-oD-3Rw"/>
                                                         <constraint firstAttribute="width" constant="24" id="mTY-6g-Qrz"/>
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XgO-XZ-8G1">
-                                                    <rect key="frame" x="8" y="8" width="343" height="34"/>
+                                                    <rect key="frame" x="8" y="8" width="342" height="34"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="18"/>
                                                     <state key="normal" title="Title">
                                                         <color key="titleColor" red="0.69019607843137254" green="0.69019607843137254" blue="0.69019607843137254" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -78,9 +83,9 @@
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="hvT-zV-xSy" secondAttribute="trailing" id="3Dt-3f-uiT"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hvT-zV-xSy" secondAttribute="trailing" constant="2" id="3Dt-3f-uiT"/>
                                                 <constraint firstAttribute="centerY" secondItem="XgO-XZ-8G1" secondAttribute="centerY" id="P31-ln-AjQ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="XgO-XZ-8G1" secondAttribute="trailing" constant="16" id="RZn-1D-XKY"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="XgO-XZ-8G1" secondAttribute="trailing" constant="17" id="RZn-1D-XKY"/>
                                                 <constraint firstItem="IjV-Yl-a2D" firstAttribute="leading" secondItem="BxT-QA-1NB" secondAttribute="leadingMargin" constant="-8" id="XAI-9H-anz"/>
                                                 <constraint firstItem="IjV-Yl-a2D" firstAttribute="top" secondItem="BxT-QA-1NB" secondAttribute="topMargin" constant="-18" id="c8l-7P-gEr"/>
                                                 <constraint firstItem="hvT-zV-xSy" firstAttribute="centerY" secondItem="XgO-XZ-8G1" secondAttribute="centerY" constant="3" id="gTD-3g-ZUn"/>

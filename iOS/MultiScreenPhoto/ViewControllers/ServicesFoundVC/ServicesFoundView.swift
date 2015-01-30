@@ -10,7 +10,7 @@ import UIKit
 
 let servicesFoundTVCellID = "ServicesFoundTVCell"
 
-var tvIntegration = TVIntegration.sharedInstance
+var multiScreenManager = MultiScreenManager.sharedInstance
 
 class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, ServicesFoundHeaderVIewDelegate {
     
@@ -27,11 +27,15 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
     override func awakeFromNib(){
         super.awakeFromNib()
         self.tableView.registerNib(UINib(nibName: servicesFoundTVCellID, bundle: nil), forCellReuseIdentifier: servicesFoundTVCellID)
-        services = tvIntegration.getServicesNotConnected()
+        services = multiScreenManager.getServicesNotConnected()
+        
+        let tap = UITapGestureRecognizer()
+        tap.addTarget(self, action: "closeView")
+        //self.addGestureRecognizer(tap)
     }
     
     func refreshTableView(){
-        services = tvIntegration.getServicesNotConnected()
+        services = multiScreenManager.getServicesNotConnected()
         tableView.reloadData()
     }
     
@@ -55,7 +59,7 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
     }
     
     func tableView(tableView: UITableView!, heightForHeaderInSection section: Int) -> CGFloat {
-        if(tvIntegration.isApplicationConnected() == true){
+        if(multiScreenManager.isApplicationConnected() == true){
             return 180
         }else{
             return 55
@@ -65,16 +69,16 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
     func tableView(tableView: UITableView!, viewForHeaderInSection section: Int) -> UIView! {
         var viewArray = NSBundle.mainBundle().loadNibNamed("ServicesFoundHeaderVIew", owner: self, options: nil)
         var headerView = viewArray[0] as ServicesFoundHeaderVIew
-        headerView.isConnected = tvIntegration.isApplicationConnected()
-        if(tvIntegration.isApplicationConnected() == true){
-            headerView.service.text =  tvIntegration.getApplicationCurrentService().name
+        headerView.isConnected = multiScreenManager.isApplicationConnected()
+        if(multiScreenManager.isApplicationConnected() == true){
+            headerView.service.text =  multiScreenManager.getApplicationCurrentService().name
         }
         headerView.delegate = self
         return headerView
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        tvIntegration.createApplication(services[indexPath.row] as Service, completionHandler: { (success: Bool!) -> Void in
+        multiScreenManager.createApplication(services[indexPath.row] as Service, completionHandler: { (success: Bool!) -> Void in
             NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
             if((success) == true){
                 self.removeFromSuperview()
@@ -83,13 +87,13 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
     }
     
     func closeApplication(){
-        tvIntegration.closeApplication({ (success: Bool!) -> Void in
+        multiScreenManager.closeApplication({ (success: Bool!) -> Void in
             NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
             self.removeFromSuperview()
         })
     }
     
-    @IBAction func close(sender: AnyObject) {
+    @IBAction func closeView() {
         self.removeFromSuperview()
     }
     

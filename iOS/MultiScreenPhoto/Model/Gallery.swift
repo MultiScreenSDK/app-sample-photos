@@ -5,19 +5,20 @@
     //  Created by Raul Mantilla on 14/01/15.
     //  Copyright (c) 2015 Koombea. All rights reserved.
     //
+    // Gallery class is used to retreive the Images from the photo gallery
+    
     
     import UIKit
     import AssetsLibrary
     
     class Gallery: NSObject {
         
-        
         var assetsLibrary: ALAssetsLibrary!
-        var albums:[ALAssetsGroup] = []
-        var numOfAssetsByalbum:[Int] = []
-        var isAlbumExpanded:[Bool] = []
+        var albums:[ALAssetsGroup] = []  // Array of albums
+        var numOfAssetsByalbum:[Int] = [] // Array of numbers of assets by album
+        var isAlbumExpanded:[Bool] = [] // Array of albums expanded (true, false)
         
-        internal var currentAlbum = 0
+        internal var currentAlbum = 0 // Current album displayed in the detail view
         
         class var sharedInstance: Gallery {
             struct Static {
@@ -32,6 +33,7 @@
             return Static.instance!
         }
         
+        //Retrieve albums from the photo gallery and save the data into the albums, numOfAssetsByalbum and isAlbumExpanded arrays variables.
         func retrieveAlbums(completionHandler: ((Bool!) -> Void)!){
             
             assetsLibrary = ALAssetsLibrary()
@@ -43,9 +45,9 @@
             let enumGroupBlock: ALAssetsLibraryGroupsEnumerationResultsBlock = {(assetsGroup: ALAssetsGroup!, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
                 if (assetsGroup != nil) {
                     
-                    self.albums.append(assetsGroup)
-                    self.numOfAssetsByalbum.append(assetsGroup.numberOfAssets())
-                    self.isAlbumExpanded.append(true)
+                    self.albums.append(assetsGroup) // saving the album
+                    self.numOfAssetsByalbum.append(assetsGroup.numberOfAssets()) // numOfAssetsByalbum by album
+                    self.isAlbumExpanded.append(true) // Set true to all the album
                     
                 }else{
                     dispatch_async(dispatch_get_main_queue(),{
@@ -64,39 +66,47 @@
             })
         }
         
+        // Returns the number of albums
         func getNumOfAlbums() -> Int{
             return albums.count
         }
         
+        // Returns a given album name
         func getAlbumName(albumIndex : Int) -> String{
             return albums[albumIndex].valueForProperty(ALAssetsGroupPropertyName) as String
         }
         
-        
+        //Updates the number of assets for a given album
         func setNumOfAssetsByAlbum(albumIndex : Int){
             numOfAssetsByalbum[albumIndex] = albums[albumIndex].numberOfAssets()
         }
         
+        //Set the the number of assets for a given album and count
         func setNumOfAssetsByAlbum(albumIndex : Int, count: Int){
             numOfAssetsByalbum[albumIndex] = count
         }
         
-        func getNumOfAssetsByAlbum(albumIndex : Int)->Int{
-            return numOfAssetsByalbum[albumIndex]
-        }
-        
-        func setIsAlbumExpanded(albumIndex : Int, isExpanded: Bool){
-            isAlbumExpanded[albumIndex] = isExpanded
-        }
-        
-        func getIsAlbumExpanded(albumIndex : Int)-> Bool{
-            return isAlbumExpanded[albumIndex]
-        }
-        
+        //Set the the number of assets for a given album to zero
         func setNumOfAssetsByalbumToZero(albumIndex : Int){
             numOfAssetsByalbum[albumIndex] = 0
         }
         
+        //Returns the number of assets for a given album
+        func getNumOfAssetsByAlbum(albumIndex : Int)->Int{
+            return numOfAssetsByalbum[albumIndex]
+        }
+        
+        //Set isAlbumExpanded to true or false for a given album
+        func setIsAlbumExpanded(albumIndex : Int, isExpanded: Bool){
+            isAlbumExpanded[albumIndex] = isExpanded
+        }
+        
+        //Returns if a given album is expanded
+        func getIsAlbumExpanded(albumIndex : Int)-> Bool{
+            return isAlbumExpanded[albumIndex]
+        }
+       
+        //Returns an Image from a given album and Photo index
         func requestImageAtIndex(album: Int, index: Int, isThumbnail: Bool ,completionHandler: ((UIImage!, [NSObject : AnyObject]!) -> Void)!){
             
             let assetsGroup:ALAssetsGroup = albums[album]
@@ -108,9 +118,12 @@
                         
                         var image: UIImage
                         
+                       
                         if(isThumbnail){
+                             //If is a thumbnail then retrieve a small size photo
                             image = self.getThumnailFromAsset(asset)
                         }else{
+                             //Retrieve a medium size photo
                             image = self.getImageFromAsset(asset)
                         }
                         
@@ -126,6 +139,7 @@
             }
         }
         
+        //Retrieve a medium size photo
         func getImageFromAsset(asset: ALAsset!)->UIImage{
             var cgImage: CGImageRef
             if (asset.defaultRepresentation() != nil){
@@ -136,6 +150,7 @@
             return getThumnailFromAsset(asset)
         }
         
+        //Retrieve a small size photo
         func getThumnailFromAsset(asset: ALAsset!)->UIImage{
             var cgImage: CGImageRef
             if (asset.thumbnail() != nil){

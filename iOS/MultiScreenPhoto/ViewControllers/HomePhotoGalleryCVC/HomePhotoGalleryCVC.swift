@@ -30,14 +30,18 @@ class HomePhotoGalleryCVC: CommonVC, UITableViewDataSource, UITableViewDelegate,
         
         super.viewDidLoad()
         
+        // Setting the navigation Title to the left
         var titleLabel = UILabel(frame: CGRectMake(0,41,320,50))
         titleLabel.textAlignment = .Left
         titleLabel.text =  "Photos"
         titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.font = UIFont(name: "Roboto-Light", size: 25)
         self.navigationItem.titleView = titleLabel
+        //self.navigationItem.leftBarButtonItem?.title = "Photos"
         
         
-        tvIntegration.start()
+        multiScreenManager.start()
+        
         //tableView.estimatedRowHeight = screenSize.size.width/2;
         //tableView.rowHeight = UITableViewAutomaticDimension;
         
@@ -72,15 +76,6 @@ class HomePhotoGalleryCVC: CommonVC, UITableViewDataSource, UITableViewDelegate,
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         return gallery.getNumOfAlbums()
-    }
-    
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let  headerCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierTVHeader) as CustomHeaderCell
-        
-        headerCell.title.setTitle(gallery.getAlbumName(section), forState: UIControlState.Normal)
-        
-        return headerCell
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -169,14 +164,12 @@ class HomePhotoGalleryCVC: CommonVC, UITableViewDataSource, UITableViewDelegate,
     }
     
     
-    
+    // Animate the section to collapse
     func collapseSection(section : Int){
         
         
         gallery.setIsAlbumExpanded(section, isExpanded: false)
-        
         var numRow = numOfRowsInSection(section)
-        
         gallery.setNumOfAssetsByalbumToZero(section)
      
         var indexArray = [NSIndexPath]()
@@ -184,14 +177,6 @@ class HomePhotoGalleryCVC: CommonVC, UITableViewDataSource, UITableViewDelegate,
             var indexPath = NSIndexPath(forRow: i, inSection: section)
             indexArray.append(indexPath)
         }
-        /*
-        var cocoaArray = indexArray as NSArray
-        cocoaArray.enumerateObjectsUsingBlock({object, index, stop in
-            var indexPath = object as NSIndexPath
-            var removedCell = self.tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell?
-            removedCell!.layer.zPosition = -1
-        })
-       */
         
         UIView.animateWithDuration(0.0, animations: { () -> Void in
             self.tableView!.beginUpdates()
@@ -203,12 +188,11 @@ class HomePhotoGalleryCVC: CommonVC, UITableViewDataSource, UITableViewDelegate,
         
     }
     
+    // Animate the section to expand
     func expandSection(section : Int){
         
         gallery.setIsAlbumExpanded(section, isExpanded: true)
-        
         gallery.setNumOfAssetsByAlbum(section)
-        
         var numRow = numOfRowsInSection(section)
         
         var indexArray = [NSIndexPath]()
@@ -228,12 +212,24 @@ class HomePhotoGalleryCVC: CommonVC, UITableViewDataSource, UITableViewDelegate,
         
     }
     
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let  headerCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierTVHeader) as CustomHeaderCell
+        
+        headerCell.title.setTitle(gallery.getAlbumName(section), forState: UIControlState.Normal)
+        
+        return headerCell
+    }
+    
+    
     func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
         var header : CustomHeaderCell  =  view as CustomHeaderCell
         header.delegate = self
         header.section = section
+        //header.title.setTitle(gallery.getAlbumName(section), forState: UIControlState.Normal)
         header.state = gallery.getIsAlbumExpanded(section)
     }
+    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         
@@ -252,7 +248,6 @@ class HomePhotoGalleryCVC: CommonVC, UITableViewDataSource, UITableViewDelegate,
         if(numRow > 0){
             numRow = numRow + 1
         }
-        
         return Int(numRow)
     }
   

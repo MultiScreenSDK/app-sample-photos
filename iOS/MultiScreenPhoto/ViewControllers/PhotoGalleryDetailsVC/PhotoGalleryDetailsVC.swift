@@ -125,11 +125,11 @@ class PhotoGalleryDetailsVC: CommonVC , UIPageViewControllerDataSource, UIPageVi
     
     func sendToTv() {
         
-        if(tvIntegration.isApplicationConnected() == true){
+        if(multiScreenManager.isApplicationConnected() == true){
             var currentView: PhotoPageContentVC = pageViewController?.viewControllers.last! as PhotoPageContentVC
             
             gallery.requestImageAtIndex(gallery.currentAlbum,index: currentView.pageIndex, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!) -> Void in
-                self.tvIntegration.sendPhotoToTv(image)
+                self.multiScreenManager.sendPhotoToTv(image)
             })
         }
     }

@@ -1,5 +1,5 @@
 //
-//  TVIntegration.swift
+//  MultiScreenManager.swift
 //  multiscreen-demo
 //
 //  Created by Raul Mantilla on 15/01/15.
@@ -8,21 +8,21 @@
 
 import UIKit
 
-class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
+class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
     
     var appURL: String =  "http://multiscreen.samsung.com/app-sample-photos/tv/index.html"
     var channelId: String = "com.samsung.multiscreen.photos"
     var app : Application!
     let search = Service.search()
     
-    class var sharedInstance: TVIntegration {
+    class var sharedInstance: MultiScreenManager {
         struct Static {
-            static var instance: TVIntegration?
+            static var instance: MultiScreenManager?
             static var token: dispatch_once_t = 0
         }
         
         dispatch_once(&Static.token) {
-            Static.instance = TVIntegration()
+            Static.instance = MultiScreenManager()
         }
         
         return Static.instance!
@@ -31,24 +31,29 @@ class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
     override init() {
     }
     
+    // Start the TV discovery process
     func start(){
-        // Start the TV discovery process
+       
         search.delegate = self
         search.start()
     }
     
+    // Check is there is an app connected
     func isApplicationConnected()->Bool {
         return app != nil && app!.isConnected;
     }
     
+    //Return the current service connected
     func getApplicationCurrentService()->Service{
         return app.service
     }
     
+    //Return all services found
     func getServices() -> [Service]{
         return search.services
     }
     
+    //Return all services not current connected
     func getServicesNotConnected() -> [Service]{
         
         var servicesArray = [Service]()
@@ -64,23 +69,24 @@ class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
         return servicesArray
     }
     
+    // Return a service by index
     func getServiceWithIndex(index : Int)->Service{
         return search.services[index]
     }
     
+    //onServiceLost delegate method
     func onServiceLost(service: Service) {
-        println("SERVICE OUT NAME : \(service.name)")
         // Post a notification
         NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
     }
     
+    //onServiceFound delegate method
     func onServiceFound(service: Service) {
-        println("SERVICE IN NAME : \(service.name)")
         // Post a notification
         NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
     }
     
-    
+    // Creates an application
     func createApplication(service: Service,completionHandler: ((Bool!) -> Void)!){
         app = service.createApplication(NSURL(string: appURL)!, channelURI: channelId)!
         app.connect(["name":UIDevice.currentDevice().name])
@@ -89,7 +95,7 @@ class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
         }
     }
     
-    
+    // Close the current connected application
     func closeApplication(completionHandler: ((Bool!) -> Void)!){
         app.stop({ (success, error) -> Void in })
         app.disconnect({ (channel, error) -> Void in
@@ -101,26 +107,11 @@ class TVIntegration: NSObject , ServiceSearchDelegate, ChannelDelegate {
         })
     }
     
+    // send Photo the the connected TV
     func sendPhotoToTv(image :UIImage){
         if (isApplicationConnected()){
             app.publish(event: "showPhoto", message: nil, data: UIImageJPEGRepresentation(image,0.6))
         }
     }
     
-    
-    /*
-    private func updateCastStatus() {
-    
-    var castStatus = CastStatus.notReady
-    if app != nil && app!.isConnected {
-    castStatus = CastStatus.connected
-    } else if isConnecting {
-    castStatus = CastStatus.connecting
-    } else if search.services.count > 0 {
-    castStatus = CastStatus.readyToConnect
-    }
-    castButton.castStatus = castStatus
-    
-    }
-    */
 }

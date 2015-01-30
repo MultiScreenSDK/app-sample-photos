@@ -5,6 +5,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+            <string>Roboto-Light</string>
+            <string>Roboto-Light</string>
+            <string>Roboto-Light</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -19,8 +27,8 @@
                             <rect key="frame" x="20" y="28" width="335" height="213"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Jv-pu-dsi">
-                            <rect key="frame" x="25" y="289" width="91" height="26"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                            <rect key="frame" x="25" y="289" width="91" height="25"/>
+                            <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="21"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -30,6 +38,7 @@
                                 <constraint firstAttribute="height" constant="28" id="VYg-9w-twl"/>
                                 <constraint firstAttribute="width" constant="230" id="uf6-A3-Zn5"/>
                             </constraints>
+                            <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="16"/>
                             <state key="normal" title="Get Started!">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -39,27 +48,27 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View photos from your mobile device on a 2015 Samsung Smart TV." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIy-69-bWr">
-                            <rect key="frame" x="25" y="323" width="325" height="50"/>
+                            <rect key="frame" x="25" y="322" width="325" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="hcW-Dy-s5Y"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi" translatesAutoresizingMaskIntoConstraints="NO" id="kWS-f1-Gr9">
-                            <rect key="frame" x="47" y="396" width="45" height="45"/>
+                            <rect key="frame" x="47" y="395" width="45" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="6lW-3S-vJU"/>
                                 <constraint firstAttribute="width" constant="45" id="X3y-uG-2Z8"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make sure your TV and mobile device are on the same WiFi network" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCq-x2-elD">
-                            <rect key="frame" x="107" y="396" width="248" height="45"/>
+                            <rect key="frame" x="107" y="395" width="248" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="K6o-PZ-xxO"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <variation key="default">

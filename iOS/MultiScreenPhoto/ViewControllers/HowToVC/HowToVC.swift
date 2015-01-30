@@ -11,6 +11,8 @@ import UIKit
 class HowToVC: UIViewController {
     
     @IBOutlet weak var compatibleButton: UIButton!
+    
+    var compatibleTVsView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,11 @@ class HowToVC: UIViewController {
     }
     
     @IBAction func compatibleDevices(sender: AnyObject) {
+        
+        self.compatibleTVsView = NSBundle.mainBundle().loadNibNamed("CompatibleTVsView", owner: self, options: nil)[0] as? UIView
+        self.compatibleTVsView.frame = view.frame
+        view.window?.addSubview(compatibleTVsView)
+    
     }
 
     @IBAction func contactEmail(sender: AnyObject) {
