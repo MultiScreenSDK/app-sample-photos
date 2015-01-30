@@ -9,9 +9,14 @@
 import UIKit
 
 class HowToVC: UIViewController {
+    
+    @IBOutlet weak var compatibleButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        compatibleButton.layer.cornerRadius = 2
+        compatibleButton.layer.borderWidth = 0.2
+        compatibleButton.layer.borderColor = UIColor.whiteColor().CGColor
 
         // Do any additional setup after loading the view.
     }
@@ -21,7 +26,11 @@ class HowToVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func compatibleDevices(sender: AnyObject) {
+    }
 
+    @IBAction func contactEmail(sender: AnyObject) {
+    }
     /*
     // MARK: - Navigation
 
