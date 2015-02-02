@@ -14,31 +14,32 @@ protocol CustomTableViewCellDelegate {
 
 class CustomTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var imageView0: UIButton!
-    @IBOutlet weak var imageView1: UIButton!
-    @IBOutlet weak var imageView2: UIButton!
-    @IBOutlet weak var imageView3: UIButton!
-    @IBOutlet weak var imageView4: UIButton!
+    @IBOutlet weak var buttonPhoto0: UIButton!
+    @IBOutlet weak var buttonPhoto1: UIButton!
+    @IBOutlet weak var buttonPhoto2: UIButton!
+    @IBOutlet weak var buttonPhoto3: UIButton!
+    @IBOutlet weak var buttonPhoto4: UIButton!
     
     var delegate : CustomTableViewCellDelegate!
     var section : Int!
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        
         // Initialization code
-        imageView0.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
-        imageView0.layer.borderWidth = 0.5
-        imageView1.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
+        
+        buttonPhoto0.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
+        buttonPhoto0.layer.borderWidth = 0.5
+        buttonPhoto1.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
+        buttonPhoto1.layer.borderWidth = 0.5
+        buttonPhoto2.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
+        buttonPhoto2.layer.borderWidth = 0.5
+        buttonPhoto3.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
+        buttonPhoto3.layer.borderWidth = 0.5
+        buttonPhoto4.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
+        buttonPhoto4.layer.borderWidth = 0.5
 
-        imageView1.layer.borderWidth = 0.5
-        imageView2.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
-        imageView2.layer.borderWidth = 0.5
-        imageView3.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
-
-        imageView3.layer.borderWidth = 0.5
-        imageView4.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
-
-        imageView4.layer.borderWidth = 0.5
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

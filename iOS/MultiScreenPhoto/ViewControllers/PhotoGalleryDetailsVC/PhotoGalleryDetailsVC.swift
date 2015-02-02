@@ -29,6 +29,9 @@ class PhotoGalleryDetailsVC: CommonVC , UIPageViewControllerDataSource, UIPageVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Method to setup the navigation bar color and fonts
+        setUpNavigationBar()
+        
         self.navigationController?.interactivePopGestureRecognizer.delegate = self
         
         //number of assets in current album
@@ -50,6 +53,14 @@ class PhotoGalleryDetailsVC: CommonVC , UIPageViewControllerDataSource, UIPageVi
         addChildViewController(pageViewController!)
         view.addSubview(pageViewController!.view)
         pageViewController!.didMoveToParentViewController(self)
+        
+    }
+    
+    func setUpNavigationBar(){
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
     }
     

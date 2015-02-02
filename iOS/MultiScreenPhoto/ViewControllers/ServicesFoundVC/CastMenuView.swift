@@ -1,5 +1,5 @@
 //
-//  ServicesFoundView.swift
+//  CastMenuView.swift
 //  MultiScreenPhoto
 //
 //  Created by Raul Mantilla on 29/01/15.
@@ -12,7 +12,7 @@ let servicesFoundTVCellID = "ServicesFoundTVCell"
 
 var multiScreenManager = MultiScreenManager.sharedInstance
 
-class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, ServicesFoundHeaderVIewDelegate {
+class CastMenuView: UIView, UITableViewDelegate, UITableViewDataSource, ServicesFoundHeaderVIewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var services = [AnyObject]()
