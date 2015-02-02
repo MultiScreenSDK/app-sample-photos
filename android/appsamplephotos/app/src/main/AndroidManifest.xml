@@ -9,14 +9,16 @@
 
     <application
         android:allowBackup="true"
+        android:configChanges="orientation|screenLayout|layoutDirection|keyboardHidden|screenSize"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:configChanges="orientation|screenLayout|layoutDirection|keyboardHidden|screenSize"
-        android:windowSoftInputMode="stateHidden"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:largeHeap="true"
+        android:windowSoftInputMode="stateHidden" >
         <activity
             android:name="com.samsung.appsamplephotos.activities.MainActivity"
-            android:label="@string/action_bar_title" >
+            android:label="@string/app_name"
+            android:launchMode="singleInstance" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,13 +33,18 @@
             android:theme="@style/Theme.Transparent" >
         </activity>
         <activity
-            android:name=".fragments.ServiceFragment"
+            android:name="com.samsung.appsamplephotos.fragments.ServiceFragment"
             android:label="@string/title_activity_welcome"
             android:theme="@style/Theme.Transparent" >
         </activity>
         <activity
             android:name="com.samsung.appsamplephotos.activities.ScreenSlideActivity"
             android:label="@string/title_activity_screen_slide" >
+        </activity>
+        <activity
+            android:name="com.samsung.appsamplephotos.activities.MoreActivity"
+            android:label="@string/title_activity_more"
+            android:theme="@style/Theme.Transparent">
         </activity>
     </application>
 

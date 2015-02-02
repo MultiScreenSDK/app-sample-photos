@@ -1,5 +1,6 @@
 package com.samsung.appsamplephotos.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import com.samsung.appsamplephotos.fragments.ServiceFragment;
 import com.samsung.multiscreen.Service;
 
 import java.util.List;
+
+import static com.samsung.appsamplephotos.utils.MultiscreenUtils.customFont;
 
 public class ServiceAdapter extends BaseAdapter {
 
@@ -63,6 +66,7 @@ public class ServiceAdapter extends BaseAdapter {
         holder.position = position;
 
         holder.deviceName.setText(service.getName());
+        holder.deviceName.setTypeface(customFont(context));
 
         row.setOnClickListener(new View.OnClickListener() {
             @Override
