@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Roboto-Light.ttf">
@@ -17,11 +18,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vCx-Cr-ab3">
-                    <rect key="frame" x="197" y="40" width="97" height="35"/>
+                    <rect key="frame" x="-8" y="-8" width="320" height="568"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJk-cX-G1X">
-                            <rect key="frame" x="0.0" y="0.0" width="97" height="34"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJk-cX-G1X">
+                            <rect key="frame" x="207" y="53" width="97" height="34"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="34" id="ngb-ym-dRr"/>
+                                <constraint firstAttribute="width" constant="97" id="yaU-sd-rEf"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="18"/>
                             <state key="normal" title="MORE">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -32,20 +37,22 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="97" id="3Vb-Cm-DWg"/>
-                        <constraint firstAttribute="height" constant="35" id="B78-EA-cgw"/>
+                        <constraint firstItem="TJk-cX-G1X" firstAttribute="top" secondItem="vCx-Cr-ab3" secondAttribute="top" constant="53" id="U0r-LZ-2DD"/>
+                        <constraint firstAttribute="trailing" secondItem="TJk-cX-G1X" secondAttribute="trailing" constant="16" id="tfq-m3-4eR"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="vCx-Cr-ab3" secondAttribute="trailing" constant="26" id="XzV-yR-8by"/>
-                <constraint firstItem="vCx-Cr-ab3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="jQu-0Z-BGM"/>
+                <constraint firstItem="vCx-Cr-ab3" firstAttribute="topMargin" secondItem="iN0-l3-epB" secondAttribute="top" id="EXU-A1-V0q"/>
+                <constraint firstItem="vCx-Cr-ab3" firstAttribute="leadingMargin" secondItem="iN0-l3-epB" secondAttribute="leading" id="J33-oY-LNS"/>
+                <constraint firstAttribute="bottomMargin" secondItem="vCx-Cr-ab3" secondAttribute="bottom" id="O0b-V5-3Hg"/>
+                <constraint firstAttribute="trailingMargin" secondItem="vCx-Cr-ab3" secondAttribute="trailing" id="sXQ-JQ-d98"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="220" y="358"/>
+            <point key="canvasLocation" x="31" y="360"/>
         </view>
     </objects>
 </document>
