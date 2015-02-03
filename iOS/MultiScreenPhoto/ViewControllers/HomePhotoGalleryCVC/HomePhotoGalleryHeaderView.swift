@@ -1,39 +1,32 @@
 //
-//  CustomHeaderCell.swift
+//  HomePhotoGalleryHeaderView.swift
 //  MultiScreenPhoto
 //
-//  Created by Raul Mantilla on 27/01/15.
+//  Created by Raul Mantilla on 2/02/15.
 //  Copyright (c) 2015 Koombea. All rights reserved.
 //
 
 import UIKit
-
-
-
-protocol CustomHeaderCellDelegate {
+protocol HomePhotoGalleryHeaderViewDelegate {
     func expandSection(section : Int)
     func collapseSection(section : Int)
 }
 
-class CustomHeaderCell: UITableViewCell {
-    
-    @IBOutlet weak var title: UIButton!
+class HomePhotoGalleryHeaderView: UIView {
+
+    @IBOutlet weak var headerTitle: UIButton!
     @IBOutlet weak var imageViewArrow: UIImageView!
     @IBOutlet weak var imageViewSeparator : UIImageView!
     
-    var delegate: CustomHeaderCellDelegate!
+    var delegate: HomePhotoGalleryHeaderViewDelegate!
     var section = 0
     var state = false
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     
     
     override func drawRect(rect: CGRect)
     {
-        var image: UIImage
+        
+        /*var image: UIImage
         
         if(state == false){
             image = UIImage(named: "icon-arrow-down")!
@@ -45,11 +38,11 @@ class CustomHeaderCell: UITableViewCell {
         if(section == 0){
             imageViewSeparator.hidden = true
         }
+*/
         
     }
-
-
-    @IBAction func headerClicked(sender: UIButton) {
+    
+    @IBAction func selectedButton(sender: UIButton) {
         
         if(state == false){
             state = true
@@ -58,14 +51,6 @@ class CustomHeaderCell: UITableViewCell {
             state = false
             delegate.collapseSection(self.section)
         }
-        
-    }
-    
-    
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 

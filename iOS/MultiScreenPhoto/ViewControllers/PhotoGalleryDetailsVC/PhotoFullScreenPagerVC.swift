@@ -1,5 +1,5 @@
 //
-//  PhotoGalleryDetailsVC.swift
+//  PhotoFullScreenVC.swift
 //  multiscreen-demo
 //
 //  Created by Raul Mantilla on 14/01/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoGalleryDetailsVC: CommonVC , UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate {
+class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate {
     
     //Gallery Instance, this instance contains an Array of albums
     var gallery = Gallery.sharedInstance
@@ -45,7 +45,7 @@ class PhotoGalleryDetailsVC: CommonVC , UIPageViewControllerDataSource, UIPageVi
         pageViewController!.dataSource = self
         pageViewController!.delegate = self
         
-        let startingViewController: PhotoPageContentVC = viewControllerAtIndex(currentIndex)!
+        let startingViewController: PhotoFullScreenVC = viewControllerAtIndex(currentIndex)!
         let viewControllers: NSArray = [startingViewController]
         pageViewController!.setViewControllers(viewControllers, direction: .Forward, animated: true, completion: nil)
         pageViewController!.view.frame = CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
@@ -58,10 +58,24 @@ class PhotoGalleryDetailsVC: CommonVC , UIPageViewControllerDataSource, UIPageVi
     
     func setUpNavigationBar(){
         
-        self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        //Translucent Navigation Bar
+    self.navigationController?.navigationBar.setBackgroundImage(getImageWithColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0.6), size: CGSize(width: 100, height: 144)), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
         
+        //Back icon Image
+        var imageCastButton: UIImage!
+        
+        // Configuring setting icon
+        self.navigationItem.leftBarButtonItems = nil;
+        let imageBackButton = UIImage(named: "btn_back_arrow") as UIImage?
+        var addBackButton: UIBarButtonItem = UIBarButtonItem(image: imageBackButton, style: .Plain, target: self, action: "goBack")
+         self.navigationItem.leftBarButtonItems = [addBackButton]
+        
+    }
+    
+    func goBack(){
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -80,7 +94,7 @@ class PhotoGalleryDetailsVC: CommonVC , UIPageViewControllerDataSource, UIPageVi
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController?
     {
         
-        var index = (viewController as PhotoPageContentVC).pageIndex
+        var index = (viewController as PhotoFullScreenVC).pageIndex
         if (index == 0) || (index == NSNotFound) {
             return nil
         }
@@ -91,7 +105,7 @@ class PhotoGalleryDetailsVC: CommonVC , UIPageViewControllerDataSource, UIPageVi
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController?
     {
-        var index = (viewController as PhotoPageContentVC).pageIndex
+        var index = (viewController as PhotoFullScreenVC).pageIndex
         
         if index == NSNotFound {
             return nil
@@ -105,7 +119,7 @@ class PhotoGalleryDetailsVC: CommonVC , UIPageViewControllerDataSource, UIPageVi
         return viewControllerAtIndex(index)
     }
     
-    func viewControllerAtIndex(index: Int) -> PhotoPageContentVC?
+    func viewControllerAtIndex(index: Int) -> PhotoFullScreenVC?
     {
         if numberOfAssets == 0 || index >= numberOfAssets || index < 0
         {
@@ -113,7 +127,7 @@ class PhotoGalleryDetailsVC: CommonVC , UIPageViewControllerDataSource, UIPageVi
         }
         
         // Create a new view controller and pass suitable data.
-        let pageContentViewController = PhotoPageContentVC()
+        let pageContentViewController = PhotoFullScreenVC()
         
         
         //pageContentViewController.titleText = pageTitles[index]
@@ -137,7 +151,7 @@ class PhotoGalleryDetailsVC: CommonVC , UIPageViewControllerDataSource, UIPageVi
     func sendToTv() {
         
         if(multiScreenManager.isApplicationConnected() == true){
-            var currentView: PhotoPageContentVC = pageViewController?.viewControllers.last! as PhotoPageContentVC
+            var currentView: PhotoFullScreenVC = pageViewController?.viewControllers.last! as PhotoFullScreenVC
             
             gallery.requestImageAtIndex(gallery.currentAlbum,index: currentView.pageIndex, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!) -> Void in
                 self.multiScreenManager.sendPhotoToTv(image)
@@ -151,4 +165,15 @@ class PhotoGalleryDetailsVC: CommonVC , UIPageViewControllerDataSource, UIPageVi
         super.viewWillDisappear(animated)
     }
     
+    //Return an UIImage from a given UIColor
+    //This method is used for the translucent Navigation Bar
+    func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
+        var rect = CGRectMake(0, 0, size.width, size.height)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        color.setFill()
+        UIRectFill(rect)
+        var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
 }

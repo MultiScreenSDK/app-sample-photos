@@ -7,12 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A56D1681A77E5180026EFF3 /* HomePhotoGalleryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D1671A77E5170026EFF3 /* HomePhotoGalleryTVCell.swift */; };
-		9A56D1691A77E5180026EFF3 /* HomePhotoGalleryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D1671A77E5170026EFF3 /* HomePhotoGalleryTVCell.swift */; };
-		9A56D16B1A77E6C50026EFF3 /* CustomHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D16A1A77E6C50026EFF3 /* CustomHeaderCell.swift */; };
-		9A56D16C1A77E6C50026EFF3 /* CustomHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D16A1A77E6C50026EFF3 /* CustomHeaderCell.swift */; };
-		9A56D16E1A77EC180026EFF3 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D16D1A77EC180026EFF3 /* CustomTableViewCell.swift */; };
-		9A56D16F1A77EC180026EFF3 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D16D1A77EC180026EFF3 /* CustomTableViewCell.swift */; };
+		9A56D16E1A77EC180026EFF3 /* HomePhotoGalleryVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D16D1A77EC180026EFF3 /* HomePhotoGalleryVCCell.swift */; };
+		9A56D16F1A77EC180026EFF3 /* HomePhotoGalleryVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D16D1A77EC180026EFF3 /* HomePhotoGalleryVCCell.swift */; };
 		9A76A8EE1A7A818D007B05D4 /* CastMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A76A8ED1A7A818D007B05D4 /* CastMenuView.xib */; };
 		9A76A8EF1A7A818D007B05D4 /* CastMenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A76A8ED1A7A818D007B05D4 /* CastMenuView.xib */; };
 		9A76A8F11A7A81A8007B05D4 /* CastMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76A8F01A7A81A8007B05D4 /* CastMenuView.swift */; };
@@ -79,12 +75,16 @@
 		9AC49EC71A71A60D00F391C0 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB11A71A60D00F391C0 /* WelcomeView.swift */; };
 		9AC49EC81A71A60D00F391C0 /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AC49EB21A71A60D00F391C0 /* WelcomeView.xib */; };
 		9AC49EC91A71A60D00F391C0 /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AC49EB21A71A60D00F391C0 /* WelcomeView.xib */; };
-		9AC49ECA1A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB41A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift */; };
-		9AC49ECB1A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB41A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift */; };
-		9AC49ECC1A71A60D00F391C0 /* PhotoPageContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB51A71A60D00F391C0 /* PhotoPageContentVC.swift */; };
-		9AC49ECD1A71A60D00F391C0 /* PhotoPageContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB51A71A60D00F391C0 /* PhotoPageContentVC.swift */; };
+		9AC49ECA1A71A60D00F391C0 /* PhotoFullScreenPagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB41A71A60D00F391C0 /* PhotoFullScreenPagerVC.swift */; };
+		9AC49ECB1A71A60D00F391C0 /* PhotoFullScreenPagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB41A71A60D00F391C0 /* PhotoFullScreenPagerVC.swift */; };
+		9AC49ECC1A71A60D00F391C0 /* PhotoFullScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB51A71A60D00F391C0 /* PhotoFullScreenVC.swift */; };
+		9AC49ECD1A71A60D00F391C0 /* PhotoFullScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EB51A71A60D00F391C0 /* PhotoFullScreenVC.swift */; };
 		9AC7F2D01A7C2A3F00CBC946 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AC7F2CF1A7C2A3F00CBC946 /* Roboto-Light.ttf */; };
 		9AC7F2D11A7C2A3F00CBC946 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9AC7F2CF1A7C2A3F00CBC946 /* Roboto-Light.ttf */; };
+		9AC7F2D31A805C9E00CBC946 /* HomePhotoGalleryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AC7F2D21A805C9E00CBC946 /* HomePhotoGalleryHeaderView.xib */; };
+		9AC7F2D41A805C9E00CBC946 /* HomePhotoGalleryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AC7F2D21A805C9E00CBC946 /* HomePhotoGalleryHeaderView.xib */; };
+		9AC7F2D61A805CAA00CBC946 /* HomePhotoGalleryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC7F2D51A805CAA00CBC946 /* HomePhotoGalleryHeaderView.swift */; };
+		9AC7F2D71A805CAA00CBC946 /* HomePhotoGalleryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC7F2D51A805CAA00CBC946 /* HomePhotoGalleryHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,9 +98,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9A56D1671A77E5170026EFF3 /* HomePhotoGalleryTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePhotoGalleryTVCell.swift; sourceTree = "<group>"; };
-		9A56D16A1A77E6C50026EFF3 /* CustomHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomHeaderCell.swift; sourceTree = "<group>"; };
-		9A56D16D1A77EC180026EFF3 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		9A56D16D1A77EC180026EFF3 /* HomePhotoGalleryVCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePhotoGalleryVCCell.swift; sourceTree = "<group>"; };
 		9A76A8ED1A7A818D007B05D4 /* CastMenuView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CastMenuView.xib; sourceTree = "<group>"; };
 		9A76A8F01A7A81A8007B05D4 /* CastMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CastMenuView.swift; sourceTree = "<group>"; };
 		9A76A8F31A7A83D8007B05D4 /* ServicesFoundTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesFoundTVCell.swift; sourceTree = "<group>"; };
@@ -141,9 +139,11 @@
 		9AC49EAD1A71A60D00F391C0 /* HomePhotoGalleryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePhotoGalleryVC.swift; sourceTree = "<group>"; };
 		9AC49EB11A71A60D00F391C0 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		9AC49EB21A71A60D00F391C0 /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
-		9AC49EB41A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoGalleryDetailsVC.swift; sourceTree = "<group>"; };
-		9AC49EB51A71A60D00F391C0 /* PhotoPageContentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPageContentVC.swift; sourceTree = "<group>"; };
+		9AC49EB41A71A60D00F391C0 /* PhotoFullScreenPagerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoFullScreenPagerVC.swift; sourceTree = "<group>"; };
+		9AC49EB51A71A60D00F391C0 /* PhotoFullScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoFullScreenVC.swift; sourceTree = "<group>"; };
 		9AC7F2CF1A7C2A3F00CBC946 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		9AC7F2D21A805C9E00CBC946 /* HomePhotoGalleryHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePhotoGalleryHeaderView.xib; sourceTree = "<group>"; };
+		9AC7F2D51A805CAA00CBC946 /* HomePhotoGalleryHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePhotoGalleryHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,10 +313,10 @@
 			isa = PBXGroup;
 			children = (
 				9AC49EAD1A71A60D00F391C0 /* HomePhotoGalleryVC.swift */,
-				9A56D1671A77E5170026EFF3 /* HomePhotoGalleryTVCell.swift */,
-				9A56D16A1A77E6C50026EFF3 /* CustomHeaderCell.swift */,
-				9A56D16D1A77EC180026EFF3 /* CustomTableViewCell.swift */,
+				9A56D16D1A77EC180026EFF3 /* HomePhotoGalleryVCCell.swift */,
 				9AC49EB01A71A60D00F391C0 /* WelcomeView */,
+				9AC7F2D21A805C9E00CBC946 /* HomePhotoGalleryHeaderView.xib */,
+				9AC7F2D51A805CAA00CBC946 /* HomePhotoGalleryHeaderView.swift */,
 			);
 			path = HomePhotoGalleryCVC;
 			sourceTree = "<group>";
@@ -333,8 +333,8 @@
 		9AC49EB31A71A60D00F391C0 /* PhotoGalleryDetailsVC */ = {
 			isa = PBXGroup;
 			children = (
-				9AC49EB41A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift */,
-				9AC49EB51A71A60D00F391C0 /* PhotoPageContentVC.swift */,
+				9AC49EB41A71A60D00F391C0 /* PhotoFullScreenPagerVC.swift */,
+				9AC49EB51A71A60D00F391C0 /* PhotoFullScreenVC.swift */,
 			);
 			path = PhotoGalleryDetailsVC;
 			sourceTree = "<group>";
@@ -440,6 +440,7 @@
 				9A76A8EE1A7A818D007B05D4 /* CastMenuView.xib in Resources */,
 				9A76A8FA1A7A9AA7007B05D4 /* ServicesFoundHeaderVIew.xib in Resources */,
 				9AC49E631A71A5A800F391C0 /* LaunchScreen.xib in Resources */,
+				9AC7F2D31A805C9E00CBC946 /* HomePhotoGalleryHeaderView.xib in Resources */,
 				9AC49E601A71A5A800F391C0 /* Images.xcassets in Resources */,
 				9A76A90B1A7C072A007B05D4 /* CompatibleTVsView.xib in Resources */,
 				9A76A9041A7AEEBD007B05D4 /* HowToVC.xib in Resources */,
@@ -458,6 +459,7 @@
 				9AC7F2D11A7C2A3F00CBC946 /* Roboto-Light.ttf in Resources */,
 				9AC49EC91A71A60D00F391C0 /* WelcomeView.xib in Resources */,
 				9A76A8EF1A7A818D007B05D4 /* CastMenuView.xib in Resources */,
+				9AC7F2D41A805C9E00CBC946 /* HomePhotoGalleryHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,14 +473,13 @@
 				9AC49EB81A71A60D00F391C0 /* Gallery.swift in Sources */,
 				9AC49E9B1A71A60000F391C0 /* RPCMessaje.swift in Sources */,
 				9AC49EA31A71A60000F391C0 /* WebSocket.swift in Sources */,
-				9A56D16E1A77EC180026EFF3 /* CustomTableViewCell.swift in Sources */,
+				9A56D16E1A77EC180026EFF3 /* HomePhotoGalleryVCCell.swift in Sources */,
 				9A76A8F11A7A81A8007B05D4 /* CastMenuView.swift in Sources */,
 				9AC49E9D1A71A60000F391C0 /* Service.swift in Sources */,
 				9AC49E891A71A60000F391C0 /* Application.swift in Sources */,
-				9AC49ECA1A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift in Sources */,
+				9AC49ECA1A71A60D00F391C0 /* PhotoFullScreenPagerVC.swift in Sources */,
 				9A76A9081A7C071E007B05D4 /* CompatibleTVsView.swift in Sources */,
 				9AC49E9F1A71A60000F391C0 /* ServiceSearch.swift in Sources */,
-				9A56D16B1A77E6C50026EFF3 /* CustomHeaderCell.swift in Sources */,
 				9A76A9021A7AEEBD007B05D4 /* HowToVC.swift in Sources */,
 				9AC49E8B1A71A60000F391C0 /* Channel.swift in Sources */,
 				9AC49E8D1A71A60000F391C0 /* ChannelClient.swift in Sources */,
@@ -487,9 +488,9 @@
 				9AC49E951A71A60000F391C0 /* MDNSDiscoveryProvider.swift in Sources */,
 				9AC49EA11A71A60000F391C0 /* WebSocketTransport.swift in Sources */,
 				9AC49E5B1A71A5A800F391C0 /* ViewController.swift in Sources */,
-				9A56D1681A77E5180026EFF3 /* HomePhotoGalleryTVCell.swift in Sources */,
+				9AC7F2D61A805CAA00CBC946 /* HomePhotoGalleryHeaderView.swift in Sources */,
 				9A76A8F51A7A83D8007B05D4 /* ServicesFoundTVCell.swift in Sources */,
-				9AC49ECC1A71A60D00F391C0 /* PhotoPageContentVC.swift in Sources */,
+				9AC49ECC1A71A60D00F391C0 /* PhotoFullScreenVC.swift in Sources */,
 				9AC49E591A71A5A800F391C0 /* AppDelegate.swift in Sources */,
 				9AC49E911A71A60000F391C0 /* Device.swift in Sources */,
 				9AC49EBE1A71A60D00F391C0 /* CommonVC.swift in Sources */,
@@ -512,25 +513,24 @@
 				9AC49E981A71A60000F391C0 /* Message.swift in Sources */,
 				9AC49EA41A71A60000F391C0 /* WebSocket.swift in Sources */,
 				9AC49E961A71A60000F391C0 /* MDNSDiscoveryProvider.swift in Sources */,
-				9A56D16F1A77EC180026EFF3 /* CustomTableViewCell.swift in Sources */,
+				9A56D16F1A77EC180026EFF3 /* HomePhotoGalleryVCCell.swift in Sources */,
 				9AC49EC11A71A60D00F391C0 /* HomePhotoGalleryVC.swift in Sources */,
 				9AC49EA01A71A60000F391C0 /* ServiceSearch.swift in Sources */,
 				9AC49EC71A71A60D00F391C0 /* WelcomeView.swift in Sources */,
 				9A76A8FE1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift in Sources */,
 				9AC49E9E1A71A60000F391C0 /* Service.swift in Sources */,
-				9A56D1691A77E5180026EFF3 /* HomePhotoGalleryTVCell.swift in Sources */,
+				9AC7F2D71A805CAA00CBC946 /* HomePhotoGalleryHeaderView.swift in Sources */,
 				9A76A9031A7AEEBD007B05D4 /* HowToVC.swift in Sources */,
 				9A76A8F61A7A83D8007B05D4 /* ServicesFoundTVCell.swift in Sources */,
 				9AC49EB91A71A60D00F391C0 /* Gallery.swift in Sources */,
 				9A76A9091A7C071E007B05D4 /* CompatibleTVsView.swift in Sources */,
 				9AC49EBF1A71A60D00F391C0 /* CommonVC.swift in Sources */,
-				9AC49ECB1A71A60D00F391C0 /* PhotoGalleryDetailsVC.swift in Sources */,
-				9AC49ECD1A71A60D00F391C0 /* PhotoPageContentVC.swift in Sources */,
+				9AC49ECB1A71A60D00F391C0 /* PhotoFullScreenPagerVC.swift in Sources */,
+				9AC49ECD1A71A60D00F391C0 /* PhotoFullScreenVC.swift in Sources */,
 				9AC49E8C1A71A60000F391C0 /* Channel.swift in Sources */,
 				9AC49E921A71A60000F391C0 /* Device.swift in Sources */,
 				9AC49EA21A71A60000F391C0 /* WebSocketTransport.swift in Sources */,
 				9AC49E8E1A71A60000F391C0 /* ChannelClient.swift in Sources */,
-				9A56D16C1A77E6C50026EFF3 /* CustomHeaderCell.swift in Sources */,
 				9AC49EBD1A71A60D00F391C0 /* MultiScreenManager.swift in Sources */,
 				9AC49E9A1A71A60000F391C0 /* Requester.swift in Sources */,
 				9A76A8F21A7A81A8007B05D4 /* CastMenuView.swift in Sources */,

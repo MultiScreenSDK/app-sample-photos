@@ -9,9 +9,8 @@
 import UIKit
 
 // Identifiers for UITableview cell and Header
-let reuseIdentifierTVCell1 = "CustomTableViewCell1"
-let reuseIdentifierTVCell2 = "CustomTableViewCell2"
-let reuseIdentifierTVHeader = "reuseIdentifierTVHeader"
+let reuseIdentifierTVCell1 = "HomePhotoGalleryVCCell1"
+let reuseIdentifierTVCell2 = "HomePhotoGalleryVCCell2"
 
 let screenSizeDivisor = CGFloat(2.03)
 
@@ -19,7 +18,7 @@ let screenSizeDivisor = CGFloat(2.03)
 private var gallery = Gallery.sharedInstance
 
 //UIViewController to display a gallery of photos
-class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate, CustomHeaderCellDelegate, CustomTableViewCellDelegate {
+class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate, HomePhotoGalleryHeaderViewDelegate, HomePhotoGalleryVCCellDelegate {
     
     //Welcome view displayed the first time the app runs
     var welcomeView: UIView!
@@ -35,8 +34,7 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         
         super.viewDidLoad()
         
-        // Method to setup the navigation bar color and fonts
-        setUpNavigationBar()
+        
         
         //Start searching for avaliables services in the network
         multiScreenManager.startSearching()
@@ -58,6 +56,14 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         cellHeight = screenSize.size.width/screenSizeDivisor
     }
     
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        // Method to setup the navigation bar color and fonts
+        setUpNavigationBar()
+    }
+    
      // Method to setup the navigation bar color and fonts
     func setUpNavigationBar(){
         self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
@@ -68,16 +74,11 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         self.navigationItem.leftBarButtonItem = nil;
         
         // Setting the navigation Title to the left
-        var titleLabel = UILabel(frame: CGRectMake(0,0,100,50))
-        titleLabel.textAlignment = .Left
-        titleLabel.text =  "Photos"
-        titleLabel.textColor = UIColor.whiteColor()
-        titleLabel.font = UIFont(name: "Roboto-Light", size: 20)
-        
         var TitleLabel: UIBarButtonItem = UIBarButtonItem(title: "Photos", style: .Plain, target: nil, action: nil)
-        
         TitleLabel.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Roboto-Light", size: 20)!], forState: UIControlState.Normal)
+        
         self.navigationItem.leftBarButtonItems = [TitleLabel]
+        self.navigationController?.navigationBar.translucent = false
         
     }
     
@@ -116,15 +117,15 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
-        var cell : CustomTableViewCell
+        var cell : HomePhotoGalleryVCCell
         var modIndexRow = indexPath.row % 10
         var currentImageIndex = 0
         
         if(indexPath.row % 2 == 0){
-        cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierTVCell1) as CustomTableViewCell
+        cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierTVCell1) as HomePhotoGalleryVCCell
             
         }else{
-            cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierTVCell2) as CustomTableViewCell
+            cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierTVCell2) as HomePhotoGalleryVCCell
         }
         
         cell.delegate = self
@@ -236,31 +237,22 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let  headerCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierTVHeader) as CustomHeaderCell
-        
-        headerCell.title.setTitle(gallery.getAlbumName(section), forState: UIControlState.Normal)
-        
-        return headerCell
+    func tableView(tableView: UITableView!, viewForHeaderInSection section: Int) -> UIView! {
+        var viewArray = NSBundle.mainBundle().loadNibNamed("HomePhotoGalleryHeaderView", owner: self, options: nil)
+        var headerView = viewArray[0] as HomePhotoGalleryHeaderView
+        headerView.headerTitle.setTitle(gallery.getAlbumName(section), forState: UIControlState.Normal)
+        headerView.delegate = self
+        headerView.section = section
+        headerView.state = gallery.getIsAlbumExpanded(section)
+        return headerView
     }
-    
-    
-    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
-        var header : CustomHeaderCell  =  view as CustomHeaderCell
-        header.delegate = self
-        header.section = section
-        //header.title.setTitle(gallery.getAlbumName(section), forState: UIControlState.Normal)
-        header.state = gallery.getIsAlbumExpanded(section)
-    }
-    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         
     }
     
     func photoSelected(indexPath : NSIndexPath){
-        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("PhotoGalleryDetailsVCID") as PhotoGalleryDetailsVC
+        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("PhotoFullScreenPagerVCID") as PhotoFullScreenPagerVC
         viewController.currentIndex = indexPath.row
         gallery.currentAlbum = indexPath.section
         self.navigationController?.pushViewController(viewController, animated: true)

@@ -41,17 +41,19 @@ class CommonVC: UIViewController {
         let imageSettingButton = UIImage(named: "btn_show_popover_cell") as UIImage?
         var addSettingButton: UIBarButtonItem = UIBarButtonItem(image: imageSettingButton, style: .Plain, target: self, action: "showSettings")
         
+        addSettingButton.imageInsets = UIEdgeInsetsMake(0, 0, 0, -7);
         //Configuring cast icon
         //Check if there is services availables
-        if(multiScreenManager.getServices().count > 0){
+        if(multiScreenManager.getServices().count == 0){
             //Check if there is an application current connected
-            if(multiScreenManager.isApplicationConnected() == true){
-                imageCastButton = UIImage(named: "btn_cast_on")
+            if(multiScreenManager.isApplicationConnected() != true){
+                imageCastButton = UIImage(named: "btn_cast_off")
             }else{
                 imageCastButton = UIImage(named: "btn_cast_off")
             }
             var addCastButton: UIBarButtonItem = UIBarButtonItem(image: imageCastButton, style: .Plain, target: self, action: "showCastMenuView")
-            addCastButton.width = 22
+            //addCastButton.width = 12
+            addCastButton.imageInsets = UIEdgeInsetsMake(0, 10, 0, -10);
             self.navigationItem.rightBarButtonItems = [addSettingButton,addCastButton]
         }else{
             self.navigationItem.rightBarButtonItems = [addSettingButton]

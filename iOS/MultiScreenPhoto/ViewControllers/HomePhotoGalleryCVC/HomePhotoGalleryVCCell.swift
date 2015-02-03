@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol CustomTableViewCellDelegate {
+protocol HomePhotoGalleryVCCellDelegate {
     func photoSelected(indexPath : NSIndexPath)
 }
 
-class CustomTableViewCell: UITableViewCell {
+class HomePhotoGalleryVCCell: UITableViewCell {
     
     @IBOutlet weak var buttonPhoto0: UIButton!
     @IBOutlet weak var buttonPhoto1: UIButton!
@@ -20,7 +20,7 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var buttonPhoto3: UIButton!
     @IBOutlet weak var buttonPhoto4: UIButton!
     
-    var delegate : CustomTableViewCellDelegate!
+    var delegate : HomePhotoGalleryVCCellDelegate!
     var section : Int!
 
     override func awakeFromNib() {

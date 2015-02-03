@@ -1,5 +1,5 @@
 //
-//  PhotoPageContentVC.swift
+//  PhotoFullScreenVC.swift
 //  multiscreen-demo
 //
 //  Created by Raul Mantilla on 14/01/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoPageContentVC: UIViewController,UIScrollViewDelegate {
+class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate {
     
     
     //Gallery Instance, this instance contains an Array of albums
@@ -26,7 +26,7 @@ class PhotoPageContentVC: UIViewController,UIScrollViewDelegate {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor(red: 21/255, green: 21/255, blue: 21/255, alpha: 1)
         
         gallery.requestImageAtIndex(gallery.currentAlbum,index: pageIndex, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!) -> Void in
             self.addScrollView(image)
@@ -45,6 +45,8 @@ class PhotoPageContentVC: UIViewController,UIScrollViewDelegate {
         // 2
         scrollView.delegate = self
         scrollView.contentSize = image.size
+        
+        
         
         // 3
         var doubleTapRecognizer = UITapGestureRecognizer(target: self, action: "scrollViewDoubleTapped:")
@@ -65,11 +67,15 @@ class PhotoPageContentVC: UIViewController,UIScrollViewDelegate {
         
         // 6
         view.addSubview(scrollView)
+        
         centerScrollViewContents()
     }
 
 
     func centerScrollViewContents() {
+        
+        scrollView.frame =  view.frame
+        
         let boundsSize = scrollView.bounds.size
         var contentsFrame = imageView.frame
         
@@ -120,6 +126,10 @@ class PhotoPageContentVC: UIViewController,UIScrollViewDelegate {
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        centerScrollViewContents()
     }
     
     
