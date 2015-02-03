@@ -28,7 +28,7 @@ class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 21/255, green: 21/255, blue: 21/255, alpha: 1)
         
-        gallery.requestImageAtIndex(gallery.currentAlbum,index: pageIndex, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!) -> Void in
+        gallery.requestImageAtIndex(gallery.currentAlbum,index: pageIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!,assetIndex:Int, containerId: Int) -> Void in
             self.addScrollView(image)
         })
     }

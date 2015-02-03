@@ -176,11 +176,11 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.25882352939999997" green="0.25882352939999997" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="buttonPhoto0" destination="7Su-as-yky" id="53h-gQ-cTR"/>
-                                            <outlet property="buttonPhoto1" destination="VS4-I7-7dH" id="1km-Hi-3d2"/>
-                                            <outlet property="buttonPhoto2" destination="Tmz-0T-9Ln" id="j7a-qF-h9f"/>
-                                            <outlet property="buttonPhoto3" destination="K2O-1k-dDM" id="IYF-4e-R7g"/>
-                                            <outlet property="buttonPhoto4" destination="tOc-9L-UVT" id="PV3-2b-jiO"/>
+                                            <outletCollection property="buttonPhoto" destination="7Su-as-yky" collectionClass="NSMutableArray" id="Wgt-bA-rx7"/>
+                                            <outletCollection property="buttonPhoto" destination="VS4-I7-7dH" collectionClass="NSMutableArray" id="0r8-eR-Kq5"/>
+                                            <outletCollection property="buttonPhoto" destination="Tmz-0T-9Ln" collectionClass="NSMutableArray" id="GEl-mS-sRX"/>
+                                            <outletCollection property="buttonPhoto" destination="K2O-1k-dDM" collectionClass="NSMutableArray" id="jZM-fM-vh3"/>
+                                            <outletCollection property="buttonPhoto" destination="tOc-9L-UVT" collectionClass="NSMutableArray" id="fAy-3M-irf"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HomePhotoGalleryVCCell2" rowHeight="187" id="0Lv-YB-vNk" customClass="HomePhotoGalleryVCCell" customModule="MultiScreenPhoto" customModuleProvider="target">
@@ -199,7 +199,7 @@
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <connections>
-                                                                <action selector="clickedImage:" destination="0Lv-YB-vNk" eventType="touchUpInside" id="gq4-yI-mSR"/>
+                                                                <action selector="clickedImage:" destination="0Lv-YB-vNk" eventType="touchUpInside" id="o8J-ld-Ixg"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XlX-Pe-057">
@@ -209,7 +209,7 @@
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <connections>
-                                                                <action selector="clickedImage:" destination="0Lv-YB-vNk" eventType="touchUpInside" id="UqS-ph-sLd"/>
+                                                                <action selector="clickedImage:" destination="0Lv-YB-vNk" eventType="touchUpInside" id="qj5-LZ-2Hp"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g8f-yL-cUd">
@@ -219,7 +219,7 @@
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <connections>
-                                                                <action selector="clickedImage:" destination="0Lv-YB-vNk" eventType="touchUpInside" id="XFv-Hh-XPv"/>
+                                                                <action selector="clickedImage:" destination="0Lv-YB-vNk" eventType="touchUpInside" id="QKV-7F-aZE"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMX-d9-gpG">
@@ -229,7 +229,7 @@
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <connections>
-                                                                <action selector="clickedImage:" destination="0Lv-YB-vNk" eventType="touchUpInside" id="zaZ-E4-Hwh"/>
+                                                                <action selector="clickedImage:" destination="0Lv-YB-vNk" eventType="touchUpInside" id="X2n-cI-PQD"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4GP-oJ-iW1">
@@ -240,7 +240,7 @@
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <connections>
-                                                                <action selector="clickedImage:" destination="0Lv-YB-vNk" eventType="touchUpInside" id="5Jn-yB-0Mk"/>
+                                                                <action selector="clickedImage:" destination="0Lv-YB-vNk" eventType="touchUpInside" id="DU8-qd-UXc"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -279,11 +279,11 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.25882352939999997" green="0.25882352939999997" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="buttonPhoto0" destination="4GP-oJ-iW1" id="PfP-Nr-sFd"/>
-                                            <outlet property="buttonPhoto1" destination="XlX-Pe-057" id="mqP-F3-m6x"/>
-                                            <outlet property="buttonPhoto2" destination="d60-P5-tge" id="2CV-3e-oAd"/>
-                                            <outlet property="buttonPhoto3" destination="g8f-yL-cUd" id="2fD-Lj-U9D"/>
-                                            <outlet property="buttonPhoto4" destination="xMX-d9-gpG" id="34Q-2L-f0H"/>
+                                            <outletCollection property="buttonPhoto" destination="d60-P5-tge" collectionClass="NSMutableArray" id="yJE-oA-HBR"/>
+                                            <outletCollection property="buttonPhoto" destination="XlX-Pe-057" collectionClass="NSMutableArray" id="omi-nh-dGj"/>
+                                            <outletCollection property="buttonPhoto" destination="4GP-oJ-iW1" collectionClass="NSMutableArray" id="K3Z-Vd-0bx"/>
+                                            <outletCollection property="buttonPhoto" destination="g8f-yL-cUd" collectionClass="NSMutableArray" id="sFm-Im-g5r"/>
+                                            <outletCollection property="buttonPhoto" destination="xMX-d9-gpG" collectionClass="NSMutableArray" id="z9T-Gu-hLJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -107,7 +107,7 @@
         }
        
         //Returns an Image from a given album and Photo index
-        func requestImageAtIndex(album: Int, index: Int, isThumbnail: Bool ,completionHandler: ((UIImage!, [NSObject : AnyObject]!) -> Void)!){
+        func requestImageAtIndex(album: Int, index: Int, containerId:Int, isThumbnail: Bool ,completionHandler: ((UIImage!, [NSObject : AnyObject]!, Int, Int) -> Void)!){
             
             let assetsGroup:ALAssetsGroup = albums[album]
             
@@ -128,13 +128,13 @@
                         }
                         
                         dispatch_async(dispatch_get_main_queue(),{
-                            return completionHandler(image,nil)
+                            return completionHandler(image,nil,index,containerId)
                         })
                     }
                 })
             }else{
                 dispatch_async(dispatch_get_main_queue(),{
-                    return completionHandler(nil,nil)
+                    return completionHandler(nil,nil,index,containerId)
                 })
             }
         }

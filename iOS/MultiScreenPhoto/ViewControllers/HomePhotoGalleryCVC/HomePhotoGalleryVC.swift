@@ -119,7 +119,7 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         
         var cell : HomePhotoGalleryVCCell
         var modIndexRow = indexPath.row % 10
-        var currentImageIndex = 0
+        var currentAssetIndex = 0
         
         if(indexPath.row % 2 == 0){
         cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierTVCell1) as HomePhotoGalleryVCCell
@@ -132,58 +132,19 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         cell.section = indexPath.section
         cell.layer.zPosition = 0
 
-        
-        currentImageIndex = indexPath.row * 5
-        gallery.requestImageAtIndex(indexPath.section,index: currentImageIndex, isThumbnail: true, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!) -> Void in
-            if(image == nil){
-                cell.buttonPhoto0.enabled = false
-            }else{
-                cell.buttonPhoto0.enabled = true
-            }
-            cell.buttonPhoto0.setBackgroundImage(image, forState: UIControlState.Normal)
-            cell.buttonPhoto0.tag = currentImageIndex
-        })
-        
-        gallery.requestImageAtIndex(indexPath.section,index: currentImageIndex + 1, isThumbnail: true, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!) -> Void in
-            if(image == nil){
-                cell.buttonPhoto1.enabled = false
-            }else{
-                cell.buttonPhoto1.enabled = true
-            }
-            cell.buttonPhoto1.setBackgroundImage(image, forState: UIControlState.Normal);
-            cell.buttonPhoto1.tag = currentImageIndex + 1
-        })
-        
-        gallery.requestImageAtIndex(indexPath.section,index: currentImageIndex + 2, isThumbnail: true, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!) -> Void in
-            if(image == nil){
-                cell.buttonPhoto2.enabled = false
-            }else{
-                cell.buttonPhoto2.enabled = true
-            }
-            cell.buttonPhoto2.setBackgroundImage(image, forState: UIControlState.Normal)
-            cell.buttonPhoto2.tag = currentImageIndex + 2
-        })
-        
-        gallery.requestImageAtIndex(indexPath.section,index: currentImageIndex + 3, isThumbnail: true, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!) -> Void in
-            if(image == nil){
-                cell.buttonPhoto3.enabled = false
-            }else{
-                cell.buttonPhoto3.enabled = true
-            }
-            cell.buttonPhoto3.setBackgroundImage(image, forState: UIControlState.Normal)
-            cell.buttonPhoto3.tag = currentImageIndex + 3
-        })
-        
-        gallery.requestImageAtIndex(indexPath.section,index: currentImageIndex + 4, isThumbnail: true, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!) -> Void in
-            if(image == nil){
-                cell.buttonPhoto4.enabled = false
-            }else{
-                cell.buttonPhoto4.enabled = true
-            }
-            cell.buttonPhoto4.setBackgroundImage(image, forState: UIControlState.Normal)
-            cell.buttonPhoto4.tag = currentImageIndex + 4
-        })
-
+        currentAssetIndex = indexPath.row * 5
+        for (var i=0; i<5; i++) {
+            gallery.requestImageAtIndex(indexPath.section,index: currentAssetIndex, containerId:i, isThumbnail: true, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!, assetIndex:Int, containerId: Int ) -> Void in
+                if(image == nil){
+                    cell.buttonPhoto[containerId].enabled = false
+                }else{
+                    cell.buttonPhoto[containerId].enabled = true
+                }
+                cell.buttonPhoto[containerId].setBackgroundImage(image, forState: UIControlState.Normal)
+                cell.buttonPhoto[containerId].tag = assetIndex
+            })
+            currentAssetIndex = currentAssetIndex + 1
+        }
         
         return cell
     }

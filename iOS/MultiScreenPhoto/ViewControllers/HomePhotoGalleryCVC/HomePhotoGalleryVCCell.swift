@@ -14,11 +14,7 @@ protocol HomePhotoGalleryVCCellDelegate {
 
 class HomePhotoGalleryVCCell: UITableViewCell {
     
-    @IBOutlet weak var buttonPhoto0: UIButton!
-    @IBOutlet weak var buttonPhoto1: UIButton!
-    @IBOutlet weak var buttonPhoto2: UIButton!
-    @IBOutlet weak var buttonPhoto3: UIButton!
-    @IBOutlet weak var buttonPhoto4: UIButton!
+    @IBOutlet var buttonPhoto: [UIButton]!
     
     var delegate : HomePhotoGalleryVCCellDelegate!
     var section : Int!
@@ -26,20 +22,10 @@ class HomePhotoGalleryVCCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
-        // Initialization code
-        
-        buttonPhoto0.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
-        buttonPhoto0.layer.borderWidth = 0.5
-        buttonPhoto1.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
-        buttonPhoto1.layer.borderWidth = 0.5
-        buttonPhoto2.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
-        buttonPhoto2.layer.borderWidth = 0.5
-        buttonPhoto3.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
-        buttonPhoto3.layer.borderWidth = 0.5
-        buttonPhoto4.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
-        buttonPhoto4.layer.borderWidth = 0.5
-
+        for (button) in buttonPhoto {
+            button.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
+            button.layer.borderWidth = 0.5
+        }
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
