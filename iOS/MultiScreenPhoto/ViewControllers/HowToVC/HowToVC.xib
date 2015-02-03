@@ -43,10 +43,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0nz-gi-clu">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="1" width="320" height="567"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0ws-Wg-6wH">
-                            <rect key="frame" x="8" y="0.0" width="304" height="517"/>
+                            <rect key="frame" x="8" y="5" width="304" height="517"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lkS-eX-WF8">
                                     <rect key="frame" x="7" y="114" width="289" height="1"/>
@@ -74,8 +74,8 @@
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="How to connect:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxb-Hb-GCZ">
-                                    <rect key="frame" x="8" y="93" width="127" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to connect:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxb-Hb-GCZ">
+                                    <rect key="frame" x="8" y="93" width="121.5" height="21"/>
                                     <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="17"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -87,7 +87,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. Your mobile device and TB must be on the same WiFI network." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c33-o3-Z9A">
-                                    <rect key="frame" x="8" y="200" width="296" height="29"/>
+                                    <rect key="frame" x="8" y="200" width="296" height="28.5"/>
                                     <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="12"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -109,8 +109,8 @@
                                         <constraint firstAttribute="width" secondItem="Dsg-Y5-uEr" secondAttribute="height" multiplier="4:3" id="pez-8H-60O"/>
                                     </constraints>
                                 </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="btn_cast_off" translatesAutoresizingMaskIntoConstraints="NO" id="dnl-yt-3LZ">
-                                    <rect key="frame" x="57" y="295" width="20" height="15"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_cast_off" translatesAutoresizingMaskIntoConstraints="NO" id="dnl-yt-3LZ">
+                                    <rect key="frame" x="55" y="295" width="20" height="15"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="20" id="GvG-Vd-KTv"/>
                                         <constraint firstAttribute="height" constant="15" id="UXP-9t-NUT"/>
@@ -122,33 +122,33 @@
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="4. Tap" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxa-Kk-DX2">
-                                    <rect key="frame" x="8" y="290" width="48" height="26"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4. Tap" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxa-Kk-DX2">
+                                    <rect key="frame" x="8" y="290" width="46" height="26"/>
                                     <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="12"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="to select the tv you wish to use." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IrG-fi-Jde">
-                                    <rect key="frame" x="85" y="290" width="177" height="26"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to select the tv you wish to use." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IrG-fi-Jde">
+                                    <rect key="frame" x="83" y="290" width="164.5" height="26"/>
                                     <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="12"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="5. When" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tu-Bz-ywr">
-                                    <rect key="frame" x="8" y="321" width="48" height="26"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5. When" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tu-Bz-ywr">
+                                    <rect key="frame" x="8" y="321" width="46" height="26"/>
                                     <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="12"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="btn_cast_off" translatesAutoresizingMaskIntoConstraints="NO" id="cOE-tA-c02">
-                                    <rect key="frame" x="61" y="327" width="20" height="15"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_cast_off" translatesAutoresizingMaskIntoConstraints="NO" id="cOE-tA-c02">
+                                    <rect key="frame" x="59" y="327" width="20" height="15"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="20" id="OT1-3I-jsI"/>
                                         <constraint firstAttribute="height" constant="15" id="eKr-dh-CB7"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="turns to " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GR5-QA-hW3">
-                                    <rect key="frame" x="89" y="321" width="50" height="26"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="turns to " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GR5-QA-hW3">
+                                    <rect key="frame" x="87" y="321" width="50" height="26"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="uL7-eT-qQA"/>
                                     </constraints>
@@ -156,14 +156,14 @@
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="btn_cast_on" translatesAutoresizingMaskIntoConstraints="NO" id="tH5-31-8z1">
-                                    <rect key="frame" x="139" y="325" width="20" height="15"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_cast_on" translatesAutoresizingMaskIntoConstraints="NO" id="tH5-31-8z1">
+                                    <rect key="frame" x="137" y="325" width="20" height="15"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="20" id="G6g-o5-gLg"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text=", you are connected." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whD-Ih-rFh">
-                                    <rect key="frame" x="169" y="321" width="115" height="26"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=", you are connected." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whD-Ih-rFh">
+                                    <rect key="frame" x="167" y="321" width="115" height="26"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="115" id="yab-Qv-oXs"/>
                                     </constraints>
@@ -171,21 +171,21 @@
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tap" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tAv-gi-pdG">
-                                    <rect key="frame" x="8" y="368" width="48" height="26"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tAv-gi-pdG">
+                                    <rect key="frame" x="8" y="368" width="46" height="26"/>
                                     <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="12"/>
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="btn_cast_on" translatesAutoresizingMaskIntoConstraints="NO" id="cRS-bf-OUh">
-                                    <rect key="frame" x="38" y="372" width="20" height="15"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_cast_on" translatesAutoresizingMaskIntoConstraints="NO" id="cRS-bf-OUh">
+                                    <rect key="frame" x="36" y="372" width="20" height="15"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="15" id="BiK-C0-JD0"/>
                                         <constraint firstAttribute="width" constant="20" id="jWJ-C8-GsC"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="to disconnect or switch to another TV." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTN-SZ-xqD">
-                                    <rect key="frame" x="69" y="368" width="212" height="26"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to disconnect or switch to another TV." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTN-SZ-xqD">
+                                    <rect key="frame" x="67" y="368" width="212" height="26"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="212" id="JnH-39-ScN"/>
                                     </constraints>
@@ -193,8 +193,8 @@
                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Contact" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ker-Sq-jow">
-                                    <rect key="frame" x="8" y="411" width="61" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ker-Sq-jow">
+                                    <rect key="frame" x="8" y="411" width="59" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="vL9-Qz-ITx"/>
                                     </constraints>
@@ -237,8 +237,8 @@
                                         <action selector="contactEmail:" destination="-1" eventType="touchUpInside" id="kDp-KI-mmu"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="we'd be happy to answer all your questions." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iy3-W4-uZk">
-                                    <rect key="frame" x="8" y="479" width="246" height="26"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="we'd be happy to answer all your questions." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iy3-W4-uZk">
+                                    <rect key="frame" x="8" y="479" width="228" height="26"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="26" id="pce-cS-94B"/>
                                     </constraints>
@@ -371,19 +371,20 @@
                             </variation>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="0ws-Wg-6wH" firstAttribute="centerX" secondItem="0nz-gi-clu" secondAttribute="centerX" id="baM-fw-q0j"/>
                         <constraint firstItem="0ws-Wg-6wH" firstAttribute="leading" secondItem="0nz-gi-clu" secondAttribute="leadingMargin" id="cs6-CE-84M"/>
                         <constraint firstItem="0ws-Wg-6wH" firstAttribute="trailing" secondItem="0nz-gi-clu" secondAttribute="trailingMargin" id="ha8-Q6-L4Z"/>
                         <constraint firstAttribute="bottom" secondItem="0ws-Wg-6wH" secondAttribute="bottom" constant="219" id="qVv-ZY-WDp"/>
-                        <constraint firstItem="0ws-Wg-6wH" firstAttribute="top" secondItem="0nz-gi-clu" secondAttribute="top" id="tPd-cH-wfg"/>
+                        <constraint firstItem="0ws-Wg-6wH" firstAttribute="top" secondItem="0nz-gi-clu" secondAttribute="top" constant="5" id="tPd-cH-wfg"/>
                     </constraints>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="0nz-gi-clu" secondAttribute="bottom" id="J0G-p9-Cox"/>
-                <constraint firstItem="0nz-gi-clu" firstAttribute="top" secondItem="sGk-4Z-C18" secondAttribute="top" id="M14-BO-4Sr"/>
+                <constraint firstItem="0nz-gi-clu" firstAttribute="top" secondItem="sGk-4Z-C18" secondAttribute="top" constant="1" id="M14-BO-4Sr"/>
                 <constraint firstAttribute="trailing" secondItem="0nz-gi-clu" secondAttribute="trailing" id="Nub-YI-Qcc"/>
                 <constraint firstItem="0nz-gi-clu" firstAttribute="leading" secondItem="sGk-4Z-C18" secondAttribute="leading" id="dQi-mg-PQy"/>
             </constraints>
@@ -392,7 +393,7 @@
         </view>
     </objects>
     <resources>
-        <image name="btn_cast_off" width="32" height="24"/>
-        <image name="btn_cast_on" width="32" height="24"/>
+        <image name="btn_cast_off" width="24" height="18"/>
+        <image name="btn_cast_on" width="24" height="18"/>
     </resources>
 </document>

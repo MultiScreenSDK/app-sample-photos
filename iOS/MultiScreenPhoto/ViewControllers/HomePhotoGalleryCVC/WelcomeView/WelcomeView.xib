@@ -33,7 +33,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJ9-Fn-xP5">
-                            <rect key="frame" x="75" y="584" width="230" height="28"/>
+                            <rect key="frame" x="75" y="517" width="230" height="28"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="28" id="VYg-9w-twl"/>
                                 <constraint firstAttribute="width" constant="230" id="uf6-A3-Zn5"/>
@@ -57,10 +57,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi" translatesAutoresizingMaskIntoConstraints="NO" id="kWS-f1-Gr9">
-                            <rect key="frame" x="47" y="395" width="45" height="45"/>
+                            <rect key="frame" x="33" y="393" width="64" height="44"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="45" id="6lW-3S-vJU"/>
-                                <constraint firstAttribute="width" constant="45" id="X3y-uG-2Z8"/>
+                                <constraint firstAttribute="height" constant="44" id="6lW-3S-vJU"/>
+                                <constraint firstAttribute="width" constant="64" id="X3y-uG-2Z8"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make sure your TV and mobile device are on the same WiFi network" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCq-x2-elD">
@@ -80,21 +80,21 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="jJ9-Fn-xP5" firstAttribute="bottom" secondItem="eQl-kF-OLU" secondAttribute="bottom" multiplier="0.917" id="7qZ-RT-gAk"/>
-                        <constraint firstItem="dCq-x2-elD" firstAttribute="top" secondItem="kWS-f1-Gr9" secondAttribute="top" id="EBc-IA-g5i"/>
-                        <constraint firstItem="kWS-f1-Gr9" firstAttribute="leading" secondItem="eQl-kF-OLU" secondAttribute="leading" constant="47" id="EvT-68-JTs"/>
+                        <constraint firstItem="jJ9-Fn-xP5" firstAttribute="bottom" secondItem="eQl-kF-OLU" secondAttribute="bottom" multiplier="0.817" id="7qZ-RT-gAk"/>
+                        <constraint firstItem="dCq-x2-elD" firstAttribute="top" secondItem="kWS-f1-Gr9" secondAttribute="top" constant="2" id="EBc-IA-g5i"/>
+                        <constraint firstItem="kWS-f1-Gr9" firstAttribute="leading" secondItem="eQl-kF-OLU" secondAttribute="leading" constant="33" id="EvT-68-JTs"/>
                         <constraint firstItem="t2p-GJ-Hhf" firstAttribute="top" secondItem="eQl-kF-OLU" secondAttribute="top" constant="28" id="FaP-Wr-AMH"/>
                         <constraint firstAttribute="trailing" secondItem="TIy-69-bWr" secondAttribute="trailing" constant="25" id="Fc5-Pq-D8a"/>
-                        <constraint firstItem="kWS-f1-Gr9" firstAttribute="top" secondItem="TIy-69-bWr" secondAttribute="bottom" multiplier="1.06" id="Hly-Or-rPK"/>
+                        <constraint firstItem="kWS-f1-Gr9" firstAttribute="top" secondItem="TIy-69-bWr" secondAttribute="bottom" multiplier="1.06" constant="-1.3199999999999932" id="Hly-Or-rPK"/>
                         <constraint firstItem="t2p-GJ-Hhf" firstAttribute="leading" secondItem="eQl-kF-OLU" secondAttribute="leading" constant="20" id="MNT-VC-G31"/>
                         <constraint firstItem="t2p-GJ-Hhf" firstAttribute="height" secondItem="eQl-kF-OLU" secondAttribute="height" multiplier="0.32" id="Nru-8t-WI1"/>
                         <constraint firstAttribute="centerX" secondItem="2Jv-pu-dsi" secondAttribute="centerX" constant="-2.5" id="W6i-Qp-4iW"/>
                         <constraint firstItem="TIy-69-bWr" firstAttribute="top" secondItem="2Jv-pu-dsi" secondAttribute="bottom" constant="8" id="Yia-Vu-zAk"/>
                         <constraint firstAttribute="trailing" secondItem="dCq-x2-elD" secondAttribute="trailing" constant="20" id="gct-Xl-dCy"/>
-                        <constraint firstItem="dCq-x2-elD" firstAttribute="leading" secondItem="kWS-f1-Gr9" secondAttribute="trailing" constant="15" id="hDf-w8-KQn"/>
+                        <constraint firstItem="dCq-x2-elD" firstAttribute="leading" secondItem="kWS-f1-Gr9" secondAttribute="trailing" constant="10" id="hDf-w8-KQn"/>
                         <constraint firstItem="2Jv-pu-dsi" firstAttribute="leading" secondItem="eQl-kF-OLU" secondAttribute="leading" constant="25" id="jkH-Fs-ItV"/>
                         <constraint firstItem="2Jv-pu-dsi" firstAttribute="top" secondItem="t2p-GJ-Hhf" secondAttribute="bottom" multiplier="1.2" id="pto-Px-uCM"/>
-                        <constraint firstItem="dCq-x2-elD" firstAttribute="height" secondItem="kWS-f1-Gr9" secondAttribute="height" id="tIj-BJ-5xp"/>
+                        <constraint firstItem="dCq-x2-elD" firstAttribute="height" secondItem="kWS-f1-Gr9" secondAttribute="height" constant="1" id="tIj-BJ-5xp"/>
                         <constraint firstAttribute="trailing" secondItem="t2p-GJ-Hhf" secondAttribute="trailing" constant="20" id="uOp-zx-TZU"/>
                         <constraint firstItem="TIy-69-bWr" firstAttribute="leading" secondItem="eQl-kF-OLU" secondAttribute="leading" constant="25" id="wcu-kb-UNv"/>
                         <constraint firstAttribute="centerX" secondItem="jJ9-Fn-xP5" secondAttribute="centerX" constant="-2.5" id="yJI-si-7b2"/>
@@ -122,6 +122,6 @@
     </objects>
     <resources>
         <image name="img_top_welcome" width="955" height="630"/>
-        <image name="wifi" width="256" height="256"/>
+        <image name="wifi" width="64" height="44"/>
     </resources>
 </document>

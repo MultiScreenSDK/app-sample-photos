@@ -19,7 +19,7 @@
                     <view key="view" contentMode="scaleToFill" id="mYO-jr-CAI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.12941176470588237" green="0.12941176470588237" blue="0.12941176470588237" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -279,9 +279,9 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.25882352939999997" green="0.25882352939999997" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="buttonPhoto0" destination="d60-P5-tge" id="Gcx-1m-ar2"/>
+                                            <outlet property="buttonPhoto0" destination="4GP-oJ-iW1" id="PfP-Nr-sFd"/>
                                             <outlet property="buttonPhoto1" destination="XlX-Pe-057" id="mqP-F3-m6x"/>
-                                            <outlet property="buttonPhoto2" destination="4GP-oJ-iW1" id="0ws-cb-zgB"/>
+                                            <outlet property="buttonPhoto2" destination="d60-P5-tge" id="2CV-3e-oAd"/>
                                             <outlet property="buttonPhoto3" destination="g8f-yL-cUd" id="2fD-Lj-U9D"/>
                                             <outlet property="buttonPhoto4" destination="xMX-d9-gpG" id="34Q-2L-f0H"/>
                                         </connections>

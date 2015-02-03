@@ -22,7 +22,31 @@ class HowToVC: UIViewController {
        // self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()//UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0)
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpNavigationBar()
+    }
+    
+    // Method to setup the navigation bar color and fonts
+    func setUpNavigationBar(){
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 21/255, green: 21/255, blue: 21/255, alpha: 1)
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        // Configuring setting icon
+        self.navigationItem.leftBarButtonItems = nil;
+        let imageBackButton = UIImage(named: "btn_back_arrow") as UIImage?
+        var addBackButton: UIBarButtonItem = UIBarButtonItem(image: imageBackButton, style: .Plain, target: self, action: "goBack")
+        self.navigationItem.leftBarButtonItems = [addBackButton]
+        self.navigationController?.navigationBar.translucent = false
+        
+    }
+    
+    func goBack(){
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

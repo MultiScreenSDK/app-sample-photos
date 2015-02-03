@@ -63,9 +63,6 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         
-        //Back icon Image
-        var imageCastButton: UIImage!
-        
         // Configuring setting icon
         self.navigationItem.leftBarButtonItems = nil;
         let imageBackButton = UIImage(named: "btn_back_arrow") as UIImage?
