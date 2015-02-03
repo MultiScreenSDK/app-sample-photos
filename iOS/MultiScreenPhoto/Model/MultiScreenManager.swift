@@ -37,7 +37,7 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
         search.delegate = self
         search.start()
         // Start a timer to check if there is Wifi connection available to connect
-        //wifiTimer = NSTimer.scheduledTimerWithTimeInterval(30, target: self, selector: Selector("checkWifiConnection"), userInfo: nil, repeats: true)
+        //wifiTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector("checkWifiConnection"), userInfo: nil, repeats: true)
     }
     
     // Stop the TV discovery process
