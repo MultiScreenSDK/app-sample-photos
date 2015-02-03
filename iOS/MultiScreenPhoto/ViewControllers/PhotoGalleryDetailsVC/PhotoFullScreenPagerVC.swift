@@ -59,9 +59,9 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     func setUpNavigationBar(){
         
         //Translucent Navigation Bar
-    self.navigationController?.navigationBar.setBackgroundImage(getImageWithColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0.6), size: CGSize(width: 100, height: 144)), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.translucent = true
+    //self.navigationController?.navigationBar.setBackgroundImage(getImageWithColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0.6), size: CGSize(width: 100, height: 144)), forBarMetrics: UIBarMetrics.Default)
+      //  self.navigationController?.navigationBar.shadowImage = UIImage()
+        //self.navigationController?.navigationBar.translucent = true
         
         // Configuring setting icon
         self.navigationItem.leftBarButtonItems = nil;
@@ -160,17 +160,5 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     override func viewWillDisappear(animated: Bool) {
         timer.invalidate()
         super.viewWillDisappear(animated)
-    }
-    
-    //Return an UIImage from a given UIColor
-    //This method is used for the translucent Navigation Bar
-    func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
-        var rect = CGRectMake(0, 0, size.width, size.height)
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        color.setFill()
-        UIRectFill(rect)
-        var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
     }
 }

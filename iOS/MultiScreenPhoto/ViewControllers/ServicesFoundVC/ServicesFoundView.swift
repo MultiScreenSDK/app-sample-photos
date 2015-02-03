@@ -12,7 +12,7 @@ let servicesFoundTVCellID = "ServicesFoundTVCell"
 
 var multiScreenManager = MultiScreenManager.sharedInstance
 
-class CastMenuView: UIView, UITableViewDelegate, UITableViewDataSource, ServicesFoundHeaderVIewDelegate {
+class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, ServicesFoundHeaderVIewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var services = [AnyObject]()

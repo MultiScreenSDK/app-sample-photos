@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>inches</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>10 inches</string>
+			<key>models</key>
+			<array>
+				<string>A</string>
+				<string>B</string>
+				<string>C</string>
+			</array>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>20 inches</string>
+			<key>models</key>
+			<array>
+				<string>A20</string>
+				<string>B20</string>
+				<string>C20</string>
+			</array>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>30 inches</string>
+			<key>models</key>
+			<array>
+				<string>A30</string>
+				<string>B30</string>
+				<string>C30</string>
+			</array>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>40 inches</string>
+			<key>models</key>
+			<array>
+				<string>A40</string>
+				<string>B40</string>
+				<string>C40</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

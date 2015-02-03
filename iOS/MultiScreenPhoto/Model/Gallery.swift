@@ -45,9 +45,13 @@
             let enumGroupBlock: ALAssetsLibraryGroupsEnumerationResultsBlock = {(assetsGroup: ALAssetsGroup!, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
                 if (assetsGroup != nil) {
                     
+                    if(self.albums.count > 0){
+                        self.isAlbumExpanded.append(true) // Set false to all the album
+                    }else{
+                        self.isAlbumExpanded.append(true) // Set true to the first album
+                    }
                     self.albums.append(assetsGroup) // saving the album
                     self.numOfAssetsByalbum.append(assetsGroup.numberOfAssets()) // numOfAssetsByalbum by album
-                    self.isAlbumExpanded.append(true) // Set true to all the album
                     
                 }else{
                     dispatch_async(dispatch_get_main_queue(),{

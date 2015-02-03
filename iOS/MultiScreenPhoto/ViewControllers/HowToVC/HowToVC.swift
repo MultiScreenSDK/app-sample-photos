@@ -30,16 +30,16 @@ class HowToVC: UIViewController {
     
     // Method to setup the navigation bar color and fonts
     func setUpNavigationBar(){
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 21/255, green: 21/255, blue: 21/255, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 13/255, green: 13/255, blue: 13/255, alpha: 1)
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         // Configuring setting icon
         self.navigationItem.leftBarButtonItems = nil;
-        let imageBackButton = UIImage(named: "btn_back_arrow") as UIImage?
+        let imageBackButton = UIImage(named: "btn-back-more") as UIImage?
         var addBackButton: UIBarButtonItem = UIBarButtonItem(image: imageBackButton, style: .Plain, target: self, action: "goBack")
         self.navigationItem.leftBarButtonItems = [addBackButton]
-        self.navigationController?.navigationBar.translucent = false
+        //self.navigationController?.navigationBar.translucent = false
         
     }
     

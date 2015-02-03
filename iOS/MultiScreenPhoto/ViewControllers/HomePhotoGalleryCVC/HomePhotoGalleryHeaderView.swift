@@ -25,24 +25,12 @@ class HomePhotoGalleryHeaderView: UIView {
     
     override func drawRect(rect: CGRect)
     {
-        
-        /*var image: UIImage
-        
-        if(state == false){
-            image = UIImage(named: "icon-arrow-down")!
-        }else{
-            image = UIImage(named: "icon-arrow-up")!
-        }
-        imageViewArrow.image = image
-        
-        if(section == 0){
-            imageViewSeparator.hidden = true
-        }
-*/
-        
+        setArrowIcon()
     }
     
     @IBAction func selectedButton(sender: UIButton) {
+        
+        setArrowIcon()
         
         if(state == false){
             state = true
@@ -50,6 +38,17 @@ class HomePhotoGalleryHeaderView: UIView {
         }else{
             state = false
             delegate.collapseSection(self.section)
+        }
+    }
+    
+    func setArrowIcon(){
+         if(state == false){
+            imageViewArrow.image = UIImage(named: "icon-arrow-up")!
+        }else{
+            imageViewArrow.image = UIImage(named: "icon-arrow-down")!
+        }
+        if(section == 0){
+            imageViewSeparator.hidden = true
         }
     }
     

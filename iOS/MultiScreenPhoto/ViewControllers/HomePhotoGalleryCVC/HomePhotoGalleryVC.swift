@@ -27,6 +27,7 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
     var cellHeight: CGFloat!
     
     @IBOutlet weak var tableView: UITableView!
+    var openSectionIndex = 0
     
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     
@@ -54,6 +55,8 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         
         // Calculate the cell size
         cellHeight = screenSize.size.width/screenSizeDivisor
+        
+        openSectionIndex = NSNotFound
     }
     
     
@@ -69,6 +72,7 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.opaque = true
         
         // Configuring title to left
         self.navigationItem.leftBarButtonItem = nil;
@@ -78,7 +82,7 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         TitleLabel.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Roboto-Light", size: 20)!], forState: UIControlState.Normal)
         
         self.navigationItem.leftBarButtonItems = [TitleLabel]
-        self.navigationController?.navigationBar.translucent = false
+        //self.navigationController?.navigationBar.translucent = false
         
     }
     
@@ -153,48 +157,71 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
     // Animate the section to collapse
     func collapseSection(section : Int){
         
-        
         gallery.setIsAlbumExpanded(section, isExpanded: false)
-        var numRow = numOfRowsInSection(section)
+      
+        var countOfRowsToDelete: Int = numOfRowsInSection(section)
+        var indexPathsToDelete = [NSIndexPath]()
+        for (var i=0;i < Int(countOfRowsToDelete); i++) {
+            indexPathsToDelete.append(NSIndexPath(forRow: i, inSection: section))
+        }
         gallery.setNumOfAssetsByalbumToZero(section)
-     
-        var indexArray = [NSIndexPath]()
-        for (var i=0;i < Int(numRow); i++) {
-            var indexPath = NSIndexPath(forRow: i, inSection: section)
-            indexArray.append(indexPath)
-        }
+        self.tableView!.beginUpdates()
+        self.tableView!.deleteRowsAtIndexPaths(indexPathsToDelete, withRowAnimation: UITableViewRowAnimation.Top)
+        self.tableView!.endUpdates()
         
-        UIView.animateWithDuration(0.0, animations: { () -> Void in
-            self.tableView!.beginUpdates()
-            self.tableView!.deleteRowsAtIndexPaths(indexArray, withRowAnimation: UITableViewRowAnimation.None)
-            self.tableView!.endUpdates()
-        }) { (result) -> Void in
-            self.tableView!.reloadData()
-        }
+        self.openSectionIndex = NSNotFound;
         
     }
     
     // Animate the section to expand
     func expandSection(section : Int){
         
+        
         gallery.setIsAlbumExpanded(section, isExpanded: true)
         gallery.setNumOfAssetsByAlbum(section)
-        var numRow = numOfRowsInSection(section)
-        
-        var indexArray = [NSIndexPath]()
-        for (var i=0;i < Int(numRow); i++) {
-            var indexPath = NSIndexPath(forRow: i, inSection: section)
-            indexArray.append(indexPath)
+        /*
+        Create an array containing the index paths of the rows to insert: These correspond to the rows for each quotation in the current section.
+        */
+        var countOfRowsToInsert: Int = numOfRowsInSection(section)
+        var indexPathsToInsert = [NSIndexPath]()
+        for (var i=0;i < Int(countOfRowsToInsert); i++) {
+            indexPathsToInsert.append(NSIndexPath(forRow: i, inSection: section))
         }
         
-        UIView.animateWithDuration(0.0, animations: { () -> Void in
-            self.tableView!.beginUpdates()
-            self.tableView!.insertRowsAtIndexPaths(indexArray, withRowAnimation: UITableViewRowAnimation.None)
-            self.tableView!.endUpdates()
-            }) { (result) -> Void in
-                self.tableView!.reloadData()
+        var indexPathsToDelete = [NSIndexPath]()
+
+        var previousOpenSectionIndex = openSectionIndex;
+       
+        
+        if (previousOpenSectionIndex != NSNotFound) {
+            gallery.setIsAlbumExpanded(previousOpenSectionIndex, isExpanded: false)
+           // var sectionHeader = HomePhotoGalleryHeaderView   setArrowIcon//[previousOpenSection.headerView toggleOpenWithUserAction:NO];
+            var countOfRowsToDelete: Int = numOfRowsInSection(previousOpenSectionIndex)
+            for (var i=0;i < Int(countOfRowsToDelete); i++) {
+                indexPathsToDelete.append(NSIndexPath(forRow: i, inSection: previousOpenSectionIndex))
+            }
+            gallery.setNumOfAssetsByalbumToZero(previousOpenSectionIndex)
         }
         
+        // style the animation so that there's a smooth flow in either direction
+        var insertAnimation : UITableViewRowAnimation
+        var deleteAnimation :UITableViewRowAnimation
+        if (previousOpenSectionIndex == NSNotFound || section < previousOpenSectionIndex) {
+            insertAnimation = UITableViewRowAnimation.Top;
+            deleteAnimation = UITableViewRowAnimation.Bottom;
+        }
+        else {
+            insertAnimation = UITableViewRowAnimation.Bottom;
+            deleteAnimation = UITableViewRowAnimation.Top
+        }
+        
+        // apply the updates
+        self.tableView!.beginUpdates()
+        self.tableView!.insertRowsAtIndexPaths(indexPathsToInsert, withRowAnimation: insertAnimation)
+        self.tableView!.deleteRowsAtIndexPaths(indexPathsToDelete, withRowAnimation: deleteAnimation)
+        self.tableView!.endUpdates()
+        
+        self.openSectionIndex = section;
         
     }
     
@@ -205,6 +232,7 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         headerView.delegate = self
         headerView.section = section
         headerView.state = gallery.getIsAlbumExpanded(section)
+        headerView.setArrowIcon()
         return headerView
     }
     

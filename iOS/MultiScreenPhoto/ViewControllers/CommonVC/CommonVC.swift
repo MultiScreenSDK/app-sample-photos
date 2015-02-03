@@ -11,10 +11,12 @@ import UIKit
 let updateCastButtonObserverIdentifier = "updateCastButton"
 
 // Common UIViewController to reuse code for navigation bar
-class CommonVC: UIViewController {
+class CommonVC: UIViewController, MoreMenuViewDelegate {
     
     // UIView that contains a list of available services
     var castMenuView: UIView!
+    
+    var moreMenuView: MoreMenuView!
     // MultiScreenManager instance that manage the interaction with the TV
     var multiScreenManager = MultiScreenManager.sharedInstance
     
@@ -44,10 +46,10 @@ class CommonVC: UIViewController {
         addSettingButton.imageInsets = UIEdgeInsetsMake(0, 0, 0, -7);
         //Configuring cast icon
         //Check if there is services availables
-        if(multiScreenManager.getServices().count == 0){
+        if(multiScreenManager.getServices().count > 0){
             //Check if there is an application current connected
-            if(multiScreenManager.isApplicationConnected() != true){
-                imageCastButton = UIImage(named: "btn_cast_off")
+            if(multiScreenManager.isApplicationConnected() == true){
+                imageCastButton = UIImage(named: "btn_cast_on")
             }else{
                 imageCastButton = UIImage(named: "btn_cast_off")
             }
@@ -64,14 +66,23 @@ class CommonVC: UIViewController {
     // User can connect to a selected service
     // User can disconnect from a selected service
     func showCastMenuView(){
-        self.castMenuView = CastMenuView.loadFromNibNamed("CastMenuView")
+        self.castMenuView = ServicesFoundView.loadFromNibNamed("ServicesFoundView")
         self.castMenuView.frame = view.frame
-        view.window?.addSubview(castMenuView)
+        view.window?.addSubview(self.castMenuView)
         
     }
     
     // UIViewController that contains a turorial of How to use the app
     func showSettings(){
+        
+        var viewArray = NSBundle.mainBundle().loadNibNamed("MoreMenuView", owner: self, options: nil)
+        self.moreMenuView = viewArray[0] as MoreMenuView
+        self.moreMenuView.frame = view.frame
+        self.moreMenuView.delegate = self
+        view.window?.addSubview(self.moreMenuView)
+    }
+    
+    func goToHowToView(){
         let detailController = HowToVC(nibName: "HowToVC", bundle: NSBundle.mainBundle())
         self.navigationController?.pushViewController(detailController, animated:true)
     }
@@ -87,5 +98,18 @@ class CommonVC: UIViewController {
         alertView.alertViewStyle = .Default
         alertView.show()
     }
+    
+    //Return an UIImage from a given UIColor
+    //This method is used for the translucent Navigation Bar
+    func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
+        var rect = CGRectMake(0, 0, size.width, size.height)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        color.setFill()
+        UIRectFill(rect)
+        var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+
     
 }

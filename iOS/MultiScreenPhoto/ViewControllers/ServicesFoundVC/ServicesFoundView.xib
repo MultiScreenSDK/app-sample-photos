@@ -4,6 +4,11 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -15,51 +20,46 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="566"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y70-Gd-rfd">
-                            <rect key="frame" x="260" y="20" width="40" height="30"/>
+                            <rect key="frame" x="263" y="20" width="37" height="30"/>
+                            <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="15"/>
                             <state key="normal" title="Close">
                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="close:" destination="iN0-l3-epB" eventType="touchUpInside" id="9f4-e6-nxS"/>
+                                <action selector="closeView" destination="iN0-l3-epB" eventType="touchUpInside" id="SWS-xi-ZUq"/>
                             </connections>
                         </button>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DNG-4q-jd7">
-                            <rect key="frame" x="40" y="193" width="241" height="368"/>
+                            <rect key="frame" x="40" y="99" width="241" height="465"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <color key="sectionIndexBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="sectionIndexTrackingBackgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <outlet property="dataSource" destination="iN0-l3-epB" id="qY0-Df-Iqw"/>
-                                <outlet property="delegate" destination="iN0-l3-epB" id="R9f-bX-hVf"/>
+                                <outlet property="dataSource" destination="iN0-l3-epB" id="b3Q-1C-8bp"/>
+                                <outlet property="delegate" destination="iN0-l3-epB" id="C4K-ml-s2j"/>
                             </connections>
                         </tableView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="Y70-Gd-rfd" firstAttribute="top" secondItem="p57-yo-B2O" secondAttribute="top" constant="20" id="KeG-xR-CQu"/>
-                        <constraint firstAttribute="centerX" secondItem="DNG-4q-jd7" secondAttribute="centerX" id="WYU-C6-WkQ"/>
-                        <constraint firstAttribute="bottom" secondItem="DNG-4q-jd7" secondAttribute="bottom" constant="5" id="YPf-Jw-xez"/>
-                        <constraint firstAttribute="trailing" secondItem="Y70-Gd-rfd" secondAttribute="trailing" constant="20" id="azN-QI-bWC"/>
-                        <constraint firstAttribute="bottom" secondItem="DNG-4q-jd7" secondAttribute="bottom" constant="147" id="gsj-o3-0Xc"/>
-                        <constraint firstAttribute="centerY" secondItem="DNG-4q-jd7" secondAttribute="centerY" constant="-0.5" id="mAa-bK-D3g"/>
+                        <constraint firstAttribute="trailing" secondItem="Y70-Gd-rfd" secondAttribute="trailing" constant="20" id="ILv-yj-xEn"/>
+                        <constraint firstAttribute="bottom" secondItem="DNG-4q-jd7" secondAttribute="bottom" constant="2" id="JNb-2y-bYU"/>
+                        <constraint firstItem="DNG-4q-jd7" firstAttribute="leading" secondItem="p57-yo-B2O" secondAttribute="leading" constant="40" id="RYs-uL-qsQ"/>
+                        <constraint firstItem="DNG-4q-jd7" firstAttribute="top" secondItem="p57-yo-B2O" secondAttribute="top" constant="99" id="ZGe-R1-ydR"/>
+                        <constraint firstAttribute="trailing" secondItem="DNG-4q-jd7" secondAttribute="trailing" constant="39" id="b1M-ab-qC7"/>
+                        <constraint firstItem="Y70-Gd-rfd" firstAttribute="top" secondItem="p57-yo-B2O" secondAttribute="top" constant="20" id="iFp-iD-LNx"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="gsj-o3-0Xc"/>
-                            <exclude reference="mAa-bK-D3g"/>
-                        </mask>
-                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="p57-yo-B2O" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Ih4-HZ-IWk"/>
-                <constraint firstAttribute="bottom" secondItem="p57-yo-B2O" secondAttribute="bottom" constant="2" id="Isj-N3-I5B"/>
-                <constraint firstItem="p57-yo-B2O" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Tpn-AN-0kn"/>
-                <constraint firstAttribute="trailing" secondItem="p57-yo-B2O" secondAttribute="trailing" id="tTA-hB-fjE"/>
+                <constraint firstItem="p57-yo-B2O" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7ng-6a-zDq"/>
+                <constraint firstAttribute="trailing" secondItem="p57-yo-B2O" secondAttribute="trailing" id="VRZ-tU-q7p"/>
+                <constraint firstAttribute="bottom" secondItem="p57-yo-B2O" secondAttribute="bottom" constant="2" id="jaE-Ly-O5k"/>
+                <constraint firstItem="p57-yo-B2O" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zWM-ge-cGb"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <userDefinedRuntimeAttributes>
@@ -68,7 +68,7 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="tableView" destination="DNG-4q-jd7" id="bgw-5o-Ov8"/>
+                <outlet property="tableView" destination="DNG-4q-jd7" id="fim-2S-G9J"/>
             </connections>
         </view>
     </objects>
