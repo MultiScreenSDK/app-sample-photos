@@ -12,7 +12,7 @@ let servicesFoundTVCellID = "ServicesFoundTVCell"
 
 var multiScreenManager = MultiScreenManager.sharedInstance
 
-class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, ServicesFoundHeaderVIewDelegate {
+class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, ServicesFoundHeaderVIewDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var services = [AnyObject]()
@@ -28,10 +28,11 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
         super.awakeFromNib()
         self.tableView.registerNib(UINib(nibName: servicesFoundTVCellID, bundle: nil), forCellReuseIdentifier: servicesFoundTVCellID)
         services = multiScreenManager.getServicesNotConnected()
-        
+        self.tableView.rowHeight = 37
         let tap = UITapGestureRecognizer()
+        tap.delegate = self
         tap.addTarget(self, action: "closeView")
-        //self.addGestureRecognizer(tap)
+        self.addGestureRecognizer(tap)
     }
     
     func refreshTableView(){
@@ -60,9 +61,9 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
     
     func tableView(tableView: UITableView!, heightForHeaderInSection section: Int) -> CGFloat {
         if(multiScreenManager.isApplicationConnected() == true){
-            return 180
+            return 160
         }else{
-            return 55
+            return 40
         }
     }
     
@@ -93,8 +94,15 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
         })
     }
     
-    @IBAction func closeView() {
+    func closeView() {
         self.removeFromSuperview()
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool{
+        if (touch.view.tag == 1){
+            return true
+        }
+        return false
     }
     
     

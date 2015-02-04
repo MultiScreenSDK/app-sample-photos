@@ -19,7 +19,7 @@
                     <view key="view" contentMode="scaleToFill" id="mYO-jr-CAI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.12941176470588237" green="0.12941176470588237" blue="0.12941176470588237" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -28,43 +28,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gq7-ju-vdp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2945.625" y="159.5"/>
-        </scene>
-        <!--Photo Full ScreenVC-->
-        <scene sceneID="2kY-pB-iZ0">
-            <objects>
-                <viewController storyboardIdentifier="PhotoFullScreenVCID" id="w86-IA-3Yw" customClass="PhotoFullScreenVC" customModule="MultiScreenPhoto" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="aZo-wO-Q6l"/>
-                        <viewControllerLayoutGuide type="bottom" id="kSI-BA-R1k"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="p66-7A-QVL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbn-f3-Cf3">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <connections>
-                                    <outlet property="delegate" destination="w86-IA-3Yw" id="RfC-Wh-gWc"/>
-                                </connections>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="hbn-f3-Cf3" firstAttribute="trailing" secondItem="p66-7A-QVL" secondAttribute="trailing" id="C3J-lS-ozg"/>
-                            <constraint firstItem="kSI-BA-R1k" firstAttribute="top" secondItem="hbn-f3-Cf3" secondAttribute="bottom" id="CBu-OO-ngK"/>
-                            <constraint firstItem="hbn-f3-Cf3" firstAttribute="top" secondItem="aZo-wO-Q6l" secondAttribute="bottom" id="Gki-CF-41l"/>
-                            <constraint firstItem="hbn-f3-Cf3" firstAttribute="leading" secondItem="p66-7A-QVL" secondAttribute="leading" id="bnb-gP-utM"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="A4R-HW-WLC"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="scrollView" destination="hbn-f3-Cf3" id="9ec-xy-7QR"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="s2M-fd-tsA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3382.5" y="159.5"/>
         </scene>
         <!--Home Photo GalleryVC-->
         <scene sceneID="8Uh-GT-DlL">
@@ -295,13 +258,23 @@
                                     <outlet property="delegate" destination="Svg-k2-LV9" id="gzo-YV-P1f"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5z-ZY-Psa">
+                                <rect key="frame" x="-8" y="56" width="391" height="53"/>
+                                <color key="backgroundColor" red="0.12941176470588237" green="0.12941176470588237" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="ARx-me-fpR"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="jlL-Ve-DSx" firstAttribute="leading" secondItem="qNC-4m-Qgc" secondAttribute="leading" id="F55-i3-a9o"/>
                             <constraint firstItem="jlL-Ve-DSx" firstAttribute="topMargin" secondItem="4TF-DA-nuw" secondAttribute="top" constant="8" id="U7p-6s-5yk"/>
+                            <constraint firstAttribute="trailing" secondItem="g5z-ZY-Psa" secondAttribute="trailingMargin" id="V9G-MV-nTB"/>
+                            <constraint firstItem="g5z-ZY-Psa" firstAttribute="leadingMargin" secondItem="qNC-4m-Qgc" secondAttribute="leading" id="cAN-LS-kgG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jlL-Ve-DSx" secondAttribute="trailingMargin" id="nAV-ZF-y12"/>
                             <constraint firstItem="5CM-On-x9m" firstAttribute="top" secondItem="jlL-Ve-DSx" secondAttribute="bottom" constant="-8" id="nac-jt-gmi"/>
+                            <constraint firstItem="g5z-ZY-Psa" firstAttribute="bottom" secondItem="jlL-Ve-DSx" secondAttribute="top" constant="45" id="s0Z-Zo-Y5c"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yEZ-Q9-7It"/>

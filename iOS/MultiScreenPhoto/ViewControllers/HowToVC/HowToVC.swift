@@ -30,9 +30,12 @@ class HowToVC: UIViewController {
     
     // Method to setup the navigation bar color and fonts
     func setUpNavigationBar(){
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 13/255, green: 13/255, blue: 13/255, alpha: 1)
+        
+       self.navigationController?.navigationBar.setBackgroundImage(getImageWithColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0), size: CGSize(width: 100, height: 144)), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+
         
         // Configuring setting icon
         self.navigationItem.leftBarButtonItems = nil;
@@ -62,14 +65,17 @@ class HowToVC: UIViewController {
 
     @IBAction func contactEmail(sender: AnyObject) {
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    //Return an UIImage from a given UIColor
+    //This method is used for the translucent Navigation Bar
+    func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
+        var rect = CGRectMake(0, 0, size.width, size.height)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        color.setFill()
+        UIRectFill(rect)
+        var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
     }
-    */
 
 }

@@ -20,6 +20,7 @@ class ServicesFoundHeaderVIew: UIView {
     @IBOutlet weak var disconnectButton: UIButton!
     @IBOutlet weak var line: UIImageView!
     @IBOutlet weak var switchToView: UIView!
+    @IBOutlet weak var linebottom: UIImageView!
     
     var delegate : ServicesFoundHeaderVIewDelegate!
     
@@ -29,7 +30,7 @@ class ServicesFoundHeaderVIew: UIView {
             service.hidden = !isConnected
             line.hidden = !isConnected
             switchToView.hidden = !isConnected
-            
+            linebottom.hidden = !isConnected
             disconnectButton.layer.cornerRadius = 2
             disconnectButton.layer.borderWidth = 0.5
             disconnectButton.layer.borderColor = UIColor.lightGrayColor().CGColor

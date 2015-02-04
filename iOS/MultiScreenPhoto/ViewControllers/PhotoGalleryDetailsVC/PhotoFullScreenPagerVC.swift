@@ -59,9 +59,9 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     func setUpNavigationBar(){
         
         //Translucent Navigation Bar
-    //self.navigationController?.navigationBar.setBackgroundImage(getImageWithColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0.6), size: CGSize(width: 100, height: 144)), forBarMetrics: UIBarMetrics.Default)
-      //  self.navigationController?.navigationBar.shadowImage = UIImage()
-        //self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.setBackgroundImage(getImageWithColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0.6), size: CGSize(width: 100, height: 144)), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
         
         // Configuring setting icon
         self.navigationItem.leftBarButtonItems = nil;

@@ -12,7 +12,7 @@ import UIKit
 
 var cellCount = 100
 
-class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource {
+class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate {
    
     @IBOutlet weak var contentTVView: UIView!
     @IBOutlet weak var selectedinche: UILabel!
@@ -33,13 +33,15 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource {
         
          let tap = UITapGestureRecognizer()
          tap.addTarget(self, action: "closeView")
-         //self.addGestureRecognizer(tap)
+         tap.delegate = self
+         self.addGestureRecognizer(tap)
         
         var frame = tableView.frame
         frame.size.height = CGFloat(cellCount * 44)
         tableView.frame = frame
         tableView.rowHeight = 25
         currentInches = NSNotFound
+        
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -87,7 +89,7 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    @IBAction func closeView() {
+    func closeView() {
         self.removeFromSuperview()
     }
     
@@ -172,6 +174,13 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource {
         self.tableView!.deleteRowsAtIndexPaths(indexPathsToDelete, withRowAnimation: deleteAnimation)
         self.tableView!.endUpdates()
         
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool{
+        if (touch.view.tag == 1){
+            return true
+        }
+        return false
     }
     
 }

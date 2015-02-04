@@ -17,11 +17,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vCx-Cr-ab3">
+                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vCx-Cr-ab3">
                     <rect key="frame" x="-8" y="-8" width="320" height="568"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJk-cX-G1X">
-                            <rect key="frame" x="207" y="53" width="97" height="34"/>
+                            <rect key="frame" x="209" y="53" width="97" height="34"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="ngb-ym-dRr"/>
@@ -40,7 +40,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="TJk-cX-G1X" firstAttribute="top" secondItem="vCx-Cr-ab3" secondAttribute="top" constant="53" id="U0r-LZ-2DD"/>
-                        <constraint firstAttribute="trailing" secondItem="TJk-cX-G1X" secondAttribute="trailing" constant="16" id="tfq-m3-4eR"/>
+                        <constraint firstAttribute="trailing" secondItem="TJk-cX-G1X" secondAttribute="trailing" constant="14" id="tfq-m3-4eR"/>
                     </constraints>
                 </view>
             </subviews>
