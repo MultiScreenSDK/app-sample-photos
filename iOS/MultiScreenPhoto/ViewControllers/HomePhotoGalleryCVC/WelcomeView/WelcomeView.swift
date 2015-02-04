@@ -20,7 +20,7 @@ class WelcomeView: UIView {
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
         // Drawing code
-        getStartButton.layer.cornerRadius = 1
+        getStartButton.layer.cornerRadius = 0
         getStartButton.layer.borderWidth = 0.5
         getStartButton.layer.borderColor = UIColor.whiteColor().CGColor
     }

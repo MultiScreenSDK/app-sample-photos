@@ -35,8 +35,6 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         
         super.viewDidLoad()
         
-        
-        
         //Start searching for avaliables services in the network
         multiScreenManager.startSearching()
         
@@ -70,12 +68,7 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
      // Method to setup the navigation bar color and fonts
     func setUpNavigationBar(){
         
-        /*
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 21.0/255.0, green: 21.0/255.0, blue: 21.0/255.0, alpha: 1)
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        self.navigationController?.navigationBar.opaque = true
-        */
+       
         //Translucent Navigation Bar
         self.navigationController?.navigationBar.setBackgroundImage(getImageWithColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0), size: CGSize(width: 100, height: 144)), forBarMetrics: UIBarMetrics.Default)
           self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -258,8 +251,12 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
     
     func numOfRowsInSection(section: Int)-> Int{
         var numRow = Double(gallery.getNumOfAssetsByAlbum(section)) / 5
+        var numRowMod = gallery.getNumOfAssetsByAlbum(section) % 5
+        
         if(numRow > 0){
-            numRow = numRow + 1
+            if(numRowMod != 0){
+                numRow = numRow + 1
+            }
         }
         return Int(numRow)
     }

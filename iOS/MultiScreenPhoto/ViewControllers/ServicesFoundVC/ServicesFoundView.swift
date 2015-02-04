@@ -28,7 +28,7 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
         super.awakeFromNib()
         self.tableView.registerNib(UINib(nibName: servicesFoundTVCellID, bundle: nil), forCellReuseIdentifier: servicesFoundTVCellID)
         services = multiScreenManager.getServicesNotConnected()
-        self.tableView.rowHeight = 37
+        self.tableView.rowHeight = 38
         let tap = UITapGestureRecognizer()
         tap.delegate = self
         tap.addTarget(self, action: "closeView")
@@ -54,7 +54,9 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
         var cell : ServicesFoundTVCell
         cell = tableView.dequeueReusableCellWithIdentifier(servicesFoundTVCellID, forIndexPath: indexPath) as ServicesFoundTVCell
         cell.title.text = "\(services[indexPath.row].name)"
-        
+        var selectedView = UIView(frame: cell.frame)
+        selectedView.backgroundColor = UIColor(red: 62/255, green: 62/255, blue: 62/255, alpha: 1)
+        cell.selectedBackgroundView = selectedView
         return cell
         
     }

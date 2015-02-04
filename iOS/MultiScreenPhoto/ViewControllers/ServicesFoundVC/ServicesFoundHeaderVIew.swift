@@ -31,7 +31,7 @@ class ServicesFoundHeaderVIew: UIView {
             line.hidden = !isConnected
             switchToView.hidden = !isConnected
             linebottom.hidden = !isConnected
-            disconnectButton.layer.cornerRadius = 2
+            disconnectButton.layer.cornerRadius = 0
             disconnectButton.layer.borderWidth = 0.5
             disconnectButton.layer.borderColor = UIColor.lightGrayColor().CGColor
             
@@ -39,7 +39,7 @@ class ServicesFoundHeaderVIew: UIView {
                 title.text = "Connected to:"
                 icon.image = UIImage(named: "btn_cast_on")
             }else{
-                title.text = "Select TV"
+                title.text = "Connect to:"
                 icon.image = UIImage(named: "btn_cast_off")
             }
             

@@ -16,8 +16,8 @@ class HowToVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        compatibleButton.layer.cornerRadius = 2
-        compatibleButton.layer.borderWidth = 0.2
+        compatibleButton.layer.cornerRadius = 0
+        compatibleButton.layer.borderWidth = 0.5
         compatibleButton.layer.borderColor = UIColor.whiteColor().CGColor
        // self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()//UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0)
         // Do any additional setup after loading the view.
