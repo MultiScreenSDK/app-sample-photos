@@ -75,7 +75,7 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
             
             /// UIView that contains the welcome view
             self.welcomeView = NSBundle.mainBundle().loadNibNamed("WelcomeView", owner: self, options: nil)[0] as? UIView
-            self.welcomeView.frame = view.frame
+            self.welcomeView.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: UIScreen.mainScreen().bounds.size.height)
             view.window?.addSubview(welcomeView)
             defaults.setBool(true, forKey: "hideWelcomeView")
             
