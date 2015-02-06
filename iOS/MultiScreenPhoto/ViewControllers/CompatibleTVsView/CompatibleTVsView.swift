@@ -8,16 +8,18 @@
 
 import UIKit
 
-//let compatibleDeviceTVCellID = "compatibleDeviceTVCell"
-
-var cellCount = 100
-
+/// CompatibleTVsView
+///
+/// This class is used to display a list of compatible devices
 class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate {
    
     @IBOutlet weak var contentTVView: UIView!
     @IBOutlet weak var selectedinche: UILabel!
     @IBOutlet weak var selectedincheButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    
+    /// Identifier for UITableview cell
+    let compatibleTVCell = "CompatibleTVCellID"
     
     var openSectionIndex = 0
     var sectionInchesExpanded = false
@@ -38,10 +40,13 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
          self.addGestureRecognizer(tap)
         
         var frame = tableView.frame
-        frame.size.height = CGFloat(cellCount * 44)
+        frame.size.height = CGFloat(440)
         tableView.frame = frame
-        tableView.rowHeight = 25
+        tableView.rowHeight = 30
         currentInches = NSNotFound
+        
+        /// Configuring the tableView cell
+        tableView.registerNib(UINib(nibName: "CompatibleTVCell", bundle: nil), forCellReuseIdentifier: compatibleTVCell)
         
     }
     
@@ -54,21 +59,23 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        var cell : UITableViewCell
-        cell = UITableViewCell(style: .Default, reuseIdentifier: "Cell")
-        cell.backgroundColor = UIColor(red: 50.0/255.0, green: 50.0/255.0, blue: 50.0/255.0, alpha: 1.0)
+        
+        /// Setting the custom cell view
+        var cell : CompatibleTVCell
+        cell = tableView.dequeueReusableCellWithIdentifier(compatibleTVCell, forIndexPath: indexPath) as CompatibleTVCell
+        
         if(indexPath.section == 0){
             var incheDict = inchesArray[indexPath.row] as NSDictionary
             let text = incheDict.objectForKey("name") as String
-            cell.textLabel?.attributedText = NSMutableAttributedString(string: text, attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 14.0)!])
+            cell.title.attributedText = NSMutableAttributedString(string: text, attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 14.0)!])
         }else{
            var incheDict: NSString  = modelsArray[indexPath.row] as NSString
-            cell.textLabel?.attributedText = NSMutableAttributedString(string: incheDict, attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 14.0)!])
+            cell.title.attributedText = NSMutableAttributedString(string: incheDict, attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 14.0)!])
         }
-        cell.textLabel?.textColor = UIColor.whiteColor()
-        cell.textLabel?.textAlignment = .Center
+        
+        cell.title.textColor = UIColor.whiteColor()
+        cell.title.textAlignment = .Center
         cell.selectionStyle = UITableViewCellSelectionStyle.None
-        cell.tag = 1
         
         return cell
         

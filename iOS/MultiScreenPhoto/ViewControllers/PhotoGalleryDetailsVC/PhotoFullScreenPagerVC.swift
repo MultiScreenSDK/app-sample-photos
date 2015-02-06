@@ -35,7 +35,6 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       
         self.navigationController?.interactivePopGestureRecognizer.delegate = self
         
         //number of assets in current album
@@ -72,9 +71,6 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     
     /// Method to setup the navigation bar color and font
     func setUpNavigationBar(){
-        
-        /// Start the navigation bar hidden time
-        navigationBarTimer()
         
         //Translucent Navigation Bar
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "bg_subtitlebar"), forBarMetrics: UIBarMetrics.Default)
@@ -132,7 +128,7 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     /// Delegate method that capture when the animation pager stops
     /// If next photo is displayed then start the Timer,
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool){
-        timer.invalidate()
+        self.timer.invalidate()
         startSendImageTimer()
         
     }
@@ -161,13 +157,15 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     
     /// Method used to start the navigation bar timer to be hidden
     func navigationBarTimer(){
-        navigationTimer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: Selector("hiddeNavBar"), userInfo: nil, repeats: false)
+        navigationTimer = nil
+        navigationTimer = NSTimer(timeInterval: 5, target: self, selector: Selector("hiddeNavBar"), userInfo: nil, repeats: true)
+        NSRunLoop.currentRunLoop().addTimer(navigationTimer, forMode: NSDefaultRunLoopMode)
     }
     
     /// Method used to display the hidden navigation bar
     func showNavigationBar(){
         if(navigationTimer != nil){
-            navigationTimer.invalidate()
+            self.navigationTimer.invalidate()
         }
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         navigationBarTimer()
@@ -180,7 +178,8 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     
     /// Method used to start the timer to send the Photo to the TV
     func startSendImageTimer(){
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("sendToTv"), userInfo: nil, repeats: false)
+        timer = NSTimer(timeInterval: 0.5, target: self, selector: Selector("sendToTv"), userInfo: nil, repeats: false)
+        NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
     }
     
     /// Method used to send the current Photo to the TV
@@ -201,8 +200,8 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     
     override func viewWillDisappear(animated: Bool) {
         /// Invalidate the timers
-        timer.invalidate()
-        navigationTimer.invalidate()
+        self.timer.invalidate()
+        self.navigationTimer.invalidate()
         super.viewWillDisappear(animated)
     }
 }

@@ -8,10 +8,10 @@
 
 import UIKit
 
-/// ServicesFoundTVCell
+/// CompatibleTVCell
 ///
 /// This class is used to customize the UITableViewCell
-class ServicesFoundTVCell: UITableViewCell {
+class CompatibleTVCell: UITableViewCell {
 
     /// Title of the cell
     @IBOutlet weak var title: UILabel!

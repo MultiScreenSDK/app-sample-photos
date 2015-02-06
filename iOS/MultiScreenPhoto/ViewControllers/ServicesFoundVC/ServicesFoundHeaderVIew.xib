@@ -28,18 +28,18 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bm0-Gx-5yi">
+                    <rect key="frame" x="0.0" y="38" width="200" height="1"/>
+                    <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="fkJ-Fz-gbj"/>
+                    </constraints>
+                </imageView>
                 <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cJm-Cc-mg9">
                     <rect key="frame" x="0.0" y="122" width="200" height="1"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="rej-NZ-sWx"/>
-                    </constraints>
-                </imageView>
-                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XWN-xu-wcX">
-                    <rect key="frame" x="0.0" y="39" width="200" height="1"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="25b-6e-4GV"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="[TV] Living Room" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZ5-fa-SvO">
@@ -90,24 +90,24 @@
             </subviews>
             <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="XWN-xu-wcX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="39" id="04S-yc-6qP"/>
-                <constraint firstAttribute="trailing" secondItem="XWN-xu-wcX" secondAttribute="trailing" id="ALy-Ym-FPf"/>
+                <constraint firstAttribute="trailing" secondItem="Bm0-Gx-5yi" secondAttribute="trailing" id="FRc-JL-ebj"/>
                 <constraint firstItem="Ggb-id-qet" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="KhH-cM-sd6"/>
                 <constraint firstAttribute="bottom" secondItem="JJM-op-SYZ" secondAttribute="bottom" id="L2N-Dv-nOM"/>
                 <constraint firstItem="JJM-op-SYZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="McX-ma-64F"/>
+                <constraint firstItem="Bm0-Gx-5yi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="38" id="ONK-aK-U7G"/>
+                <constraint firstItem="Bm0-Gx-5yi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="QA0-Ch-IgK"/>
                 <constraint firstItem="cJm-Cc-mg9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="122" id="S3k-lC-23i"/>
                 <constraint firstItem="Ggb-id-qet" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="78" id="Uj7-2Y-2gx"/>
                 <constraint firstAttribute="trailing" secondItem="JJM-op-SYZ" secondAttribute="trailing" id="a5K-vk-cb0"/>
                 <constraint firstItem="cJm-Cc-mg9" firstAttribute="trailing" secondItem="JJM-op-SYZ" secondAttribute="trailing" id="m9P-ex-P54"/>
                 <constraint firstItem="cJm-Cc-mg9" firstAttribute="leading" secondItem="JJM-op-SYZ" secondAttribute="leading" id="qZO-wm-1Yl"/>
-                <constraint firstItem="XWN-xu-wcX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="sdP-4v-5Ga"/>
                 <constraint firstAttribute="trailing" secondItem="Ggb-id-qet" secondAttribute="trailing" constant="10" id="uqk-dC-ECe"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="disconnectButton" destination="Ggb-id-qet" id="s1J-cz-bcz"/>
                 <outlet property="icon" destination="ytA-FE-xrs" id="slJ-e8-n6R"/>
-                <outlet property="line" destination="XWN-xu-wcX" id="axn-Tv-5vo"/>
+                <outlet property="line" destination="Bm0-Gx-5yi" id="ujq-nS-pV0"/>
                 <outlet property="linebottom" destination="cJm-Cc-mg9" id="fH8-pW-WI8"/>
                 <outlet property="service" destination="wZ5-fa-SvO" id="qqB-Nz-w6V"/>
                 <outlet property="switchToView" destination="JJM-op-SYZ" id="NUy-U7-PiS"/>

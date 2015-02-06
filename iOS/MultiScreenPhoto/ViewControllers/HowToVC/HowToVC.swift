@@ -48,7 +48,6 @@ class HowToVC: UIViewController {
         let imageBackButton = UIImage(named: "btn-back-more") as UIImage?
         var addBackButton: UIBarButtonItem = UIBarButtonItem(image: imageBackButton, style: .Plain, target: self, action: "goBack")
         self.navigationItem.leftBarButtonItems = [addBackButton]
-        //self.navigationController?.navigationBar.translucent = false
         
     }
     /// Methos used to close the current View
