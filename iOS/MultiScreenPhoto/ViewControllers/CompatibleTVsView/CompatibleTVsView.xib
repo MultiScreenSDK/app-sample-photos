@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DcW-Ej-cDq">
+                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DcW-Ej-cDq">
                     <rect key="frame" x="60" y="158" width="200" height="288"/>
                     <subviews>
                         <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KSf-fQ-jN2">
@@ -49,7 +49,7 @@
                             <inset key="contentEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Select screen size" backgroundImage="menu-dropdown"/>
                             <connections>
-                                <action selector="selectedSize:" destination="iN0-l3-epB" eventType="touchUpInside" id="9YF-EU-T1I"/>
+                                <action selector="dropDownButtonSelected:" destination="iN0-l3-epB" eventType="touchUpInside" id="MKZ-dG-Pzm"/>
                             </connections>
                         </button>
                         <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="LCb-Cx-4HR">
@@ -83,9 +83,9 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="contentTVView" destination="DcW-Ej-cDq" id="FCd-8j-pbZ"/>
-                <outlet property="selectedincheButton" destination="Vaa-Lz-Ra2" id="sZy-LH-XYY"/>
-                <outlet property="tableView" destination="LCb-Cx-4HR" id="z9j-KW-uqD"/>
+                <outlet property="imageViewArrow" destination="o1R-aX-xVb" id="IbQ-Ez-qdp"/>
+                <outlet property="selectedInchesTitle" destination="Vaa-Lz-Ra2" id="NoT-aJ-tho"/>
+                <outlet property="tableView" destination="LCb-Cx-4HR" id="q2W-1c-F1Y"/>
             </connections>
             <point key="canvasLocation" x="28" y="309"/>
         </view>

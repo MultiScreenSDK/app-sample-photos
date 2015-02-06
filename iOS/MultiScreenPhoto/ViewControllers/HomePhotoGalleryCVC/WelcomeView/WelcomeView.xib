@@ -27,7 +27,7 @@
                             <rect key="frame" x="20" y="28" width="339" height="213"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Jv-pu-dsi">
-                            <rect key="frame" x="25" y="289" width="82.5" height="22.5"/>
+                            <rect key="frame" x="25" y="289" width="83" height="23"/>
                             <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="19"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>

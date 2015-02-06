@@ -13,42 +13,55 @@ import UIKit
 /// This class is used to display a list of compatible devices
 class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate {
    
-    @IBOutlet weak var contentTVView: UIView!
-    @IBOutlet weak var selectedinche: UILabel!
-    @IBOutlet weak var selectedincheButton: UIButton!
+    
+    // UITableView to diplay the gallery photos
     @IBOutlet weak var tableView: UITableView!
     
-    /// Identifier for UITableview cell
-    let compatibleTVCell = "CompatibleTVCellID"
+    // Data source used to calculate the row to insert and delete
+    var dataSourceCountToInsert = 0
+    var dataSourceCountToRemove = 0
     
-    var openSectionIndex = 0
-    var sectionInchesExpanded = false
-    var currentInches = NSNotFound
+    // Used to determinate which section is opened
+    var openSectionIndex = NSNotFound
+    
+    /// Arrow image that changes depending of the section state (collapsed, or expanded)
+    @IBOutlet weak var imageViewArrow: UIImageView!
+    
+    /// UIButton that contains the name of the selected inches
+    @IBOutlet weak var selectedInchesTitle: UIButton!
     
     var inchesArray = []
     var modelsArray = []
+    var isExpandedInchesSection = false
     
-    var inchesDict: NSDictionary?
-    var inchesCount: Int!
-    
+    /// Identifier for UITableview cell
+    let compatibleTVCell = "CompatibleTVCellID"
     override func awakeFromNib(){
         super.awakeFromNib()
-        
-         let tap = UITapGestureRecognizer()
-         tap.addTarget(self, action: "closeView")
-         tap.delegate = self
-         self.addGestureRecognizer(tap)
         
         var frame = tableView.frame
         frame.size.height = CGFloat(440)
         tableView.frame = frame
         tableView.rowHeight = 30
-        currentInches = NSNotFound
-        
+    
         /// Configuring the tableView cell
         tableView.registerNib(UINib(nibName: "CompatibleTVCell", bundle: nil), forCellReuseIdentifier: compatibleTVCell)
         
+        /// populating the inches from a Plist file
+        if let path = NSBundle.mainBundle().pathForResource("CompatibleTvsList", ofType: "plist") {
+            var inchesDict = NSDictionary(contentsOfFile: path)
+            inchesArray = inchesDict?.objectForKey("inches") as NSArray
+        }
+        
+        /// Add a gesture recognizer to dismiss the current view on tap
+        let tap = UITapGestureRecognizer()
+        tap.addTarget(self, action: "closeView")
+        tap.delegate = self
+        self.addGestureRecognizer(tap)
+        
     }
+    
+    // MARK: - Table view data source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2;
@@ -60,21 +73,21 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
-        /// Setting the custom cell view
-        var cell : CompatibleTVCell
-        cell = tableView.dequeueReusableCellWithIdentifier(compatibleTVCell, forIndexPath: indexPath) as CompatibleTVCell
+        var text: String
         
         if(indexPath.section == 0){
             var incheDict = inchesArray[indexPath.row] as NSDictionary
-            let text = incheDict.objectForKey("name") as String
-            cell.title.attributedText = NSMutableAttributedString(string: text, attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 14.0)!])
+            text = incheDict.objectForKey("name") as String
         }else{
-           var incheDict: NSString  = modelsArray[indexPath.row] as NSString
-            cell.title.attributedText = NSMutableAttributedString(string: incheDict, attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 14.0)!])
+            text = modelsArray[indexPath.row] as String
         }
         
+        /// Setting the custom cell view
+        var cell : CompatibleTVCell
+        cell = tableView.dequeueReusableCellWithIdentifier(compatibleTVCell, forIndexPath: indexPath) as CompatibleTVCell
         cell.title.textColor = UIColor.whiteColor()
         cell.title.textAlignment = .Center
+        cell.title.attributedText = NSMutableAttributedString(string: text, attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 14.0)!])
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         
         return cell
@@ -83,78 +96,93 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         if(indexPath.section == 0){
-            var inchestemparray = []
-            if let path = NSBundle.mainBundle().pathForResource("CompatibleTvsList", ofType: "plist") {
-                inchesDict = NSDictionary(contentsOfFile: path)
-                inchestemparray = inchesDict?.objectForKey("inches") as NSArray
-            }
-            currentInches = indexPath.row
-            var incheDict = inchestemparray[indexPath.row] as NSDictionary
-            selectedincheButton.titleLabel?.text =  incheDict.objectForKey("name") as? String
-            selectedincheButton.userInteractionEnabled = true
-            expandSection(1, previousOpenSectionIndex: 0)
-            sectionInchesExpanded = false
-        }
-    }
-    
-    func closeView() {
-        self.removeFromSuperview()
-    }
-    
-    @IBAction func selectedSize(sender: AnyObject) {
-        if let path = NSBundle.mainBundle().pathForResource("CompatibleTvsList", ofType: "plist") {
-            inchesDict = NSDictionary(contentsOfFile: path)
-            inchesArray = inchesDict?.objectForKey("inches") as NSArray
-        }
-        sectionInchesExpanded = !sectionInchesExpanded
-        selectedincheButton.userInteractionEnabled = false
-        expandSection(0,previousOpenSectionIndex: 1)
-    }
-    
-    func setNumberOfRowsInSection(section: Int)-> Int{
-        if let path = NSBundle.mainBundle().pathForResource("CompatibleTvsList", ofType: "plist") {
-            inchesDict = NSDictionary(contentsOfFile: path)
-            inchesArray = inchesDict?.objectForKey("inches") as NSArray
-        }
-        return 0
-    }
-    
-    func numOfRowsInSection(section: Int)-> Int{
-        if(section == 0  && sectionInchesExpanded == true){
-            return inchesArray.count
-        }
-        if(section == 1 && currentInches != NSNotFound){
             
-            var modelInchesArray = []
+            ///  If an inches is selected then populate the modelsArray for the given inche
+            var selectedInches = inchesArray[indexPath.row] as NSDictionary
+            modelsArray = selectedInches.objectForKey("models") as NSArray
+            expandSection(1)
+            isExpandedInchesSection = false
             
-            if let path = NSBundle.mainBundle().pathForResource("CompatibleTvsList", ofType: "plist") {
-                inchesDict = NSDictionary(contentsOfFile: path)
-                modelInchesArray = inchesDict?.objectForKey("inches") as NSArray
-            }
+            imageViewArrow.image = UIImage(named: "icon-arrow-down")!
+            /// Change the title of the selectedInchesTitle
+            selectedInchesTitle.titleLabel?.text =  selectedInches.objectForKey("name") as? String
             
-            modelsArray = modelInchesArray[currentInches].objectForKey("models") as NSArray
-            return modelsArray.count
         }
-        return 0
     }
     
-    
-    // Animate the section to expand
-    func expandSection(section : Int, previousOpenSectionIndex : Int){
+    /// Method used to capture the event when the selectedInchesTitle button is clicked
+    /// If it was clicked then expand or collapse the tableView
+    @IBAction func dropDownButtonSelected(sender: UIButton) {
         
-        var countOfRowsToInsert: Int = numOfRowsInSection(section)
-        var indexPathsToInsert = [NSIndexPath]()
-        for (var i=0;i < Int(countOfRowsToInsert); i++) {
-            indexPathsToInsert.append(NSIndexPath(forRow: i, inSection: section))
+        if(isExpandedInchesSection){
+            collapseSection(0)
+            isExpandedInchesSection = false
+            imageViewArrow.image = UIImage(named: "icon-arrow-down")!
+        }else{
+            expandSection(0)
+            isExpandedInchesSection = true
+            imageViewArrow.image = UIImage(named: "icon-arrow-up")!
         }
+        
+    }
+    
+    
+    /// Method used to calculate the number of rows for a given section
+    func numOfRowsInSection(section: Int)-> Int{
+        if(section == openSectionIndex && openSectionIndex != NSNotFound){
+            if (section == 0){
+                return inchesArray.count
+            }else{
+                return modelsArray.count
+            }
+        }
+        return 0
+    }
+    
+    // Animate the section to collapse
+    func collapseSection(section : Int){
+        
+        openSectionIndex = NSNotFound
         
         var indexPathsToDelete = [NSIndexPath]()
+        for (var i=0;i < dataSourceCountToRemove; i++) {
+            indexPathsToDelete.append(NSIndexPath(forRow: i, inSection: section))
+        }
+        tableView!.beginUpdates()
+        tableView!.deleteRowsAtIndexPaths(indexPathsToDelete, withRowAnimation: UITableViewRowAnimation.Top)
+        tableView!.endUpdates()
         
+        dataSourceCountToRemove = 0
+        
+    }
+    
+    // Animate the section to expand
+    func expandSection(section : Int){
+        
+        var previousOpenSectionIndex = openSectionIndex;
+        
+        /*
+        Create an array containing the index paths of the rows to delete: These correspond to the rows for each quotation in the current section.
+        */
+        var indexPathsToDelete = [NSIndexPath]()
         if (previousOpenSectionIndex != NSNotFound) {
-            var countOfRowsToDelete: Int = numOfRowsInSection(previousOpenSectionIndex)
-            for (var i=0;i < Int(countOfRowsToDelete); i++) {
+            //gallery.setIsAlbumExpanded(previousOpenSectionIndex, isExpanded: false)
+            //updateHeaderView(previousOpenSectionIndex)
+            for (var i=0;i < dataSourceCountToRemove; i++) {
                 indexPathsToDelete.append(NSIndexPath(forRow: i, inSection: previousOpenSectionIndex))
             }
+        }
+        
+        openSectionIndex = section;
+        dataSourceCountToInsert = self.numOfRowsInSection(section)
+        dataSourceCountToRemove = dataSourceCountToInsert
+        
+        /*
+        Create an array containing the index paths of the rows to insert: These correspond to the rows for each quotation in the current section.
+        */
+        var indexPathsToInsert = [NSIndexPath]()
+        for (var i=0;i < dataSourceCountToInsert; i++) {
+            indexPathsToInsert.append(NSIndexPath(forRow: i, inSection: openSectionIndex))
         }
         
         // style the animation so that there's a smooth flow in either direction
@@ -169,21 +197,19 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
             deleteAnimation = UITableViewRowAnimation.Top
         }
         
-        if(previousOpenSectionIndex == 0){
-            inchesArray = []
-        }else{
-            currentInches = NSNotFound
-        }
-        
-        
         // apply the updates
-        self.tableView!.beginUpdates()
-        self.tableView!.insertRowsAtIndexPaths(indexPathsToInsert, withRowAnimation: insertAnimation)
-        self.tableView!.deleteRowsAtIndexPaths(indexPathsToDelete, withRowAnimation: deleteAnimation)
-        self.tableView!.endUpdates()
-        
+        tableView!.beginUpdates()
+        tableView!.deleteRowsAtIndexPaths(indexPathsToDelete, withRowAnimation: deleteAnimation)
+        tableView!.insertRowsAtIndexPaths(indexPathsToInsert, withRowAnimation: insertAnimation)
+        tableView!.endUpdates()
     }
     
+     /// Method used to close the current View
+    func closeView() {
+        self.removeFromSuperview()
+    }
+    
+    /// UIGestureRecognizerDelegate used to disable the tap event if the tapped View is not the main View
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool{
         if (touch.view.tag != 1){
             return true
