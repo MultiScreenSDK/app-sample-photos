@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate {
+class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate,PhotoFullScreenVCDelegate {
     
     //Gallery Instance, this instance contains an Array of albums
     var gallery = Gallery.sharedInstance
@@ -18,6 +18,9 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     
     // Timer to send the image to the TV after a few seconds
     var timer: NSTimer!
+    
+    // Timer to send the navigation bar hidden
+    var navigationTimer: NSTimer!
     
     //UIPageViewController used to paginate photos
     var pageViewController : UIPageViewController?
@@ -29,8 +32,6 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Method to setup the navigation bar color and fonts
-        setUpNavigationBar()
         
         self.navigationController?.interactivePopGestureRecognizer.delegate = self
         
@@ -54,13 +55,23 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
         view.addSubview(pageViewController!.view)
         pageViewController!.didMoveToParentViewController(self)
         
+         self.automaticallyAdjustsScrollViewInsets = false;
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        // Method to setup the navigation bar color and fonts
+        setUpNavigationBar()
     }
     
     func setUpNavigationBar(){
         
+        navigationBarTimer()
+        
         //Translucent Navigation Bar
-        self.navigationController?.navigationBar.setBackgroundImage(getImageWithColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0.6), size: CGSize(width: 100, height: 144)), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "bg_subtitlebar"), forBarMetrics: UIBarMetrics.Default)
+        //self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         
         // Configuring setting icon
@@ -75,9 +86,6 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
     
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer!) -> Bool {
         return false;
@@ -125,7 +133,7 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
         
         // Create a new view controller and pass suitable data.
         let pageContentViewController = PhotoFullScreenVC()
-        
+         pageContentViewController.delegate = self
         
         //pageContentViewController.titleText = pageTitles[index]
         pageContentViewController.pageIndex = index
@@ -141,14 +149,32 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
         
     }
     
+    func navigationBarTimer(){
+        navigationTimer = NSTimer.scheduledTimerWithTimeInterval(8, target: self, selector: Selector("hiddeNavBar"), userInfo: nil, repeats: false)
+    }
+    
+    func showNavigationBar(){
+        if(navigationTimer != nil){
+            navigationTimer.invalidate()
+        }
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationBarTimer()
+        
+    }
+    
+    func hiddeNavBar() {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     func startTimer(){
         timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: Selector("sendToTv"), userInfo: nil, repeats: false)
     }
     
-    func sendToTv() {
+    override func sendToTv() {
         
         if(multiScreenManager.isApplicationConnected() == true){
             var currentView: PhotoFullScreenVC = pageViewController?.viewControllers.last! as PhotoFullScreenVC
+            
             
             gallery.requestImageAtIndex(gallery.currentAlbum,index: currentView.pageIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!,assetIndex:Int, containerId: Int ) -> Void in
                 self.multiScreenManager.sendPhotoToTv(image)

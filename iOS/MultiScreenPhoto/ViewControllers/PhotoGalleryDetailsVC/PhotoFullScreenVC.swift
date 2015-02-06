@@ -7,8 +7,11 @@
 //  Copy from here :  http://www.raywenderlich.com/76436/use-uiscrollview-scroll-zoom-content-swift
 
 import UIKit
+protocol PhotoFullScreenVCDelegate {
+    func showNavigationBar()
+}
 
-class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate {
+class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
     
     //Gallery Instance, this instance contains an Array of albums
@@ -22,6 +25,7 @@ class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate {
     
     var scrollView: UIScrollView!
     var imageView: UIImageView!
+     var delegate: PhotoFullScreenVCDelegate!
     
     override func viewDidLoad()
     {
@@ -31,7 +35,16 @@ class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate {
         gallery.requestImageAtIndex(gallery.currentAlbum,index: pageIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!,assetIndex:Int, containerId: Int) -> Void in
             self.addScrollView(image)
         })
+        
+        self.automaticallyAdjustsScrollViewInsets = false;
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        showNavigationBar()
+    }
+    
+
     
 
     func addScrollView(image: UIImage){
@@ -53,6 +66,12 @@ class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate {
         doubleTapRecognizer.numberOfTapsRequired = 2
         doubleTapRecognizer.numberOfTouchesRequired = 1
         scrollView.addGestureRecognizer(doubleTapRecognizer)
+        
+        var singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "showNavigationBar")
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.enabled = true
+        singleTapGestureRecognizer.cancelsTouchesInView = false
+        scrollView.addGestureRecognizer(singleTapGestureRecognizer)
         
         // 4
         let scrollViewFrame = scrollView.frame
@@ -113,6 +132,10 @@ class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate {
         
         // 4
         scrollView.zoomToRect(rectToZoomTo, animated: true)
+    }
+    
+    func showNavigationBar(){
+        delegate.showNavigationBar()
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView!) -> UIView! {

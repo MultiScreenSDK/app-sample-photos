@@ -9,14 +9,21 @@
 import UIKit
 import SystemConfiguration
 
+/// A MultiScreenManager represents an instance of MultiScreenFramework
+
+/// Use this class to search for near services, connect to a service and send photo to a service
 class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
     
+    /// Application url
     var appURL: String =  "http://multiscreen.samsung.com/app-sample-photos/tv/index.html"
+    /// Application Channel
     var channelId: String = "com.samsung.multiscreen.photos"
+    /// Application instance
     var app : Application!
+    /// Search service instance
     let search = Service.search()
-    var wifiTimer: NSTimer!
     
+    /// MultiScreenManager shared instance used as singleton
     class var sharedInstance: MultiScreenManager {
         struct Static {
             static var instance: MultiScreenManager?
@@ -32,42 +39,68 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
     override init() {
     }
     
-    // Start the TV discovery process
+    /// Post a notification to the NSNotificationCenter
+    /// this notification is used to update the cast icon
+    func postNotification(){
+        NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
+    }
+    
+    /// Start searching for services inside the Wifi network
     func startSearching(){
         search.delegate = self
         search.start()
-        // Start a timer to check if there is Wifi connection available to connect
-        //wifiTimer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector("checkWifiConnection"), userInfo: nil, repeats: true)
     }
     
-    // Stop the TV discovery process
+    // Stop searching for services inside the Wifi network
     func StopSearching(){
         search.stop()
+        /// post a notification to the NSNotificationCenter
         postNotification()
     }
     
+    //onServiceLost delegate method
+    func onServiceLost(service: Service) {
+        /// post a notification to the NSNotificationCenter
+        postNotification()
+    }
     
-    // Check is there is an app connected
+    //onServiceFound delegate method
+    func onServiceFound(service: Service) {
+        /// post a notification to the NSNotificationCenter
+        postNotification()
+    }
+    
+    /// Check is there is an app connected
+    ///
+    /// :return:  true or false
     func isApplicationConnected()->Bool {
         return app != nil && app!.isConnected;
     }
     
-    //Return the current service connected
+    /// Return the current service connected
+    ///
+    /// :return: current Service
     func getApplicationCurrentService()->Service{
         return app.service
     }
     
-    //Return all services found
+    /// Return all services found in the Wifi network
+    ///
+    /// :return: Array of Services
     func getServices() -> [Service]{
         return search.services
     }
     
-    //Return all services not current connected
+    /// Return all services availables but not current connected
+    ///
+    /// :return: Array of Services
     func getServicesNotConnected() -> [Service]{
         
         var servicesArray = [Service]()
         for (value) in getServices() {
+            /// Check if the application is connected
             if(isApplicationConnected() == true){
+                /// if the application is connected ignore the current service
                 if(getApplicationCurrentService().id != value.id){
                     servicesArray.append(value)
                 }
@@ -78,29 +111,19 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
         return servicesArray
     }
     
-    // Return a service by index
+    /// Return a service by index
+    ///
+    /// :param: service index
+    /// :return: service
     func getServiceWithIndex(index : Int)->Service{
         return search.services[index]
     }
     
-    //onServiceLost delegate method
-    func onServiceLost(service: Service) {
-        // Post a notification
-        postNotification()
-    }
-    
-    //onServiceFound delegate method
-    func onServiceFound(service: Service) {
-        // Post a notification
-        postNotification()
-    }
-    
-    // Send a notification to update the cast icon
-    func postNotification(){
-        NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
-    }
-    
-    // Creates an application
+   
+    /// Connect to an Application
+    ///
+    /// :param: selected service
+    /// :param: completionHandler The callback handler,  return true or false
     func createApplication(service: Service,completionHandler: ((Bool!) -> Void)!){
         app = service.createApplication(NSURL(string: appURL)!, channelURI: channelId)!
         app.connect(["name":UIDevice.currentDevice().name])
@@ -109,7 +132,9 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
         }
     }
     
-    // Close the current connected application
+    /// Close the current connected application
+    ///
+    /// :param: completionHandler The callback handler,  return true or false
     func closeApplication(completionHandler: ((Bool!) -> Void)!){
         app.stop({ (success, error) -> Void in })
         app.disconnect({ (channel, error) -> Void in
@@ -121,37 +146,12 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
         })
     }
     
-    // send Photo the the connected TV
+    /// Send Photo the the connected Service
+    ///
+    /// :param: UIImage to be sent
     func sendPhotoToTv(image :UIImage){
         if (isApplicationConnected()){
             app.publish(event: "showPhoto", message: nil, data: UIImageJPEGRepresentation(image,0.6))
-        }
-    }
-    
-    //Check if there is Wifi connection available to connect
-    //Start and stop searching for services in the same wifi network
-    func checkWifiConnection() {
-        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
-        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
-        zeroAddress.sin_family = sa_family_t(AF_INET)
-        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0)).takeRetainedValue()
-        }
-        var flags: SCNetworkReachabilityFlags = 0
-        if SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) == 0 {
-            StopSearching()
-        }
-        let isReachable = (flags & UInt32(kSCNetworkFlagsReachable)) != 0
-        let isWWAN = (flags & UInt32(kSCNetworkReachabilityFlagsIsWWAN)) != 0
-        
-        // If Wifi is available then start searching for services in the network
-        if(isReachable && !isWWAN){
-            if (!isApplicationConnected()){
-                StopSearching()
-                startSearching()
-            }
-        }else{
-            StopSearching()
         }
     }
     

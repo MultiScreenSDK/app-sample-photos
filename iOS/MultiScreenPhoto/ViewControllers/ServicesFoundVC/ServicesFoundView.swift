@@ -10,6 +10,10 @@ import UIKit
 
 let servicesFoundTVCellID = "ServicesFoundTVCell"
 
+protocol ServicesFoundViewDelegate {
+    func sendToTv()
+}
+
 var multiScreenManager = MultiScreenManager.sharedInstance
 
 class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, ServicesFoundHeaderVIewDelegate, UIGestureRecognizerDelegate {
@@ -17,12 +21,7 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
     @IBOutlet weak var tableView: UITableView!
     var services = [AnyObject]()
     
-    class func loadFromNibNamed(nibNamed: String, bundle : NSBundle? = nil) -> UIView? {
-        return UINib(
-            nibName: nibNamed,
-            bundle: bundle
-            ).instantiateWithOwner(nil, options: nil)[0] as? UIView
-    }
+    var delegate: ServicesFoundViewDelegate!
     
     override func awakeFromNib(){
         super.awakeFromNib()
@@ -55,7 +54,7 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
         cell = tableView.dequeueReusableCellWithIdentifier(servicesFoundTVCellID, forIndexPath: indexPath) as ServicesFoundTVCell
         cell.title.text = "\(services[indexPath.row].name)"
         var selectedView = UIView(frame: cell.frame)
-        selectedView.backgroundColor = UIColor(red: 62/255, green: 62/255, blue: 62/255, alpha: 1)
+        selectedView.backgroundColor = UIColor(red: 80/255, green: 80/255, blue: 80/255, alpha: 1)
         cell.selectedBackgroundView = selectedView
         return cell
         
@@ -84,6 +83,7 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
         multiScreenManager.createApplication(services[indexPath.row] as Service, completionHandler: { (success: Bool!) -> Void in
             NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
             if((success) == true){
+                self.delegate.sendToTv()
                 self.removeFromSuperview()
             }
         })

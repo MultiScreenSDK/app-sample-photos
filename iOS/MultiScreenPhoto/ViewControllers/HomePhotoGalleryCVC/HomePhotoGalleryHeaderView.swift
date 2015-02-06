@@ -8,11 +8,10 @@
 
 import UIKit
 protocol HomePhotoGalleryHeaderViewDelegate {
-    func expandSection(section : Int)
-    func collapseSection(section : Int)
+    func headerClicked(section : Int)
 }
 
-class HomePhotoGalleryHeaderView: UIView {
+class HomePhotoGalleryHeaderView: UITableViewHeaderFooterView {
 
     @IBOutlet weak var headerTitle: UIButton!
     @IBOutlet weak var imageViewArrow: UIImageView!
@@ -29,20 +28,11 @@ class HomePhotoGalleryHeaderView: UIView {
     }
     
     @IBAction func selectedButton(sender: UIButton) {
-        
-        setArrowIcon()
-        
-        if(state == false){
-            state = true
-            delegate.expandSection(self.section)
-        }else{
-            state = false
-            delegate.collapseSection(self.section)
-        }
+        delegate.headerClicked(section)
     }
     
     func setArrowIcon(){
-         if(state == false){
+        if(state == true){
             imageViewArrow.image = UIImage(named: "icon-arrow-up")!
         }else{
             imageViewArrow.image = UIImage(named: "icon-arrow-down")!

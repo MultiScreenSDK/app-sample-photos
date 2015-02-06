@@ -8,12 +8,16 @@
 
 import UIKit
 import XCTest
+import AssetsLibrary
 
 class MultiScreenPhotoTests: XCTestCase {
+    
+    var gallery: Gallery!
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        gallery = Gallery.sharedInstance
     }
     
     override func tearDown() {
@@ -31,6 +35,13 @@ class MultiScreenPhotoTests: XCTestCase {
         self.measureBlock() {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    
+    func testGetNumOfAlbums(){
+        var group = ALAssetsGroup()
+        gallery.albums = [group,group,group]
+        XCTAssert(gallery.getNumOfAlbums() == 3, "GetNumOfAlbums() will return the numbers of items in gallery album")
     }
     
 }

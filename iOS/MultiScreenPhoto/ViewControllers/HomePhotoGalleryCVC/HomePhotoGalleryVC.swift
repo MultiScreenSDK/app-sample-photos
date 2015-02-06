@@ -8,28 +8,38 @@
 
 import UIKit
 
-// Identifiers for UITableview cell and Header
-let reuseIdentifierTVCell1 = "HomePhotoGalleryVCCell1"
-let reuseIdentifierTVCell2 = "HomePhotoGalleryVCCell2"
-
-let screenSizeDivisor = CGFloat(2.03)
-
-//Gallery Instance, this instance contains an Array of albums
-private var gallery = Gallery.sharedInstance
-
-//UIViewController to display a gallery of photos
+/// HomePhotoGalleryVC extend from CommonVC
+///
+/// This class is used to deisplay the gallery in a UITableView
 class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate, HomePhotoGalleryHeaderViewDelegate, HomePhotoGalleryVCCellDelegate {
     
-    //Welcome view displayed the first time the app runs
-    var welcomeView: UIView!
+    // UITableView to diplay the gallery photos
+    @IBOutlet weak var tableView: UITableView!
+    
+    // Data source used to calculate the row to insert and delete
+    var dataSourceAlbumCountToInsert = 0
+    var dataSourceAlbumCountToRemove = 0
+    
+    // Identifiers for UITableview cells
+    let reuseIdentifierTVCell1 = "HomePhotoGalleryVCCell1"
+    let reuseIdentifierTVCell2 = "HomePhotoGalleryVCCell2"
     
     //Size of the cell
     var cellHeight: CGFloat!
     
-    @IBOutlet weak var tableView: UITableView!
-    var openSectionIndex = 0
-    
     let screenSize: CGRect = UIScreen.mainScreen().bounds
+    
+    // Used to calculate the size of the large photo depending of the screen size
+    let screenSizeDivisor = CGFloat(2.03)
+   
+    //Gallery Instance, this instance contains an Array of albums
+    private var gallery = Gallery.sharedInstance
+    
+    //Welcome view displayed the first time the app runs
+    var welcomeView: UIView!
+  
+    // Used to determinate which section is opened
+    var openSectionIndex = 0
     
     override func viewDidLoad() {
         
@@ -38,52 +48,20 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         //Start searching for avaliables services in the network
         multiScreenManager.startSearching()
         
-        //tableView.estimatedRowHeight = screenSize.size.width/2;
-        //tableView.rowHeight = UITableViewAutomaticDimension;
-        
         // Request for photo library access and retrieving albums
         gallery.retrieveAlbums { (result:Bool!) -> Void in
             if(result == true){
+                self.openSectionIndex = self.gallery.getIndexFromCurrentAlbumExpanded()
+                self.dataSourceAlbumCountToRemove = self.numOfRowsInSection(self.openSectionIndex)
                 self.tableView!.reloadData()
             }else{
                 self.displayAlertWithTitle("Access",
                     message: "Could not access the photo library")
+                self.openSectionIndex = NSNotFound
             }
         }
-        
         // Calculate the cell size
         cellHeight = screenSize.size.width/screenSizeDivisor
-        
-        openSectionIndex = NSNotFound
-    }
-    
-    
-    override func viewWillAppear(animated: Bool) {
-        
-        super.viewWillAppear(animated)
-        // Method to setup the navigation bar color and fonts
-        setUpNavigationBar()
-    }
-    
-     // Method to setup the navigation bar color and fonts
-    func setUpNavigationBar(){
-        
-       
-        //Translucent Navigation Bar
-        self.navigationController?.navigationBar.setBackgroundImage(getImageWithColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0), size: CGSize(width: 100, height: 144)), forBarMetrics: UIBarMetrics.Default)
-          self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        
-        // Configuring title to left
-        self.navigationItem.leftBarButtonItem = nil;
-        
-        // Setting the navigation Title to the left
-        var TitleLabel: UIBarButtonItem = UIBarButtonItem(title: "Photos", style: .Plain, target: nil, action: nil)
-        TitleLabel.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Roboto-Light", size: 20)!], forState: UIControlState.Normal)
-        
-        self.navigationItem.leftBarButtonItems = [TitleLabel]
-        //self.navigationController?.navigationBar.translucent = false
         
     }
     
@@ -92,17 +70,61 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         
         let defaults = NSUserDefaults.standardUserDefaults()
         
-        // Display Welcome View
+        // Display Welcome View only one time
         if(!defaults.boolForKey("hideWelcomeView")){
             
+            /// UIView that contains the welcome view
             self.welcomeView = NSBundle.mainBundle().loadNibNamed("WelcomeView", owner: self, options: nil)[0] as? UIView
             self.welcomeView.frame = view.frame
             view.window?.addSubview(welcomeView)
-            
             defaults.setBool(true, forKey: "hideWelcomeView")
             
         }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        // Method to setup the navigation bar color and fonts
+        setUpNavigationBar()
+    }
+    
+    
+    // Method to setup the navigation bar color and fonts
+    func setUpNavigationBar(){
+       
+        //Creates a translucent Navigation Bar
+        self.navigationController?.navigationBar.setBackgroundImage(getImageWithColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0), size: CGSize(width: 100, height: 144)), forBarMetrics: UIBarMetrics.Default)
+          self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        // Align the title to the left
+        self.navigationItem.leftBarButtonItem = nil;
+        var TitleLabel: UIBarButtonItem = UIBarButtonItem(title: "Photos", style: .Plain, target: nil, action: nil)
+        TitleLabel.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Roboto-Light", size: 20)!], forState: UIControlState.Normal)
+        
+        self.navigationItem.leftBarButtonItems = [TitleLabel]
+        
+    }
+    
+    
+    /// Method used to calculate the number of rows for a given section and number of assets for album
+    func numOfRowsInSection(section: Int)-> Int{
+        if(section == openSectionIndex && openSectionIndex != NSNotFound){
+            var numRow = Double(gallery.getNumOfAssetsByAlbum(section)) / 5
+            var numRowMod = gallery.getNumOfAssetsByAlbum(section) % 5
+            
+            if(numRow > 0){
+                if(numRowMod != 0){
+                    numRow = numRow + 1
+                }
+            }
+            return Int(numRow)
+        }
+        return 0
+    }
+    
+    // MARK: - Table view data source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
         return gallery.getNumOfAlbums()
@@ -123,28 +145,32 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
         var cell : HomePhotoGalleryVCCell
-        var modIndexRow = indexPath.row % 10
-        var currentAssetIndex = 0
         
+        // Selecting the correct cell layout depending of the current index
         if(indexPath.row % 2 == 0){
-        cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierTVCell1) as HomePhotoGalleryVCCell
-            
+            cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierTVCell1) as HomePhotoGalleryVCCell
         }else{
             cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierTVCell2) as HomePhotoGalleryVCCell
         }
+        // Used to know the section of the cell
+        cell.section = indexPath.section
         
         cell.delegate = self
-        cell.section = indexPath.section
-        cell.layer.zPosition = 0
-
-        currentAssetIndex = indexPath.row * 5
+        cell.layer.zPosition = CGFloat(indexPath.row) * -1
+        
+        // Adding the photos to the cell
+        var currentAssetIndex = indexPath.row * 5
         for (var i=0; i<5; i++) {
+            
+            /// Retrieve an image from the device photo gallery
             gallery.requestImageAtIndex(indexPath.section,index: currentAssetIndex, containerId:i, isThumbnail: true, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!, assetIndex:Int, containerId: Int ) -> Void in
+                // If there is no Image then disable the UIImageVIew
                 if(image == nil){
                     cell.buttonPhoto[containerId].enabled = false
                 }else{
                     cell.buttonPhoto[containerId].enabled = true
                 }
+                // Setting an UIImage to the UIImageView
                 cell.buttonPhoto[containerId].setBackgroundImage(image, forState: UIControlState.Normal)
                 cell.buttonPhoto[containerId].tag = assetIndex
             })
@@ -154,54 +180,87 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         return cell
     }
     
+    func tableView(tableView: UITableView!, viewForHeaderInSection section: Int) -> UIView! {
+        
+        /// UIView that contains the cell header view
+        var viewArray = NSBundle.mainBundle().loadNibNamed("HomePhotoGalleryHeaderView", owner: self, options: nil)
+        var headerView = viewArray[0] as HomePhotoGalleryHeaderView
+        
+        // Adding the title to the header
+        headerView.headerTitle.setTitle(gallery.getAlbumName(section), forState: UIControlState.Normal)
+        headerView.delegate = self
+        headerView.section = section
+        // Set if header is expanded
+        headerView.state = gallery.getIsAlbumExpanded(section)
+        // Setting the Up and Down Arrow Icon
+        headerView.setArrowIcon()
+        
+        return headerView
+    }
+    
+    func updateHeaderView(section : Int){
+        var headerView: HomePhotoGalleryHeaderView = tableView!.headerViewForSection(section) as HomePhotoGalleryHeaderView
+        headerView.state = gallery.getIsAlbumExpanded(section)
+        headerView.setArrowIcon()
+    }
+    
+    func headerClicked(section : Int){
+        if(gallery.getIsAlbumExpanded(section)){
+            collapseSection(section)
+        }else{
+            expandSection(section)
+        }
+       
+    }
     
     // Animate the section to collapse
     func collapseSection(section : Int){
         
-        gallery.setIsAlbumExpanded(section, isExpanded: false)
-      
-        var countOfRowsToDelete: Int = numOfRowsInSection(section)
+        openSectionIndex = NSNotFound;
+        
         var indexPathsToDelete = [NSIndexPath]()
-        for (var i=0;i < Int(countOfRowsToDelete); i++) {
+        for (var i=0;i < dataSourceAlbumCountToRemove; i++) {
             indexPathsToDelete.append(NSIndexPath(forRow: i, inSection: section))
         }
-        gallery.setNumOfAssetsByalbumToZero(section)
-        self.tableView!.beginUpdates()
-        self.tableView!.deleteRowsAtIndexPaths(indexPathsToDelete, withRowAnimation: UITableViewRowAnimation.Top)
-        self.tableView!.endUpdates()
+        tableView!.beginUpdates()
+        tableView!.deleteRowsAtIndexPaths(indexPathsToDelete, withRowAnimation: UITableViewRowAnimation.Top)
+        tableView!.endUpdates()
         
-        self.openSectionIndex = NSNotFound;
+        gallery.setIsAlbumExpanded(section, isExpanded: false)
+        
+        dataSourceAlbumCountToRemove = 0
+        
+        updateHeaderView(section)
+       
         
     }
     
     // Animate the section to expand
     func expandSection(section : Int){
         
+        var previousOpenSectionIndex = openSectionIndex;
         
-        gallery.setIsAlbumExpanded(section, isExpanded: true)
-        gallery.setNumOfAssetsByAlbum(section)
+        var indexPathsToDelete = [NSIndexPath]()
+        if (previousOpenSectionIndex != NSNotFound) {
+            gallery.setIsAlbumExpanded(previousOpenSectionIndex, isExpanded: false)
+            updateHeaderView(previousOpenSectionIndex)
+            for (var i=0;i < dataSourceAlbumCountToRemove; i++) {
+                indexPathsToDelete.append(NSIndexPath(forRow: i, inSection: previousOpenSectionIndex))
+            }
+        }
+        
+        openSectionIndex = section;
+        dataSourceAlbumCountToInsert = Int(self.numOfRowsInSection(section))
+        dataSourceAlbumCountToRemove = dataSourceAlbumCountToInsert
+        
         /*
         Create an array containing the index paths of the rows to insert: These correspond to the rows for each quotation in the current section.
         */
-        var countOfRowsToInsert: Int = numOfRowsInSection(section)
+         gallery.setIsAlbumExpanded(section, isExpanded: true)
         var indexPathsToInsert = [NSIndexPath]()
-        for (var i=0;i < Int(countOfRowsToInsert); i++) {
+        updateHeaderView(section)
+        for (var i=0;i < dataSourceAlbumCountToInsert; i++) {
             indexPathsToInsert.append(NSIndexPath(forRow: i, inSection: section))
-        }
-        
-        var indexPathsToDelete = [NSIndexPath]()
-
-        var previousOpenSectionIndex = openSectionIndex;
-       
-        
-        if (previousOpenSectionIndex != NSNotFound) {
-            gallery.setIsAlbumExpanded(previousOpenSectionIndex, isExpanded: false)
-           // var sectionHeader = HomePhotoGalleryHeaderView   setArrowIcon//[previousOpenSection.headerView toggleOpenWithUserAction:NO];
-            var countOfRowsToDelete: Int = numOfRowsInSection(previousOpenSectionIndex)
-            for (var i=0;i < Int(countOfRowsToDelete); i++) {
-                indexPathsToDelete.append(NSIndexPath(forRow: i, inSection: previousOpenSectionIndex))
-            }
-            gallery.setNumOfAssetsByalbumToZero(previousOpenSectionIndex)
         }
         
         // style the animation so that there's a smooth flow in either direction
@@ -217,53 +276,25 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         }
         
         // apply the updates
-        self.tableView!.beginUpdates()
-        self.tableView!.insertRowsAtIndexPaths(indexPathsToInsert, withRowAnimation: insertAnimation)
-        self.tableView!.deleteRowsAtIndexPaths(indexPathsToDelete, withRowAnimation: deleteAnimation)
-        self.tableView!.endUpdates()
-        
-        self.openSectionIndex = section;
+        tableView!.beginUpdates()
+        tableView!.deleteRowsAtIndexPaths(indexPathsToDelete, withRowAnimation: UITableViewRowAnimation.None)
+        tableView!.insertRowsAtIndexPaths(indexPathsToInsert, withRowAnimation: insertAnimation)
+        tableView!.endUpdates()
         
     }
     
-    func tableView(tableView: UITableView!, viewForHeaderInSection section: Int) -> UIView! {
-        var viewArray = NSBundle.mainBundle().loadNibNamed("HomePhotoGalleryHeaderView", owner: self, options: nil)
-        var headerView = viewArray[0] as HomePhotoGalleryHeaderView
-        headerView.headerTitle.setTitle(gallery.getAlbumName(section), forState: UIControlState.Normal)
-        headerView.delegate = self
-        headerView.section = section
-        headerView.state = gallery.getIsAlbumExpanded(section)
-        headerView.setArrowIcon()
-        return headerView
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        
-    }
-    
+    /// HomePhotoGalleryVCCell Delegate method
     func photoSelected(indexPath : NSIndexPath){
+        
+         /// UIViewController that shows a detailed photo
         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("PhotoFullScreenPagerVCID") as PhotoFullScreenPagerVC
+        // Setting the current Image Index
         viewController.currentIndex = indexPath.row
         gallery.currentAlbum = indexPath.section
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    
-    func numOfRowsInSection(section: Int)-> Int{
-        var numRow = Double(gallery.getNumOfAssetsByAlbum(section)) / 5
-        var numRowMod = gallery.getNumOfAssetsByAlbum(section) % 5
-        
-        if(numRow > 0){
-            if(numRowMod != 0){
-                numRow = numRow + 1
-            }
-        }
-        return Int(numRow)
-    }
-    
-    
-    
-    // Used to calculate the cell Size, depending of the orientation
+    /// Used to calculate the cell Size, depending of the orientation
     override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
         if UIDevice.currentDevice().orientation.isLandscape.boolValue {
             cellHeight = screenSize.size.height/screenSizeDivisor

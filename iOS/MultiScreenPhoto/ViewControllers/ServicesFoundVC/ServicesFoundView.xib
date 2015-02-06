@@ -16,7 +16,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="566"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DNG-4q-jd7">
-                            <rect key="frame" x="64.5" y="166" width="192" height="400"/>
+                            <rect key="frame" x="65" y="166" width="192" height="400"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="400" id="CTA-Zt-zP1"/>
