@@ -92,11 +92,11 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
     // Method to setup the navigation bar color and fonts
     func setUpNavigationBar(){
        
-        //set the Navigation Bar color
-    self.navigationController?.navigationBar.setBackgroundImage(getImageWithColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0), size: CGSize(width: 100, height: 144)), forBarMetrics: UIBarMetrics.Default)
-          self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        //Navigation Bar
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "bg_subtitlebar_home"), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.translucent = false
+
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
         
         // Align the title to the left
         self.navigationItem.leftBarButtonItem = nil;

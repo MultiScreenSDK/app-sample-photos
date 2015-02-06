@@ -258,23 +258,13 @@
                                     <outlet property="delegate" destination="Svg-k2-LV9" id="gzo-YV-P1f"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5z-ZY-Psa">
-                                <rect key="frame" x="-8" y="56" width="391" height="53"/>
-                                <color key="backgroundColor" red="0.12941176470588237" green="0.12941176470588237" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="53" id="ARx-me-fpR"/>
-                                </constraints>
-                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="jlL-Ve-DSx" firstAttribute="leading" secondItem="qNC-4m-Qgc" secondAttribute="leading" id="F55-i3-a9o"/>
                             <constraint firstItem="jlL-Ve-DSx" firstAttribute="topMargin" secondItem="4TF-DA-nuw" secondAttribute="top" constant="8" id="U7p-6s-5yk"/>
-                            <constraint firstAttribute="trailing" secondItem="g5z-ZY-Psa" secondAttribute="trailingMargin" id="V9G-MV-nTB"/>
-                            <constraint firstItem="g5z-ZY-Psa" firstAttribute="leadingMargin" secondItem="qNC-4m-Qgc" secondAttribute="leading" id="cAN-LS-kgG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jlL-Ve-DSx" secondAttribute="trailingMargin" id="nAV-ZF-y12"/>
                             <constraint firstItem="5CM-On-x9m" firstAttribute="top" secondItem="jlL-Ve-DSx" secondAttribute="bottom" constant="-8" id="nac-jt-gmi"/>
-                            <constraint firstItem="g5z-ZY-Psa" firstAttribute="bottom" secondItem="jlL-Ve-DSx" secondAttribute="top" constant="45" id="s0Z-Zo-Y5c"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yEZ-Q9-7It"/>

@@ -38,10 +38,9 @@ class HowToVC: UIViewController {
     func setUpNavigationBar(){
         
        /// Set the Navigation Bar color
-       self.navigationController?.navigationBar.setBackgroundImage(getImageWithColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0), size: CGSize(width: 100, height: 144)), forBarMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.translucent = true
-        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "bg_subtitlebar_home"), forBarMetrics: UIBarMetrics.Default)
+        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.tintColor =  UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
         
         /// Configuring the back icon
         self.navigationItem.leftBarButtonItems = nil;
@@ -59,7 +58,7 @@ class HowToVC: UIViewController {
     /// If it was clicked then displays the CompatibleTVsView 
     @IBAction func compatibleDevices(sender: AnyObject) {
         self.compatibleTVsView = NSBundle.mainBundle().loadNibNamed("CompatibleTVsView", owner: self, options: nil)[0] as? UIView
-        self.compatibleTVsView.frame = view.frame
+        self.compatibleTVsView.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: UIScreen.mainScreen().bounds.size.height)
         view.window?.addSubview(compatibleTVsView)
     
     }

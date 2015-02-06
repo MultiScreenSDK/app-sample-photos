@@ -81,7 +81,7 @@ class CommonVC: UIViewController, MoreMenuViewDelegate, ServicesFoundViewDelegat
         /// UIView that contains a list of available services
         var viewArray = NSBundle.mainBundle().loadNibNamed("ServicesFoundView", owner: self, options: nil)
         self.castMenuView = viewArray[0] as ServicesFoundView
-        self.castMenuView.frame = view.frame
+        self.castMenuView.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: UIScreen.mainScreen().bounds.size.height)
         self.castMenuView.delegate = self
         view.window?.addSubview(self.castMenuView)
     }
@@ -91,7 +91,7 @@ class CommonVC: UIViewController, MoreMenuViewDelegate, ServicesFoundViewDelegat
         /// UIView that contains a list of options
         var viewArray = NSBundle.mainBundle().loadNibNamed("MoreMenuView", owner: self, options: nil)
         self.moreMenuView = viewArray[0] as MoreMenuView
-        self.moreMenuView.frame = view.frame
+        self.moreMenuView.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: UIScreen.mainScreen().bounds.size.height)
         self.moreMenuView.delegate = self
         view.window?.addSubview(self.moreMenuView)
     }
