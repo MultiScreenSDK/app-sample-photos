@@ -10,7 +10,7 @@ import UIKit
 
 /// HomePhotoGalleryVC extend from CommonVC
 ///
-/// This class is used to deisplay the gallery in a UITableView
+/// This class is used to display the gallery in a UITableView
 class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate, HomePhotoGalleryHeaderViewDelegate, HomePhotoGalleryVCCellDelegate {
     
     // UITableView to diplay the gallery photos
@@ -92,8 +92,8 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
     // Method to setup the navigation bar color and fonts
     func setUpNavigationBar(){
        
-        //Creates a translucent Navigation Bar
-        self.navigationController?.navigationBar.setBackgroundImage(getImageWithColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0), size: CGSize(width: 100, height: 144)), forBarMetrics: UIBarMetrics.Default)
+        //set the Navigation Bar color
+    self.navigationController?.navigationBar.setBackgroundImage(getImageWithColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0), size: CGSize(width: 100, height: 144)), forBarMetrics: UIBarMetrics.Default)
           self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.translucent = true
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
@@ -113,7 +113,6 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         if(section == openSectionIndex && openSectionIndex != NSNotFound){
             var numRow = Double(gallery.getNumOfAssetsByAlbum(section)) / 5
             var numRowMod = gallery.getNumOfAssetsByAlbum(section) % 5
-            
             if(numRow > 0){
                 if(numRowMod != 0){
                     numRow = numRow + 1
@@ -182,7 +181,7 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
     
     func tableView(tableView: UITableView!, viewForHeaderInSection section: Int) -> UIView! {
         
-        /// UIView that contains the cell header view
+        /// UIView that contains the header view for each cell
         var viewArray = NSBundle.mainBundle().loadNibNamed("HomePhotoGalleryHeaderView", owner: self, options: nil)
         var headerView = viewArray[0] as HomePhotoGalleryHeaderView
         
@@ -198,12 +197,14 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         return headerView
     }
     
+    /// Method used to update the Arrow icon for each Header
     func updateHeaderView(section : Int){
         var headerView: HomePhotoGalleryHeaderView = tableView!.headerViewForSection(section) as HomePhotoGalleryHeaderView
         headerView.state = gallery.getIsAlbumExpanded(section)
         headerView.setArrowIcon()
     }
     
+    // Method called from header delegate to collapse o expand the row
     func headerClicked(section : Int){
         if(gallery.getIsAlbumExpanded(section)){
             collapseSection(section)
@@ -217,7 +218,6 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
     func collapseSection(section : Int){
         
         openSectionIndex = NSNotFound;
-        
         var indexPathsToDelete = [NSIndexPath]()
         for (var i=0;i < dataSourceAlbumCountToRemove; i++) {
             indexPathsToDelete.append(NSIndexPath(forRow: i, inSection: section))
@@ -227,11 +227,8 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         tableView!.endUpdates()
         
         gallery.setIsAlbumExpanded(section, isExpanded: false)
-        
         dataSourceAlbumCountToRemove = 0
-        
         updateHeaderView(section)
-       
         
     }
     
@@ -240,6 +237,9 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         
         var previousOpenSectionIndex = openSectionIndex;
         
+        /*
+        Create an array containing the index paths of the rows to delete: These correspond to the rows for each quotation in the current section.
+        */
         var indexPathsToDelete = [NSIndexPath]()
         if (previousOpenSectionIndex != NSNotFound) {
             gallery.setIsAlbumExpanded(previousOpenSectionIndex, isExpanded: false)

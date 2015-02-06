@@ -8,10 +8,15 @@
 
 import UIKit
 
+/// WelcomeView
+///
+/// This class is used to show the 'Welcome' view the first time the app runs
 class WelcomeView: UIView {
     
+    // UIButton the close the current view when clicked
     @IBOutlet weak var getStartButton: UIButton!
     
+    /// Methos used to close the current View
     @IBAction func getStart(sender: UIButton) {
         self.removeFromSuperview()
     }
@@ -20,6 +25,8 @@ class WelcomeView: UIView {
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
         // Drawing code
+        
+        /// Adding borders to the get start button
         getStartButton.layer.cornerRadius = 0
         getStartButton.layer.borderWidth = 0.5
         getStartButton.layer.borderColor = UIColor.whiteColor().CGColor

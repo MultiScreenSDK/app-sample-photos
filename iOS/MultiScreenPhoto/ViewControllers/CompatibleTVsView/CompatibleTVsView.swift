@@ -18,6 +18,7 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
     @IBOutlet weak var selectedinche: UILabel!
     @IBOutlet weak var selectedincheButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    
     var openSectionIndex = 0
     var sectionInchesExpanded = false
     var currentInches = NSNotFound
@@ -66,9 +67,9 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
         }
         cell.textLabel?.textColor = UIColor.whiteColor()
         cell.textLabel?.textAlignment = .Center
-        
         cell.selectionStyle = UITableViewCellSelectionStyle.None
-
+        cell.tag = 1
+        
         return cell
         
     }
@@ -177,7 +178,7 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
     }
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool{
-        if (touch.view.tag == 1){
+        if (touch.view.tag != 1){
             return true
         }
         return false

@@ -7,18 +7,33 @@
 //
 
 import UIKit
+
+/// HomePhotoGalleryHeaderViewDelegate
+///
+/// This delegate is used to know which header was clicked
 protocol HomePhotoGalleryHeaderViewDelegate {
     func headerClicked(section : Int)
 }
 
+/// HomePhotoGalleryHeaderView
+///
+/// This class is used to customize the Header for each section in the UITableView
 class HomePhotoGalleryHeaderView: UITableViewHeaderFooterView {
 
+    /// This is the title of the header
     @IBOutlet weak var headerTitle: UIButton!
+    /// Arrow image that changes depending of the section state (collapsed, or expanded)
     @IBOutlet weak var imageViewArrow: UIImageView!
+    
+    /// Cell Separator
     @IBOutlet weak var imageViewSeparator : UIImageView!
     
     var delegate: HomePhotoGalleryHeaderViewDelegate!
+    
+    /// Current photo album index
     var section = 0
+    
+    /// Current state of the album, expanded = true, collapsed = false
     var state = false
     
     
@@ -27,16 +42,19 @@ class HomePhotoGalleryHeaderView: UITableViewHeaderFooterView {
         setArrowIcon()
     }
     
+    /// Method used to capture the event when a header is clicked
     @IBAction func selectedButton(sender: UIButton) {
         delegate.headerClicked(section)
     }
     
+    /// Method used to change the imageViewArrow depending of the current album state
     func setArrowIcon(){
         if(state == true){
             imageViewArrow.image = UIImage(named: "icon-arrow-up")!
         }else{
             imageViewArrow.image = UIImage(named: "icon-arrow-down")!
         }
+        /// If the header is the first in the list then hidde the separator image.
         if(section == 0){
             imageViewSeparator.hidden = true
         }

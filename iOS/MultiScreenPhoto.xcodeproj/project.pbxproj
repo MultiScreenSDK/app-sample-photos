@@ -34,6 +34,10 @@
 		9A76A9091A7C071E007B05D4 /* CompatibleTVsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76A9071A7C071E007B05D4 /* CompatibleTVsView.swift */; };
 		9A76A90B1A7C072A007B05D4 /* CompatibleTVsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A76A90A1A7C072A007B05D4 /* CompatibleTVsView.xib */; };
 		9A76A90C1A7C072A007B05D4 /* CompatibleTVsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A76A90A1A7C072A007B05D4 /* CompatibleTVsView.xib */; };
+		9A8EFDB31A852EDE001FEE0A /* CompatibleTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDB11A852EDE001FEE0A /* CompatibleTVCell.swift */; };
+		9A8EFDB41A852EDE001FEE0A /* CompatibleTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDB11A852EDE001FEE0A /* CompatibleTVCell.swift */; };
+		9A8EFDB51A852EDE001FEE0A /* CompatibleTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8EFDB21A852EDE001FEE0A /* CompatibleTVCell.xib */; };
+		9A8EFDB61A852EDE001FEE0A /* CompatibleTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8EFDB21A852EDE001FEE0A /* CompatibleTVCell.xib */; };
 		9AC49E591A71A5A800F391C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E581A71A5A800F391C0 /* AppDelegate.swift */; };
 		9AC49E5B1A71A5A800F391C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E5A1A71A5A800F391C0 /* ViewController.swift */; };
 		9AC49E5E1A71A5A800F391C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AC49E5C1A71A5A800F391C0 /* Main.storyboard */; };
@@ -119,6 +123,8 @@
 		9A76A9011A7AEEBD007B05D4 /* HowToVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HowToVC.xib; sourceTree = "<group>"; };
 		9A76A9071A7C071E007B05D4 /* CompatibleTVsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompatibleTVsView.swift; sourceTree = "<group>"; };
 		9A76A90A1A7C072A007B05D4 /* CompatibleTVsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompatibleTVsView.xib; sourceTree = "<group>"; };
+		9A8EFDB11A852EDE001FEE0A /* CompatibleTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompatibleTVCell.swift; sourceTree = "<group>"; };
+		9A8EFDB21A852EDE001FEE0A /* CompatibleTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompatibleTVCell.xib; sourceTree = "<group>"; };
 		9AC49E531A71A5A800F391C0 /* MultiScreenPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiScreenPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC49E571A71A5A800F391C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AC49E581A71A5A800F391C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -195,6 +201,8 @@
 		9A76A9061A7C0706007B05D4 /* CompatibleTVsView */ = {
 			isa = PBXGroup;
 			children = (
+				9A8EFDB11A852EDE001FEE0A /* CompatibleTVCell.swift */,
+				9A8EFDB21A852EDE001FEE0A /* CompatibleTVCell.xib */,
 				9A76A9071A7C071E007B05D4 /* CompatibleTVsView.swift */,
 				9A76A90A1A7C072A007B05D4 /* CompatibleTVsView.xib */,
 				9AC7F2DB1A813DC300CBC946 /* CompatibleTvsList.plist */,
@@ -466,6 +474,7 @@
 				9AC49E631A71A5A800F391C0 /* LaunchScreen.xib in Resources */,
 				9AC7F2D31A805C9E00CBC946 /* HomePhotoGalleryHeaderView.xib in Resources */,
 				9A36840E1A81835600B3C052 /* MoreMenuView.xib in Resources */,
+				9A8EFDB51A852EDE001FEE0A /* CompatibleTVCell.xib in Resources */,
 				9AC49E601A71A5A800F391C0 /* Images.xcassets in Resources */,
 				9A76A90B1A7C072A007B05D4 /* CompatibleTVsView.xib in Resources */,
 				9A76A9041A7AEEBD007B05D4 /* HowToVC.xib in Resources */,
@@ -482,6 +491,7 @@
 				9A76A9051A7AEEBD007B05D4 /* HowToVC.xib in Resources */,
 				9A76A8F81A7A83D8007B05D4 /* ServicesFoundTVCell.xib in Resources */,
 				9AC7F2D11A7C2A3F00CBC946 /* Roboto-Light.ttf in Resources */,
+				9A8EFDB61A852EDE001FEE0A /* CompatibleTVCell.xib in Resources */,
 				9AC7F2DD1A813DC300CBC946 /* CompatibleTvsList.plist in Resources */,
 				9AC49EC91A71A60D00F391C0 /* WelcomeView.xib in Resources */,
 				9A76A8EF1A7A818D007B05D4 /* ServicesFoundView.xib in Resources */,
@@ -523,6 +533,7 @@
 				9AC49E971A71A60000F391C0 /* Message.swift in Sources */,
 				9AC49EC61A71A60D00F391C0 /* WelcomeView.swift in Sources */,
 				9AC49EC01A71A60D00F391C0 /* HomePhotoGalleryVC.swift in Sources */,
+				9A8EFDB31A852EDE001FEE0A /* CompatibleTVCell.swift in Sources */,
 				9A36840C1A81834C00B3C052 /* MoreMenuView.swift in Sources */,
 				9AC49E8F1A71A60000F391C0 /* ChannelTransport.swift in Sources */,
 				9AC49E991A71A60000F391C0 /* Requester.swift in Sources */,
@@ -561,6 +572,7 @@
 				9AC49EA21A71A60000F391C0 /* WebSocketTransport.swift in Sources */,
 				9A75A94C1A83DC3B0051ABB6 /* CommonVCTest.swift in Sources */,
 				9AC49E8E1A71A60000F391C0 /* ChannelClient.swift in Sources */,
+				9A8EFDB41A852EDE001FEE0A /* CompatibleTVCell.swift in Sources */,
 				9AC49EBD1A71A60D00F391C0 /* MultiScreenManager.swift in Sources */,
 				9AC49E9A1A71A60000F391C0 /* Requester.swift in Sources */,
 				9A76A8F21A7A81A8007B05D4 /* ServicesFoundView.swift in Sources */,
