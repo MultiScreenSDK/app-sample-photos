@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -23,6 +23,9 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TJk-cX-G1X">
                             <rect key="frame" x="209" y="53" width="97" height="34"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="97" id="SF6-zL-SdM"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="18"/>
                             <state key="normal" title="MORE">
                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -35,10 +38,8 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="TJk-cX-G1X" secondAttribute="bottom" constant="481" id="7aw-0u-Dab"/>
-                        <constraint firstItem="TJk-cX-G1X" firstAttribute="top" secondItem="vCx-Cr-ab3" secondAttribute="top" constant="53" id="8Yx-lw-bgR"/>
-                        <constraint firstItem="TJk-cX-G1X" firstAttribute="leading" secondItem="vCx-Cr-ab3" secondAttribute="leading" constant="209" id="Ibg-Zz-k15"/>
-                        <constraint firstAttribute="trailing" secondItem="TJk-cX-G1X" secondAttribute="trailing" constant="14" id="m5Y-ku-Cu0"/>
+                        <constraint firstItem="TJk-cX-G1X" firstAttribute="top" secondItem="vCx-Cr-ab3" secondAttribute="top" constant="53" id="AVA-TL-wmE"/>
+                        <constraint firstAttribute="trailing" secondItem="TJk-cX-G1X" secondAttribute="trailing" constant="14" id="XIV-2s-2Nh"/>
                     </constraints>
                 </view>
             </subviews>

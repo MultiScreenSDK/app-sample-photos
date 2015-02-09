@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Roboto-Light.ttf">
@@ -20,7 +21,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fsi-aP-RFe">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="4"/>
+                            <rect key="frame" x="0.0" y="-3" width="600" height="4"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="4" id="GJu-ul-qjD"/>
@@ -52,7 +53,7 @@
                         <constraint firstItem="e5Z-vl-9sz" firstAttribute="top" secondItem="x3h-SK-yx7" secondAttribute="top" id="36f-Xr-Jta"/>
                         <constraint firstAttribute="trailing" secondItem="fsi-aP-RFe" secondAttribute="trailing" id="FpG-gh-Uwj"/>
                         <constraint firstAttribute="trailing" secondItem="npQ-sd-bOO" secondAttribute="trailing" constant="15" id="Oxh-si-kzJ"/>
-                        <constraint firstItem="fsi-aP-RFe" firstAttribute="top" secondItem="x3h-SK-yx7" secondAttribute="top" id="PKZ-cz-lGQ"/>
+                        <constraint firstItem="fsi-aP-RFe" firstAttribute="topMargin" secondItem="x3h-SK-yx7" secondAttribute="top" constant="5" id="PKZ-cz-lGQ"/>
                         <constraint firstItem="fsi-aP-RFe" firstAttribute="leading" secondItem="x3h-SK-yx7" secondAttribute="leading" id="QkE-OA-ohY"/>
                         <constraint firstAttribute="trailing" secondItem="e5Z-vl-9sz" secondAttribute="trailing" id="XEr-7e-qha"/>
                         <constraint firstAttribute="bottom" secondItem="e5Z-vl-9sz" secondAttribute="bottom" id="aPT-f5-NBc"/>

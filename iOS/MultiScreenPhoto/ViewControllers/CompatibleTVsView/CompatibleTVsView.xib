@@ -76,9 +76,10 @@
                                 <action selector="dropDownButtonSelected:" destination="iN0-l3-epB" eventType="touchUpInside" id="MKZ-dG-Pzm"/>
                             </connections>
                         </button>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="LCb-Cx-4HR">
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="42" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="LCb-Cx-4HR">
                             <rect key="frame" x="0.0" y="80" width="200" height="168"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <outlet property="dataSource" destination="iN0-l3-epB" id="Alm-2M-Ea0"/>
                                 <outlet property="delegate" destination="iN0-l3-epB" id="bbr-bX-vTA"/>

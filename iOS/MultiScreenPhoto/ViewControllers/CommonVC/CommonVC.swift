@@ -50,18 +50,16 @@ class CommonVC: UIViewController, MoreMenuViewDelegate {
         /// Configuring setting icon
         self.navigationItem.rightBarButtonItem = nil;
         let imageSettingsButton = UIImage(named: "btn_more_menu") as UIImage?
-        let settingsButton = UIButton(frame: CGRectMake(0,0,4,22))
+        let settingsButton = UIButton(frame: CGRectMake(0,0,20,22))
+        settingsButton.imageEdgeInsets = UIEdgeInsetsMake(0,8,0,8)
+        
         settingsButton.addTarget(self, action: Selector("showSettings"), forControlEvents: UIControlEvents.TouchUpInside)
-        settingsButton.setBackgroundImage(imageSettingsButton, forState: UIControlState.Normal)
+        settingsButton.setImage(imageSettingsButton, forState: UIControlState.Normal)
         var addSettingsButton: UIBarButtonItem = UIBarButtonItem(customView: settingsButton)
         
         /// Configuring Spacer between buttons
-        var addSpacerButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: self, action: Selector("showSettings"))
-        addSpacerButton.width = 7
-        
-        /// Configuring Spacer between buttons
-        var addSpacerButton2: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: self, action: Selector("showSettings"))
-        addSpacerButton2.width = 20
+        var addSpacerButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
+        addSpacerButton.width = 20
         
         /// Configuring cast icon
         /// Check if there is services availables
@@ -79,10 +77,10 @@ class CommonVC: UIViewController, MoreMenuViewDelegate {
             castButton.setBackgroundImage(imageCastButton, forState: UIControlState.Normal)
             var addCastButton: UIBarButtonItem = UIBarButtonItem(customView: castButton)
             
-            self.navigationItem.rightBarButtonItems = [addSpacerButton,addSettingsButton,addSpacerButton2,addCastButton]
+            self.navigationItem.rightBarButtonItems = [addSettingsButton,addSpacerButton,addCastButton]
         
         }else{
-            self.navigationItem.rightBarButtonItems = [addSpacerButton,addSettingsButton]
+            self.navigationItem.rightBarButtonItems = [addSettingsButton]
         }
     }
     
