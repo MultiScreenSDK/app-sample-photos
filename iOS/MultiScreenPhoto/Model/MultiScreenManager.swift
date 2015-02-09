@@ -156,7 +156,7 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
     func createApplication(service: Service,completionHandler: ((Bool!) -> Void)!){
         app = service.createApplication(NSURL(string: appURL)!,channelURI:channelId, args: nil)
         app.delegate = self
-        app.connectionTimeout = 3
+        app.connectionTimeout = 30
         app.connect(["name":UIDevice.currentDevice().name])
         app.start { (success, error) -> Void in
             completionHandler(success)

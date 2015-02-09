@@ -115,7 +115,11 @@ class Gallery: NSObject {
     /// Returns the number of assets for a given album
     /// :param:  album index
     func getNumOfAssetsByAlbum(albumIndex : Int)->Int{
-        return numOfAssetsByalbum[albumIndex]
+        if(numOfAssetsByalbum.count > 0){
+            return numOfAssetsByalbum[albumIndex]
+        }else{
+            return 0
+        }
     }
     
     /// Set isAlbumExpanded to true or false for a given album
@@ -128,7 +132,11 @@ class Gallery: NSObject {
     /// Returns if a given album is expanded
     /// :params:  album index
     func getIsAlbumExpanded(albumIndex : Int)-> Bool{
-        return isAlbumExpanded[albumIndex]
+        if(isAlbumExpanded.count > 0){
+            return isAlbumExpanded[albumIndex]
+        }else{
+            return false
+        }
     }
     
     /// Returns index from current album expanded
@@ -205,7 +213,7 @@ class Gallery: NSObject {
     func getThumnailFromAsset(asset: ALAsset!)->UIImage{
         var cgImage: CGImageRef
         if (asset.thumbnail() != nil){
-            cgImage = asset.thumbnail().takeUnretainedValue()
+            cgImage = asset.aspectRatioThumbnail().takeUnretainedValue()
             return UIImage(CGImage:cgImage)!
         }
         return UIImage(named: "placeholder-image")!
