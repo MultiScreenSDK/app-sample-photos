@@ -61,8 +61,8 @@ public enum ChannelEvent : String {
     case Data = "ms.channel.data"
     case Error = "ms.error"
     case Ready = "ms.channel.ready"
-    case Ping = "ms.channel.ping"
-}
+    case Ping = "ms:channel.ping"
+} 
 
 ///  @brief  RPCResultHandler is a container class for the result callback of RPC invocations
 ///

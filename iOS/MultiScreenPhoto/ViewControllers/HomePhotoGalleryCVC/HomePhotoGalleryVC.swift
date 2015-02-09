@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AssetsLibrary
 
 /// HomePhotoGalleryVC extend from CommonVC
 ///
@@ -48,7 +49,17 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         //Start searching for avaliables services in the network
         multiScreenManager.startSearching()
         
-        // Request for photo library access and retrieving albums
+        retrieveAlbums()
+        
+        // Add an observer to check if a new photo was added
+        NSNotificationCenter.defaultCenter().addObserverForName(ALAssetsLibraryChangedNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (mote :NSNotification!) -> Void in
+            self.retrieveAlbums()
+        }
+        
+    }
+    
+     // Request for photo library access and retrieving albums
+    func retrieveAlbums(){
         gallery.retrieveAlbums { (result:Bool!) -> Void in
             if(result == true){
                 self.openSectionIndex = self.gallery.getIndexFromCurrentAlbumExpanded()
@@ -60,7 +71,6 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
                 self.openSectionIndex = NSNotFound
             }
         }
-        
     }
     
     override func viewDidAppear(animated: Bool) {

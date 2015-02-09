@@ -23,7 +23,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQl-kF-OLU">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_top_welcome" translatesAutoresizingMaskIntoConstraints="NO" id="t2p-GJ-Hhf">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_welcome_ios" translatesAutoresizingMaskIntoConstraints="NO" id="t2p-GJ-Hhf">
                             <rect key="frame" x="20" y="28" width="339" height="220"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Jv-pu-dsi">
@@ -121,7 +121,7 @@
         </view>
     </objects>
     <resources>
-        <image name="img_top_welcome" width="955" height="630"/>
+        <image name="img_welcome_ios" width="955" height="630"/>
         <image name="wifi" width="64" height="44"/>
     </resources>
 </document>

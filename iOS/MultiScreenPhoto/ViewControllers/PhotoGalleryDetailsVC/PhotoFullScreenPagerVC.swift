@@ -140,6 +140,7 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     /// Delegate method that capture when the animation pager stops
     /// If next photo is displayed then start the Timer,
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool){
+        
         self.timer.invalidate()
         startSendImageTimer()
         
@@ -160,9 +161,6 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
         
         // Pass the image index to be load
         pageContentViewController.pageIndex = index
-        
-        /// Set the current photo index
-        currentIndex = index
         
         return pageContentViewController
     }
@@ -196,12 +194,12 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     
     /// Method used to send the current Photo to the TV
     func sendToTv() {
+        
         /// Check if there is an application current connected
         if(multiScreenManager.isApplicationConnected() == true){
-            
-            /// Detect the current Photo ViewController displayed
+            /// Set the current photo index
             var currentView: PhotoFullScreenVC = pageViewController?.viewControllers.last! as PhotoFullScreenVC
-            
+            println(currentView.pageIndex)
             /// Request the current image at index, from the device photo album
             gallery.requestImageAtIndex(gallery.currentAlbum,index: currentView.pageIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!,assetIndex:Int, containerId: Int ) -> Void in
                 /// Send the returned image to the TV
