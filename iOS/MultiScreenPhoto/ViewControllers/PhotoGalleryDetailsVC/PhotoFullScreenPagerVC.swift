@@ -79,8 +79,11 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
         // Configuring back icon
         self.navigationItem.leftBarButtonItems = nil;
         let imageBackButton = UIImage(named: "btn_back_arrow") as UIImage?
-        var addBackButton: UIBarButtonItem = UIBarButtonItem(image: imageBackButton, style: .Plain, target: self, action: "goBack")
-         self.navigationItem.leftBarButtonItems = [addBackButton]
+        let backButton = UIButton(frame: CGRectMake(0,0,11,19))
+        backButton.addTarget(self, action: Selector("goBack"), forControlEvents: UIControlEvents.TouchUpInside)
+        backButton.setBackgroundImage(imageBackButton, forState: UIControlState.Normal)
+        var addBackButton: UIBarButtonItem = UIBarButtonItem(customView: backButton)
+        self.navigationItem.leftBarButtonItems = [addBackButton]
         
     }
     /// Method used to dismiss the current view controller

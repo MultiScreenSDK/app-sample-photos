@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A386a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -19,17 +19,25 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x3h-SK-yx7">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-arrow-down" translatesAutoresizingMaskIntoConstraints="NO" id="npQ-sd-bOO">
-                            <rect key="frame" x="566" y="17" width="19" height="11"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fsi-aP-RFe">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="4"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="11" id="cSN-vk-oh8"/>
-                                <constraint firstAttribute="width" constant="19" id="ueU-V5-7Ij"/>
+                                <constraint firstAttribute="height" constant="4" id="GJu-ul-qjD"/>
+                            </constraints>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="npQ-sd-bOO">
+                            <rect key="frame" x="566" y="19" width="19" height="11"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="19" id="Fgk-om-VAz"/>
+                                <constraint firstAttribute="height" constant="11" id="ita-Qh-Dbr"/>
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e5Z-vl-9sz">
-                            <rect key="frame" x="11" y="0.0" width="584" height="45"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="15"/>
+                            <inset key="contentEdgeInsets" minX="12" minY="7" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Title">
                                 <color key="titleColor" red="0.69019607839999997" green="0.69019607839999997" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -38,32 +46,26 @@
                                 <action selector="selectedButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="M9Z-Z2-iPy"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-album-cell-bottom" translatesAutoresizingMaskIntoConstraints="NO" id="fsi-aP-RFe">
-                            <rect key="frame" x="0.0" y="-2" width="600" height="4"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="4" id="B8S-Zu-eTi"/>
-                            </constraints>
-                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.25882352941176473" green="0.25882352941176473" blue="0.25882352941176473" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="e5Z-vl-9sz" secondAttribute="trailing" constant="5" id="3TW-Fh-f58"/>
-                        <constraint firstItem="npQ-sd-bOO" firstAttribute="centerY" secondItem="e5Z-vl-9sz" secondAttribute="centerY" id="EEu-iN-4PK"/>
-                        <constraint firstAttribute="trailing" secondItem="npQ-sd-bOO" secondAttribute="trailing" constant="15" id="Kdz-bB-EKL"/>
-                        <constraint firstItem="fsi-aP-RFe" firstAttribute="leading" secondItem="x3h-SK-yx7" secondAttribute="leading" id="PdF-KI-NVi"/>
-                        <constraint firstAttribute="bottom" secondItem="e5Z-vl-9sz" secondAttribute="bottom" id="SOo-1M-0YX"/>
-                        <constraint firstItem="e5Z-vl-9sz" firstAttribute="leading" secondItem="x3h-SK-yx7" secondAttribute="leading" constant="11" id="WfK-36-4dV"/>
-                        <constraint firstItem="e5Z-vl-9sz" firstAttribute="top" secondItem="x3h-SK-yx7" secondAttribute="top" id="fny-Ph-66w"/>
-                        <constraint firstItem="fsi-aP-RFe" firstAttribute="top" secondItem="x3h-SK-yx7" secondAttribute="top" constant="-2" id="wqC-RV-eW3"/>
-                        <constraint firstAttribute="trailing" secondItem="fsi-aP-RFe" secondAttribute="trailing" id="y5v-r3-Vti"/>
+                        <constraint firstItem="e5Z-vl-9sz" firstAttribute="top" secondItem="x3h-SK-yx7" secondAttribute="top" id="36f-Xr-Jta"/>
+                        <constraint firstAttribute="trailing" secondItem="fsi-aP-RFe" secondAttribute="trailing" id="FpG-gh-Uwj"/>
+                        <constraint firstAttribute="trailing" secondItem="npQ-sd-bOO" secondAttribute="trailing" constant="15" id="Oxh-si-kzJ"/>
+                        <constraint firstItem="fsi-aP-RFe" firstAttribute="top" secondItem="x3h-SK-yx7" secondAttribute="top" id="PKZ-cz-lGQ"/>
+                        <constraint firstItem="fsi-aP-RFe" firstAttribute="leading" secondItem="x3h-SK-yx7" secondAttribute="leading" id="QkE-OA-ohY"/>
+                        <constraint firstAttribute="trailing" secondItem="e5Z-vl-9sz" secondAttribute="trailing" id="XEr-7e-qha"/>
+                        <constraint firstAttribute="bottom" secondItem="e5Z-vl-9sz" secondAttribute="bottom" id="aPT-f5-NBc"/>
+                        <constraint firstItem="e5Z-vl-9sz" firstAttribute="leading" secondItem="x3h-SK-yx7" secondAttribute="leading" id="gLQ-nT-XaH"/>
+                        <constraint firstItem="npQ-sd-bOO" firstAttribute="top" secondItem="x3h-SK-yx7" secondAttribute="top" constant="19" id="oJ5-WC-XI8"/>
                     </constraints>
                 </view>
             </subviews>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="x3h-SK-yx7" secondAttribute="bottom" id="MnC-jY-CZm"/>
-                <constraint firstItem="x3h-SK-yx7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="T9U-P2-nbV"/>
-                <constraint firstAttribute="trailing" secondItem="x3h-SK-yx7" secondAttribute="trailing" id="Wwx-w2-M2d"/>
-                <constraint firstItem="x3h-SK-yx7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="vch-O3-sPe"/>
+                <constraint firstItem="x3h-SK-yx7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="A0e-4Z-dJm"/>
+                <constraint firstAttribute="bottom" secondItem="x3h-SK-yx7" secondAttribute="bottom" id="DAS-CU-ZLU"/>
+                <constraint firstAttribute="trailing" secondItem="x3h-SK-yx7" secondAttribute="trailing" id="arZ-ZV-h1v"/>
+                <constraint firstItem="x3h-SK-yx7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hkC-rB-5mW"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
@@ -75,7 +77,6 @@
         </view>
     </objects>
     <resources>
-        <image name="icon-arrow-down" width="58" height="35"/>
-        <image name="img-album-cell-bottom" width="1080" height="25"/>
+        <image name="icon_arrow_down" width="58" height="35"/>
     </resources>
 </document>

@@ -51,10 +51,10 @@ class ServicesFoundHeaderVIew: UIView {
             
             if(isConnected){
                 title.text = "Connected to:"
-                icon.image = UIImage(named: "btn_cast_on")
+                icon.image = UIImage(named: "icon_cast_connect")
             }else{
                 title.text = "Connect to:"
-                icon.image = UIImage(named: "btn_cast_off")
+                icon.image = UIImage(named: "icon_cast_discovered")
             }
         }
     }

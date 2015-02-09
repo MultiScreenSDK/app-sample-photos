@@ -44,8 +44,11 @@ class HowToVC: UIViewController {
         
         /// Configuring the back icon
         self.navigationItem.leftBarButtonItems = nil;
-        let imageBackButton = UIImage(named: "btn-back-more") as UIImage?
-        var addBackButton: UIBarButtonItem = UIBarButtonItem(image: imageBackButton, style: .Plain, target: self, action: "goBack")
+        let imageBackButton = UIImage(named: "btn_back_more") as UIImage?
+        let backMoreButton = UIButton(frame: CGRectMake(0,0,65,17))
+        backMoreButton.addTarget(self, action: Selector("goBack"), forControlEvents: UIControlEvents.TouchUpInside)
+        backMoreButton.setBackgroundImage(imageBackButton, forState: UIControlState.Normal)
+        var addBackButton: UIBarButtonItem = UIBarButtonItem(customView: backMoreButton)
         self.navigationItem.leftBarButtonItems = [addBackButton]
         
     }

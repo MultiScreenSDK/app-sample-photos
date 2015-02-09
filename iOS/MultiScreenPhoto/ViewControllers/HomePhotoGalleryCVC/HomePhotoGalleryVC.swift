@@ -110,7 +110,7 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
     
     /// Method used to calculate the number of rows for a given section and number of assets for album
     func numOfRowsInSection(section: Int)-> Int{
-        if(section == openSectionIndex && openSectionIndex != NSNotFound){
+        if(gallery.getIsAlbumExpanded(section)){
             var numRow = Double(gallery.getNumOfAssetsByAlbum(section)) / 5
             var numRowMod = gallery.getNumOfAssetsByAlbum(section) % 5
             if(numRow > 0){
@@ -155,7 +155,7 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         cell.section = indexPath.section
         
         cell.delegate = self
-        cell.layer.zPosition = CGFloat(indexPath.row) * -1
+        cell.layer.zPosition = -1//CGFloat(indexPath.row) * -1
         
         // Adding the photos to the cell
         var currentAssetIndex = indexPath.row * 5
@@ -217,16 +217,18 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
     // Animate the section to collapse
     func collapseSection(section : Int){
         
-        openSectionIndex = NSNotFound;
+        dataSourceAlbumCountToRemove = Int(self.numOfRowsInSection(section))
         var indexPathsToDelete = [NSIndexPath]()
         for (var i=0;i < dataSourceAlbumCountToRemove; i++) {
             indexPathsToDelete.append(NSIndexPath(forRow: i, inSection: section))
         }
+        
+        gallery.setIsAlbumExpanded(section, isExpanded: false)
         tableView!.beginUpdates()
         tableView!.deleteRowsAtIndexPaths(indexPathsToDelete, withRowAnimation: UITableViewRowAnimation.Top)
         tableView!.endUpdates()
         
-        gallery.setIsAlbumExpanded(section, isExpanded: false)
+       
         dataSourceAlbumCountToRemove = 0
         updateHeaderView(section)
         
@@ -235,28 +237,13 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
     // Animate the section to expand
     func expandSection(section : Int){
         
-        var previousOpenSectionIndex = openSectionIndex;
-        
-        /*
-        Create an array containing the index paths of the rows to delete: These correspond to the rows for each quotation in the current section.
-        */
-        var indexPathsToDelete = [NSIndexPath]()
-        if (previousOpenSectionIndex != NSNotFound) {
-            gallery.setIsAlbumExpanded(previousOpenSectionIndex, isExpanded: false)
-            updateHeaderView(previousOpenSectionIndex)
-            for (var i=0;i < dataSourceAlbumCountToRemove; i++) {
-                indexPathsToDelete.append(NSIndexPath(forRow: i, inSection: previousOpenSectionIndex))
-            }
-        }
-        
-        openSectionIndex = section;
+        gallery.setIsAlbumExpanded(section, isExpanded: true)
         dataSourceAlbumCountToInsert = Int(self.numOfRowsInSection(section))
-        dataSourceAlbumCountToRemove = dataSourceAlbumCountToInsert
         
         /*
         Create an array containing the index paths of the rows to insert: These correspond to the rows for each quotation in the current section.
         */
-         gallery.setIsAlbumExpanded(section, isExpanded: true)
+        
         var indexPathsToInsert = [NSIndexPath]()
         updateHeaderView(section)
         for (var i=0;i < dataSourceAlbumCountToInsert; i++) {
@@ -264,21 +251,9 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         }
         
         // style the animation so that there's a smooth flow in either direction
-        var insertAnimation : UITableViewRowAnimation
-        var deleteAnimation :UITableViewRowAnimation
-        if (previousOpenSectionIndex == NSNotFound || section < previousOpenSectionIndex) {
-            insertAnimation = UITableViewRowAnimation.Top;
-            deleteAnimation = UITableViewRowAnimation.Bottom;
-        }
-        else {
-            insertAnimation = UITableViewRowAnimation.Bottom;
-            deleteAnimation = UITableViewRowAnimation.Top
-        }
-        
         // apply the updates
         tableView!.beginUpdates()
-        tableView!.deleteRowsAtIndexPaths(indexPathsToDelete, withRowAnimation: UITableViewRowAnimation.None)
-        tableView!.insertRowsAtIndexPaths(indexPathsToInsert, withRowAnimation: insertAnimation)
+        tableView!.insertRowsAtIndexPaths(indexPathsToInsert, withRowAnimation: UITableViewRowAnimation.Top)
         tableView!.endUpdates()
         
     }

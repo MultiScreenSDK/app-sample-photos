@@ -103,7 +103,7 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
             expandSection(1)
             isExpandedInchesSection = false
             
-            imageViewArrow.image = UIImage(named: "icon-arrow-down")!
+            imageViewArrow.image = UIImage(named: "icon_arrow_down")!
             /// Change the title of the selectedInchesTitle
             selectedInchesTitle.titleLabel?.text =  selectedInches.objectForKey("name") as? String
             
@@ -117,11 +117,11 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
         if(isExpandedInchesSection){
             collapseSection(0)
             isExpandedInchesSection = false
-            imageViewArrow.image = UIImage(named: "icon-arrow-down")!
+            imageViewArrow.image = UIImage(named: "icon_arrow_down")!
         }else{
             expandSection(0)
             isExpandedInchesSection = true
-            imageViewArrow.image = UIImage(named: "icon-arrow-up")!
+            imageViewArrow.image = UIImage(named: "icon_arrow_up")!
         }
         
     }
