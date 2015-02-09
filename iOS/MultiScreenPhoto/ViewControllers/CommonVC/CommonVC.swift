@@ -65,7 +65,7 @@ class CommonVC: UIViewController, MoreMenuViewDelegate, ServicesFoundViewDelegat
         
         /// Configuring cast icon
         /// Check if there is services availables
-        if(multiScreenManager.getServices().count >= 0){
+        if(multiScreenManager.getServices().count > 0){
             
             /// Check if there is an application current connected
             if(multiScreenManager.isApplicationConnected() == true){
