@@ -43,11 +43,10 @@ class ServicesFoundHeaderVIew: UIView {
             disconnectButton.hidden = !isConnected
             service.hidden = !isConnected
             line.hidden = !isConnected
-            switchToView.hidden = !isConnected
             linebottom.hidden = !isConnected
             disconnectButton.layer.cornerRadius = 0
             disconnectButton.layer.borderWidth = 0.5
-            disconnectButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+            disconnectButton.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1).CGColor
             
             if(isConnected){
                 title.text = "Connected to:"
@@ -56,6 +55,14 @@ class ServicesFoundHeaderVIew: UIView {
                 title.text = "Connect to:"
                 icon.image = UIImage(named: "icon_cast_discovered")
             }
+        }
+    }
+    
+    /// Variable used to set the header status
+    /// If there is only one device, then hide the switch to view
+    var showSwitchToView: Bool = false {
+        didSet {
+            switchToView.hidden = !showSwitchToView
         }
     }
     

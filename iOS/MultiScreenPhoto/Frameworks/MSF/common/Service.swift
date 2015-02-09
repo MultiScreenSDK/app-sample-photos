@@ -24,6 +24,7 @@ THE SOFTWARE.
 
 import Foundation
 
+
 public typealias GetServiceCompletionHandler = (service: Service?, error: NSError? ) -> Void
 
 ///  A Service instance represents the multiscreen service root on the remote device
@@ -36,6 +37,8 @@ public typealias GetServiceCompletionHandler = (service: Service?, error: NSErro
     internal var requireRechabilty = false
 
     internal var usePublicURI = false
+
+    internal var providers = NSMutableSet()
 
     private var discoveryRecord: [String:String]
 
@@ -84,23 +87,25 @@ public typealias GetServiceCompletionHandler = (service: Service?, error: NSErro
 
     ///  This asynchronously method retrieves a dictionary of additional information about the device the service is running on
     ///
+    ///  :param: timeout: timeout
+    ///
     ///  :param: completionHandler: A block to handle the response dictionary
     ///
     ///     - deviceInfo: The device info dictionary
     ///     - error: An error info if getDeviceInfo failed
-    public func getDeviceInfo(completionHandler: (deviceInfo: [String:String]?, error: NSError?) -> Void ) {
-        let doGetCompletionHandler : RequestCompletionHandler = { (responseHeaders: Dictionary<String,String>?, data: NSData?, error: NSError?)  in
+    public func getDeviceInfo(timeout: Int, completionHandler: (deviceInfo: [String:AnyObject]?, error: NSError?) -> Void ) {
+        let doGetCompletionHandler : RequestCompletionHandler = { (responseHeaders: [String:String]?, data: NSData?, error: NSError?)  in
 
             if error != nil {
                 completionHandler(deviceInfo: nil, error: error)
             } else {
                 var err: NSError?
-                let jsonResult : [String:String]? = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: &err) as? [String:String]
+                let jsonResult : [String:AnyObject]? = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers, error: &err) as? [String:AnyObject]
 
                 completionHandler(deviceInfo: jsonResult, error: err)
             }
         }
-        Requester.doGet(uri, headers: [:] , timeout: 10, completionHandler: doGetCompletionHandler)
+        Requester.doGet(uri, headers: [:] , timeout: NSTimeInterval(timeout), completionHandler: doGetCompletionHandler)
     }
 
     ///  Creates an application instance belonging to that service
@@ -110,11 +115,13 @@ public typealias GetServiceCompletionHandler = (service: Service?, error: NSErro
     ///   - For an installed application this is the string id as provided by Samsung, If your TV app is still in development, you can use the folder name of your app as the id. Once the TV app has been released into Samsung Apps, you must use the supplied app id.`
     ///   - For a cloud application this is the application's URL
     ///
-    ///  :param: channelURI The uri of the Channel ("com.samsung.multiscreen.helloworld")
+    ///  :param: channelURI: The uri of the Channel ("com.samsung.multiscreen.helloworld")
     ///
+    ///  :param: args: A dictionary of command line aruguments to be passed to the Host TV App
     ///  :returns: An Application instance or nil if application id or channel id is empty
-    public func createApplication(id: AnyObject, channelURI: String) -> Application? {
-        return Application(appId: id, channelURI: channelURI, service: self)
+    public func createApplication(id: AnyObject, channelURI: String, args: [String:AnyObject]?) -> Application? {
+        let app = Application(appId: id, channelURI: channelURI, service: self, args: args)
+        return app
     }
 
     ///  Creates a channel instance belonging to that service ("mychannel")
@@ -192,7 +199,7 @@ public typealias GetServiceCompletionHandler = (service: Service?, error: NSErro
         }
         search.start()
     }
-
+    
 }
 
 public func == (lhs: Service, rhs: Service) -> Bool {

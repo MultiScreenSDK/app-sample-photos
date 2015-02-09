@@ -21,22 +21,39 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TV LABEL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdR-dM-YU3">
-                        <rect key="frame" x="9" y="8" width="304" height="14"/>
-                        <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="15"/>
+                        <rect key="frame" x="12" y="8" width="301" height="14"/>
+                        <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="12"/>
                         <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IiV-zR-1Zl">
+                        <rect key="frame" x="0.0" y="29" width="320" height="1"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="WEX-Sx-883">
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="constant">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </constraint>
+                        </constraints>
+                    </imageView>
                 </subviews>
-                <color key="backgroundColor" red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" red="0.25882352941176473" green="0.25882352941176473" blue="0.25882352941176473" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="WdR-dM-YU3" secondAttribute="bottom" id="0vb-ep-kTC"/>
-                    <constraint firstItem="WdR-dM-YU3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="1" id="2lZ-kE-Jaq"/>
+                    <constraint firstItem="WdR-dM-YU3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="4" id="2lZ-kE-Jaq"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="IiV-zR-1Zl" secondAttribute="bottomMargin" id="NCl-ds-fCC"/>
                     <constraint firstItem="WdR-dM-YU3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="RsX-wk-eox"/>
                     <constraint firstItem="WdR-dM-YU3" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="1" id="Y5L-AZ-Sfx"/>
+                    <constraint firstItem="IiV-zR-1Zl" firstAttribute="leadingMargin" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="p8S-t8-Tk4"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="IiV-zR-1Zl" secondAttribute="trailingMargin" id="vHB-E4-v6g"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
+                <outlet property="imageSeparator" destination="IiV-zR-1Zl" id="Siv-j6-2dm"/>
                 <outlet property="title" destination="WdR-dM-YU3" id="HEX-sQ-8v8"/>
             </connections>
             <point key="canvasLocation" x="213" y="133"/>

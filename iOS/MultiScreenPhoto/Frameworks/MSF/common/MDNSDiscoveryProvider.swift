@@ -24,10 +24,7 @@ THE SOFTWARE.
 
 import Foundation
 
-class MDNSDiscoveryProvider: NSObject, NSNetServiceBrowserDelegate, NSNetServiceDelegate, ServiceSearchProvider {
-
-    // An optional id to parametrize the search
-    private var id: String?
+class MDNSDiscoveryProvider: ServiceSearchProviderBase, NSNetServiceBrowserDelegate, NSNetServiceDelegate {
 
     // The service domain
     private let ServiceDomain = "local"
@@ -43,20 +40,9 @@ class MDNSDiscoveryProvider: NSObject, NSNetServiceBrowserDelegate, NSNetService
     // The service browser
     private let serviceBrowser = NSNetServiceBrowser()
 
-    var isSearching = false
-
-    weak var delegate: ServiceSearchProviderDelegate? = nil
-
-    required init(delegate: ServiceSearchProviderDelegate) {
-        self.delegate  = delegate
-        super.init()
-        serviceBrowser.delegate = self
-    }
-
-    required init(delegate: ServiceSearchProviderDelegate, id: String) {
-        self.delegate  = delegate
-        self.id = id
-        super.init()
+    required init(delegate: ServiceSearchProviderDelegate, id: String?) {
+        super.init(delegate: delegate, id: id)
+        type = ServiceSearchProviderType.MDNS
         serviceBrowser.delegate = self
     }
 
@@ -66,7 +52,7 @@ class MDNSDiscoveryProvider: NSObject, NSNetServiceBrowserDelegate, NSNetService
     }
 
     // Start the search
-    func search() {
+    override func search() {
         // Cancel the previous search if any
         if isSearching {
             serviceBrowser.stop()
@@ -74,14 +60,16 @@ class MDNSDiscoveryProvider: NSObject, NSNetServiceBrowserDelegate, NSNetService
 
         if id == nil {
             serviceBrowser.searchForServicesOfType(ServiceType, inDomain: ServiceDomain)
+            //serviceBrowser.scheduleInRunLoop(NSRunLoop.currentRunLoop(), forMode: NSRunLoopCommonModes)
         } else {
             var aNetService = NSNetService(domain: ServiceDomain, type: ServiceType, name: id!)
             netServiceBrowser(nil, didFindService: aNetService, moreComing: false)
         }
+
     }
 
     // Stops the search
-    func stop() {
+    override func stop() {
         isSearching = false
         serviceBrowser.stop()
     }
@@ -103,20 +91,22 @@ class MDNSDiscoveryProvider: NSObject, NSNetServiceBrowserDelegate, NSNetService
 
     func netServiceBrowserWillSearch(aNetServiceBrowser: NSNetServiceBrowser) {
         isSearching = true
-        delegate?.onStart()
+        delegate?.onStart(self)
     }
 
     func netServiceBrowserDidStopSearch(aNetServiceBrowser: NSNetServiceBrowser) {
+        delegate?.clearCacheForProvider(self)
         netServices.removeAll(keepCapacity: false) // clear the cache
         if isSearching {
             search()
         } else {
-            delegate?.onStop()
+            delegate?.onStop(self)
         }
     }
 
     func netServiceBrowser(aNetServiceBrowser: NSNetServiceBrowser!, didNotSearch errorDict: [NSObject : AnyObject]!) {
         serviceBrowser.stop()
+        netServiceBrowserDidStopSearch(aNetServiceBrowser)
     }
 
     func netServiceBrowser(aNetServiceBrowser: NSNetServiceBrowser!, didFindService aNetService: NSNetService!, moreComing: Bool) {
@@ -134,14 +124,14 @@ class MDNSDiscoveryProvider: NSObject, NSNetServiceBrowserDelegate, NSNetService
         aNetService.stop()
         aNetService.delegate = nil
         removeService(aNetService)
-        delegate?.onServiceLost(aNetService.name)
+        delegate?.onServiceLost(aNetService.name, provider: self)
     }
 
     // MARK: - NSNetServiceDelegate  -
 
     func netService(aNetService: NSNetService, didNotResolve errorDict: [NSObject : AnyObject]) {
         if id != nil {
-            delegate?.onStop()
+            delegate?.onStop(self)
         } else if retryResolve.containsObject(aNetService.name) {
             retryResolve.removeObject(aNetService.name)
             removeService(aNetService)
@@ -172,7 +162,12 @@ class MDNSDiscoveryProvider: NSObject, NSNetServiceBrowserDelegate, NSNetService
                     info[key as String] = val
                 }
                 let service = Service(txtRecordDictionary: info)
-                delegate?.onServiceFound(service)
+                service.getDeviceInfo(2) { [unowned self] (deviceInfo, error) -> Void in
+                    if self.delegate != nil && (error == nil && deviceInfo != nil) {
+                        self.delegate!.onServiceFound(service, provider: self)
+                    }
+                }
+
             }
         }
         //release resources

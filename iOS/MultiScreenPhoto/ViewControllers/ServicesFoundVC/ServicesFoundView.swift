@@ -8,12 +8,6 @@
 
 import UIKit
 
-/// ServicesFoundViewDelegate
-///
-/// This delegate is used to send a photo to the Service if the user is current in the full photo view
-protocol ServicesFoundViewDelegate {
-    func sendToTv()
-}
 
 /// ServicesFoundView
 ///
@@ -31,8 +25,6 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
     
     /// Temp array of services
     var services = [AnyObject]()
-    
-    var delegate: ServicesFoundViewDelegate!
     
     override func awakeFromNib(){
         super.awakeFromNib()
@@ -87,7 +79,11 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
     func tableView(tableView: UITableView!, heightForHeaderInSection section: Int) -> CGFloat {
         /// Returning the height of the header depending if an Application is connected
         if(multiScreenManager.isApplicationConnected() == true){
-            return 160
+            if(services.count>0){
+              return 160
+            }else{
+              return 123
+            }
         }else{
             return 40
         }
@@ -101,6 +97,9 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
         
         /// Set the isConnected var will hide or show the header view Outlets
         headerView.isConnected = multiScreenManager.isApplicationConnected()
+        
+        /// Set the showSwitchToView var will hide or show the swicth to view Outlet
+        headerView.showSwitchToView = (services.count>0 && multiScreenManager.isApplicationConnected())
         
         /// If there is an application connected then displays the name of the service
         if(multiScreenManager.isApplicationConnected() == true){
@@ -119,7 +118,6 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
                 /// this notification is used to update the cast icon
             NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
             if((success) == true){
-                self.delegate.sendToTv()
                 self.removeFromSuperview()
             }
         })

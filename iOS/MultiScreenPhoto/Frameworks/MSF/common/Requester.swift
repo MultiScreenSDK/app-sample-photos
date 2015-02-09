@@ -106,8 +106,6 @@ class Requester {
 
         NSURLConnection.sendAsynchronousRequest(req, queue: queue) { (response, data, error) -> Void in
             if error != nil {
-                /// Connection error
-                println(error.localizedDescription)
                 completionHandler(responseHeaders: [:], data: data, error: error)
             } else {
                 /// Check for HTTP error
@@ -116,7 +114,7 @@ class Requester {
                     completionHandler(responseHeaders: httpResponse.allHeaderFields as? Dictionary<String,String>, data: data, error: error)
                 } else {
                     var errorMessage = "The server responded with code \(httpResponse.statusCode)"
-                    if  let jsonResponse  = JSON.parse(data) as? NSDictionary {
+                    if  let jsonResponse  = JSON.parse(data: data) as? NSDictionary {
                         errorMessage = jsonResponse["message"]! as String
                     }
 

@@ -60,8 +60,6 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
                 self.openSectionIndex = NSNotFound
             }
         }
-        // Calculate the cell size
-        cellHeight = screenSize.size.width/screenSizeDivisor
         
     }
     
@@ -86,6 +84,14 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         super.viewWillAppear(animated)
         // Method to setup the navigation bar color and fonts
         setUpNavigationBar()
+        
+        // Calculate the cell size
+        if UIDevice.currentDevice().orientation.isLandscape.boolValue {
+            cellHeight = screenSize.size.height/screenSizeDivisor
+        } else {
+            cellHeight = screenSize.size.width/screenSizeDivisor
+        }
+        tableView.reloadData()
     }
     
     

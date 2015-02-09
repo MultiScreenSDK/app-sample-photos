@@ -39,11 +39,7 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
     override func awakeFromNib(){
         super.awakeFromNib()
         
-        var frame = tableView.frame
-        frame.size.height = CGFloat(440)
-        tableView.frame = frame
-        tableView.rowHeight = 30
-    
+        
         /// Configuring the tableView cell
         tableView.registerNib(UINib(nibName: "CompatibleTVCell", bundle: nil), forCellReuseIdentifier: compatibleTVCell)
         
@@ -71,23 +67,35 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
         return numOfRowsInSection(section);
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+        if(indexPath.section == 0){
+            return 42
+        }else{
+            return 27
+        }
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
         var text: String
         
-        if(indexPath.section == 0){
-            var incheDict = inchesArray[indexPath.row] as NSDictionary
-            text = incheDict.objectForKey("name") as String
-        }else{
-            text = modelsArray[indexPath.row] as String
-        }
-        
         /// Setting the custom cell view
         var cell : CompatibleTVCell
         cell = tableView.dequeueReusableCellWithIdentifier(compatibleTVCell, forIndexPath: indexPath) as CompatibleTVCell
+        
+        if(indexPath.section == 0){
+            var incheDict = inchesArray[indexPath.row] as NSDictionary
+            text = incheDict.objectForKey("name") as String
+            cell.imageSeparator.hidden = false
+        }else{
+            text = modelsArray[indexPath.row] as String
+            cell.imageSeparator.hidden = true
+        }
+        
         cell.title.textColor = UIColor.whiteColor()
-        cell.title.textAlignment = .Center
-        cell.title.attributedText = NSMutableAttributedString(string: text, attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 14.0)!])
+        cell.title.textAlignment = .Left
+        cell.title.text = text
+        //cell.title.attributedText = NSMutableAttributedString(string: text, attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 12.0)!])
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         
         return cell

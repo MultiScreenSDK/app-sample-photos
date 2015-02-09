@@ -15,5 +15,6 @@ class CompatibleTVCell: UITableViewCell {
 
     /// Title of the cell
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var imageSeparator: UIImageView!
     
 }

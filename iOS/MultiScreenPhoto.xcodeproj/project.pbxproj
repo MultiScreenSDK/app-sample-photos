@@ -38,39 +38,50 @@
 		9A8EFDB41A852EDE001FEE0A /* CompatibleTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDB11A852EDE001FEE0A /* CompatibleTVCell.swift */; };
 		9A8EFDB51A852EDE001FEE0A /* CompatibleTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8EFDB21A852EDE001FEE0A /* CompatibleTVCell.xib */; };
 		9A8EFDB61A852EDE001FEE0A /* CompatibleTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A8EFDB21A852EDE001FEE0A /* CompatibleTVCell.xib */; };
+		9A8EFDFB1A88FDC7001FEE0A /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDE41A88FDC7001FEE0A /* Application.swift */; };
+		9A8EFDFC1A88FDC7001FEE0A /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDE41A88FDC7001FEE0A /* Application.swift */; };
+		9A8EFDFD1A88FDC7001FEE0A /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDE51A88FDC7001FEE0A /* Channel.swift */; };
+		9A8EFDFE1A88FDC7001FEE0A /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDE51A88FDC7001FEE0A /* Channel.swift */; };
+		9A8EFDFF1A88FDC7001FEE0A /* ChannelClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDE61A88FDC7001FEE0A /* ChannelClient.swift */; };
+		9A8EFE001A88FDC7001FEE0A /* ChannelClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDE61A88FDC7001FEE0A /* ChannelClient.swift */; };
+		9A8EFE011A88FDC7001FEE0A /* ChannelTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDE71A88FDC7001FEE0A /* ChannelTransport.swift */; };
+		9A8EFE021A88FDC7001FEE0A /* ChannelTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDE71A88FDC7001FEE0A /* ChannelTransport.swift */; };
+		9A8EFE031A88FDC7001FEE0A /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDE81A88FDC7001FEE0A /* Device.swift */; };
+		9A8EFE041A88FDC7001FEE0A /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDE81A88FDC7001FEE0A /* Device.swift */; };
+		9A8EFE051A88FDC7001FEE0A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDE91A88FDC7001FEE0A /* JSON.swift */; };
+		9A8EFE061A88FDC7001FEE0A /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDE91A88FDC7001FEE0A /* JSON.swift */; };
+		9A8EFE071A88FDC7001FEE0A /* MDNSDiscoveryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDEA1A88FDC7001FEE0A /* MDNSDiscoveryProvider.swift */; };
+		9A8EFE081A88FDC7001FEE0A /* MDNSDiscoveryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDEA1A88FDC7001FEE0A /* MDNSDiscoveryProvider.swift */; };
+		9A8EFE091A88FDC7001FEE0A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDEB1A88FDC7001FEE0A /* Message.swift */; };
+		9A8EFE0A1A88FDC7001FEE0A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDEB1A88FDC7001FEE0A /* Message.swift */; };
+		9A8EFE0B1A88FDC7001FEE0A /* MSFDiscoveryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDEC1A88FDC7001FEE0A /* MSFDiscoveryProvider.swift */; };
+		9A8EFE0C1A88FDC7001FEE0A /* MSFDiscoveryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDEC1A88FDC7001FEE0A /* MSFDiscoveryProvider.swift */; };
+		9A8EFE0D1A88FDC7001FEE0A /* Requester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDED1A88FDC7001FEE0A /* Requester.swift */; };
+		9A8EFE0E1A88FDC7001FEE0A /* Requester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDED1A88FDC7001FEE0A /* Requester.swift */; };
+		9A8EFE0F1A88FDC7001FEE0A /* RPCMessaje.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDEE1A88FDC7001FEE0A /* RPCMessaje.swift */; };
+		9A8EFE101A88FDC7001FEE0A /* RPCMessaje.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDEE1A88FDC7001FEE0A /* RPCMessaje.swift */; };
+		9A8EFE111A88FDC7001FEE0A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDEF1A88FDC7001FEE0A /* Service.swift */; };
+		9A8EFE121A88FDC7001FEE0A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDEF1A88FDC7001FEE0A /* Service.swift */; };
+		9A8EFE131A88FDC7001FEE0A /* ServiceSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF01A88FDC7001FEE0A /* ServiceSearch.swift */; };
+		9A8EFE141A88FDC7001FEE0A /* ServiceSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF01A88FDC7001FEE0A /* ServiceSearch.swift */; };
+		9A8EFE151A88FDC7001FEE0A /* WebSocketTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF11A88FDC7001FEE0A /* WebSocketTransport.swift */; };
+		9A8EFE161A88FDC7001FEE0A /* WebSocketTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF11A88FDC7001FEE0A /* WebSocketTransport.swift */; };
+		9A8EFE171A88FDC7001FEE0A /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF51A88FDC7001FEE0A /* GCDAsyncUdpSocket.m */; };
+		9A8EFE181A88FDC7001FEE0A /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF51A88FDC7001FEE0A /* GCDAsyncUdpSocket.m */; };
+		9A8EFE191A88FDC7001FEE0A /* README.markdown in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF61A88FDC7001FEE0A /* README.markdown */; };
+		9A8EFE1A1A88FDC7001FEE0A /* README.markdown in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF61A88FDC7001FEE0A /* README.markdown */; };
+		9A8EFE1B1A88FDC7001FEE0A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF81A88FDC7001FEE0A /* LICENSE */; };
+		9A8EFE1C1A88FDC7001FEE0A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF81A88FDC7001FEE0A /* LICENSE */; };
+		9A8EFE1D1A88FDC7001FEE0A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF91A88FDC7001FEE0A /* README.md */; };
+		9A8EFE1E1A88FDC7001FEE0A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF91A88FDC7001FEE0A /* README.md */; };
+		9A8EFE1F1A88FDC7001FEE0A /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDFA1A88FDC7001FEE0A /* WebSocket.swift */; };
+		9A8EFE201A88FDC7001FEE0A /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDFA1A88FDC7001FEE0A /* WebSocket.swift */; };
+		9A8EFE251A891E33001FEE0A /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A8EFE241A891E33001FEE0A /* Roboto-Italic.ttf */; };
 		9AC49E591A71A5A800F391C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E581A71A5A800F391C0 /* AppDelegate.swift */; };
 		9AC49E5B1A71A5A800F391C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E5A1A71A5A800F391C0 /* ViewController.swift */; };
 		9AC49E5E1A71A5A800F391C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AC49E5C1A71A5A800F391C0 /* Main.storyboard */; };
 		9AC49E601A71A5A800F391C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AC49E5F1A71A5A800F391C0 /* Images.xcassets */; };
 		9AC49E631A71A5A800F391C0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AC49E611A71A5A800F391C0 /* LaunchScreen.xib */; };
-		9AC49E891A71A60000F391C0 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E7B1A71A60000F391C0 /* Application.swift */; };
-		9AC49E8A1A71A60000F391C0 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E7B1A71A60000F391C0 /* Application.swift */; };
-		9AC49E8B1A71A60000F391C0 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E7C1A71A60000F391C0 /* Channel.swift */; };
-		9AC49E8C1A71A60000F391C0 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E7C1A71A60000F391C0 /* Channel.swift */; };
-		9AC49E8D1A71A60000F391C0 /* ChannelClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E7D1A71A60000F391C0 /* ChannelClient.swift */; };
-		9AC49E8E1A71A60000F391C0 /* ChannelClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E7D1A71A60000F391C0 /* ChannelClient.swift */; };
-		9AC49E8F1A71A60000F391C0 /* ChannelTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E7E1A71A60000F391C0 /* ChannelTransport.swift */; };
-		9AC49E901A71A60000F391C0 /* ChannelTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E7E1A71A60000F391C0 /* ChannelTransport.swift */; };
-		9AC49E911A71A60000F391C0 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E7F1A71A60000F391C0 /* Device.swift */; };
-		9AC49E921A71A60000F391C0 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E7F1A71A60000F391C0 /* Device.swift */; };
-		9AC49E931A71A60000F391C0 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E801A71A60000F391C0 /* JSON.swift */; };
-		9AC49E941A71A60000F391C0 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E801A71A60000F391C0 /* JSON.swift */; };
-		9AC49E951A71A60000F391C0 /* MDNSDiscoveryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E811A71A60000F391C0 /* MDNSDiscoveryProvider.swift */; };
-		9AC49E961A71A60000F391C0 /* MDNSDiscoveryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E811A71A60000F391C0 /* MDNSDiscoveryProvider.swift */; };
-		9AC49E971A71A60000F391C0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E821A71A60000F391C0 /* Message.swift */; };
-		9AC49E981A71A60000F391C0 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E821A71A60000F391C0 /* Message.swift */; };
-		9AC49E991A71A60000F391C0 /* Requester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E831A71A60000F391C0 /* Requester.swift */; };
-		9AC49E9A1A71A60000F391C0 /* Requester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E831A71A60000F391C0 /* Requester.swift */; };
-		9AC49E9B1A71A60000F391C0 /* RPCMessaje.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E841A71A60000F391C0 /* RPCMessaje.swift */; };
-		9AC49E9C1A71A60000F391C0 /* RPCMessaje.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E841A71A60000F391C0 /* RPCMessaje.swift */; };
-		9AC49E9D1A71A60000F391C0 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E851A71A60000F391C0 /* Service.swift */; };
-		9AC49E9E1A71A60000F391C0 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E851A71A60000F391C0 /* Service.swift */; };
-		9AC49E9F1A71A60000F391C0 /* ServiceSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E861A71A60000F391C0 /* ServiceSearch.swift */; };
-		9AC49EA01A71A60000F391C0 /* ServiceSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E861A71A60000F391C0 /* ServiceSearch.swift */; };
-		9AC49EA11A71A60000F391C0 /* WebSocketTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E871A71A60000F391C0 /* WebSocketTransport.swift */; };
-		9AC49EA21A71A60000F391C0 /* WebSocketTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E871A71A60000F391C0 /* WebSocketTransport.swift */; };
-		9AC49EA31A71A60000F391C0 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E881A71A60000F391C0 /* WebSocket.swift */; };
-		9AC49EA41A71A60000F391C0 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E881A71A60000F391C0 /* WebSocket.swift */; };
 		9AC49EB81A71A60D00F391C0 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EA61A71A60D00F391C0 /* Gallery.swift */; };
 		9AC49EB91A71A60D00F391C0 /* Gallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EA61A71A60D00F391C0 /* Gallery.swift */; };
 		9AC49EBC1A71A60D00F391C0 /* MultiScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49EA81A71A60D00F391C0 /* MultiScreenManager.swift */; };
@@ -125,6 +136,28 @@
 		9A76A90A1A7C072A007B05D4 /* CompatibleTVsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompatibleTVsView.xib; sourceTree = "<group>"; };
 		9A8EFDB11A852EDE001FEE0A /* CompatibleTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompatibleTVCell.swift; sourceTree = "<group>"; };
 		9A8EFDB21A852EDE001FEE0A /* CompatibleTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompatibleTVCell.xib; sourceTree = "<group>"; };
+		9A8EFDE41A88FDC7001FEE0A /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		9A8EFDE51A88FDC7001FEE0A /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		9A8EFDE61A88FDC7001FEE0A /* ChannelClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelClient.swift; sourceTree = "<group>"; };
+		9A8EFDE71A88FDC7001FEE0A /* ChannelTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTransport.swift; sourceTree = "<group>"; };
+		9A8EFDE81A88FDC7001FEE0A /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		9A8EFDE91A88FDC7001FEE0A /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		9A8EFDEA1A88FDC7001FEE0A /* MDNSDiscoveryProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDNSDiscoveryProvider.swift; sourceTree = "<group>"; };
+		9A8EFDEB1A88FDC7001FEE0A /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		9A8EFDEC1A88FDC7001FEE0A /* MSFDiscoveryProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSFDiscoveryProvider.swift; sourceTree = "<group>"; };
+		9A8EFDED1A88FDC7001FEE0A /* Requester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requester.swift; sourceTree = "<group>"; };
+		9A8EFDEE1A88FDC7001FEE0A /* RPCMessaje.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPCMessaje.swift; sourceTree = "<group>"; };
+		9A8EFDEF1A88FDC7001FEE0A /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		9A8EFDF01A88FDC7001FEE0A /* ServiceSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceSearch.swift; sourceTree = "<group>"; };
+		9A8EFDF11A88FDC7001FEE0A /* WebSocketTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocketTransport.swift; sourceTree = "<group>"; };
+		9A8EFDF41A88FDC7001FEE0A /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		9A8EFDF51A88FDC7001FEE0A /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		9A8EFDF61A88FDC7001FEE0A /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.markdown; sourceTree = "<group>"; };
+		9A8EFDF81A88FDC7001FEE0A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		9A8EFDF91A88FDC7001FEE0A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9A8EFDFA1A88FDC7001FEE0A /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
+		9A8EFE231A8901C6001FEE0A /* MultiScreenPhoto-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MultiScreenPhoto-Bridging-Header.h"; sourceTree = "<group>"; };
+		9A8EFE241A891E33001FEE0A /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		9AC49E531A71A5A800F391C0 /* MultiScreenPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiScreenPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC49E571A71A5A800F391C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AC49E581A71A5A800F391C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -134,20 +167,6 @@
 		9AC49E621A71A5A800F391C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9AC49E681A71A5A800F391C0 /* MultiScreenPhotoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultiScreenPhotoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC49E6D1A71A5A800F391C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9AC49E7B1A71A60000F391C0 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
-		9AC49E7C1A71A60000F391C0 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		9AC49E7D1A71A60000F391C0 /* ChannelClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelClient.swift; sourceTree = "<group>"; };
-		9AC49E7E1A71A60000F391C0 /* ChannelTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTransport.swift; sourceTree = "<group>"; };
-		9AC49E7F1A71A60000F391C0 /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
-		9AC49E801A71A60000F391C0 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
-		9AC49E811A71A60000F391C0 /* MDNSDiscoveryProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDNSDiscoveryProvider.swift; sourceTree = "<group>"; };
-		9AC49E821A71A60000F391C0 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		9AC49E831A71A60000F391C0 /* Requester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requester.swift; sourceTree = "<group>"; };
-		9AC49E841A71A60000F391C0 /* RPCMessaje.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPCMessaje.swift; sourceTree = "<group>"; };
-		9AC49E851A71A60000F391C0 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		9AC49E861A71A60000F391C0 /* ServiceSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceSearch.swift; sourceTree = "<group>"; };
-		9AC49E871A71A60000F391C0 /* WebSocketTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocketTransport.swift; sourceTree = "<group>"; };
-		9AC49E881A71A60000F391C0 /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
 		9AC49EA61A71A60D00F391C0 /* Gallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gallery.swift; sourceTree = "<group>"; };
 		9AC49EA81A71A60D00F391C0 /* MultiScreenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiScreenManager.swift; sourceTree = "<group>"; };
 		9AC49EAB1A71A60D00F391C0 /* CommonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonVC.swift; sourceTree = "<group>"; };
@@ -210,6 +229,56 @@
 			path = CompatibleTVsView;
 			sourceTree = "<group>";
 		};
+		9A8EFDE31A88FDC7001FEE0A /* common */ = {
+			isa = PBXGroup;
+			children = (
+				9A8EFDE41A88FDC7001FEE0A /* Application.swift */,
+				9A8EFDE51A88FDC7001FEE0A /* Channel.swift */,
+				9A8EFDE61A88FDC7001FEE0A /* ChannelClient.swift */,
+				9A8EFDE71A88FDC7001FEE0A /* ChannelTransport.swift */,
+				9A8EFDE81A88FDC7001FEE0A /* Device.swift */,
+				9A8EFDE91A88FDC7001FEE0A /* JSON.swift */,
+				9A8EFDEA1A88FDC7001FEE0A /* MDNSDiscoveryProvider.swift */,
+				9A8EFDEB1A88FDC7001FEE0A /* Message.swift */,
+				9A8EFDEC1A88FDC7001FEE0A /* MSFDiscoveryProvider.swift */,
+				9A8EFDED1A88FDC7001FEE0A /* Requester.swift */,
+				9A8EFDEE1A88FDC7001FEE0A /* RPCMessaje.swift */,
+				9A8EFDEF1A88FDC7001FEE0A /* Service.swift */,
+				9A8EFDF01A88FDC7001FEE0A /* ServiceSearch.swift */,
+				9A8EFDF11A88FDC7001FEE0A /* WebSocketTransport.swift */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		9A8EFDF21A88FDC7001FEE0A /* deps */ = {
+			isa = PBXGroup;
+			children = (
+				9A8EFDF31A88FDC7001FEE0A /* CocoaAsyncSocket */,
+				9A8EFDF71A88FDC7001FEE0A /* starscream */,
+			);
+			path = deps;
+			sourceTree = "<group>";
+		};
+		9A8EFDF31A88FDC7001FEE0A /* CocoaAsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				9A8EFDF41A88FDC7001FEE0A /* GCDAsyncUdpSocket.h */,
+				9A8EFDF51A88FDC7001FEE0A /* GCDAsyncUdpSocket.m */,
+				9A8EFDF61A88FDC7001FEE0A /* README.markdown */,
+			);
+			path = CocoaAsyncSocket;
+			sourceTree = "<group>";
+		};
+		9A8EFDF71A88FDC7001FEE0A /* starscream */ = {
+			isa = PBXGroup;
+			children = (
+				9A8EFDF81A88FDC7001FEE0A /* LICENSE */,
+				9A8EFDF91A88FDC7001FEE0A /* README.md */,
+				9A8EFDFA1A88FDC7001FEE0A /* WebSocket.swift */,
+			);
+			path = starscream;
+			sourceTree = "<group>";
+		};
 		9AC49E4A1A71A5A800F391C0 = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +316,8 @@
 		9AC49E561A71A5A800F391C0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9A8EFE231A8901C6001FEE0A /* MultiScreenPhoto-Bridging-Header.h */,
+				9A8EFE241A891E33001FEE0A /* Roboto-Italic.ttf */,
 				9AC7F2CF1A7C2A3F00CBC946 /* Roboto-Light.ttf */,
 				9AC49E571A71A5A800F391C0 /* Info.plist */,
 			);
@@ -282,30 +353,10 @@
 		9AC49E791A71A60000F391C0 /* MSF */ = {
 			isa = PBXGroup;
 			children = (
-				9AC49E7A1A71A60000F391C0 /* common */,
-				9AC49E881A71A60000F391C0 /* WebSocket.swift */,
+				9A8EFDE31A88FDC7001FEE0A /* common */,
+				9A8EFDF21A88FDC7001FEE0A /* deps */,
 			);
 			path = MSF;
-			sourceTree = "<group>";
-		};
-		9AC49E7A1A71A60000F391C0 /* common */ = {
-			isa = PBXGroup;
-			children = (
-				9AC49E7B1A71A60000F391C0 /* Application.swift */,
-				9AC49E7C1A71A60000F391C0 /* Channel.swift */,
-				9AC49E7D1A71A60000F391C0 /* ChannelClient.swift */,
-				9AC49E7E1A71A60000F391C0 /* ChannelTransport.swift */,
-				9AC49E7F1A71A60000F391C0 /* Device.swift */,
-				9AC49E801A71A60000F391C0 /* JSON.swift */,
-				9AC49E811A71A60000F391C0 /* MDNSDiscoveryProvider.swift */,
-				9AC49E821A71A60000F391C0 /* Message.swift */,
-				9AC49E831A71A60000F391C0 /* Requester.swift */,
-				9AC49E841A71A60000F391C0 /* RPCMessaje.swift */,
-				9AC49E851A71A60000F391C0 /* Service.swift */,
-				9AC49E861A71A60000F391C0 /* ServiceSearch.swift */,
-				9AC49E871A71A60000F391C0 /* WebSocketTransport.swift */,
-			);
-			path = common;
 			sourceTree = "<group>";
 		};
 		9AC49EA51A71A60D00F391C0 /* Model */ = {
@@ -470,10 +521,12 @@
 				9AC7F2DC1A813DC300CBC946 /* CompatibleTvsList.plist in Resources */,
 				9AC7F2D01A7C2A3F00CBC946 /* Roboto-Light.ttf in Resources */,
 				9A76A8EE1A7A818D007B05D4 /* ServicesFoundView.xib in Resources */,
+				9A8EFE251A891E33001FEE0A /* Roboto-Italic.ttf in Resources */,
 				9A76A8FA1A7A9AA7007B05D4 /* ServicesFoundHeaderVIew.xib in Resources */,
 				9AC49E631A71A5A800F391C0 /* LaunchScreen.xib in Resources */,
 				9AC7F2D31A805C9E00CBC946 /* HomePhotoGalleryHeaderView.xib in Resources */,
 				9A36840E1A81835600B3C052 /* MoreMenuView.xib in Resources */,
+				9A8EFE1B1A88FDC7001FEE0A /* LICENSE in Resources */,
 				9A8EFDB51A852EDE001FEE0A /* CompatibleTVCell.xib in Resources */,
 				9AC49E601A71A5A800F391C0 /* Images.xcassets in Resources */,
 				9A76A90B1A7C072A007B05D4 /* CompatibleTVsView.xib in Resources */,
@@ -491,6 +544,7 @@
 				9A76A9051A7AEEBD007B05D4 /* HowToVC.xib in Resources */,
 				9A76A8F81A7A83D8007B05D4 /* ServicesFoundTVCell.xib in Resources */,
 				9AC7F2D11A7C2A3F00CBC946 /* Roboto-Light.ttf in Resources */,
+				9A8EFE1C1A88FDC7001FEE0A /* LICENSE in Resources */,
 				9A8EFDB61A852EDE001FEE0A /* CompatibleTVCell.xib in Resources */,
 				9AC7F2DD1A813DC300CBC946 /* CompatibleTvsList.plist in Resources */,
 				9AC49EC91A71A60D00F391C0 /* WelcomeView.xib in Resources */,
@@ -507,37 +561,41 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AC49EB81A71A60D00F391C0 /* Gallery.swift in Sources */,
-				9AC49E9B1A71A60000F391C0 /* RPCMessaje.swift in Sources */,
-				9AC49EA31A71A60000F391C0 /* WebSocket.swift in Sources */,
+				9A8EFE171A88FDC7001FEE0A /* GCDAsyncUdpSocket.m in Sources */,
+				9A8EFDFD1A88FDC7001FEE0A /* Channel.swift in Sources */,
 				9A56D16E1A77EC180026EFF3 /* HomePhotoGalleryVCCell.swift in Sources */,
 				9A76A8F11A7A81A8007B05D4 /* ServicesFoundView.swift in Sources */,
-				9AC49E9D1A71A60000F391C0 /* Service.swift in Sources */,
-				9AC49E891A71A60000F391C0 /* Application.swift in Sources */,
+				9A8EFDFB1A88FDC7001FEE0A /* Application.swift in Sources */,
+				9A8EFE011A88FDC7001FEE0A /* ChannelTransport.swift in Sources */,
+				9A8EFE071A88FDC7001FEE0A /* MDNSDiscoveryProvider.swift in Sources */,
+				9A8EFE151A88FDC7001FEE0A /* WebSocketTransport.swift in Sources */,
 				9AC49ECA1A71A60D00F391C0 /* PhotoFullScreenPagerVC.swift in Sources */,
 				9A76A9081A7C071E007B05D4 /* CompatibleTVsView.swift in Sources */,
-				9AC49E9F1A71A60000F391C0 /* ServiceSearch.swift in Sources */,
+				9A8EFE091A88FDC7001FEE0A /* Message.swift in Sources */,
 				9A76A9021A7AEEBD007B05D4 /* HowToVC.swift in Sources */,
-				9AC49E8B1A71A60000F391C0 /* Channel.swift in Sources */,
-				9AC49E8D1A71A60000F391C0 /* ChannelClient.swift in Sources */,
+				9A8EFDFF1A88FDC7001FEE0A /* ChannelClient.swift in Sources */,
 				9AC49EBC1A71A60D00F391C0 /* MultiScreenManager.swift in Sources */,
 				9A76A8FD1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift in Sources */,
-				9AC49E951A71A60000F391C0 /* MDNSDiscoveryProvider.swift in Sources */,
-				9AC49EA11A71A60000F391C0 /* WebSocketTransport.swift in Sources */,
+				9A8EFE191A88FDC7001FEE0A /* README.markdown in Sources */,
+				9A8EFE1D1A88FDC7001FEE0A /* README.md in Sources */,
 				9AC49E5B1A71A5A800F391C0 /* ViewController.swift in Sources */,
 				9AC7F2D61A805CAA00CBC946 /* HomePhotoGalleryHeaderView.swift in Sources */,
+				9A8EFE0B1A88FDC7001FEE0A /* MSFDiscoveryProvider.swift in Sources */,
+				9A8EFE131A88FDC7001FEE0A /* ServiceSearch.swift in Sources */,
+				9A8EFE111A88FDC7001FEE0A /* Service.swift in Sources */,
 				9A76A8F51A7A83D8007B05D4 /* ServicesFoundTVCell.swift in Sources */,
+				9A8EFE0F1A88FDC7001FEE0A /* RPCMessaje.swift in Sources */,
+				9A8EFE1F1A88FDC7001FEE0A /* WebSocket.swift in Sources */,
+				9A8EFE0D1A88FDC7001FEE0A /* Requester.swift in Sources */,
+				9A8EFE051A88FDC7001FEE0A /* JSON.swift in Sources */,
 				9AC49ECC1A71A60D00F391C0 /* PhotoFullScreenVC.swift in Sources */,
 				9AC49E591A71A5A800F391C0 /* AppDelegate.swift in Sources */,
-				9AC49E911A71A60000F391C0 /* Device.swift in Sources */,
 				9AC49EBE1A71A60D00F391C0 /* CommonVC.swift in Sources */,
-				9AC49E971A71A60000F391C0 /* Message.swift in Sources */,
 				9AC49EC61A71A60D00F391C0 /* WelcomeView.swift in Sources */,
 				9AC49EC01A71A60D00F391C0 /* HomePhotoGalleryVC.swift in Sources */,
 				9A8EFDB31A852EDE001FEE0A /* CompatibleTVCell.swift in Sources */,
+				9A8EFE031A88FDC7001FEE0A /* Device.swift in Sources */,
 				9A36840C1A81834C00B3C052 /* MoreMenuView.swift in Sources */,
-				9AC49E8F1A71A60000F391C0 /* ChannelTransport.swift in Sources */,
-				9AC49E991A71A60000F391C0 /* Requester.swift in Sources */,
-				9AC49E931A71A60000F391C0 /* JSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,37 +604,41 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A75A9481A83C1920051ABB6 /* GalleryTest.swift in Sources */,
-				9AC49E8A1A71A60000F391C0 /* Application.swift in Sources */,
-				9AC49E941A71A60000F391C0 /* JSON.swift in Sources */,
-				9AC49E901A71A60000F391C0 /* ChannelTransport.swift in Sources */,
-				9AC49E981A71A60000F391C0 /* Message.swift in Sources */,
-				9AC49EA41A71A60000F391C0 /* WebSocket.swift in Sources */,
-				9AC49E961A71A60000F391C0 /* MDNSDiscoveryProvider.swift in Sources */,
+				9A8EFE181A88FDC7001FEE0A /* GCDAsyncUdpSocket.m in Sources */,
+				9A8EFDFE1A88FDC7001FEE0A /* Channel.swift in Sources */,
 				9A56D16F1A77EC180026EFF3 /* HomePhotoGalleryVCCell.swift in Sources */,
 				9AC49EC11A71A60D00F391C0 /* HomePhotoGalleryVC.swift in Sources */,
-				9AC49EA01A71A60000F391C0 /* ServiceSearch.swift in Sources */,
+				9A8EFDFC1A88FDC7001FEE0A /* Application.swift in Sources */,
+				9A8EFE021A88FDC7001FEE0A /* ChannelTransport.swift in Sources */,
+				9A8EFE081A88FDC7001FEE0A /* MDNSDiscoveryProvider.swift in Sources */,
+				9A8EFE161A88FDC7001FEE0A /* WebSocketTransport.swift in Sources */,
 				9AC49EC71A71A60D00F391C0 /* WelcomeView.swift in Sources */,
 				9A76A8FE1A7A9AB7007B05D4 /* ServicesFoundHeaderVIew.swift in Sources */,
-				9AC49E9E1A71A60000F391C0 /* Service.swift in Sources */,
+				9A8EFE0A1A88FDC7001FEE0A /* Message.swift in Sources */,
 				9A75A9461A8187C90051ABB6 /* MoreMenuView.swift in Sources */,
+				9A8EFE001A88FDC7001FEE0A /* ChannelClient.swift in Sources */,
 				9AC7F2D71A805CAA00CBC946 /* HomePhotoGalleryHeaderView.swift in Sources */,
 				9A76A9031A7AEEBD007B05D4 /* HowToVC.swift in Sources */,
+				9A8EFE1A1A88FDC7001FEE0A /* README.markdown in Sources */,
+				9A8EFE1E1A88FDC7001FEE0A /* README.md in Sources */,
 				9A76A8F61A7A83D8007B05D4 /* ServicesFoundTVCell.swift in Sources */,
 				9AC49EB91A71A60D00F391C0 /* Gallery.swift in Sources */,
+				9A8EFE0C1A88FDC7001FEE0A /* MSFDiscoveryProvider.swift in Sources */,
+				9A8EFE141A88FDC7001FEE0A /* ServiceSearch.swift in Sources */,
+				9A8EFE121A88FDC7001FEE0A /* Service.swift in Sources */,
 				9A76A9091A7C071E007B05D4 /* CompatibleTVsView.swift in Sources */,
+				9A8EFE101A88FDC7001FEE0A /* RPCMessaje.swift in Sources */,
+				9A8EFE201A88FDC7001FEE0A /* WebSocket.swift in Sources */,
+				9A8EFE0E1A88FDC7001FEE0A /* Requester.swift in Sources */,
+				9A8EFE061A88FDC7001FEE0A /* JSON.swift in Sources */,
 				9AC49EBF1A71A60D00F391C0 /* CommonVC.swift in Sources */,
 				9AC49ECB1A71A60D00F391C0 /* PhotoFullScreenPagerVC.swift in Sources */,
 				9AC49ECD1A71A60D00F391C0 /* PhotoFullScreenVC.swift in Sources */,
-				9AC49E8C1A71A60000F391C0 /* Channel.swift in Sources */,
-				9AC49E921A71A60000F391C0 /* Device.swift in Sources */,
-				9AC49EA21A71A60000F391C0 /* WebSocketTransport.swift in Sources */,
 				9A75A94C1A83DC3B0051ABB6 /* CommonVCTest.swift in Sources */,
-				9AC49E8E1A71A60000F391C0 /* ChannelClient.swift in Sources */,
 				9A8EFDB41A852EDE001FEE0A /* CompatibleTVCell.swift in Sources */,
 				9AC49EBD1A71A60D00F391C0 /* MultiScreenManager.swift in Sources */,
-				9AC49E9A1A71A60000F391C0 /* Requester.swift in Sources */,
+				9A8EFE041A88FDC7001FEE0A /* Device.swift in Sources */,
 				9A76A8F21A7A81A8007B05D4 /* ServicesFoundView.swift in Sources */,
-				9AC49E9C1A71A60000F391C0 /* RPCMessaje.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,7 +689,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Koombea Inc.";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -648,9 +710,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "f8530331-9f26-44af-91e5-e935cc527084";
+				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -672,7 +734,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Koombea Inc.";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -686,9 +748,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "f8530331-9f26-44af-91e5-e935cc527084";
+				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
 				SDKROOT = iphoneos;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -698,13 +760,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MultiScreenPhoto/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f8530331-9f26-44af-91e5-e935cc527084";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
+				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -713,13 +775,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MultiScreenPhoto/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f8530331-9f26-44af-91e5-e935cc527084";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				PROVISIONING_PROFILE = "95daa228-88ef-45ba-b351-301689add84c";
+				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
 			};
 			name = Release;
 		};

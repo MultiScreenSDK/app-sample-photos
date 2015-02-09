@@ -12,7 +12,7 @@ import UIKit
 ///
 /// This class is inherited from other View Controllers to reuse methods 
 /// for the navigation bar
-class CommonVC: UIViewController, MoreMenuViewDelegate, ServicesFoundViewDelegate {
+class CommonVC: UIViewController, MoreMenuViewDelegate {
     
     /// MultiScreenManager instance that manage the interaction with the services
     var multiScreenManager = MultiScreenManager.sharedInstance
@@ -56,11 +56,11 @@ class CommonVC: UIViewController, MoreMenuViewDelegate, ServicesFoundViewDelegat
         var addSettingsButton: UIBarButtonItem = UIBarButtonItem(customView: settingsButton)
         
         /// Configuring Spacer between buttons
-        var addSpacerButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
+        var addSpacerButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: self, action: Selector("showSettings"))
         addSpacerButton.width = 7
         
         /// Configuring Spacer between buttons
-        var addSpacerButton2: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
+        var addSpacerButton2: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: self, action: Selector("showSettings"))
         addSpacerButton2.width = 20
         
         /// Configuring cast icon
@@ -94,8 +94,7 @@ class CommonVC: UIViewController, MoreMenuViewDelegate, ServicesFoundViewDelegat
         var viewArray = NSBundle.mainBundle().loadNibNamed("ServicesFoundView", owner: self, options: nil)
         self.castMenuView = viewArray[0] as ServicesFoundView
         self.castMenuView.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: UIScreen.mainScreen().bounds.size.height)
-        self.castMenuView.delegate = self
-        view.window?.addSubview(self.castMenuView)
+       view.window?.addSubview(self.castMenuView)
     }
     
     /// Method to show the More menu
@@ -138,8 +137,6 @@ class CommonVC: UIViewController, MoreMenuViewDelegate, ServicesFoundViewDelegat
         UIGraphicsEndImageContext()
         return image
     }
-    
-    func sendToTv(){ }
-
+  
     
 }

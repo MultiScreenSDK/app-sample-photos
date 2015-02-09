@@ -29,7 +29,7 @@ class WelcomeView: UIView {
         /// Adding borders to the get start button
         getStartButton.layer.cornerRadius = 0
         getStartButton.layer.borderWidth = 0.5
-        getStartButton.layer.borderColor = UIColor.whiteColor().CGColor
+        getStartButton.layer.borderColor = UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1).CGColor
     }
     
 

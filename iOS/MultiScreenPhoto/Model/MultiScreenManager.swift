@@ -23,6 +23,8 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
     /// Search service instance
     let search = Service.search()
     
+    var services = [Service]()
+    
     /// MultiScreenManager shared instance used as singleton
     class var sharedInstance: MultiScreenManager {
         struct Static {
@@ -54,18 +56,45 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
     // Stop searching for services inside the Wifi network
     func StopSearching(){
         search.stop()
+        services.removeAll(keepCapacity: false)
         /// post a notification to the NSNotificationCenter
         postNotification()
     }
     
     //onServiceLost delegate method
     func onServiceLost(service: Service) {
+        removeObject(&services,object: service)
         /// post a notification to the NSNotificationCenter
         postNotification()
     }
     
     //onServiceFound delegate method
     func onServiceFound(service: Service) {
+        services.append(service)
+        /// post a notification to the NSNotificationCenter
+        postNotification()
+    }
+    
+    func removeObject<T:Equatable>(inout arr:Array<T>, object:T) -> T? {
+        if let found = find(arr,object) {
+            return arr.removeAtIndex(found)
+        }
+        return nil
+    }
+    
+    //MARK: - ChannelDelegate -
+    
+    func onError(error: NSError) {
+        println(error.localizedDescription)
+    }
+    
+    func onConnect(client: ChannelClient, error: NSError?) {
+         NSNotificationCenter.defaultCenter().postNotificationName("sendImageToTV", object: self)
+        /// post a notification to the NSNotificationCenter
+        postNotification()
+    }
+    
+    func onDisconnect(client: ChannelClient, error: NSError?) {
         /// post a notification to the NSNotificationCenter
         postNotification()
     }
@@ -88,7 +117,7 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
     ///
     /// :return: Array of Services
     func getServices() -> [Service]{
-        return search.services
+        return services
     }
     
     /// Return all services availables but not current connected
@@ -116,7 +145,7 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
     /// :param: service index
     /// :return: service
     func getServiceWithIndex(index : Int)->Service{
-        return search.services[index]
+        return services[index]
     }
     
    
@@ -125,7 +154,9 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
     /// :param: selected service
     /// :param: completionHandler The callback handler,  return true or false
     func createApplication(service: Service,completionHandler: ((Bool!) -> Void)!){
-        app = service.createApplication(NSURL(string: appURL)!, channelURI: channelId)!
+        app = service.createApplication(NSURL(string: appURL)!,channelURI:channelId, args: nil)
+        app.delegate = self
+        app.connectionTimeout = 3
         app.connect(["name":UIDevice.currentDevice().name])
         app.start { (success, error) -> Void in
             completionHandler(success)

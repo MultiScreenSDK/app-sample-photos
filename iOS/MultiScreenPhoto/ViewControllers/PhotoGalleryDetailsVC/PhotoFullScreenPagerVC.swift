@@ -37,6 +37,9 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
         
         self.navigationController?.interactivePopGestureRecognizer.delegate = self
         
+        // Add an observer to check for if a tv is connected
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendToTv", name: "sendImageToTV", object: nil)
+        
         //number of assets in current album
         numberOfAssets = gallery.getNumOfAssetsByAlbum(gallery.currentAlbum)
         
@@ -68,6 +71,12 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
         // Start timer to send the image to the TV
         startSendImageTimer()
     }
+    
+    /// Remove observer when deinit
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "sendImageToTV", object: nil)
+    }
+
     
     /// Method to setup the navigation bar color and font
     func setUpNavigationBar(){
@@ -186,7 +195,7 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     }
     
     /// Method used to send the current Photo to the TV
-    override func sendToTv() {
+    func sendToTv() {
         /// Check if there is an application current connected
         if(multiScreenManager.isApplicationConnected() == true){
             

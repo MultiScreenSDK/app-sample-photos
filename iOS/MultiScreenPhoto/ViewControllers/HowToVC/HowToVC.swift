@@ -25,7 +25,7 @@ class HowToVC: UIViewController {
         /// Adding borders to compatibleButton
         compatibleButton.layer.cornerRadius = 0
         compatibleButton.layer.borderWidth = 0.5
-        compatibleButton.layer.borderColor = UIColor.whiteColor().CGColor
+        compatibleButton.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1).CGColor
     }
     
     override func viewWillAppear(animated: Bool) {
