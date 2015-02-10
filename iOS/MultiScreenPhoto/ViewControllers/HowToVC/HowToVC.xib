@@ -77,7 +77,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to connect:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxb-Hb-GCZ">
-                                    <rect key="frame" x="8" y="93" width="122" height="20"/>
+                                    <rect key="frame" x="8" y="93" width="121.5" height="20"/>
                                     <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="17"/>
                                     <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -102,7 +102,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. Your mobile device and TV must be on the same WiFI network." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c33-o3-Z9A">
-                                    <rect key="frame" x="8" y="201" width="296" height="29"/>
+                                    <rect key="frame" x="8" y="201" width="296" height="28.5"/>
                                     <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="12"/>
                                     <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -137,7 +137,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to select the tv you wish to use." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IrG-fi-Jde">
-                                    <rect key="frame" x="74" y="289" width="165" height="26"/>
+                                    <rect key="frame" x="74" y="289" width="164.5" height="26"/>
                                     <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="12"/>
                                     <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -156,7 +156,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="turns to " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GR5-QA-hW3">
-                                    <rect key="frame" x="87" y="328" width="46" height="15"/>
+                                    <rect key="frame" x="87" y="327" width="46" height="14.5"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="46" id="uL7-eT-qQA"/>
                                     </constraints>
@@ -171,7 +171,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=",  you are connected." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whD-Ih-rFh">
-                                    <rect key="frame" x="158" y="328" width="115" height="15"/>
+                                    <rect key="frame" x="158" y="327" width="115" height="14.5"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="115" id="yab-Qv-oXs"/>
                                     </constraints>
@@ -256,7 +256,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Knf-bV-cfc">
-                                    <rect key="frame" x="56" y="155" width="192" height="27"/>
+                                    <rect key="frame" x="56" y="157" width="192" height="27"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="192" id="jKe-IR-CFU"/>
                                     </constraints>
@@ -348,7 +348,7 @@
                                 <constraint firstItem="cg5-pD-x1X" firstAttribute="bottom" secondItem="mxb-Hb-GCZ" secondAttribute="bottom" id="hSE-PU-Wt7"/>
                                 <constraint firstItem="tAv-gi-pdG" firstAttribute="leading" secondItem="6tu-Bz-ywr" secondAttribute="leading" id="jI9-6X-CJP"/>
                                 <constraint firstItem="0xa-u6-DDy" firstAttribute="leading" secondItem="hyG-wD-ui7" secondAttribute="leading" id="k5a-dl-ujU"/>
-                                <constraint firstItem="Knf-bV-cfc" firstAttribute="top" secondItem="QUp-gQ-23D" secondAttribute="bottom" constant="4" id="kEk-8q-meg"/>
+                                <constraint firstItem="Knf-bV-cfc" firstAttribute="top" secondItem="QUp-gQ-23D" secondAttribute="bottom" constant="6" id="kEk-8q-meg"/>
                                 <constraint firstItem="nTN-SZ-xqD" firstAttribute="baseline" secondItem="tAv-gi-pdG" secondAttribute="baseline" id="kLs-Xp-sS5"/>
                                 <constraint firstItem="Dug-HU-8ey" firstAttribute="top" secondItem="l9X-4k-Fjm" secondAttribute="bottom" constant="-8" id="kSY-fN-yep"/>
                                 <constraint firstItem="cOE-tA-c02" firstAttribute="top" secondItem="dnl-yt-3LZ" secondAttribute="bottom" constant="14" id="keT-Jl-1bM"/>

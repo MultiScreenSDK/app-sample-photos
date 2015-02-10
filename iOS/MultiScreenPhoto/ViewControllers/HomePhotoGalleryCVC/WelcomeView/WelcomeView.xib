@@ -33,9 +33,9 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJ9-Fn-xP5">
-                            <rect key="frame" x="100" y="560" width="182" height="27"/>
+                            <rect key="frame" x="100" y="560" width="182" height="24"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="27" id="VYg-9w-twl"/>
+                                <constraint firstAttribute="height" constant="24" id="VYg-9w-twl"/>
                                 <constraint firstAttribute="width" constant="182" id="uf6-A3-Zn5"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="13"/>
@@ -80,7 +80,7 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="jJ9-Fn-xP5" firstAttribute="bottom" secondItem="eQl-kF-OLU" secondAttribute="bottom" multiplier="0.88" id="7qZ-RT-gAk"/>
+                        <constraint firstItem="jJ9-Fn-xP5" firstAttribute="bottom" secondItem="eQl-kF-OLU" secondAttribute="bottom" multiplier="0.88" constant="-2.9600000000000364" id="7qZ-RT-gAk"/>
                         <constraint firstItem="dCq-x2-elD" firstAttribute="top" secondItem="kWS-f1-Gr9" secondAttribute="top" constant="-9" id="EBc-IA-g5i"/>
                         <constraint firstItem="kWS-f1-Gr9" firstAttribute="leading" secondItem="eQl-kF-OLU" secondAttribute="leading" constant="35" id="EvT-68-JTs"/>
                         <constraint firstItem="t2p-GJ-Hhf" firstAttribute="top" secondItem="eQl-kF-OLU" secondAttribute="top" constant="28" id="FaP-Wr-AMH"/>
