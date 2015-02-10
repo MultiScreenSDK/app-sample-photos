@@ -13,6 +13,7 @@ import UIKit
 /// This will shows the hidden navigation bar
 protocol PhotoFullScreenVCDelegate {
     func showNavigationBar()
+    func updateCurrentIndex(Index: Int)
 }
 
 /// PhotoFullScreenVC
@@ -30,6 +31,9 @@ class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate, UIGestureRecogni
     // index of the current photo displayed
     var pageIndex : Int = 0
     
+    // index of the current Album displayed
+    var pageAlbumIndex : Int = 0
+    
     var scrollView: UIScrollView!
     var imageView: UIImageView!
     var delegate: PhotoFullScreenVCDelegate!
@@ -42,7 +46,7 @@ class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate, UIGestureRecogni
         view.backgroundColor = UIColor(red: 21/255, green: 21/255, blue: 21/255, alpha: 1)
         
         /// Request the current image at index, from the device photo album
-        gallery.requestImageAtIndex(gallery.currentAlbum,index: pageIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!,assetIndex:Int, containerId: Int) -> Void in
+        gallery.requestImageAtIndex(pageAlbumIndex,index: pageIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!,assetIndex:Int, containerId: Int) -> Void in
             /// Add the Image to the scrollView
             self.addScrollView(image)
         })
@@ -52,8 +56,7 @@ class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate, UIGestureRecogni
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        /// Shows the hidden navigation bar when the current view is loaded
-        showNavigationBar()
+        delegate.updateCurrentIndex(pageIndex)
     }
     
     /// Method used to add the Scrolling image programatically

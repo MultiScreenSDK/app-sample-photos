@@ -20,13 +20,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DcW-Ej-cDq">
-                    <rect key="frame" x="60" y="158" width="200" height="288"/>
+                    <rect key="frame" x="60" y="147" width="200" height="288"/>
                     <subviews>
                         <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KSf-fQ-jN2">
-                            <rect key="frame" x="0.0" y="38" width="200" height="42"/>
+                            <rect key="frame" x="0.0" y="38" width="200" height="43"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bTI-GW-ZYt">
-                                    <rect key="frame" x="0.0" y="41" width="200" height="1"/>
+                                    <rect key="frame" x="0.0" y="42" width="200" height="1"/>
                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="yVX-5D-5ZG">
@@ -43,7 +43,7 @@
                             <constraints>
                                 <constraint firstItem="bTI-GW-ZYt" firstAttribute="leading" secondItem="KSf-fQ-jN2" secondAttribute="leading" id="B8k-em-qIR"/>
                                 <constraint firstAttribute="trailing" secondItem="bTI-GW-ZYt" secondAttribute="trailing" id="geI-cI-hnE"/>
-                                <constraint firstAttribute="height" constant="42" id="m2b-ui-5Na"/>
+                                <constraint firstAttribute="height" constant="43" id="m2b-ui-5Na"/>
                                 <constraint firstAttribute="bottom" secondItem="bTI-GW-ZYt" secondAttribute="bottom" id="yWP-8Y-wzM"/>
                             </constraints>
                         </view>
@@ -77,7 +77,7 @@
                             </connections>
                         </button>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="42" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="LCb-Cx-4HR">
-                            <rect key="frame" x="0.0" y="80" width="200" height="168"/>
+                            <rect key="frame" x="0.0" y="81" width="200" height="176"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -102,7 +102,7 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="DcW-Ej-cDq" secondAttribute="centerX" id="gui-85-KRh"/>
-                <constraint firstAttribute="centerY" secondItem="DcW-Ej-cDq" secondAttribute="centerY" constant="-18" id="ki3-aM-0Jo"/>
+                <constraint firstAttribute="centerY" secondItem="DcW-Ej-cDq" secondAttribute="centerY" constant="-7" id="ki3-aM-0Jo"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <userDefinedRuntimeAttributes>

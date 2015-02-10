@@ -23,9 +23,6 @@ class Gallery: NSObject {
     /// Array of albums state (true, false)
     var isAlbumExpanded:[Bool] = []
     
-    /// Current album displayed in the detail view
-    internal var currentAlbum = 0
-    
     /// Gallery shared instance used as singleton
     class var sharedInstance: Gallery {
         struct Static {

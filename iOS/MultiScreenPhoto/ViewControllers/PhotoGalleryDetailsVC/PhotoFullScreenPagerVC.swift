@@ -22,14 +22,14 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     // Timer to send the image to the TV after a few seconds
     var timer: NSTimer!
     
-    // Timer to set the navigation bar hidden
-    var navigationTimer: NSTimer!
-    
     //UIPageViewController used to paginate photos
     var pageViewController : UIPageViewController?
     
     //index of the current photo displayed
     var currentIndex : Int = 0
+    
+    //index of the current Album displayed
+    var currentAlbumIndex : Int = 0
     
     
     override func viewDidLoad() {
@@ -41,7 +41,7 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendToTv", name: "sendImageToTV", object: nil)
         
         //number of assets in current album
-        numberOfAssets = gallery.getNumOfAssetsByAlbum(gallery.currentAlbum)
+        numberOfAssets = gallery.getNumOfAssetsByAlbum(currentAlbumIndex)
         
         //Setting the pageViewController pages
         pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: [UIPageViewControllerOptionInterPageSpacingKey : 10])
@@ -72,11 +72,11 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
         startSendImageTimer()
     }
     
-    /// Remove observer when deinit
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "sendImageToTV", object: nil)
+    /// Remove observer when viewDidDisappear
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+         NSNotificationCenter.defaultCenter().removeObserver(self, name: "sendImageToTV", object: nil)
     }
-
     
     /// Method to setup the navigation bar color and font
     func setUpNavigationBar(){
@@ -161,26 +161,27 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
         
         // Pass the image index to be load
         pageContentViewController.pageIndex = index
+        pageContentViewController.pageAlbumIndex = currentAlbumIndex
         
         return pageContentViewController
     }
     
-    /// Method used to start the navigation bar timer to be hidden
-    func navigationBarTimer(){
-        navigationTimer = nil
-        navigationTimer = NSTimer(timeInterval: 5, target: self, selector: Selector("hiddeNavBar"), userInfo: nil, repeats: true)
-        NSRunLoop.currentRunLoop().addTimer(navigationTimer, forMode: NSDefaultRunLoopMode)
-    }
     
     /// Method used to display the hidden navigation bar
     func showNavigationBar(){
-        if(navigationTimer != nil){
-            self.navigationTimer.invalidate()
+        if ((self.navigationController?.navigationBar.hidden) == true){
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }else{
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            
         }
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationBarTimer()
-        
     }
+    
+    /// Method used to update current visible index
+    func  updateCurrentIndex(index : Int){
+        currentIndex = index
+    }
+    
     /// Method used to hide the navigation bar
     func hiddeNavBar() {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
@@ -188,7 +189,7 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     
     /// Method used to start the timer to send the Photo to the TV
     func startSendImageTimer(){
-        timer = NSTimer(timeInterval: 0.5, target: self, selector: Selector("sendToTv"), userInfo: nil, repeats: false)
+        timer = NSTimer(timeInterval: 0.1, target: self, selector: Selector("sendToTv"), userInfo: nil, repeats: false)
         NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
     }
     
@@ -198,10 +199,8 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
         /// Check if there is an application current connected
         if(multiScreenManager.isApplicationConnected() == true){
             /// Set the current photo index
-            var currentView: PhotoFullScreenVC = pageViewController?.viewControllers.last! as PhotoFullScreenVC
-            println(currentView.pageIndex)
             /// Request the current image at index, from the device photo album
-            gallery.requestImageAtIndex(gallery.currentAlbum,index: currentView.pageIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!,assetIndex:Int, containerId: Int ) -> Void in
+            gallery.requestImageAtIndex(currentAlbumIndex,index: currentIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!,assetIndex:Int, containerId: Int ) -> Void in
                 /// Send the returned image to the TV
                 self.multiScreenManager.sendPhotoToTv(image)
             })
@@ -211,7 +210,6 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     override func viewWillDisappear(animated: Bool) {
         /// Invalidate the timers
         self.timer.invalidate()
-        self.navigationTimer.invalidate()
         super.viewWillDisappear(animated)
     }
 }

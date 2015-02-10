@@ -31,7 +31,7 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
         
         /// Configuring the tableView cell
         self.tableView.registerNib(UINib(nibName: servicesFoundTVCellID, bundle: nil), forCellReuseIdentifier: servicesFoundTVCellID)
-        self.tableView.rowHeight = 38
+        self.tableView.rowHeight = 44
         
         /// Add a gesture recognizer to dismiss the current view on tap
         let tap = UITapGestureRecognizer()
@@ -80,7 +80,7 @@ class ServicesFoundView: UIView, UITableViewDelegate, UITableViewDataSource, Ser
         /// Returning the height of the header depending if an Application is connected
         if(multiScreenManager.isApplicationConnected() == true){
             if(services.count>0){
-              return 160
+              return 157
             }else{
               return 123
             }

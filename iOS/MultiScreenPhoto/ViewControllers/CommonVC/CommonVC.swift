@@ -34,14 +34,23 @@ class CommonVC: UIViewController, MoreMenuViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Add an observer to check for services status and manage the cast icon
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateCastButton", name: updateCastButtonObserverIdentifier, object: nil)
-        
         //Method to configure the Cast icon and Settings icon
         updateCastButton()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Add an observer to check for services status and manage the cast icon
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateCastButton", name: updateCastButtonObserverIdentifier, object: nil)
+        updateCastButton()
+    }
+    
+    /// Remove observer when viewDidDisappear
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: updateCastButtonObserverIdentifier, object: nil)
+    }
     
     /// Method called by the updateCastButton observer
     /// Add or remove the cast icon from the Navigation bar
@@ -112,10 +121,6 @@ class CommonVC: UIViewController, MoreMenuViewDelegate {
         self.navigationController?.pushViewController(detailController, animated:true)
     }
     
-    /// Remove observer when deinit
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: updateCastButtonObserverIdentifier, object: nil)
-    }
     
     /// Method that displays an Alert dialogs
     func displayAlertWithTitle( title:NSString, message:NSString) {

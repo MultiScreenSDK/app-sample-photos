@@ -84,7 +84,7 @@
                                                                 <action selector="clickedImage:" destination="6XW-lL-VKN" eventType="touchUpInside" id="Qsm-Uq-GlV"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Su-as-yky">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Su-as-yky">
                                                             <rect key="frame" x="8" y="0.0" width="192" height="192"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -267,7 +267,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.18823529411764706" green="0.18823529411764706" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.1764705882352941" green="0.1764705882352941" blue="0.1764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="jlL-Ve-DSx" firstAttribute="leading" secondItem="qNC-4m-Qgc" secondAttribute="leading" id="F55-i3-a9o"/>
                             <constraint firstItem="jlL-Ve-DSx" firstAttribute="topMargin" secondItem="4TF-DA-nuw" secondAttribute="top" constant="8" id="U7p-6s-5yk"/>

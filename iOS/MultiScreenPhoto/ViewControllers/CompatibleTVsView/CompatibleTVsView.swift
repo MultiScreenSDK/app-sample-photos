@@ -69,7 +69,7 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
         if(indexPath.section == 0){
-            return 42
+            return 44
         }else{
             return 27
         }
@@ -87,16 +87,25 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
             var incheDict = inchesArray[indexPath.row] as NSDictionary
             text = incheDict.objectForKey("name") as String
             cell.imageSeparator.hidden = false
+            
+            /// Adding color to the cell on click
+            var selectedView = UIView(frame: cell.frame)
+            selectedView.backgroundColor = UIColor(red: 80/255, green: 80/255, blue: 80/255, alpha: 1)
+            cell.selectedBackgroundView = selectedView
+            cell.selectionStyle = UITableViewCellSelectionStyle.Default
+            
+            
         }else{
             text = modelsArray[indexPath.row] as String
             cell.imageSeparator.hidden = true
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            
         }
         
         cell.title.textColor = UIColor.whiteColor()
         cell.title.textAlignment = .Left
         cell.title.text = text
         //cell.title.attributedText = NSMutableAttributedString(string: text, attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 12.0)!])
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
         
         return cell
         

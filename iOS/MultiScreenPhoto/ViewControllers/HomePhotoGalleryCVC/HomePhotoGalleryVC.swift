@@ -58,6 +58,11 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         
     }
     
+    /// Remove observer when deinit
+    deinit {
+       NSNotificationCenter.defaultCenter().removeObserver(self, name: ALAssetsLibraryChangedNotification, object: nil)
+    }
+    
      // Request for photo library access and retrieving albums
     func retrieveAlbums(){
         gallery.retrieveAlbums { (result:Bool!) -> Void in
@@ -281,7 +286,7 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("PhotoFullScreenPagerVCID") as PhotoFullScreenPagerVC
         // Setting the current Image Index
         viewController.currentIndex = indexPath.row
-        gallery.currentAlbum = indexPath.section
+        viewController.currentAlbumIndex = indexPath.section
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
