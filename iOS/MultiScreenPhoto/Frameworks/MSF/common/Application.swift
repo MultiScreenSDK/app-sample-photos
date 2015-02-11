@@ -47,19 +47,24 @@ import Foundation
     private var type = ApplicationType.Application
 
     private var restEndpoint: String! {
-        return "\(service.uri)applications/\(self.uri)"
+        if type == .Application {
+            return "\(service.uri)applications/\(self.id)"
+        } else {
+            return "\(service.uri)webapplication/"
+        }
     }
 
     /// The id of the channel
     public private(set) var id: AnyObject!
 
+    public private(set) var args: [String:AnyObject]? = nil
 
-
-    public init?(appId: AnyObject, channelURI: String, service: Service) {
+    public init?(appId: AnyObject, channelURI: String, service: Service, args:[String:AnyObject]?) {
         if channelURI.isEmpty {
             super.init()
             return nil;
         }
+        self.args = args
         switch appId {
         case let url as NSURL:
             id = url.absoluteString!
@@ -100,11 +105,15 @@ import Foundation
         Requester.doGet(restEndpoint, headers: nil, timeout: 2) { (responseHeaders, data, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 if error != nil {
-                    completionHandler(info: [:], error: error)
+                    if data != nil {
+                        let message = JSON.parse(data: data!) as [String:AnyObject]
+                        completionHandler(info: message, error: error)
+                    } else {
+                        completionHandler(info: [:], error: error)
+                    }
                 } else {
-                    let message = JSON.parse(data!) as [String:AnyObject]
-                    let rpcMessage = RPCMessage(message: message)
-                    completionHandler(info: rpcMessage.result, error: rpcMessage.error)
+                    let message = JSON.parse(data: data!) as [String:AnyObject]
+                    completionHandler(info: message, error: nil)
                 }
             })
         }
@@ -122,6 +131,9 @@ import Foundation
             params["id"] = id
         case .WebApplication:
             params["url"] = id
+        }
+        if args != nil {
+            params["args"] = args
         }
         sendRPC(method, params: params) { (message) -> Void in
             completionHandler(success: message.error == nil, error: message.error)
@@ -141,8 +153,8 @@ import Foundation
             params["url"] = id
         }
         sendRPC(method, params: params) { (message) -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.disconnect({ [unowned self] (channel, error) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {() -> Void in
+                self.disconnect({ [unowned self] (client, error) -> Void in
                     completionHandler(success: message.error == nil, error: message.error)
                 })
             })
@@ -164,7 +176,6 @@ import Foundation
                 completionHandler(success: false, error: applicationError)
             })
         }
-        //doPut(url: String, payload: NSData!, headers: Dictionary<String,String>!, timeout: NSTimeInterval,  completionHandler: RequestCompletionHandler) -> Void
         Requester.doPut( restEndpoint , payload: nil, headers: [:], timeout: NSTimeInterval(10), completionHandler: { (responseHeaders, data, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 completionHandler(success: error == nil, error: error)
@@ -177,15 +188,15 @@ import Foundation
     ///
     ///  :param: leaveHostRunning True leaves the TV app running False stops the TV app if yours is the last client
     ///  :param: completionHandler The callback handler
-    public func disconnect(#leaveHostRunning: Bool, completionHandler: (channel: Channel, error: NSError?) -> Void) {
+    public func disconnect(#leaveHostRunning: Bool, completionHandler: (client: ChannelClient, error: NSError?) -> Void) {
         if !leaveHostRunning && clients.count < 3 {
             stop { (success, error) -> Void in
-                completionHandler(channel: self, error: error)
+                completionHandler(client: self.me, error: error) //TODO check that sel.me is not nil
             }
         } else {
-            self.disconnect({ (channel, error) -> Void in
-                completionHandler(channel: channel,error: error)
-            })
+            self.disconnect { (client, error) -> Void in
+                completionHandler(client: client,error: error)
+            }
         }
     }
 

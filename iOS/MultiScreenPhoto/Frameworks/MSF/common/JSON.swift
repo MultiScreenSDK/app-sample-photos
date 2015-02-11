@@ -26,12 +26,12 @@ import Foundation
 
 public class JSON {
 
-    public class func parse(jsonString: String) -> AnyObject? {
+    public class func parse(#jsonString: String) -> AnyObject? {
         let data: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)!
-        return parse(data)
+        return parse(data:data)
     }
 
-    public class func parse(data: NSData) -> AnyObject? {
+    public class func parse(#data: NSData) -> AnyObject? {
         var e: NSError?
         if let jsonObj: AnyObject = NSJSONSerialization.JSONObjectWithData( data, options: NSJSONReadingOptions(0), error: &e) {
             return jsonObj

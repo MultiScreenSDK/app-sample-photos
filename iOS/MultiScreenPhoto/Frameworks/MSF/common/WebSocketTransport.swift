@@ -24,6 +24,7 @@ THE SOFTWARE.
 
 import Foundation
 
+
 class WebSocketTransport: ChannelTransport, WebSocketDelegate {
     var isConnecting = false
     var socket: WebSocket!
@@ -33,9 +34,13 @@ class WebSocketTransport: ChannelTransport, WebSocketDelegate {
     required init (url: String, service: Service?) {
         self.url = url
     }
-    
+
     func close() {
         socket?.disconnect()
+    }
+
+    func close(#force: Bool) {
+        socket?.disconnectStream(nil)
     }
 
     func connect(options: [String:String]?) {
