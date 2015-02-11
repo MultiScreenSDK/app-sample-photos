@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import MessageUI
 
 /// MoreScreenVC
 ///
 /// This class is used to show the 'How to use' ViewController
-class MoreScreenVC: UIViewController {
+class MoreScreenVC: UIViewController,MFMailComposeViewControllerDelegate {
     
     /// Button used to display a list of compatible devices
     @IBOutlet weak var compatibleButton: UIButton!
@@ -67,8 +68,20 @@ class MoreScreenVC: UIViewController {
     }
     
     /// Method used to capture the event when the email is clicked
-    @IBAction func contactEmail(sender: AnyObject) {
+    @IBAction func contactEmail(sender: UIButton) {
         
+        var picker = MFMailComposeViewController()
+        picker.mailComposeDelegate = self
+        picker.setToRecipients(["multiscreen@sisa.samsung.com"])
+        picker.setSubject("")
+        picker.setMessageBody("", isHTML: true)
+        
+        presentViewController(picker, animated: true, completion: nil)
+    }
+    
+    // MFMailComposeViewControllerDelegate
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     /// Return an UIImage from a given UIColor

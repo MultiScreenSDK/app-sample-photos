@@ -53,26 +53,26 @@ class Gallery: NSObject {
             if (assetsGroup != nil) {
                 
                 if(assetsGroup.numberOfAssets() > 0){
-                
-                    /// set this album not expanded
-                self.isAlbumExpanded.append(false)
-                /// Adding the assetGroup to the album Array
-                self.albums.append(assetsGroup)
-                /// Adding the number of photos by album assetGroup
-                self.numOfAssetsByalbum.append(assetsGroup.numberOfAssets())
-                
+                    
+                    /// Set the Camera Roll to the first position
+                    if(UInt32(assetsGroup.valueForProperty("ALAssetsGroupPropertyType").intValue) == ALAssetsGroupSavedPhotos){
+                        /// set this album not expanded
+                        self.isAlbumExpanded.insert(true, atIndex: 0)
+                        /// Adding the assetGroup to the album Array
+                        self.albums.insert(assetsGroup, atIndex: 0)
+                        /// Adding the number of photos by album assetGroup
+                        self.numOfAssetsByalbum.insert(assetsGroup.numberOfAssets(), atIndex: 0)
+                    }else{
+                        /// set this album not expanded
+                        self.isAlbumExpanded.append(false)
+                        /// Adding the assetGroup to the album Array
+                        self.albums.append(assetsGroup)
+                        /// Adding the number of photos by album assetGroup
+                        self.numOfAssetsByalbum.append(assetsGroup.numberOfAssets())
+                    }
                 }
             }else{
                 
-               /// Order Albums
-               self.albums =  self.albums.reverse()
-               self.isAlbumExpanded =  self.isAlbumExpanded.reverse()
-               self.numOfAssetsByalbum =  self.numOfAssetsByalbum.reverse()
-                
-                if(self.albums.count > 0){
-                    /// set the first album expanded
-                    self.isAlbumExpanded[0] = true
-                }
                dispatch_async(dispatch_get_main_queue(),{
                     completionHandler(true)
                })

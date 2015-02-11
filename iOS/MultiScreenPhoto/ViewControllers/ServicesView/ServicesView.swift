@@ -86,7 +86,7 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
             serviceConnectedName.text =  multiScreenManager.getApplicationCurrentService().name
             /// Used to change the header size
             if(services.count>0){
-                headerViewConstraint.constant = 157
+                headerViewConstraint.constant = 161
             }else{
                 headerViewConstraint.constant = 123
             }
@@ -136,8 +136,9 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         /// Adding the text for each cell
         cell.textLabel?.textColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
         cell.textLabel?.textAlignment = .Left
-        cell.textLabel?.attributedText = NSMutableAttributedString(string: "\(services[indexPath.row].name)", attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 15.0)!])
-        cell.backgroundColor = UIColor(red: 66/255, green: 66/255, blue: 66/255, alpha: 1)
+        cell.textLabel?.frame.origin.x = -20
+        cell.textLabel?.attributedText = NSMutableAttributedString(string: "\(services[indexPath.row].name)", attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 14.0)!])
+        cell.backgroundColor = UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 1)
         
         return cell
         
@@ -147,11 +148,8 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         
         /// If cell is selected then cconnect and start the application
         multiScreenManager.createApplication(services[indexPath.row] as Service, completionHandler: { (success: Bool!) -> Void in
-                /// Post a notification to the NSNotificationCenter
-                /// this notification is used to update the cast icon
-            NSNotificationCenter.defaultCenter().postNotificationName(self.multiScreenManager.servicesChangedObserverIdentifier, object: self)
             if((success) == true){
-                self.closeView()
+                //self.closeView()
             }
         })
     }
@@ -169,8 +167,8 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
     
     /// Method used to close the current View
     func closeView() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
         self.removeFromSuperview()
-         NSNotificationCenter.defaultCenter().removeObserver(self, name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
     }
     
     

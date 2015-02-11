@@ -121,10 +121,12 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
             cell.selectionStyle = UITableViewCellSelectionStyle.None
         }
         
+        /// Adding the text for each cell
         cell.textLabel?.textColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
         cell.textLabel?.textAlignment = .Left
         cell.textLabel?.attributedText = NSMutableAttributedString(string: text, attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 12.0)!])
         cell.backgroundColor = UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 1)
+        
         return cell
         
     }
