@@ -84,7 +84,7 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         let defaults = NSUserDefaults.standardUserDefaults()
         
         // Display Welcome View only one time
-        if(!defaults.boolForKey("hideWelcomeView")){
+        if(!defaults.boolForKey("hideWelcomeView!")){
             
             /// UIView that contains the welcome view
             self.welcomeView = NSBundle.mainBundle().loadNibNamed("WelcomeView", owner: self, options: nil)[0] as? UIView
