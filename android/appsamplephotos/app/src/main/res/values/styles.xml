@@ -7,15 +7,24 @@
 
     </style>
 
-    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
-        <item name="android:background">@color/black</item>
-        <item name="android:displayOptions">showTitle</item>
+    <style name="AppTheme.NoActionBar" parent="android:Theme.Holo.Light.NoActionBar"></style>
+
+    <style name="MyActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/gray</item>
+        <item name="android:displayOptions">showTitle|showHome</item>
+        <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
+    </style>
+
+    <style name="MyActionBarTransucent" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@drawable/bg_subtitlebar</item>
+        <item name="android:displayOptions">showTitle|showHome</item>
         <item name="android:titleTextStyle">@style/MyActionBarTitleText</item>
     </style>
 
     <style name="MyActionBarTitleText"
         parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
         <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20dp</item>
     </style>
 
     <style name="Theme.Transparent" parent="android:Theme">
@@ -23,6 +32,21 @@
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
     </style>
+
+    <style name="Theme.TransparentActionBar" parent="@android:style/Theme.Holo">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:displayOptions">showTitle|showHome</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="CustomActionBarTheme"
+        parent="@android:style/Theme.Holo">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:alpha">1.0</item>
+        <item name="android:actionBarStyle">@style/MyActionBarTransucent</item>
+    </style>
+
 
     <style name="TwoWayView" parent="TwoWayViewBase">
         <item name="android:orientation">vertical</item>

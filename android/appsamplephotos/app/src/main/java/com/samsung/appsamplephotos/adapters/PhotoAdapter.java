@@ -1,32 +1,36 @@
 package com.samsung.appsamplephotos.adapters;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.samsung.appsamplephotos.R;
 import com.samsung.appsamplephotos.activities.ScreenSlideActivity;
+import com.samsung.appsamplephotos.controllers.PhotoController;
+import com.samsung.appsamplephotos.models.Gallery;
 import com.samsung.appsamplephotos.models.Photo;
 import com.samsung.appsamplephotos.utils.Constants;
 import com.squareup.picasso.Picasso;
-import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter;
 
-import org.lucasr.twowayview.TwoWayLayoutManager;
 import org.lucasr.twowayview.widget.StaggeredGridLayoutManager;
 import org.lucasr.twowayview.widget.TwoWayView;
 
@@ -40,26 +44,43 @@ public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     private final Context context;
     private ArrayList<Photo> photos;
+    private Gallery currentGallery;
     TwoWayView mRecyclerView;
     ImageLoader picture = ImageLoader.getInstance();
     DisplayImageOptions options;
 
-    public PhotoAdapter(Context context, TwoWayView recyclerView, ArrayList<Photo> photos){
+    public PhotoAdapter(Context context, TwoWayView recyclerView, Gallery gallery){
         this.context    = context;
-        this.photos  = photos;
+        this.photos  = gallery.getPhotos();
+        this.currentGallery = gallery;
         this.mRecyclerView = recyclerView;
-        this.picture.init(ImageLoaderConfiguration.createDefault(context));
+        File cacheDir;
+        if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED))
+            cacheDir=new File(android.os.Environment.getExternalStorageDirectory(),"neongall");
+        else
+            cacheDir=context.getCacheDir();
+        if(!cacheDir.exists())
+            cacheDir.mkdirs();
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
+                .memoryCache(new WeakMemoryCache())
+                .denyCacheImageMultipleSizesInMemory()
+                .discCache(new UnlimitedDiscCache(cacheDir))
+                .threadPriority(Thread.NORM_PRIORITY - 2)
+                .build();
+        //this.picture.init(ImageLoaderConfiguration.createDefault(context));
+        this.picture.init(config);
         optionImages();
     }
 
     private void optionImages(){
         DisplayImageOptions.Builder builder = new DisplayImageOptions.Builder();
-        //builder.showStubImage(R.drawable.img_commerce_placeholde);
-        //builder.showImageForEmptyUri(R.drawable.img_commerce_placeholde);
-        //builder.showImageOnFail(R.drawable.img_commerce_placeholde);
-        builder.cacheOnDisc(true);
+        builder.cacheOnDisc(false);
         builder.cacheInMemory(true);
-        builder.imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2);
+        builder.considerExifParams(true);
+        builder.imageScaleType(ImageScaleType.IN_SAMPLE_INT);
+        builder.bitmapConfig(Bitmap.Config.RGB_565);
+        builder.resetViewBeforeLoading(true);
         this.options = builder.build();
     }
 
@@ -73,17 +94,6 @@ public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }
 
-    public static class HeaderViewHolder extends RecyclerView.ViewHolder {
-        public ImageView photoImageView;
-        public View viewHolder;
-        public HeaderViewHolder(View v, Context context1) {
-            super(v);
-            viewHolder = v;
-            photoImageView = (ImageView) v.findViewById(R.id.photoImageView);
-            photoImageView.setImageDrawable(context1.getResources().getDrawable(R.drawable.ic_launcher));
-        }
-    }
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
@@ -93,7 +103,6 @@ public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int position) {
-
             Grid((ViewHolder)viewHolder,position);
     }
 
@@ -187,17 +196,23 @@ public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         /*Picasso.with(holder.restaurantImage.getContext()).load(restaurant.restaurantCoverImage.url).fit().centerInside().into(holder.restaurantImage);
         holder.restaurantImage.setTag(restaurant);*/
 
-        //picture.displayImage("file:/" + photo.getUri().toString(), viewHolder.photoImageView, this.options);
-        Picasso.with(viewHolder.photoImageView.getContext()).load(new File(photo.getUri().toString()))
+        Log.e(Constants.APP_TAG,"Cargando imagen Lucho: " + position);
+
+        picture.displayImage("file:/" + photo.getUri().toString(), viewHolder.photoImageView, this.options);
+
+
+        /*Picasso.with(viewHolder.photoImageView.getContext()).load(new File(photo.getUri().toString()))
                 .resize(lp.height,lp.width)
                 .centerCrop()
-                .into(viewHolder.photoImageView);
+                .into(viewHolder.photoImageView);*/
 
         viewHolder.viewHolder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                PhotoController.getInstance().setCurrentGallery(currentGallery);
                 Intent intent = new Intent(context, ScreenSlideActivity.class);
                 intent.putExtra(Constants.PHOTO_ID,photo.getPosition());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 context.startActivity(intent);
             }
         });

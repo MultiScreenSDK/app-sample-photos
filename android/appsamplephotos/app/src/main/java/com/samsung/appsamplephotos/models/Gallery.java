@@ -10,6 +10,7 @@ public class Gallery {
     public String name;
     public String date;
     public ArrayList<Photo> photos;
+    public boolean isOpen;
 
     public Gallery(String id, String name, ArrayList<Photo> photos) {
         super();

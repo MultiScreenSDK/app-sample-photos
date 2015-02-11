@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -21,11 +22,14 @@ public class WelcomeActivity extends FragmentActivity {
     private Button startButton;
     private TextView titleTextView;
     private TextView paragraphTextVieW;
+    private TextView noteTextVieW;
     private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_welcome);
         setupView();
     }
@@ -34,6 +38,7 @@ public class WelcomeActivity extends FragmentActivity {
         prefs = getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
         titleTextView = (TextView) findViewById(R.id.titleTextView);
         paragraphTextVieW = (TextView) findViewById(R.id.paragraphTextVieW);
+        noteTextVieW = (TextView) findViewById(R.id.noteTextVieW);
         startButton = (Button) findViewById(R.id.startButton);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +51,8 @@ public class WelcomeActivity extends FragmentActivity {
         });
         titleTextView.setTypeface(customFont(this));
         paragraphTextVieW.setTypeface(customFont(this));
+        noteTextVieW.setTypeface(customFont(this));
+        startButton.setTypeface(customFont(this));
     }
 
 
@@ -78,5 +85,6 @@ public class WelcomeActivity extends FragmentActivity {
         editor.commit();
         finish();
         super.onBackPressed();
+        overridePendingTransition(0,0);
     }
 }
