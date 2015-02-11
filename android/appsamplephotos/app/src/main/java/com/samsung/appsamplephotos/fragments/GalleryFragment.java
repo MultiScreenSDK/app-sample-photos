@@ -25,6 +25,7 @@ import com.samsung.appsamplephotos.utils.MultiscreenUtils;
 import org.lucasr.twowayview.widget.TwoWayView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +37,7 @@ public class GalleryFragment extends Fragment {
     private LinearLayout mBucketContainer;
     private View rootView;
     private ArrayList<Gallery> galleries = new ArrayList<Gallery>();
+    ArrayList<Photo> dataSource = new ArrayList<Photo>();
 
     public static GalleryFragment newInstance() {
         GalleryFragment fragment = new GalleryFragment();
@@ -51,7 +53,6 @@ public class GalleryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -74,58 +75,70 @@ public class GalleryFragment extends Fragment {
         return rootView;
     }
 
-    public void addContainerItem(ArrayList<Gallery> galleries,LayoutInflater inflater,ViewGroup container){
-        for (Gallery gallery : galleries) {
+    public void addContainerItem(final ArrayList<Gallery> galleries,LayoutInflater inflater,ViewGroup container){
+        for (final Gallery gallery : galleries) {
             View child = inflater.inflate(R.layout.bucket_collection_container, container, false);
             TextView bucketTitle = (TextView) child.findViewById(R.id.bucketTitle);
             bucketTitle.setTypeface(MultiscreenUtils.customFont(getActivity()));
             RelativeLayout headerCollectionLayout = (RelativeLayout) child.findViewById(R.id.headerCollectionLayout);
             final TwoWayView recyclerView = (TwoWayView) child.findViewById(R.id.recycler_collection_view);
             final ImageView arrowImageView = (ImageView) child.findViewById(R.id.arrowImageView);
-            final PhotoAdapter photoAdapter = new PhotoAdapter(getActivity(),recyclerView, gallery.getPhotos());
+            final PhotoAdapter photoAdapter = new PhotoAdapter(getActivity(),recyclerView, gallery);
+
             headerCollectionLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (recyclerView.getVisibility() == View.INVISIBLE) {
-                        arrowImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down));
-                        WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
-                        Display display = wm.getDefaultDisplay();
-                        Point size = new Point();
-                        display.getSize(size);
-                        int width = size.x;
-                        ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
-                        params.height = photoAdapter.getItemCount() > 5 ? (((photoAdapter.getItemCount() / 5) + 1) * (width / 2)) : (width / 2);
-                        recyclerView.setLayoutParams(params);
+                    if (recyclerView.getVisibility() == View.GONE) {
+                        dataSource.clear();
+                        if (gallery.photos.isEmpty()) gallery.photos.addAll(PhotoController.getInstance().getImageInfos(getActivity(),gallery.getId()));
+                        dataSource.addAll(gallery.getPhotos());
+                        arrowImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up));
+                        setViewHeight(recyclerView,photoAdapter);
                         recyclerView.setVisibility(View.VISIBLE);
                     } else {
-                        arrowImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up));
-                        ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
-                        params.height = 0;
-                        recyclerView.setLayoutParams(params);
-                        recyclerView.setVisibility(View.INVISIBLE);
+                        arrowImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down));
+                        setViewHeight(recyclerView,photoAdapter);
+                        recyclerView.setVisibility(View.GONE);
                     }
                 }
             });
+
             bucketTitle.setText(gallery.getName());
-            addCollectionImage(gallery.getPhotos(), child, R.layout.cell_photo_layout, mInflater, mContainer, recyclerView, photoAdapter);
+            if (!gallery.getName().equals("Camera")) {
+                recyclerView.setVisibility(View.GONE);
+                arrowImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down));
+            } else {
+                gallery.photos.clear();
+                gallery.photos.addAll(PhotoController.getInstance().getImageInfos(getActivity(),gallery.getId()));
+                dataSource.addAll(gallery.getPhotos());
+                recyclerView.setVisibility(View.VISIBLE);
+                arrowImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up));
+            }
+            addCollectionImage(recyclerView, photoAdapter);
             mBucketContainer.addView(child);
         }
     }
 
-    public void addCollectionImage( ArrayList<Photo> photos,View view,int resource,LayoutInflater inflater,ViewGroup container, TwoWayView recyclerView, PhotoAdapter photoAdapter){
-
+    public void addCollectionImage(TwoWayView recyclerView, PhotoAdapter photoAdapter){
         recyclerView.setAdapter(photoAdapter);
+        setViewHeight(recyclerView,photoAdapter);
+    }
 
+    private void setViewHeight(TwoWayView recyclerView, PhotoAdapter photoAdapter) {
+        ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
+        params.height = calculateHeight(photoAdapter);
+        recyclerView.setLayoutParams(params);
+    }
+
+    private int calculateHeight(PhotoAdapter photoAdapter) {
         WindowManager wm = (WindowManager) getActivity().getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
         int width = size.x;
-
-        ViewGroup.LayoutParams params = recyclerView.getLayoutParams();
-        params.height = photoAdapter.getItemCount() > 5 ? (((photoAdapter.getItemCount() / 5) + 1) * (width / 2)) : (width / 2);
-        recyclerView.setLayoutParams(params);
+        int numberColumns = photoAdapter.getItemCount() / 5;
+        int sum = photoAdapter.getItemCount() % 5 == 0 ? 0 : 1;
+        return (numberColumns + sum) * (width/2);
     }
-
 
 }

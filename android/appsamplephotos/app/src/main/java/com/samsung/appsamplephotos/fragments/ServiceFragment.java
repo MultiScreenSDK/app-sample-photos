@@ -12,7 +12,9 @@ import android.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -21,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.samsung.appsamplephotos.R;
+import com.samsung.appsamplephotos.activities.BaseActivity;
 import com.samsung.appsamplephotos.activities.MainActivity;
 import com.samsung.appsamplephotos.adapters.ServiceAdapter;
 import com.samsung.appsamplephotos.controllers.Callback;
@@ -57,6 +60,9 @@ public class ServiceFragment extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.fragment_service);
         connectedToLayout = (LinearLayout) findViewById(R.id.connectedToLayout);
         connectedToTextView = (TextView) findViewById(R.id.connectedToTextView);
@@ -80,6 +86,12 @@ public class ServiceFragment extends FragmentActivity {
         reloadAdapter();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        return false;
+    }
+
     public void getServices() {
         dataSource.clear();
         List<Service> services = MultiScreenController.getInstance().getServices();
@@ -89,6 +101,10 @@ public class ServiceFragment extends FragmentActivity {
                 Service service = it.next();
                 addServicesToData(service);
             }
+            if (MultiScreenController.getInstance().getCastStatus().equals(MultiScreenController.castStatusTypes.CONNECTEDTOSERVICE)) {
+                if (dataSource.isEmpty()) selectedToLayout.setVisibility(View.GONE);
+                else selectedToLayout.setVisibility(View.VISIBLE);
+            } else selectedToLayout.setVisibility(View.VISIBLE);
         }
     }
 
@@ -103,14 +119,10 @@ public class ServiceFragment extends FragmentActivity {
 
     public void setupView() {
         if (!MultiScreenController.getInstance().getCastStatus().equals(MultiScreenController.castStatusTypes.CONNECTEDTOSERVICE)) {
-            connectedToLayout.setVisibility(View.GONE);
-            dividerBlackLine.setVisibility(View.GONE);
-            dividerLine.setVisibility(View.GONE);
+            setVisibilityTo(View.GONE);
             selectedTextView.setText(getResources().getString(R.string.select_tv));
         } else {
-            connectedToLayout.setVisibility(View.VISIBLE);
-            dividerBlackLine.setVisibility(View.VISIBLE);
-            dividerLine.setVisibility(View.VISIBLE);
+            setVisibilityTo(View.VISIBLE);
             selectedTextView.setText(getResources().getString(R.string.switch_to));
             tvSelectedTextView.setText(MultiScreenController.getInstance().getService().getName());
         }
@@ -150,6 +162,12 @@ public class ServiceFragment extends FragmentActivity {
         });
     }
 
+    private void setVisibilityTo(int visibility) {
+        connectedToLayout.setVisibility(visibility);
+        dividerBlackLine.setVisibility(visibility);
+        dividerLine.setVisibility(visibility);
+    }
+
     private void onDisconnectService() {
         Intent intent = new Intent(Constants.SERVICE_SELECTED);
         intent.putExtra(Constants.SERVICE, "null");
@@ -162,6 +180,12 @@ public class ServiceFragment extends FragmentActivity {
         // Unregister since the activity is not visible
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
         super.onPause();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0,0);
     }
 
     public void reloadAdapter() {

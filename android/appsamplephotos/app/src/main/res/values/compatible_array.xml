@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="screen_sizes">
+        <item>10 inches</item>
+        <item>20 inches</item>
+        <item>30 inches</item>
+        <item>40 inches</item>
+    </string-array>
+    <string-array name="models_10_inches">
+        <item>UN48H5500AFXZA</item>
+        <item>UN48H6300AFXZA</item>
+        <item>UN48H6350AFXZA</item>
+        <item>UN48H6400AFXZA</item>
+        <item>UN48H8000AFXZA</item>
+    </string-array>
+    <string-array name="models_20_inches">
+        <item>UN48H5500AFXZA</item>
+        <item>UN48H5500AFXZA</item>
+        <item>UN48H5500AFXZA</item>
+    </string-array>
+    <string-array name="models_30_inches">
+        <item>UN48H5500AFXZB</item>
+        <item>UN48H5500AFXZB</item>
+        <item>UN48H5500AFXZB</item>
+        <item>UN48H5500AFXZB</item>
+    </string-array>
+    <string-array name="models_40_inches">
+        <item>UN48H5500AFXZC</item>
+        <item>UN48H5500AFXZC</item>
+        <item>UN48H5500AFXZC</item>
+        <item>UN48H5500AFXZC</item>
+    </string-array>
+</resources>

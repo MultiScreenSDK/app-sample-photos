@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
-        android:alpha="0.9" />
+        android:alpha="0.8" />
 
     <LinearLayout
         android:id="@+id/containerLayout"
@@ -92,7 +92,7 @@
             android:id="@+id/selectedToLayout"
             android:layout_width="248dp"
             android:layout_height="wrap_content"
-            android:background="@color/gray"
+            android:background="@color/background_gray"
             android:layout_centerInParent="true"
             android:orientation="vertical">
 

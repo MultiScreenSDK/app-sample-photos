@@ -87,8 +87,8 @@
     <orderEntry type="library" exported="" name="core-1.0.0-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-19.1.0" level="project" />
+    <orderEntry type="library" exported="" name="android-msf-api-2.0.12" level="project" />
     <orderEntry type="library" exported="" name="support-v4-21.0.3" level="project" />
-    <orderEntry type="library" exported="" name="android-msf-api-2.0.10" level="project" />
     <orderEntry type="library" exported="" name="library-0.3.5" level="project" />
     <orderEntry type="library" exported="" name="cardview-v7-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="universal-image-loader-1.9.1" level="project" />

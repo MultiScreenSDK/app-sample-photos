@@ -1,14 +1,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.samsung.appsamplephotos.activities.MoreActivity">
+    tools:context="com.samsung.appsamplephotos.fragments.MoreActivity">
 
     <RelativeLayout
         android:id="@+id/backgroundLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/gray" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:background="@color/black"
-        android:alpha="0.9" />
+        android:layout_alignParentTop="true" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,10 +33,12 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/aboutTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/about_multiscreen"
                 android:layout_gravity="left"
+                android:textSize="16dip"
                 android:textColor="@color/white"/>
 
             <View
@@ -40,6 +47,7 @@
                 android:background="@color/white" />
 
             <TextView
+                android:id="@+id/aboutDescriptionTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/about_info"
@@ -57,9 +65,11 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/howConnectTitleTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/get_started_more"
+                android:textSize="16dip"
                 android:textColor="@color/white"/>
 
             <View
@@ -73,6 +83,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/compatibleTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/compatible"
@@ -82,16 +93,17 @@
                 <Button
                     android:id="@+id/checkModelNumberBtn"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
                     android:layout_marginTop="10dp"
-                    android:text="Check TV model number"
+                    android:text="@string/list_compatible_tv"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:background="@drawable/btn_background" />
 
                 <TextView
+                    android:id="@+id/mobileTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/mobile_and_tv"
@@ -99,6 +111,7 @@
                     android:textColor="@color/white" />
 
                 <TextView
+                    android:id="@+id/deviceDiscoversTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/when_mobile_discovers"
@@ -106,10 +119,27 @@
                     android:textColor="@color/white" />
 
                 <TextView
+                    android:id="@+id/tapSelectTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/tap_to_select"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/turnsToTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/when_turn_to"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/tapDisconnectTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tap_to_disconnect"
+                    android:layout_marginTop="25dp"
                     android:textColor="@color/white" />
 
             </LinearLayout>
@@ -120,13 +150,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/getStarted"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/contactTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/contact"
+                android:textSize="16dip"
                 android:textColor="@color/white"/>
 
             <View
@@ -135,9 +167,29 @@
                 android:background="@color/white" />
 
             <TextView
+                android:id="@+id/moreInfoTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/more_info"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/sendEmailTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/send_email"
+                android:layout_marginTop="3dp"
+                android:linksClickable="true"
+                android:autoLink="web|email"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/answerQuestionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/answer_questions"
+                android:layout_marginTop="3dp"
                 android:textColor="@color/white" />
 
         </LinearLayout>
