@@ -17,9 +17,6 @@ class CommonVC: UIViewController, UIGestureRecognizerDelegate {
     /// MultiScreenManager instance that manage the interaction with the services
     var multiScreenManager = MultiScreenManager.sharedInstance
     
-    /// Observer identifier for cast notification
-    let updateCastButtonObserverIdentifier = "updateCastButton"
-    
     /// UIView that contains a list of available services
     var servicesView: ServicesView!
     
@@ -42,14 +39,14 @@ class CommonVC: UIViewController, UIGestureRecognizerDelegate {
         super.viewWillAppear(animated)
         
         // Add an observer to check for services status and manage the cast icon
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateCastButton", name: updateCastButtonObserverIdentifier, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateCastButton", name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
         updateCastButton()
     }
     
     /// Remove observer when viewDidDisappear
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: updateCastButtonObserverIdentifier, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
     }
     
     /// Method called by the updateCastButton observer

@@ -19,7 +19,7 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
     
     /// Identifier for UITableview cell
     let servicesFoundTVCellID = "ServicesFoundTVCell"
-
+    
     /// UITableView to diplay the services
     @IBOutlet weak var tableView: UITableView!
     
@@ -41,27 +41,8 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
     override func awakeFromNib(){
         super.awakeFromNib()
         
-        /// Populate Temp services array with services not connected
-        services = multiScreenManager.getServicesNotConnected()
-        
-        /// Used to change the Cast icon, depending is a service is connected or not
-        if(multiScreenManager.isApplicationConnected()){
-            title.text = "Connected to:"
-            icon.image = UIImage(named: "icon_cast_connect")
-            serviceConnectedName.text =  multiScreenManager.getApplicationCurrentService().name
-            /// Used to change the header size
-            if(services.count>0){
-                headerViewConstraint.constant = 157
-            }else{
-                headerViewConstraint.constant = 123
-            }
-            lineImage.backgroundColor = UIColor.whiteColor()
-        }else{
-            title.text = "Connect to:"
-            icon.image = UIImage(named: "icon_cast_discovered")
-            lineImage.backgroundColor = UIColor.blackColor()
-            headerViewConstraint.constant = 41
-        }
+        // Add an observer to check for services status and manage the cast icon
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshTableView", name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
         
         /// Adding border and color to disconnect button
         disconnectButton.layer.cornerRadius = 0
@@ -88,11 +69,36 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         tap.addTarget(self, action: "closeView")
         self.addGestureRecognizer(tap)
         
+        refreshTableView()
+        
     }
     
     /// Method used to reload table view with services not connected
     func refreshTableView(){
+        
+        /// Populate Temp services array with services not connected
         services = multiScreenManager.getServicesNotConnected()
+        
+        /// Used to change the Cast icon, depending is a service is connected or not
+        if(multiScreenManager.isApplicationConnected()){
+            title.text = "Connected to:"
+            icon.image = UIImage(named: "icon_cast_connect")
+            serviceConnectedName.text =  multiScreenManager.getApplicationCurrentService().name
+            /// Used to change the header size
+            if(services.count>0){
+                headerViewConstraint.constant = 157
+            }else{
+                headerViewConstraint.constant = 123
+            }
+            lineImage.backgroundColor = UIColor.whiteColor()
+        }else{
+            title.text = "Connect to:"
+            icon.image = UIImage(named: "icon_cast_discovered")
+            lineImage.backgroundColor = UIColor.blackColor()
+            headerViewConstraint.constant = 41
+        }
+
+        
         tableView.reloadData()
     }
     
@@ -143,9 +149,9 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         multiScreenManager.createApplication(services[indexPath.row] as Service, completionHandler: { (success: Bool!) -> Void in
                 /// Post a notification to the NSNotificationCenter
                 /// this notification is used to update the cast icon
-            NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
+            NSNotificationCenter.defaultCenter().postNotificationName(self.multiScreenManager.servicesChangedObserverIdentifier, object: self)
             if((success) == true){
-                self.removeFromSuperview()
+                self.closeView()
             }
         })
     }
@@ -156,15 +162,17 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         multiScreenManager.closeApplication({ (success: Bool!) -> Void in
             /// Post a notification to the NSNotificationCenter
             /// this notification is used to update the cast icon
-            NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
-            self.removeFromSuperview()
+            NSNotificationCenter.defaultCenter().postNotificationName(self.multiScreenManager.servicesChangedObserverIdentifier, object: self)
+            self.closeView()
         })
     }
     
     /// Method used to close the current View
     func closeView() {
         self.removeFromSuperview()
+         NSNotificationCenter.defaultCenter().removeObserver(self, name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
     }
+    
     
     /// UIGestureRecognizerDelegate used to disable the tap event if the tapped View is not the main View
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool{
