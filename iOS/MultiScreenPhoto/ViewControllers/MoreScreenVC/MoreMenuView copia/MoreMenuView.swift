@@ -12,7 +12,7 @@ import UIKit
 ///
 /// This delegate is used to know when the more button is pressed
 protocol MoreMenuViewDelegate {
-    func goToHowToView()
+    func goToMoreScreenVC()
 }
 
 /// MoreMenuView
@@ -41,7 +41,7 @@ class MoreMenuView: UIView,UIGestureRecognizerDelegate {
     /// If is clicked then call the MoreMenuViewDelegate
     @IBAction func moreOptionSelected(sender: AnyObject) {
         self.removeFromSuperview()
-        delegate.goToHowToView()
+        delegate.goToMoreScreenVC()
     }
     
     /// UIGestureRecognizerDelegate used to disable the tap event if the tapped View is not the main View

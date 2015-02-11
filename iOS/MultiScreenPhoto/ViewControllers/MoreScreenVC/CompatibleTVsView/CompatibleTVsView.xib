@@ -15,14 +15,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CompatibleTVsView" customModule="MultiScreenPhoto" customModuleProvider="target">
+        <view tag="1" contentMode="scaleToFill" id="iN0-l3-epB" customClass="CompatibleTVsView" customModule="MultiScreenPhoto" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DcW-Ej-cDq">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DcW-Ej-cDq">
                     <rect key="frame" x="60" y="147" width="200" height="288"/>
                     <subviews>
-                        <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KSf-fQ-jN2">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KSf-fQ-jN2">
                             <rect key="frame" x="0.0" y="38" width="200" height="43"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bTI-GW-ZYt">
@@ -47,13 +47,13 @@
                                 <constraint firstAttribute="bottom" secondItem="bTI-GW-ZYt" secondAttribute="bottom" id="yWP-8Y-wzM"/>
                             </constraints>
                         </view>
-                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="o1R-aX-xVb">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_arrow_down" translatesAutoresizingMaskIntoConstraints="NO" id="o1R-aX-xVb">
                             <rect key="frame" x="169" y="57" width="15" height="9"/>
                         </imageView>
-                        <view tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mVd-oP-mLL">
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mVd-oP-mLL">
                             <rect key="frame" x="0.0" y="0.0" width="200" height="38"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Compatible Smart TVs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMi-hR-hhs">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Compatible Smart TVs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMi-hR-hhs">
                                     <rect key="frame" x="11" y="8" width="192" height="21"/>
                                     <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="14"/>
                                     <color key="textColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -62,7 +62,7 @@
                             </subviews>
                             <color key="backgroundColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
-                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Vaa-Lz-Ra2">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Vaa-Lz-Ra2">
                             <rect key="frame" x="5" y="48" width="195" height="27"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="27" id="uKL-H9-kbP"/>
@@ -76,7 +76,7 @@
                                 <action selector="dropDownButtonSelected:" destination="iN0-l3-epB" eventType="touchUpInside" id="MKZ-dG-Pzm"/>
                             </connections>
                         </button>
-                        <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="42" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="LCb-Cx-4HR">
+                        <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="42" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="LCb-Cx-4HR">
                             <rect key="frame" x="0.0" y="81" width="200" height="176"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

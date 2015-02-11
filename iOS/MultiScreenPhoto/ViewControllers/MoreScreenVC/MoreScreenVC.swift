@@ -1,5 +1,5 @@
 //
-//  HowToVC.swift
+//  MoreVC.swift
 //  MultiScreenPhoto
 //
 //  Created by Raul Mantilla on 29/01/15.
@@ -8,17 +8,17 @@
 
 import UIKit
 
-/// HowToVC
+/// MoreScreenVC
 ///
 /// This class is used to show the 'How to use' ViewController
-class HowToVC: UIViewController {
+class MoreScreenVC: UIViewController {
     
     /// Button used to display a list of compatible devices
     @IBOutlet weak var compatibleButton: UIButton!
     
     /// UIView that contains the compatible devices View
     var compatibleTVsView: UIView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,14 +30,14 @@ class HowToVC: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-         // Method to setup the navigation bar color and fonts
+        // Method to setup the navigation bar color and fonts
         setUpNavigationBar()
     }
     
     // Method to setup the navigation bar color and fonts
     func setUpNavigationBar(){
         
-       /// Set the Navigation Bar color
+        /// Set the Navigation Bar color
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(named: "bg_subtitlebar_home"), forBarMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.tintColor =  UIColor(red: 204/255, green: 204/255, blue: 204/255, alpha: 1)
@@ -58,12 +58,12 @@ class HowToVC: UIViewController {
     }
     
     /// Method used to capture the event when the compatibleButton button is clicked
-    /// If it was clicked then displays the CompatibleTVsView 
+    /// If it was clicked then displays the CompatibleTVsView
     @IBAction func compatibleDevices(sender: AnyObject) {
         self.compatibleTVsView = NSBundle.mainBundle().loadNibNamed("CompatibleTVsView", owner: self, options: nil)[0] as? UIView
-        self.compatibleTVsView.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: UIScreen.mainScreen().bounds.size.height)
+        self.compatibleTVsView.frame = UIScreen.mainScreen().bounds
         view.window?.addSubview(compatibleTVsView)
-    
+        
     }
     
     /// Method used to capture the event when the email is clicked
@@ -82,5 +82,5 @@ class HowToVC: UIViewController {
         UIGraphicsEndImageContext()
         return image
     }
-
+    
 }

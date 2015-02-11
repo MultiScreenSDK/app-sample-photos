@@ -52,22 +52,30 @@ class Gallery: NSObject {
         let enumGroupBlock: ALAssetsLibraryGroupsEnumerationResultsBlock = {(assetsGroup: ALAssetsGroup!, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
             if (assetsGroup != nil) {
                 
-                if(self.albums.count > 0){
-                    ///if albums > 0 then set the other album expanded to false
-                    self.isAlbumExpanded.append(false)
-                }else{
-                     ///if albums == 0 then set this album as expanded
-                    self.isAlbumExpanded.append(true)
-                }
+                if(assetsGroup.numberOfAssets() > 0){
+                
+                    /// set this album not expanded
+                self.isAlbumExpanded.append(false)
                 /// Adding the assetGroup to the album Array
                 self.albums.append(assetsGroup)
-                
                 /// Adding the number of photos by album assetGroup
                 self.numOfAssetsByalbum.append(assetsGroup.numberOfAssets())
+                
+                }
             }else{
-                dispatch_async(dispatch_get_main_queue(),{
+                
+               /// Order Albums
+               self.albums =  self.albums.reverse()
+               self.isAlbumExpanded =  self.isAlbumExpanded.reverse()
+               self.numOfAssetsByalbum =  self.numOfAssetsByalbum.reverse()
+                
+                if(self.albums.count > 0){
+                    /// set the first album expanded
+                    self.isAlbumExpanded[0] = true
+                }
+               dispatch_async(dispatch_get_main_queue(),{
                     completionHandler(true)
-                })
+               })
             }
         }
         
@@ -82,6 +90,10 @@ class Gallery: NSObject {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             self.assetsLibrary.enumerateGroupsWithTypes(0xFFFFFFFF, usingBlock: enumGroupBlock, failureBlock: enumFail)
         })
+    }
+    
+    func reverseArray(arrayObject: Array<AnyObject>) -> Array<AnyObject>{
+        return arrayObject.reverse()
     }
     
     // Returns the number of albums
@@ -210,7 +222,7 @@ class Gallery: NSObject {
     func getThumnailFromAsset(asset: ALAsset!)->UIImage{
         var cgImage: CGImageRef
         if (asset.thumbnail() != nil){
-            cgImage = asset.aspectRatioThumbnail().takeUnretainedValue()
+            cgImage = asset.thumbnail().takeUnretainedValue()
             return UIImage(CGImage:cgImage)!
         }
         return UIImage(named: "placeholder-image")!
