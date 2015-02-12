@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import com.samsung.appsamplephotos.R;
 import com.samsung.appsamplephotos.controllers.Callback;
 import com.samsung.appsamplephotos.controllers.MultiScreenController;
+import com.samsung.appsamplephotos.controllers.PhotoController;
 import com.samsung.appsamplephotos.fragments.ServiceFragment;
 import com.samsung.appsamplephotos.utils.Constants;
 
@@ -27,6 +28,8 @@ import com.samsung.appsamplephotos.utils.Constants;
 public class BaseActivity extends FragmentActivity {
 
     private MenuItem connectivityMenuItem;
+    public PhotoController photoHelper;
+    public MultiScreenController msHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +47,12 @@ public class BaseActivity extends FragmentActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
                 new IntentFilter(Constants.SERVICE_SELECTED));
 
+        // Register a local broadcast receiver to know when a service is detected or lost
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
                 new IntentFilter(Constants.SERVICE_EVENT));
+
+        photoHelper = PhotoController.getInstance();
+        msHelper = MultiScreenController.getInstance();
     }
 
 
@@ -170,25 +177,16 @@ public class BaseActivity extends FragmentActivity {
         MultiScreenController.getInstance().startSearch();
     }
 
-    /*private void launchApplication() {
-        MultiScreenController.getInstance().launchApplication(new Callback() {
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onError(Object error) {
-
-            }
-        });
-    }*/
-
+    /**
+     * Receive notifications for service changes. In case the receive service is null starts
+     * fin service and set the cast icon to change the status. Otherwise, establish connection
+     * to the TV application.
+     */
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             String service = intent.getStringExtra(Constants.SERVICE);
-            if (service == "null") {
+            if (service == Constants.NO_SERVICE) {
                 new findDevicesTask().execute();
                 setCastIcon();
             } else

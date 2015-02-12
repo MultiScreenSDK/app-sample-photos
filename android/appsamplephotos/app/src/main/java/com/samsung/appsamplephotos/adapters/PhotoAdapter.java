@@ -49,9 +49,9 @@ public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     ImageLoader picture = ImageLoader.getInstance();
     DisplayImageOptions options;
 
-    public PhotoAdapter(Context context, TwoWayView recyclerView, Gallery gallery){
+    public PhotoAdapter(Context context, TwoWayView recyclerView, Gallery gallery, ArrayList<Photo> dataSource){
         this.context    = context;
-        this.photos  = gallery.getPhotos();
+        this.photos  = dataSource;
         this.currentGallery = gallery;
         this.mRecyclerView = recyclerView;
         File cacheDir;
@@ -196,7 +196,7 @@ public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         /*Picasso.with(holder.restaurantImage.getContext()).load(restaurant.restaurantCoverImage.url).fit().centerInside().into(holder.restaurantImage);
         holder.restaurantImage.setTag(restaurant);*/
 
-        Log.e(Constants.APP_TAG,"Cargando imagen Lucho: " + position);
+        Log.e(Constants.APP_TAG,"Loading image position: " + position);
 
         picture.displayImage("file:/" + photo.getUri().toString(), viewHolder.photoImageView, this.options);
 

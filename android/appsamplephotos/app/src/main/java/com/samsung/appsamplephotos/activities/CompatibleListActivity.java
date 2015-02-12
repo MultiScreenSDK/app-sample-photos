@@ -17,7 +17,7 @@ import com.samsung.appsamplephotos.R;
 
 import java.util.ArrayList;
 
-import static com.samsung.appsamplephotos.utils.MultiscreenUtils.*;
+import static com.samsung.appsamplephotos.utils.Utils.*;
 
 public class CompatibleListActivity extends FragmentActivity {
 
@@ -46,7 +46,7 @@ public class CompatibleListActivity extends FragmentActivity {
                 onBackPressed();
             }
         });
-        screenSizeBtn.setTypeface(customFont(this));
+        screenSizeBtn.setTypeface(italicFont(this));
         compatibleTextView.setTypeface(customFont(this));
         String [] screenSize = getResources().getStringArray(R.array.screen_sizes);
         for (String inch : screenSize) {
@@ -60,12 +60,10 @@ public class CompatibleListActivity extends FragmentActivity {
                 screenSizeBtn.setText(getResources().getString(R.string.select_screen_size));
                 modelListView.setVisibility(View.GONE);
                 if (inchesListView.getVisibility() == View.VISIBLE) {
-                    //screenSizeBtn.setBackgroundResource(R.drawable.img_bg_screen_size_up);
-                    screenSizeBtn.setBackground(getResources().getDrawable(R.drawable.img_bg_screen_size));
+                    screenSizeBtn.setCompoundDrawablesWithIntrinsicBounds(null,null,getResources().getDrawable(R.drawable.ic_arrow_down),null);
                     inchesListView.setVisibility(View.GONE);
                 } else {
-                    //screenSizeBtn.setBackgroundResource(R.drawable.img_bg_screen_size);
-                    screenSizeBtn.setBackground(getResources().getDrawable(R.drawable.img_bg_screen_size_up));
+                    screenSizeBtn.setCompoundDrawablesWithIntrinsicBounds(null,null,getResources().getDrawable(R.drawable.ic_arrow_up),null);
                     inchesListView.setVisibility(View.VISIBLE);
                 }
             }
@@ -126,7 +124,7 @@ public class CompatibleListActivity extends FragmentActivity {
                 public void onClick(View v) {
                     inchesListView.setVisibility(View.GONE);
                     screenSizeBtn.setText(screenSize.get(position));
-                    screenSizeBtn.setBackground(getResources().getDrawable(R.drawable.img_bg_screen_size));
+                    screenSizeBtn.setCompoundDrawablesWithIntrinsicBounds(null,null,getResources().getDrawable(R.drawable.ic_arrow_down),null);
                     String [] inches;
                     switch (position) {
                         case 0:

@@ -6,15 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Looper;
 import android.text.Spannable;
 import android.text.SpannableString;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.samsung.appsamplephotos.R;
-import com.samsung.appsamplephotos.adapters.PhotoAdapter;
 import com.samsung.appsamplephotos.controllers.Callback;
 import com.samsung.appsamplephotos.controllers.PhotoController;
 import com.samsung.appsamplephotos.fragments.GalleryFragment;
@@ -25,11 +20,18 @@ import com.samsung.multiscreen.util.RunUtil;
 
 import java.util.ArrayList;
 
-
+/**
+ *
+ */
 public class MainActivity extends BaseActivity {
 
     private ArrayList<Gallery> galleries = new ArrayList<Gallery>();
     private SharedPreferences prefs;
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        //No call for super(). Bug on API Level > 11.
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +42,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void setupView() {
-        getActionBar().setHomeButtonEnabled(false);
-        getActionBar().setDisplayShowHomeEnabled(false);
-        SpannableString s = new SpannableString(getResources().getString(R.string.action_bar_title));
-        s.setSpan(new TypefaceSpan(this,"Roboto-Light.ttf"), 0, s.length(),
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        getActionBar().setTitle(s);
+        setActionBarProperties();
 
         RunUtil.runInBackground(new Runnable() {
 
@@ -56,12 +53,21 @@ public class MainActivity extends BaseActivity {
 
         });
 
+        runOnUiThread(new Runnable() {
+              public void run() {
+              }
+          });
+
         prefs = getSharedPreferences(Constants.APP_PREFERENCES, Context.MODE_PRIVATE);
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        //No call for super(). Bug on API Level > 11.
+    private void setActionBarProperties() {
+        getActionBar().setHomeButtonEnabled(false);
+        getActionBar().setDisplayShowHomeEnabled(false);
+        SpannableString s = new SpannableString(getResources().getString(R.string.action_bar_title));
+        s.setSpan(new TypefaceSpan(this,Constants.FONT_ROBOTO_LIGHT), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        getActionBar().setTitle(s);
     }
 
     protected void gotoGuide() {
@@ -73,15 +79,15 @@ public class MainActivity extends BaseActivity {
     }
 
     private void getPhotoBuckets() {
-        if ((PhotoController.getInstance().getGalleries() != null) && (PhotoController.getInstance().getGalleries().size() > 0)) {
-            galleries = PhotoController.getInstance().getGalleries();
+        if ((photoHelper.getGalleries() != null) && (photoHelper.getGalleries().size() > 0)) {
+            galleries = photoHelper.getGalleries();
             setFragmentView();
         } else {
-            PhotoController.getInstance().findBuckets(this, new Callback() {
+            photoHelper.findBuckets(this, new Callback() {
                 @Override
                 public void onSuccess() {
                     galleries.clear();
-                    galleries = PhotoController.getInstance().getGalleries();
+                    galleries = photoHelper.getGalleries();
                     setFragmentView();
                 }
 
@@ -94,15 +100,11 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setFragmentView() {
-        runOnUiThread(new Runnable() {
-            public void run() {
-                FragmentManager fragmentManager = getFragmentManager();
-                Fragment newFragment = new GalleryFragment().newInstance();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, newFragment)
-                        .commit();
-            }
-        });
+        FragmentManager fragmentManager = getFragmentManager();
+        Fragment newFragment = new GalleryFragment().newInstance();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, newFragment)
+                .commit();
     }
 
 }

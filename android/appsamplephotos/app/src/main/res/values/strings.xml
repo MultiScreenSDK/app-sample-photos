@@ -5,7 +5,7 @@
     <string name="action_bar_title">Photos</string>
     <string name="hello_world">Hello world!</string>
     <string name="welcome">Welcome!</string>
-    <string name="get_start">Get Start!</string>
+    <string name="get_start">Get Started!</string>
     <string name="action_more">More</string>
     <string name="action_help">Help</string>
     <string name="select_tv">Connect to:</string>
@@ -22,7 +22,7 @@
     <string name="title_activity_screen_slide"></string>
     <string name="action_settings">Settings</string>
     <string name="channel_id">com.samsung.multiscreen.photos</string>
-    <string name="url_id">http://multiscreen.samsung.com/app-sample-photos/tv/index.html</string>
+    <string name="app_url">http://multiscreen.samsung.com/app-sample-photos/tv/index.html</string>
     <string name="welcome_legend">View photos from your mobile device on a 2015 Samsung Smart TV.</string>
     <string name="note_legend">Make sure your TV and mobile device are on the same WiFi network.</string>
     <string name="title_activity_more">More</string>

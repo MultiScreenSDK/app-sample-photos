@@ -20,12 +20,12 @@ import com.samsung.appsamplephotos.adapters.PhotoAdapter;
 import com.samsung.appsamplephotos.controllers.PhotoController;
 import com.samsung.appsamplephotos.models.Gallery;
 import com.samsung.appsamplephotos.models.Photo;
-import com.samsung.appsamplephotos.utils.MultiscreenUtils;
 
 import org.lucasr.twowayview.widget.TwoWayView;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import static com.samsung.appsamplephotos.utils.Utils.*;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -79,18 +79,21 @@ public class GalleryFragment extends Fragment {
         for (final Gallery gallery : galleries) {
             View child = inflater.inflate(R.layout.bucket_collection_container, container, false);
             TextView bucketTitle = (TextView) child.findViewById(R.id.bucketTitle);
-            bucketTitle.setTypeface(MultiscreenUtils.customFont(getActivity()));
+            bucketTitle.setTypeface(customFont(getActivity()));
             RelativeLayout headerCollectionLayout = (RelativeLayout) child.findViewById(R.id.headerCollectionLayout);
             final TwoWayView recyclerView = (TwoWayView) child.findViewById(R.id.recycler_collection_view);
             final ImageView arrowImageView = (ImageView) child.findViewById(R.id.arrowImageView);
-            final PhotoAdapter photoAdapter = new PhotoAdapter(getActivity(),recyclerView, gallery);
+            final PhotoAdapter photoAdapter = new PhotoAdapter(getActivity(),recyclerView, gallery, dataSource);
 
             headerCollectionLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (recyclerView.getVisibility() == View.GONE) {
                         dataSource.clear();
-                        if (gallery.photos.isEmpty()) gallery.photos.addAll(PhotoController.getInstance().getImageInfos(getActivity(),gallery.getId()));
+                        if (gallery.getPhotos().isEmpty()) {
+                            gallery.getPhotos().addAll(PhotoController.getInstance().getImageInfos(getActivity(), gallery.getId(), 3, 0));
+                            //getGalleryImages(recyclerView, gallery,  photoAdapter);
+                        }
                         dataSource.addAll(gallery.getPhotos());
                         arrowImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up));
                         setViewHeight(recyclerView,photoAdapter);
@@ -108,8 +111,10 @@ public class GalleryFragment extends Fragment {
                 recyclerView.setVisibility(View.GONE);
                 arrowImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down));
             } else {
-                gallery.photos.clear();
-                gallery.photos.addAll(PhotoController.getInstance().getImageInfos(getActivity(),gallery.getId()));
+
+                gallery.clearPhotos();
+                //getGalleryImages(recyclerView,gallery, photoAdapter);
+                gallery.getPhotos().addAll(PhotoController.getInstance().getImageInfos(getActivity(), gallery.getId(), 0, 3));
                 dataSource.addAll(gallery.getPhotos());
                 recyclerView.setVisibility(View.VISIBLE);
                 arrowImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up));
@@ -119,7 +124,20 @@ public class GalleryFragment extends Fragment {
         }
     }
 
-    public void addCollectionImage(TwoWayView recyclerView, PhotoAdapter photoAdapter){
+    /*private void getGalleryImages(TwoWayView recyclerView,Gallery gallery, PhotoAdapter photoAdapter) {
+        ArrayList<Photo> arrayPhoto = PhotoController.getInstance().getImageInfos(getActivity(), gallery.getId(), 3, gallery.positionLoaded);
+        gallery.getPhotos().addAll(arrayPhoto);
+        dataSource.clear();
+        dataSource.addAll(gallery.getPhotos());
+        //photoAdapter.notifyDataSetChanged();
+        addCollectionImage(recyclerView, photoAdapter);
+        gallery.positionLoaded += 3;
+        if (50 > gallery.positionLoaded) {
+            getGalleryImages(recyclerView,gallery, photoAdapter);
+        }
+    }*/
+
+    public void addCollectionImage(TwoWayView recyclerView,PhotoAdapter photoAdapter){
         recyclerView.setAdapter(photoAdapter);
         setViewHeight(recyclerView,photoAdapter);
     }

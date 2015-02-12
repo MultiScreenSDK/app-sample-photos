@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.samsung.appsamplephotos.R;
 import com.samsung.appsamplephotos.utils.Constants;
 
-import static com.samsung.appsamplephotos.utils.MultiscreenUtils.customFont;
+import static com.samsung.appsamplephotos.utils.Utils.customFont;
 
 public class WelcomeActivity extends FragmentActivity {
 

@@ -20,7 +20,7 @@ import com.samsung.appsamplephotos.R;
 import com.samsung.appsamplephotos.utils.TypefaceSpan;
 
 import static android.widget.TextView.*;
-import static com.samsung.appsamplephotos.utils.MultiscreenUtils.customFont;
+import static com.samsung.appsamplephotos.utils.Utils.customFont;
 
 public class MoreActivity extends FragmentActivity {
 
