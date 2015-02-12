@@ -31,23 +31,14 @@ class CommonVCTest: XCTestCase {
     
     
     func testExistenceOfCastMenuView(){
-        commonVC.castMenuView =  ServicesFoundView()
-        XCTAssertTrue(commonVC.castMenuView.isKindOfClass(ServicesFoundView), "testExistenceOfMultiScreenManagerAttribute() castMenuView should be of tipe ServicesFoundView")
+        commonVC.servicesView =  ServicesView()
+        XCTAssertTrue(commonVC.servicesView.isKindOfClass(ServicesView), "testExistenceOfMultiScreenManagerAttribute() servicesView should be of tipe ServicesFoundView")
     }
     
-    func testExistenceOfServicesFoundView(){
-        commonVC.moreMenuView =  MoreMenuView()
-        XCTAssertTrue(commonVC.moreMenuView.isKindOfClass(MoreMenuView), "testExistenceOfMultiScreenManagerAttribute() moreMenuView should be of tipe MoreMenuView")
-    }
     
     func testShowCastMenuView(){
         commonVC.showCastMenuView()
-        XCTAssertNotNil(commonVC.castMenuView, "testShowCastMenuView() castMenuView should be displayed and not nil")
-    }
-    
-    func testShowSettings(){
-        commonVC.showSettings()
-        XCTAssertNotNil(commonVC.moreMenuView, "testShowSettings() moreMenuView should be displayed and not nil")
+        XCTAssertNotNil(commonVC.servicesView, "testShowCastMenuView() castMenuView should be displayed and not nil")
     }
     
     func testGetImageWithColor(){

@@ -23,6 +23,10 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
     /// Search service instance
     let search = Service.search()
     
+    /// Name of the observer identifier for service found
+    let servicesChangedObserverIdentifier: String = "servicesChanged"
+    
+    // Array of services
     var services = [Service]()
     
     /// MultiScreenManager shared instance used as singleton
@@ -44,7 +48,7 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
     /// Post a notification to the NSNotificationCenter
     /// this notification is used to update the cast icon
     func postNotification(){
-        NSNotificationCenter.defaultCenter().postNotificationName("updateCastButton", object: self)
+        NSNotificationCenter.defaultCenter().postNotificationName(servicesChangedObserverIdentifier, object: self)
     }
     
     /// Start searching for services inside the Wifi network

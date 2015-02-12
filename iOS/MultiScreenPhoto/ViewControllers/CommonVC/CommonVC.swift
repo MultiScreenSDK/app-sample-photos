@@ -12,19 +12,16 @@ import UIKit
 ///
 /// This class is inherited from other View Controllers to reuse methods 
 /// for the navigation bar
-class CommonVC: UIViewController, MoreMenuViewDelegate {
+class CommonVC: UIViewController, UIGestureRecognizerDelegate {
     
     /// MultiScreenManager instance that manage the interaction with the services
     var multiScreenManager = MultiScreenManager.sharedInstance
     
-    /// Observer identifier for cast notification
-    let updateCastButtonObserverIdentifier = "updateCastButton"
-    
     /// UIView that contains a list of available services
-    var castMenuView: ServicesFoundView!
+    var servicesView: ServicesView!
     
     /// UIView that contains the More menu
-    var moreMenuView: MoreMenuView!
+    var moreMenuView: UIView!
     
     /// Cast icon Image variable
     var imageCastButton: UIImage!
@@ -42,14 +39,14 @@ class CommonVC: UIViewController, MoreMenuViewDelegate {
         super.viewWillAppear(animated)
         
         // Add an observer to check for services status and manage the cast icon
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateCastButton", name: updateCastButtonObserverIdentifier, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateCastButton", name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
         updateCastButton()
     }
     
     /// Remove observer when viewDidDisappear
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: updateCastButtonObserverIdentifier, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
     }
     
     /// Method called by the updateCastButton observer
@@ -62,7 +59,7 @@ class CommonVC: UIViewController, MoreMenuViewDelegate {
         let settingsButton = UIButton(frame: CGRectMake(0,0,20,22))
         settingsButton.imageEdgeInsets = UIEdgeInsetsMake(0,8,0,8)
         
-        settingsButton.addTarget(self, action: Selector("showSettings"), forControlEvents: UIControlEvents.TouchUpInside)
+        settingsButton.addTarget(self, action: Selector("showMoreMenuView"), forControlEvents: UIControlEvents.TouchUpInside)
         settingsButton.setImage(imageSettingsButton, forState: UIControlState.Normal)
         var addSettingsButton: UIBarButtonItem = UIBarButtonItem(customView: settingsButton)
         
@@ -98,27 +95,63 @@ class CommonVC: UIViewController, MoreMenuViewDelegate {
     /// User can disconnect from a selected service
     func showCastMenuView(){
         /// UIView that contains a list of available services
-        var viewArray = NSBundle.mainBundle().loadNibNamed("ServicesFoundView", owner: self, options: nil)
-        self.castMenuView = viewArray[0] as ServicesFoundView
-        self.castMenuView.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: UIScreen.mainScreen().bounds.size.height)
-       view.window?.addSubview(self.castMenuView)
+        var viewArray = NSBundle.mainBundle().loadNibNamed("ServicesView", owner: self, options: nil)
+        self.servicesView = viewArray[0] as ServicesView
+        self.servicesView.frame = UIScreen.mainScreen().bounds
+       view.window?.addSubview(self.servicesView)
     }
     
     /// Method to show the More menu
-    func showSettings(){
+    func showMoreMenuView(){
+        
         /// UIView that contains a list of options
-        var viewArray = NSBundle.mainBundle().loadNibNamed("MoreMenuView", owner: self, options: nil)
-        self.moreMenuView = viewArray[0] as MoreMenuView
-        self.moreMenuView.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: UIScreen.mainScreen().bounds.size.height)
-        self.moreMenuView.delegate = self
-        view.window?.addSubview(self.moreMenuView)
+        moreMenuView = UIView(frame: UIScreen.mainScreen().bounds)
+        moreMenuView.backgroundColor = UIColor.clearColor()
+        
+        /// Add a gesture recognizer to dismiss the current view on tap
+        let tap = UITapGestureRecognizer()
+        tap.addTarget(self, action: "closeMoreMenuView")
+        tap.delegate = self
+        moreMenuView.addGestureRecognizer(tap)
+        
+        /// Creating and adding Menu Button
+        var moreMenuButton = UIButton(frame: CGRectMake(0,45,97,34))
+        moreMenuButton.addTarget(self, action: Selector("goToMoreScreenVC"), forControlEvents: UIControlEvents.TouchUpInside)
+        moreMenuButton.backgroundColor = UIColor.whiteColor()
+        moreMenuButton.setAttributedTitle(NSMutableAttributedString(string: "MORE", attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 18.0)!]), forState: UIControlState.Normal)
+        moreMenuButton.titleLabel?.textColor = UIColor.grayColor()
+        moreMenuButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        moreMenuView.addSubview(moreMenuButton)
+        
+        /// Adding UIVIew to superView
+        moreMenuView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        view.window?.addSubview(moreMenuView)
+        
+        /// Adding menuButton constraints
+        let moreButtonDict = ["button": moreMenuButton]
+        moreMenuView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[button(97)]-(20)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: moreButtonDict))
+        moreMenuView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(45)-[button(34)]", options: NSLayoutFormatOptions(0), metrics: nil, views: moreButtonDict))
+        
+        /// Adding moreMenuView constraints
+        let moreViewDict = ["view": moreMenuView]
+        view.window?.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: moreViewDict))
+        view.window?.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: moreViewDict))
+    }
+    
+    /// Method used to close the more menu view
+    func closeMoreMenuView(){
+        moreMenuView.removeFromSuperview()
     }
     
     /// Method that shows a How to use tutorial
-    func goToHowToView(){
+    func goToMoreScreenVC(){
+        
+        /// Method used to close the more menu view
+        closeMoreMenuView()
+        
         /// UIViewController that contains a detailed tutorial
-        let detailController = HowToVC(nibName: "HowToVC", bundle: NSBundle.mainBundle())
-        self.navigationController?.pushViewController(detailController, animated:true)
+        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("MoreScreenVC") as MoreScreenVC
+        self.navigationController?.pushViewController(viewController, animated:true)
     }
     
     

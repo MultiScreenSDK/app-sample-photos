@@ -84,11 +84,11 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         let defaults = NSUserDefaults.standardUserDefaults()
         
         // Display Welcome View only one time
-        if(!defaults.boolForKey("hideWelcomeView")){
+        if(!defaults.boolForKey("hideWelcomeView!")){
             
             /// UIView that contains the welcome view
             self.welcomeView = NSBundle.mainBundle().loadNibNamed("WelcomeView", owner: self, options: nil)[0] as? UIView
-            self.welcomeView.frame = CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.size.width, height: UIScreen.mainScreen().bounds.size.height)
+            self.welcomeView.frame =  UIScreen.mainScreen().bounds
             view.window?.addSubview(welcomeView)
             defaults.setBool(true, forKey: "hideWelcomeView")
             
@@ -124,7 +124,11 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         var TitleLabel: UIBarButtonItem = UIBarButtonItem(title: "Photos", style: .Plain, target: nil, action: nil)
         TitleLabel.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Roboto-Light", size: 20)!], forState: UIControlState.Normal)
         
-        self.navigationItem.leftBarButtonItems = [TitleLabel]
+        /// Adding left space to the title
+        var addSpacerButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
+        addSpacerButton.width = 5
+        
+        self.navigationItem.leftBarButtonItems = [addSpacerButton,TitleLabel]
         
     }
     

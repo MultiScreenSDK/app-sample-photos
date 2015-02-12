@@ -40,8 +40,18 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
         super.awakeFromNib()
         
         
-        /// Configuring the tableView cell
-        tableView.registerNib(UINib(nibName: "CompatibleTVCell", bundle: nil), forCellReuseIdentifier: compatibleTVCell)
+        /// Configuring the tableView cell and separator style
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier:compatibleTVCell)
+        
+        /// Configuring the tableView separator style
+        if tableView.respondsToSelector("setSeparatorInset:") {
+            tableView.separatorInset = UIEdgeInsetsZero
+        }
+        if tableView.respondsToSelector("setLayoutMargins:") {
+            tableView.layoutMargins = UIEdgeInsetsZero
+        }
+        tableView.layoutIfNeeded()
+        tableView.tableFooterView = UIView(frame: CGRectZero)
         
         /// populating the inches from a Plist file
         if let path = NSBundle.mainBundle().pathForResource("CompatibleTvsList", ofType: "plist") {
@@ -80,13 +90,21 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
         var text: String
         
         /// Setting the custom cell view
-        var cell : CompatibleTVCell
-        cell = tableView.dequeueReusableCellWithIdentifier(compatibleTVCell, forIndexPath: indexPath) as CompatibleTVCell
+        var cell : UITableViewCell
+        cell = tableView.dequeueReusableCellWithIdentifier(compatibleTVCell, forIndexPath: indexPath) as UITableViewCell
         
         if(indexPath.section == 0){
             var incheDict = inchesArray[indexPath.row] as NSDictionary
             text = incheDict.objectForKey("name") as String
-            cell.imageSeparator.hidden = false
+            
+            // Set tableView separator style
+            tableView.separatorStyle  = UITableViewCellSeparatorStyle.SingleLine
+            if cell.respondsToSelector("setSeparatorInset:") {
+                cell.separatorInset = UIEdgeInsetsZero
+            }
+            if cell.respondsToSelector("setLayoutMargins:") {
+                cell.layoutMargins = UIEdgeInsetsZero
+            }
             
             /// Adding color to the cell on click
             var selectedView = UIView(frame: cell.frame)
@@ -94,18 +112,20 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
             cell.selectedBackgroundView = selectedView
             cell.selectionStyle = UITableViewCellSelectionStyle.Default
             
-            
         }else{
             text = modelsArray[indexPath.row] as String
-            cell.imageSeparator.hidden = true
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
             
+            // Set tableView separator style
+            tableView.separatorStyle  = UITableViewCellSeparatorStyle.None
+            /// Adding color to the cell on click
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
         }
         
-        cell.title.textColor = UIColor.whiteColor()
-        cell.title.textAlignment = .Left
-        cell.title.text = text
-        //cell.title.attributedText = NSMutableAttributedString(string: text, attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 12.0)!])
+        /// Adding the text for each cell
+        cell.textLabel?.textColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
+        cell.textLabel?.textAlignment = .Left
+        cell.textLabel?.attributedText = NSMutableAttributedString(string: text, attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 12.0)!])
+        cell.backgroundColor = UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 1)
         
         return cell
         
@@ -183,8 +203,6 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
         */
         var indexPathsToDelete = [NSIndexPath]()
         if (previousOpenSectionIndex != NSNotFound) {
-            //gallery.setIsAlbumExpanded(previousOpenSectionIndex, isExpanded: false)
-            //updateHeaderView(previousOpenSectionIndex)
             for (var i=0;i < dataSourceCountToRemove; i++) {
                 indexPathsToDelete.append(NSIndexPath(forRow: i, inSection: previousOpenSectionIndex))
             }
@@ -228,7 +246,7 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
     
     /// UIGestureRecognizerDelegate used to disable the tap event if the tapped View is not the main View
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool{
-        if (touch.view.tag != 1){
+        if (touch.view.tag == 1){
             return true
         }
         return false
