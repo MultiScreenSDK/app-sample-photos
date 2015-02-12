@@ -36,7 +36,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.samsung.appsamplephotos.utils.MultiscreenUtils.customFont;
+import static com.samsung.appsamplephotos.utils.Utils.customFont;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -170,7 +170,7 @@ public class ServiceFragment extends FragmentActivity {
 
     private void onDisconnectService() {
         Intent intent = new Intent(Constants.SERVICE_SELECTED);
-        intent.putExtra(Constants.SERVICE, "null");
+        intent.putExtra(Constants.SERVICE, Constants.NO_SERVICE);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
         onBackPressed();
     }

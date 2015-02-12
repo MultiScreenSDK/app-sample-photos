@@ -89,7 +89,7 @@ public class ScreenSlideActivity extends BaseActivity {
                     @Override
                     public void run() {
                         currentPosition = position;
-                        Photo photo = PhotoController.getInstance().getPhotoByPosition(position);
+                        Photo photo = photoHelper.getPhotoByPosition(position);
                         Uri uri = photo.getUri();
                         new sendImageTask().execute(uri);
                     }

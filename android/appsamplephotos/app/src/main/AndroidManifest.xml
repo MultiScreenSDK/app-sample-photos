@@ -32,7 +32,6 @@
             android:name="com.samsung.appsamplephotos.activities.WelcomeActivity"
             android:label="@string/title_activity_welcome"
             android:launchMode="singleInstance"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent" >
         </activity>
         <activity

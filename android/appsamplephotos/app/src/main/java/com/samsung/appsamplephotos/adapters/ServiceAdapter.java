@@ -14,7 +14,7 @@ import com.samsung.multiscreen.Service;
 
 import java.util.List;
 
-import static com.samsung.appsamplephotos.utils.MultiscreenUtils.customFont;
+import static com.samsung.appsamplephotos.utils.Utils.customFont;
 
 public class ServiceAdapter extends BaseAdapter {
 

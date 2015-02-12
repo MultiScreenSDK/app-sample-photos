@@ -51,6 +51,11 @@
             android:drawableRight="@drawable/ic_arrow_down"
             android:gravity="left|center_vertical" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/background_gray" />
+
         <ListView
             android:id="@+id/inchesListView"
             android:layout_width="match_parent"

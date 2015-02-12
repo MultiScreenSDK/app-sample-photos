@@ -1,6 +1,5 @@
 package com.samsung.appsamplephotos.controllers;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.database.Cursor;
@@ -8,34 +7,31 @@ import android.database.DatabaseUtils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.provider.MediaStore;
-import android.util.Log;
 
 import com.samsung.appsamplephotos.models.Gallery;
 import com.samsung.appsamplephotos.models.Photo;
-import com.samsung.appsamplephotos.utils.Constants;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import java.util.SortedSet;
-import java.util.TreeSet;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Created by Nestor on 1/21/15.
+ * Helper for handle gallery, local images.
  */
 public class PhotoController {
 
     private static PhotoController instance;
-    private Activity activity;
+    private Context context;
     private Callback callback;
+
+    // Array of found photos
     private static ArrayList<Photo> arrayPhoto;
+
+    // Array of galleries
     private ArrayList<Gallery> galleries = new ArrayList<Gallery>();
+
+    // Current gallery
     private static Gallery gallery;
 
     public static final Uri sourceUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
@@ -43,6 +39,11 @@ public class PhotoController {
     public static final String thumb_DATA = MediaStore.Images.Thumbnails.DATA;
     public static final String thumb_IMAGE_ID = MediaStore.Images.Thumbnails.IMAGE_ID;
 
+    /**
+     * Return current PhotoController instance if not the instantiate a new one
+     *
+     * @return
+     */
     public static PhotoController getInstance() {
         if (instance == null) {
             instance = new PhotoController();
@@ -58,14 +59,63 @@ public class PhotoController {
         arrayPhoto = new ArrayList<Photo>();
     }
 
-    public void findBuckets(final Activity activity,final Callback callback) {
-        this.activity = activity;
+    /**
+     * Initialize bucket/folder search
+     *
+     * @param context
+     * @param callback
+     */
+    public void findBuckets(final Context context,final Callback callback) {
+        this.context = context;
         this.callback = callback;
-        if (activity != null) getPhotoBuckets();
-        //adToGallery();
+        if (context != null) getPhotoBuckets();
     }
 
-    public static ArrayList<Photo> getImageInfos(Context context,String bucketId) {
+    /**
+     * Get galleries array by image's folder found
+     */
+    public void getPhotoBuckets() {
+
+        Map<Integer, Gallery> map = new HashMap<Integer, Gallery>();
+        galleries.clear();
+
+        String[] columns = new String[] {
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
+                MediaStore.Images.Media.BUCKET_ID };
+
+        final String orderBy = MediaStore.Images.Media.BUCKET_ID + " ASC";
+
+        Cursor bucketCursor = context.getContentResolver().query(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, columns, null,
+                null, orderBy);
+
+        int BUCKET_NAME = bucketCursor
+                .getColumnIndex(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
+        int BUCKET_ID = bucketCursor
+                .getColumnIndex(MediaStore.Images.Media.BUCKET_ID);
+
+        while (bucketCursor.moveToNext()) {
+            Gallery data = new Gallery(bucketCursor.getString(BUCKET_ID),bucketCursor.getString(BUCKET_NAME),new ArrayList<Photo>());
+            data.positionLoaded = 0;
+            map.put(Integer.parseInt(data.getId()), data);
+        }
+
+        galleries = new ArrayList<Gallery>(map.values());
+
+
+        if (callback != null) callback.onSuccess();
+    }
+
+    /**
+     * Get images from a bucket by id. Set by param the limit of images and the offset
+     *
+     * @param context
+     * @param bucketId
+     * @param limit
+     * @param offset
+     * @return
+     */
+    public static ArrayList<Photo> getImageInfos(Context context,String bucketId, int limit, int offset) {
 
         ArrayList<Photo> arrayPhoto = new ArrayList<Photo>();
 
@@ -76,7 +126,7 @@ public class PhotoController {
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
         String[] thumbColumns = { thumb_DATA };
 
-        final String orderBy = MediaStore.Images.Media._ID + " Desc";
+        final String orderBy = MediaStore.Images.Media._ID + " Desc LIMIT " + offset + "," + limit;
         final String selection = MediaStore.Images.ImageColumns.BUCKET_ID
                 + " = " + DatabaseUtils.sqlEscapeString(bucketId);
 
@@ -135,76 +185,51 @@ public class PhotoController {
         return arrayPhoto;
     }
 
-    public void getPhotoBuckets() {
-
-        Map<Integer, Gallery> map = new HashMap<Integer, Gallery>();
-        galleries.clear();
-
-        String[] columns = new String[] {
-                MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
-                MediaStore.Images.Media.BUCKET_ID };
-
-        final String orderBy = MediaStore.Images.Media.BUCKET_ID + " ASC";
-
-        Cursor bucketCursor = activity.getContentResolver().query(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, columns, null,
-                null, orderBy);
-
-        int BUCKET_NAME = bucketCursor
-                .getColumnIndex(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
-        int BUCKET_ID = bucketCursor
-                .getColumnIndex(MediaStore.Images.Media.BUCKET_ID);
-
-        while (bucketCursor.moveToNext()) {
-            Gallery data = new Gallery(bucketCursor.getString(BUCKET_ID),bucketCursor.getString(BUCKET_NAME),new ArrayList<Photo>());
-            map.put(Integer.parseInt(data.getId()), data);
-        }
-
-        galleries = new ArrayList<Gallery>(map.values());
-
-
-        if (callback != null) callback.onSuccess();
-    }
-
-    /*public void adToGallery() {
-        galleries.clear();
-        Iterator it = hashMap.entrySet().iterator();
-        if (it.hasNext()) {
-            while (it.hasNext()) {
-                Map.Entry e = (Map.Entry) it.next();
-                Gallery gallery = new Gallery(e.getKey().toString(),e.getKey().toString(),(ArrayList<Photo>) e.getValue());
-                gallery.setName(e.getKey().toString());
-                galleries.add(gallery);
-            }
-        }
-        callback.onSuccess();
-    }*/
-
+    /**
+     * Return galleries array.
+     *
+     * @return
+     */
     public ArrayList<Gallery> getGalleries() {
-        Log.e(Constants.APP_TAG,"Tamaño: " + arrayPhoto.size());
         return galleries;
     }
 
+    /**
+     * Setter to make default gallery
+     *
+     * @param gallery
+     */
+    public void setCurrentGallery(Gallery gallery) {
+        this.gallery = gallery;
+    }
+
+    /**
+     * Return current gallery
+     *
+     * @return
+     */
+    public Gallery getCurrentGallery() {
+        return gallery;
+    }
+
+    /**
+     * Get photo array of the current gallery
+     *
+     * @return
+     */
     public ArrayList<Photo> getPhotos() {
         arrayPhoto = gallery.getPhotos();
         return arrayPhoto;
     }
 
-    /*public Photo getPhoto(Photo photo) {
-        int index = arrayPhoto.indexOf(photo);
-        return getPhotoByPosition(index);
-    }*/
-
+    /**
+     * Get photo from the photo array gallery by position
+     * @param position
+     * @return
+     */
     public Photo getPhotoByPosition(int position) {
         arrayPhoto = gallery.getPhotos();
         return arrayPhoto.get(position);
     }
 
-    public void setCurrentGallery(Gallery gallery) {
-        this.gallery = gallery;
-    }
-
-    public Gallery getCurrentGallery() {
-        return gallery;
-    }
 }

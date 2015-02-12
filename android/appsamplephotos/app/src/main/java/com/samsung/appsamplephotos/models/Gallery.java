@@ -3,15 +3,25 @@ package com.samsung.appsamplephotos.models;
 import java.util.ArrayList;
 
 /**
- * Created by Koombea on 1/14/15.
+ * Gallery wrapper class
  */
 public class Gallery {
-    public String id;
-    public String name;
-    public String date;
-    public ArrayList<Photo> photos;
+
+    private String id;
+    private String name;
+    private ArrayList<Photo> photos;
+    public int positionLoaded;
+    public int count;
     public boolean isOpen;
 
+    /**
+     * Gallery constructor, required an id, a name and the array of
+     * photos (it would be a empty array)
+     *
+     * @param id
+     * @param name
+     * @param photos
+     */
     public Gallery(String id, String name, ArrayList<Photo> photos) {
         super();
         this.id = id;
@@ -19,6 +29,7 @@ public class Gallery {
         this.photos = photos;
     }
 
+    // MARK - Id property Getter and Setter
     public String getId() {
         return this.id;
     }
@@ -27,6 +38,7 @@ public class Gallery {
         this.id = id;
     }
 
+    // MARK - Bucket name property Getter and Setter
     public String getName() {
         return this.name;
     }
@@ -35,26 +47,22 @@ public class Gallery {
         this.name = name;
     }
 
-    public String getDate() {
-        return this.date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
+    // MARK - Photos property Getter
     public ArrayList<Photo> getPhotos() {
         return this.photos;
     }
 
+    // Add photo to the gallery array
     public void addPhoto(Photo photo) {
         this.photos.add(photo);
     }
 
+    // Remove photo from the gallery array
     public void removePhoto(Photo photo) {
         this.photos.remove(photo);
     }
 
+    // Clear photos from gallery
     public void clearPhotos() {
         this.photos.clear();
     }
