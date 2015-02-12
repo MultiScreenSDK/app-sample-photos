@@ -84,7 +84,7 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         let defaults = NSUserDefaults.standardUserDefaults()
         
         // Display Welcome View only one time
-        if(!defaults.boolForKey("hideWelcomeView!")){
+        if(!defaults.boolForKey("hideWelcomeView")){
             
             /// UIView that contains the welcome view
             self.welcomeView = NSBundle.mainBundle().loadNibNamed("WelcomeView", owner: self, options: nil)[0] as? UIView
@@ -184,10 +184,20 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         
         // Adding the photos to the cell
         var currentAssetIndex = indexPath.row * 5
+        
+        // Index Used to sort the photo in desc order
+        var reverseIndex =  0
+        
         for (var i=0; i<5; i++) {
             
+             // Index Used to sort the photo in desc order
+            reverseIndex = gallery.getNumOfAssetsByAlbum(indexPath.section) - currentAssetIndex - 1
+            if(reverseIndex<0){
+                reverseIndex = gallery.getNumOfAssetsByAlbum(indexPath.section)
+            }
+            
             /// Retrieve an image from the device photo gallery
-            gallery.requestImageAtIndex(indexPath.section,index: currentAssetIndex, containerId:i, isThumbnail: true, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!, assetIndex:Int, containerId: Int ) -> Void in
+            gallery.requestImageAtIndex(indexPath.section,index: reverseIndex, containerId:i, isThumbnail: true, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!, assetIndex:Int, containerId: Int ) -> Void in
                 // If there is no Image then disable the UIImageVIew
                 if(image == nil){
                     cell.buttonPhoto[containerId].enabled = false

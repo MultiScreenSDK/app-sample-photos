@@ -149,7 +149,7 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         /// If cell is selected then cconnect and start the application
         multiScreenManager.createApplication(services[indexPath.row] as Service, completionHandler: { (success: Bool!) -> Void in
             if((success) == true){
-                //self.closeView()
+                self.closeView()
             }
         })
     }

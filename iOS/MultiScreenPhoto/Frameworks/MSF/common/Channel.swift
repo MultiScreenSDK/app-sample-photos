@@ -62,7 +62,7 @@ public enum ChannelEvent : String {
     case Error = "ms.error"
     case Ready = "ms.channel.ready"
     case Ping = "ms:channel.ping"
-} 
+}
 
 ///  @brief  RPCResultHandler is a container class for the result callback of RPC invocations
 ///
@@ -81,7 +81,7 @@ class RPCResultHandler {
     ///  :param: client: The Client that just connected to the Channel
     ///
     ///  :param: error: An error info if any
-    optional func onConnect(client: ChannelClient, error: NSError?)
+    optional func onConnect(client: ChannelClient?, error: NSError?)
 
     ///  Called when the host app is ready to send or receive messages
     ///
@@ -218,7 +218,7 @@ class RPCResultHandler {
     ///  When a TV application connects to this channel, the onReady method/notification is also fired
     ///
     public func connect() {
-        transport.connect(nil)
+        connect(nil)
     }
 
     ///  Connects to the channel. This method will asynchronously call the delegate's onConnect method and post a
@@ -228,7 +228,7 @@ class RPCResultHandler {
     ///  :param: attributes Any attributes you want to associate with the client (ie. ["name":"FooBar"])
     ///
     public func connect(attributes: [String:String]?) {
-        transport.connect(attributes)
+        connect(attributes, completionHandler: nil)
     }
 
     ///  Connects to the channel. This method will asynchronously call the delegate's onConnect method and post a
@@ -238,14 +238,16 @@ class RPCResultHandler {
     ///  :param: attributes        Any attributes you want to associate with the client (ie. ["name":"FooBar"])
     ///  :param: completionHandler The callback handler
     ///
-    public func connect(attributes: [String:String]?, completionHandler: (client: ChannelClient, error: NSError?) -> Void) {
+    public func connect(attributes: [String:String]?, completionHandler: ((client: ChannelClient?, error: NSError?) -> Void)!) {
         var observer: AnyObject!
-        observer = on(ChannelEvent.Connect.rawValue) { [unowned self] (notification) -> Void in
-            self.off(observer)
-            let userInfo: [String:AnyObject] = notification!.userInfo as [String:AnyObject]
-            let client: ChannelClient = userInfo["client"] as ChannelClient
-            let error: NSError? = notification!.userInfo?["error"] as? NSError
-            completionHandler(client: client, error: error)
+        if completionHandler != nil {
+            observer = on(ChannelEvent.Connect.rawValue) { [unowned self] (notification) -> Void in
+                self.off(observer)
+                let userInfo: [String:AnyObject] = notification!.userInfo as [String:AnyObject]
+                let client: ChannelClient = userInfo["client"] as ChannelClient
+                let error: NSError? = notification!.userInfo?["error"] as? NSError
+                completionHandler(client: client, error: error)
+            }
         }
         transport.connect(attributes)
     }
@@ -257,14 +259,16 @@ class RPCResultHandler {
     ///
     ///   - client: The client that is disconnecting which is yourself
     ///   - error: An error info if disconnect fails
-    public func disconnect(completionHandler: (client: ChannelClient, error: NSError?) -> Void) {
-        var observer: AnyObject!
-        observer = on(ChannelEvent.Disconnect.rawValue) { [unowned self] (notification) -> Void in
-            self.off(observer)
-            let userInfo: [String:AnyObject] = notification!.userInfo as [String:AnyObject]
-            let client: ChannelClient = userInfo["client"] as ChannelClient
-            let error: NSError? = notification!.userInfo?["error"] as? NSError
-            completionHandler(client: client, error: error)
+    public func disconnect(completionHandler: ((client: ChannelClient, error: NSError?) -> Void)!) {
+        if completionHandler != nil {
+            var observer: AnyObject!
+            observer = on(ChannelEvent.Disconnect.rawValue) { [unowned self] (notification) -> Void in
+                self.off(observer)
+                let userInfo: [String:AnyObject] = notification!.userInfo as [String:AnyObject]
+                let client: ChannelClient = userInfo["client"] as ChannelClient
+                let error: NSError? = notification!.userInfo?["error"] as? NSError
+                completionHandler(client: client, error: error)
+            }
         }
         transport.close()
     }
@@ -273,7 +277,7 @@ class RPCResultHandler {
     ///  ChannelEvent.Disconnect notification upon completion.
     ///
     public func disconnect() {
-        transport.close()
+        disconnect(nil)
     }
 
     ///  Publish an event containing a text message payload
@@ -434,6 +438,7 @@ class RPCResultHandler {
 
     func processMessage(message: Message) {
         if let event = ChannelEvent(rawValue: message.event) {
+            let now = NSDate()
             switch event {
             case .Connect:
                 let id = message.data!.valueForKeyPath("id") as? String
@@ -516,16 +521,21 @@ class RPCResultHandler {
     }
 
     func didConnect(error: NSError?) {
-
+        if error != nil {
+            delegate?.onConnect?(nil, error: error)
+            NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: ChannelEvent.Connect.rawValue, object: self, userInfo: ["client": NSNull()] ))
+        }
     }
 
     func didDisconnect(error: NSError?) {
-        stopConnectionAliveCheck()
-        clients.removeAll(keepCapacity: false)
-        isConnected = false
-        delegate?.onDisconnect?(me, error: error)
-        NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: ChannelEvent.Disconnect.rawValue, object: self, userInfo: ["client":me]))
-        me = nil
+        if isConnected {
+            stopConnectionAliveCheck()
+            clients.removeAll(keepCapacity: false)
+            isConnected = false
+            delegate?.onDisconnect?(me, error: error)
+            NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: ChannelEvent.Disconnect.rawValue, object: self, userInfo: ["client":me]))
+            me = nil
+        }
     }
 
     func onError(error: NSError) {
@@ -544,21 +554,22 @@ class RPCResultHandler {
     private func startConnectionAliveCheck() {
         if connectionTimeout > 0 {
             if isConnected && self.me != nil {
+                lastPingDate = nil
                 dispatch_async(dispatch_get_main_queue()) { [unowned self]  () -> Void in
-                    self.emit(event: ChannelEvent.Ping.rawValue, message: "", target: self.me, data: nil)
                     self.pingTimer = NSTimer.scheduledTimerWithTimeInterval(self.connectionTimeout, target: self, selector: Selector("checkConnectionAlive"), userInfo: nil, repeats: true)
+                    self.emit(event: ChannelEvent.Ping.rawValue, message: "", target: self.me, data: nil)
                 }
             }
         }
     }
 
     internal func checkConnectionAlive() {
-        let now = NSDate()
-        if lastPingDate == nil || lastPingDate!.dateByAddingTimeInterval(connectionTimeout).compare(now) == NSComparisonResult.OrderedAscending {
+        if lastPingDate == nil {
             stopConnectionAliveCheck()
             transport.close(force: true)
         } else {
             if isConnected && me != nil {
+                lastPingDate = nil
                 self.emit(event: ChannelEvent.Ping.rawValue, message: "", target: self.me, data: nil)
             }
         }

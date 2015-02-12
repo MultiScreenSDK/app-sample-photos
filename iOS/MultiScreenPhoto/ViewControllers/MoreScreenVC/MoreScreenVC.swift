@@ -20,6 +20,8 @@ class MoreScreenVC: UIViewController,MFMailComposeViewControllerDelegate {
     /// UIView that contains the compatible devices View
     var compatibleTVsView: UIView!
     
+    @IBOutlet weak var iconCastDiscoveredConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,7 +55,7 @@ class MoreScreenVC: UIViewController,MFMailComposeViewControllerDelegate {
         self.navigationItem.leftBarButtonItems = [addBackButton]
         
     }
-    /// Methos used to close the current View
+    /// Method used to close the current View
     func goBack(){
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -95,5 +97,15 @@ class MoreScreenVC: UIViewController,MFMailComposeViewControllerDelegate {
         UIGraphicsEndImageContext()
         return image
     }
+    
+    /// Used to change iconcastposition
+    override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        if UIDevice.currentDevice().orientation.isLandscape.boolValue {
+            iconCastDiscoveredConstraint.constant = 243
+        } else {
+            iconCastDiscoveredConstraint.constant = 236
+        }
+    }
+
     
 }

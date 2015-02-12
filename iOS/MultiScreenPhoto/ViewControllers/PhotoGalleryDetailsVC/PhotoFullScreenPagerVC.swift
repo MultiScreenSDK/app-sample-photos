@@ -112,18 +112,6 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     {
         
         var index = (viewController as PhotoFullScreenVC).pageIndex
-        if (index == 0) || (index == NSNotFound) {
-            return nil
-        }
-        index--
-        
-        return viewControllerAtIndex(index)
-    }
-    
-    /// Delegate used to load the next Album image
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController?
-    {
-        var index = (viewController as PhotoFullScreenVC).pageIndex
         
         if index == NSNotFound {
             return nil
@@ -135,6 +123,19 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
             return nil
         }
         return viewControllerAtIndex(index)
+    }
+    
+    /// Delegate used to load the next Album image
+    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController?
+    {
+        var index = (viewController as PhotoFullScreenVC).pageIndex
+        if (index == 0) || (index == NSNotFound) {
+            return nil
+        }
+        index--
+        
+        return viewControllerAtIndex(index)
+        
     }
     
     /// Delegate method that capture when the animation pager stops
