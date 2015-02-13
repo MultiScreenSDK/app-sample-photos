@@ -11,7 +11,7 @@ import UIKit
 /// PhotoFullScreenPagerVC
 ///
 /// This class is used to show the pagination of the current photos album
-class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate,PhotoFullScreenVCDelegate {
+class PhotoFullScreenPagerVC: BaseVC , UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate,PhotoFullScreenVCDelegate {
     
     //Gallery Instance, this instance contains an Array of albums
     var gallery = Gallery.sharedInstance

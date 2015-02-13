@@ -145,8 +145,7 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        
-        /// If cell is selected then cconnect and start the application
+        /// If cell is selected then connect and start the application
         multiScreenManager.createApplication(services[indexPath.row] as Service, completionHandler: { (success: Bool!) -> Void in
             if((success) == true){
                 self.closeView()

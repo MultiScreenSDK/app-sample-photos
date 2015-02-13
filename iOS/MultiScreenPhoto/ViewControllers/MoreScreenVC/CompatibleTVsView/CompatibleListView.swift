@@ -1,5 +1,5 @@
 //
-//  CompatibleTVsView.swift
+//  CompatibleListView.swift
 //  MultiScreenPhoto
 //
 //  Created by Raul Mantilla on 30/01/15.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-/// CompatibleTVsView
+/// CompatibleListView
 ///
 /// This class is used to display a list of compatible devices
-class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate {
+class CompatibleListView: UIView,UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate {
    
     
     // UITableView to diplay the gallery photos
@@ -54,7 +54,7 @@ class CompatibleTVsView: UIView,UITableViewDelegate, UITableViewDataSource,UIGes
         tableView.tableFooterView = UIView(frame: CGRectZero)
         
         /// populating the inches from a Plist file
-        if let path = NSBundle.mainBundle().pathForResource("CompatibleTvsList", ofType: "plist") {
+        if let path = NSBundle.mainBundle().pathForResource("CompatibleList", ofType: "plist") {
             var inchesDict = NSDictionary(contentsOfFile: path)
             inchesArray = inchesDict?.objectForKey("inches") as NSArray
         }

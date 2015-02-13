@@ -18,7 +18,7 @@ class MoreScreenVC: UIViewController,MFMailComposeViewControllerDelegate {
     @IBOutlet weak var compatibleButton: UIButton!
     
     /// UIView that contains the compatible devices View
-    var compatibleTVsView: UIView!
+    var compatibleListView: UIView!
     
     @IBOutlet weak var iconCastDiscoveredConstraint: NSLayoutConstraint!
     
@@ -61,11 +61,11 @@ class MoreScreenVC: UIViewController,MFMailComposeViewControllerDelegate {
     }
     
     /// Method used to capture the event when the compatibleButton button is clicked
-    /// If it was clicked then displays the CompatibleTVsView
+    /// If it was clicked then displays the CompatibleListView
     @IBAction func compatibleDevices(sender: AnyObject) {
-        self.compatibleTVsView = NSBundle.mainBundle().loadNibNamed("CompatibleTVsView", owner: self, options: nil)[0] as? UIView
-        self.compatibleTVsView.frame = UIScreen.mainScreen().bounds
-        view.window?.addSubview(compatibleTVsView)
+        self.compatibleListView = NSBundle.mainBundle().loadNibNamed("CompatibleListView", owner: self, options: nil)[0] as? UIView
+        self.compatibleListView.frame = UIScreen.mainScreen().bounds
+        view.window?.addSubview(compatibleListView)
         
     }
     
@@ -85,25 +85,14 @@ class MoreScreenVC: UIViewController,MFMailComposeViewControllerDelegate {
     func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    /// Return an UIImage from a given UIColor
-    /// This method is used for the translucent Navigation Bar
-    func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
-        var rect = CGRectMake(0, 0, size.width, size.height)
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        color.setFill()
-        UIRectFill(rect)
-        var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
-    }
+
     
     /// Used to change iconcastposition
     override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
         if UIDevice.currentDevice().orientation.isLandscape.boolValue {
-            iconCastDiscoveredConstraint.constant = 243
+            iconCastDiscoveredConstraint.constant = 0
         } else {
-            iconCastDiscoveredConstraint.constant = 236
+            iconCastDiscoveredConstraint.constant = -8.5
         }
     }
 

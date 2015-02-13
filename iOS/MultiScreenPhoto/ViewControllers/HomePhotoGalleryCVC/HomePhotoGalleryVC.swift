@@ -9,10 +9,10 @@
 import UIKit
 import AssetsLibrary
 
-/// HomePhotoGalleryVC extend from CommonVC
+/// HomePhotoGalleryVC extend from BaseVC
 ///
 /// This class is used to display the gallery in a UITableView
-class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate, HomePhotoGalleryHeaderViewDelegate, HomePhotoGalleryVCCellDelegate {
+class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate, HomePhotoGalleryHeaderViewDelegate, HomePhotoGalleryVCCellDelegate {
     
     // UITableView to diplay the gallery photos
     @IBOutlet weak var tableView: UITableView!
@@ -85,13 +85,11 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         
         // Display Welcome View only one time
         if(!defaults.boolForKey("hideWelcomeView")){
-            
             /// UIView that contains the welcome view
             self.welcomeView = NSBundle.mainBundle().loadNibNamed("WelcomeView", owner: self, options: nil)[0] as? UIView
             self.welcomeView.frame =  UIScreen.mainScreen().bounds
             view.window?.addSubview(welcomeView)
             defaults.setBool(true, forKey: "hideWelcomeView")
-            
         }
     }
     
