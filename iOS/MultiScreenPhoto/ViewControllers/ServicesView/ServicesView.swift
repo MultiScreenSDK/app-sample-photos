@@ -37,12 +37,18 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
     /// Disconnect button
     @IBOutlet weak var disconnectButton: UIButton!
     
+    /// Used to displays an activy indicator while connecting
+    @IBOutlet weak var connectingIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var lineImage: UIImageView!
     override func awakeFromNib(){
         super.awakeFromNib()
         
         // Add an observer to check for services status and manage the cast icon
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshTableView", name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
+        
+        // Add an observer to check for if a tv is connected
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "serviceConnected", name: multiScreenManager.serviceConnectedObserverIdentifier, object: nil)
         
         /// Adding border and color to disconnect button
         disconnectButton.layer.cornerRadius = 0
@@ -68,6 +74,8 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         tap.delegate = self
         tap.addTarget(self, action: "closeView")
         self.addGestureRecognizer(tap)
+        
+        connectingIndicator.hidden = true
         
         refreshTableView()
         
@@ -100,6 +108,14 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
 
         
         tableView.reloadData()
+    }
+    
+    
+    func serviceConnected(){
+        title.text = "Connected to:"
+        connectingIndicator.stopAnimating()
+        connectingIndicator.hidden = true
+        self.closeView()
     }
     
     // MARK: - Table view data source
@@ -145,10 +161,14 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        
+        connectingIndicator.hidden = false
+        connectingIndicator.startAnimating()
+        title.text = "Connecting"
         /// If cell is selected then connect and start the application
         multiScreenManager.createApplication(services[indexPath.row] as Service, completionHandler: { (success: Bool!) -> Void in
             if((success) == true){
-                self.closeView()
+                //self.closeView()
             }
         })
     }
@@ -167,6 +187,8 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
     /// Method used to close the current View
     func closeView() {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: multiScreenManager.serviceConnectedObserverIdentifier, object: nil)
         self.removeFromSuperview()
     }
     

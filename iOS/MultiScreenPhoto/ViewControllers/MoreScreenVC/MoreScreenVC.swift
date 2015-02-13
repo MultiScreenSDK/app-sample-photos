@@ -35,6 +35,8 @@ class MoreScreenVC: UIViewController,MFMailComposeViewControllerDelegate {
         super.viewWillAppear(animated)
         // Method to setup the navigation bar color and fonts
         setUpNavigationBar()
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     // Method to setup the navigation bar color and fonts

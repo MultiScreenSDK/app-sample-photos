@@ -36,9 +36,10 @@ class HomePhotoGalleryHeaderView: UITableViewHeaderFooterView {
     /// Current state of the album, expanded = true, collapsed = false
     var state = false
     
-    override func awakeFromNib(){
-        super.awakeFromNib()
-        /// Adding borders to the get start button
+    
+    override func drawRect(rect: CGRect)
+    {
+        setArrowIcon()
         let gradient = CAGradientLayer()
         gradient.frame = imageViewSeparator.bounds;
         let color: CGFloat = 24/255
@@ -50,11 +51,6 @@ class HomePhotoGalleryHeaderView: UITableViewHeaderFooterView {
         let black6 = UIColor(red: color, green: color, blue: color, alpha: 0.1).CGColor
         gradient.colors = [UIColor.clearColor().CGColor,black6,black5,black4,black3,black2,black]
         imageViewSeparator.layer.insertSublayer(gradient, atIndex: 0)
-    }
-    
-    override func drawRect(rect: CGRect)
-    {
-        setArrowIcon()
     }
     
     /// Method used to capture the event when a header is clicked

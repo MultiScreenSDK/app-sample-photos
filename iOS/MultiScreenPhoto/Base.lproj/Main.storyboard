@@ -592,7 +592,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jlL-Ve-DSx">
-                                <rect key="frame" x="0.0" y="64" width="374" height="611"/>
+                                <rect key="frame" x="0.0" y="64" width="374" height="603"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HomePhotoGalleryVCCell1" rowHeight="187" id="6XW-lL-VKN" customClass="HomePhotoGalleryVCCell" customModule="MultiScreenPhoto" customModuleProvider="target">
@@ -822,7 +822,7 @@
                             <constraint firstItem="jlL-Ve-DSx" firstAttribute="leading" secondItem="qNC-4m-Qgc" secondAttribute="leading" id="F55-i3-a9o"/>
                             <constraint firstItem="jlL-Ve-DSx" firstAttribute="topMargin" secondItem="4TF-DA-nuw" secondAttribute="top" constant="8" id="U7p-6s-5yk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jlL-Ve-DSx" secondAttribute="trailingMargin" id="nAV-ZF-y12"/>
-                            <constraint firstItem="5CM-On-x9m" firstAttribute="top" secondItem="jlL-Ve-DSx" secondAttribute="bottom" constant="-8" id="nac-jt-gmi"/>
+                            <constraint firstItem="5CM-On-x9m" firstAttribute="top" secondItem="jlL-Ve-DSx" secondAttribute="bottom" id="nac-jt-gmi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yEZ-Q9-7It"/>

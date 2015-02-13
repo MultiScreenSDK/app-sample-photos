@@ -105,6 +105,8 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIA
             cellHeight = screenSize.size.width/screenSizeDivisor
         }
         tableView.reloadData()
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     

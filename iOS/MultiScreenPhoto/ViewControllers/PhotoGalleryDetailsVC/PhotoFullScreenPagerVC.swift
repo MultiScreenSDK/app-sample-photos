@@ -38,7 +38,7 @@ class PhotoFullScreenPagerVC: BaseVC , UIPageViewControllerDataSource, UIPageVie
         self.navigationController?.interactivePopGestureRecognizer.delegate = self
         
         // Add an observer to check for if a tv is connected
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendToTv", name: "sendImageToTV", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendToTv", name: multiScreenManager.serviceConnectedObserverIdentifier, object: nil)
         
         //number of assets in current album
         numberOfAssets = gallery.getNumOfAssetsByAlbum(currentAlbumIndex)
@@ -75,7 +75,7 @@ class PhotoFullScreenPagerVC: BaseVC , UIPageViewControllerDataSource, UIPageVie
     /// Remove observer when viewDidDisappear
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-         NSNotificationCenter.defaultCenter().removeObserver(self, name: "sendImageToTV", object: nil)
+         NSNotificationCenter.defaultCenter().removeObserver(self, name: multiScreenManager.serviceConnectedObserverIdentifier, object: nil)
     }
     
     /// Method to setup the navigation bar color and font
@@ -166,7 +166,6 @@ class PhotoFullScreenPagerVC: BaseVC , UIPageViewControllerDataSource, UIPageVie
         
         return pageContentViewController
     }
-    
     
     /// Method used to display the hidden navigation bar
     func showNavigationBar(){

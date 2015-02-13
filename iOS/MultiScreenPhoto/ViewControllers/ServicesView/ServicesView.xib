@@ -34,7 +34,7 @@
                                     <rect key="frame" x="8" y="12" width="22" height="17"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connected to:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ro-ob-rSJ">
-                                    <rect key="frame" x="35" y="4" width="238" height="32"/>
+                                    <rect key="frame" x="36" y="5" width="121" height="32"/>
                                     <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="15"/>
                                     <color key="textColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -111,6 +111,13 @@
                                         </constraint>
                                     </constraints>
                                 </imageView>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="pXe-s5-o4K">
+                                    <rect key="frame" x="164" y="10" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="5xS-PG-tWj"/>
+                                        <constraint firstAttribute="height" constant="20" id="hnP-Kr-TUv"/>
+                                    </constraints>
+                                </activityIndicatorView>
                             </subviews>
                             <color key="backgroundColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -119,9 +126,11 @@
                                 <constraint firstItem="CDt-do-0bf" firstAttribute="leading" secondItem="kRX-Ql-6Th" secondAttribute="leading" id="AB4-uo-6GD"/>
                                 <constraint firstAttribute="trailing" secondItem="S2h-Sy-e5v" secondAttribute="trailing" id="F2b-ia-PEB"/>
                                 <constraint firstAttribute="trailing" secondItem="BpR-IL-kC0" secondAttribute="trailing" constant="8" id="FFu-37-EhC"/>
+                                <constraint firstItem="pXe-s5-o4K" firstAttribute="top" secondItem="kRX-Ql-6Th" secondAttribute="top" constant="10" id="Gqh-Uf-4Qd"/>
                                 <constraint firstItem="d2z-As-pfp" firstAttribute="leading" secondItem="kRX-Ql-6Th" secondAttribute="leading" constant="8" id="Jwi-mQ-YPD"/>
                                 <constraint firstAttribute="height" constant="161" id="LnF-RR-MPa"/>
                                 <constraint firstAttribute="centerX" secondItem="BpR-IL-kC0" secondAttribute="centerX" id="MIW-Fd-qal"/>
+                                <constraint firstAttribute="trailing" secondItem="pXe-s5-o4K" secondAttribute="trailing" constant="8" id="N4q-mv-a7v"/>
                                 <constraint firstItem="d2z-As-pfp" firstAttribute="top" secondItem="kRX-Ql-6Th" secondAttribute="top" constant="46" id="NA7-tP-Ie8"/>
                                 <constraint firstAttribute="trailing" secondItem="pPv-bJ-zUk" secondAttribute="trailing" id="Okm-aU-OvC"/>
                                 <constraint firstItem="S2h-Sy-e5v" firstAttribute="leading" secondItem="kRX-Ql-6Th" secondAttribute="leading" id="SWE-TK-5dC"/>
@@ -176,6 +185,7 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="connectingIndicator" destination="pXe-s5-o4K" id="VHw-u2-Zxc"/>
                 <outlet property="disconnectButton" destination="BpR-IL-kC0" id="B7a-vt-UVs"/>
                 <outlet property="headerViewConstraint" destination="LnF-RR-MPa" id="wq2-87-6n3"/>
                 <outlet property="icon" destination="uL0-rM-cMK" id="adH-u0-qNF"/>
