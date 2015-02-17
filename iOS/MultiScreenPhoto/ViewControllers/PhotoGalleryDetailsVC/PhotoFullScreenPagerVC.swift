@@ -178,7 +178,7 @@ class PhotoFullScreenPagerVC: BaseVC , UIPageViewControllerDataSource, UIPageVie
     }
     
     /// Method used to update current visible index
-    func  updateCurrentIndex(index : Int){
+    func updateCurrentIndex(index : Int){
         currentIndex = index
     }
     
@@ -195,7 +195,6 @@ class PhotoFullScreenPagerVC: BaseVC , UIPageViewControllerDataSource, UIPageVie
     
     /// Method used to send the current Photo to the TV
     func sendToTv() {
-        
         /// Check if there is an application current connected
         if(multiScreenManager.isApplicationConnected() == true){
             /// Set the current photo index

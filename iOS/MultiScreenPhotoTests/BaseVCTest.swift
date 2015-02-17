@@ -26,13 +26,13 @@ class BaseVCTest: XCTestCase {
     }
     
     func testExistenceOfMultiScreenManagerAttribute(){
-        XCTAssertTrue(baseVC.multiScreenManager.isKindOfClass(MultiScreenManager), "testExistenceOfMultiScreenManagerAttribute() multiScreenManager should be of tipe MultiScreenManager")
+        XCTAssertTrue(baseVC.multiScreenManager.isKindOfClass(MultiScreenManager), "testExistenceOfMultiScreenManagerAttribute() multiScreenManager should be of type MultiScreenManager")
     }
     
     
     func testExistenceOfCastMenuView(){
         baseVC.servicesView =  ServicesView()
-        XCTAssertTrue(baseVC.servicesView.isKindOfClass(ServicesView), "testExistenceOfMultiScreenManagerAttribute() servicesView should be of tipe ServicesFoundView")
+        XCTAssertTrue(baseVC.servicesView.isKindOfClass(ServicesView), "testExistenceOfMultiScreenManagerAttribute() servicesView should be of type ServicesFoundView")
     }
     
     

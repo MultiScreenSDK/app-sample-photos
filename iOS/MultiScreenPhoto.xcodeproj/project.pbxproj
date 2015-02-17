@@ -88,6 +88,13 @@
 		9AD370041A8BC5F900111DA9 /* ServicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD370011A8BC5F900111DA9 /* ServicesView.swift */; };
 		9AD370051A8BC5F900111DA9 /* ServicesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AD370021A8BC5F900111DA9 /* ServicesView.xib */; };
 		9AD370061A8BC5F900111DA9 /* ServicesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AD370021A8BC5F900111DA9 /* ServicesView.xib */; };
+		ED16CF961A93DC9000F25C30 /* WelcomeViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16CF951A93DC9000F25C30 /* WelcomeViewTest.swift */; };
+		ED5BA8041A93E05200621EF6 /* HomePhotoGalleryVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BA8031A93E05200621EF6 /* HomePhotoGalleryVCTest.swift */; };
+		ED5BA8061A93E36A00621EF6 /* HomePhotoGalleryVCCellTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BA8051A93E36A00621EF6 /* HomePhotoGalleryVCCellTest.swift */; };
+		ED5BA8081A93E43E00621EF6 /* HomePhotoGalleryHeaderViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BA8071A93E43E00621EF6 /* HomePhotoGalleryHeaderViewTest.swift */; };
+		ED5BA80A1A93E55100621EF6 /* PhotoFullScreenPagerVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BA8091A93E55100621EF6 /* PhotoFullScreenPagerVCTest.swift */; };
+		ED5BA80C1A93E95300621EF6 /* MoreScreenVCTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BA80B1A93E95300621EF6 /* MoreScreenVCTest.swift */; };
+		ED5BA80E1A93EB3300621EF6 /* ServicesViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5BA80D1A93EB3300621EF6 /* ServicesViewTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +159,13 @@
 		9AD36FEF1A8AABBD00111DA9 /* CompatibleListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompatibleListView.xib; sourceTree = "<group>"; };
 		9AD370011A8BC5F900111DA9 /* ServicesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesView.swift; sourceTree = "<group>"; };
 		9AD370021A8BC5F900111DA9 /* ServicesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServicesView.xib; sourceTree = "<group>"; };
+		ED16CF951A93DC9000F25C30 /* WelcomeViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewTest.swift; sourceTree = "<group>"; };
+		ED5BA8031A93E05200621EF6 /* HomePhotoGalleryVCTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePhotoGalleryVCTest.swift; sourceTree = "<group>"; };
+		ED5BA8051A93E36A00621EF6 /* HomePhotoGalleryVCCellTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePhotoGalleryVCCellTest.swift; sourceTree = "<group>"; };
+		ED5BA8071A93E43E00621EF6 /* HomePhotoGalleryHeaderViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePhotoGalleryHeaderViewTest.swift; sourceTree = "<group>"; };
+		ED5BA8091A93E55100621EF6 /* PhotoFullScreenPagerVCTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoFullScreenPagerVCTest.swift; sourceTree = "<group>"; };
+		ED5BA80B1A93E95300621EF6 /* MoreScreenVCTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreScreenVCTest.swift; sourceTree = "<group>"; };
+		ED5BA80D1A93EB3300621EF6 /* ServicesViewTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesViewTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,8 +293,15 @@
 		9AC49E6B1A71A5A800F391C0 /* MultiScreenPhotoTests */ = {
 			isa = PBXGroup;
 			children = (
+				ED16CF951A93DC9000F25C30 /* WelcomeViewTest.swift */,
 				9A75A9471A83C1920051ABB6 /* GalleryTest.swift */,
 				9A75A94B1A83DC3B0051ABB6 /* BaseVCTest.swift */,
+				ED5BA8031A93E05200621EF6 /* HomePhotoGalleryVCTest.swift */,
+				ED5BA8051A93E36A00621EF6 /* HomePhotoGalleryVCCellTest.swift */,
+				ED5BA8071A93E43E00621EF6 /* HomePhotoGalleryHeaderViewTest.swift */,
+				ED5BA8091A93E55100621EF6 /* PhotoFullScreenPagerVCTest.swift */,
+				ED5BA80B1A93E95300621EF6 /* MoreScreenVCTest.swift */,
+				ED5BA80D1A93EB3300621EF6 /* ServicesViewTest.swift */,
 				9AC49E6C1A71A5A800F391C0 /* Supporting Files */,
 			);
 			path = MultiScreenPhotoTests;
@@ -547,6 +568,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A75A9481A83C1920051ABB6 /* GalleryTest.swift in Sources */,
+				ED5BA80E1A93EB3300621EF6 /* ServicesViewTest.swift in Sources */,
 				9AD36FEB1A8A9FDA00111DA9 /* MoreScreenVC.swift in Sources */,
 				9A8EFE181A88FDC7001FEE0A /* GCDAsyncUdpSocket.m in Sources */,
 				9A8EFDFE1A88FDC7001FEE0A /* Channel.swift in Sources */,
@@ -554,8 +576,10 @@
 				9AC49EC11A71A60D00F391C0 /* HomePhotoGalleryVC.swift in Sources */,
 				9A8EFDFC1A88FDC7001FEE0A /* Application.swift in Sources */,
 				9A8EFE021A88FDC7001FEE0A /* ChannelTransport.swift in Sources */,
+				ED16CF961A93DC9000F25C30 /* WelcomeViewTest.swift in Sources */,
 				9A8EFE081A88FDC7001FEE0A /* MDNSDiscoveryProvider.swift in Sources */,
 				9A8EFE161A88FDC7001FEE0A /* WebSocketTransport.swift in Sources */,
+				ED5BA80C1A93E95300621EF6 /* MoreScreenVCTest.swift in Sources */,
 				9AC49EC71A71A60D00F391C0 /* WelcomeView.swift in Sources */,
 				9A8EFE0A1A88FDC7001FEE0A /* Message.swift in Sources */,
 				9A8EFE001A88FDC7001FEE0A /* ChannelClient.swift in Sources */,
@@ -571,9 +595,13 @@
 				9A8EFE0E1A88FDC7001FEE0A /* Requester.swift in Sources */,
 				9AD36FF31A8AABBD00111DA9 /* CompatibleListView.swift in Sources */,
 				9A8EFE061A88FDC7001FEE0A /* JSON.swift in Sources */,
+				ED5BA8081A93E43E00621EF6 /* HomePhotoGalleryHeaderViewTest.swift in Sources */,
 				9AD370041A8BC5F900111DA9 /* ServicesView.swift in Sources */,
+				ED5BA8061A93E36A00621EF6 /* HomePhotoGalleryVCCellTest.swift in Sources */,
 				9AC49ECB1A71A60D00F391C0 /* PhotoFullScreenPagerVC.swift in Sources */,
+				ED5BA80A1A93E55100621EF6 /* PhotoFullScreenPagerVCTest.swift in Sources */,
 				9A227B1F1A8E559400FE3B4B /* BaseVC.swift in Sources */,
+				ED5BA8041A93E05200621EF6 /* HomePhotoGalleryVCTest.swift in Sources */,
 				9AC49ECD1A71A60D00F391C0 /* PhotoFullScreenVC.swift in Sources */,
 				9A75A94C1A83DC3B0051ABB6 /* BaseVCTest.swift in Sources */,
 				9AC49EBD1A71A60D00F391C0 /* MultiScreenManager.swift in Sources */,
@@ -628,8 +656,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Koombea Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -649,7 +677,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "202ccad9-c291-4ecc-ad7d-93866f44d60f";
+				PROVISIONING_PROFILE = "9d3ce21a-d298-4e64-a3cd-55397233d8fe";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -673,8 +701,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Koombea Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -687,7 +715,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "202ccad9-c291-4ecc-ad7d-93866f44d60f";
+				PROVISIONING_PROFILE = "9d3ce21a-d298-4e64-a3cd-55397233d8fe";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
@@ -699,12 +727,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Koombea Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
 				INFOPLIST_FILE = MultiScreenPhoto/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "202ccad9-c291-4ecc-ad7d-93866f44d60f";
+				PROVISIONING_PROFILE = "9d3ce21a-d298-4e64-a3cd-55397233d8fe";
 				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
 			};
 			name = Debug;
@@ -714,12 +742,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Koombea Inc.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Koombea Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Raul Mantilla (67VL6SFRBL)";
 				INFOPLIST_FILE = MultiScreenPhoto/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "202ccad9-c291-4ecc-ad7d-93866f44d60f";
+				PROVISIONING_PROFILE = "9d3ce21a-d298-4e64-a3cd-55397233d8fe";
 				SWIFT_OBJC_BRIDGING_HEADER = "MultiScreenPhoto/MultiScreenPhoto-Bridging-Header.h";
 			};
 			name = Release;
