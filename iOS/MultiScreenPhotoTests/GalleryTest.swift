@@ -38,40 +38,39 @@ class GalleryTest: XCTestCase {
     }
     
     func testSetNumOfAssetsByAlbum(){
-        let albunIndex = 0
+        let albumIndex = 0
         gallery.numOfAssetsByalbum = []
-        gallery.setNumOfAssetsByAlbum(albunIndex, count: 50)
+        gallery.setNumOfAssetsByAlbum(albumIndex, count: 50)
         XCTAssertEqual(gallery.getNumOfAssetsByAlbum(0),50, "testSetNumOfAssetsByAlbum() will save the count of assets to 50 and return 50")
     }
     
     
     func testGetNumOfAssetsByAlbum(){
-        let albunIndex = 0
+        let albumIndex = 0
         gallery.numOfAssetsByalbum = []
-        gallery.setNumOfAssetsByAlbum(albunIndex, count: 50)
+        gallery.setNumOfAssetsByAlbum(albumIndex, count: 50)
         XCTAssertEqual(gallery.getNumOfAssetsByAlbum(0),50, "getNumOfAssetsByAlbum() will return 50")
     }
     
     func testGetNumOfAssetsByAlbumsWhenNumOfAssetByAlbumsArrayIsEmpty(){
-        let albunIndex = 0
+        let albumIndex = 0
         gallery.numOfAssetsByalbum = []
-        gallery.setNumOfAssetsByAlbum(albunIndex, count:0)
+        gallery.setNumOfAssetsByAlbum(albumIndex, count:0)
         XCTAssertEqual(gallery.getNumOfAssetsByAlbum(0),0, "testGetNumOfAssetsByAlbumsWhenNumOfAssetByAlbumsArrayIsEmpty() will return 0")
     }
     
-    
     func testSetIsAlbumExpanded(){
-        let albunIndex = 0
+        let albumIndex = 0
         gallery.isAlbumExpanded = []
-        gallery.setIsAlbumExpanded(albunIndex, isExpanded: true)
-        XCTAssertTrue(gallery.getIsAlbumExpanded(albunIndex), "setIsAlbumExpanded() will return true")
+        gallery.setIsAlbumExpanded(albumIndex, isExpanded: true)
+        XCTAssertTrue(gallery.getIsAlbumExpanded(albumIndex), "setIsAlbumExpanded() will return true")
     }
     
     func testGetIsAlbumExpanded(){
-        let albunIndex = 0
+        let albumIndex = 0
         gallery.isAlbumExpanded = []
-        gallery.setIsAlbumExpanded(albunIndex, isExpanded: false)
-        XCTAssertTrue(gallery.getIsAlbumExpanded(albunIndex), "getIsAlbumExpanded() will return false")
+        gallery.setIsAlbumExpanded(albumIndex, isExpanded: false)
+        XCTAssertTrue(gallery.getIsAlbumExpanded(albumIndex), "getIsAlbumExpanded() will return false")
     }
    
     

@@ -26,6 +26,9 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
     /// Name of the observer identifier for service found
     let servicesChangedObserverIdentifier: String = "servicesChanged"
     
+    /// Name of the observer identifier for service found
+    let serviceConnectedObserverIdentifier: String = "serviceConnected"
+    
     // Array of services
     var services = [Service]()
     
@@ -93,7 +96,7 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
     }
     
     func onConnect(client: ChannelClient, error: NSError?) {
-         NSNotificationCenter.defaultCenter().postNotificationName("sendImageToTV", object: self)
+         NSNotificationCenter.defaultCenter().postNotificationName(serviceConnectedObserverIdentifier, object: self)
         /// post a notification to the NSNotificationCenter
         postNotification()
     }

@@ -11,7 +11,7 @@ import UIKit
 /// PhotoFullScreenPagerVC
 ///
 /// This class is used to show the pagination of the current photos album
-class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate,PhotoFullScreenVCDelegate {
+class PhotoFullScreenPagerVC: BaseVC , UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate,PhotoFullScreenVCDelegate {
     
     //Gallery Instance, this instance contains an Array of albums
     var gallery = Gallery.sharedInstance
@@ -38,7 +38,7 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
         self.navigationController?.interactivePopGestureRecognizer.delegate = self
         
         // Add an observer to check for if a tv is connected
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendToTv", name: "sendImageToTV", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendToTv", name: multiScreenManager.serviceConnectedObserverIdentifier, object: nil)
         
         //number of assets in current album
         numberOfAssets = gallery.getNumOfAssetsByAlbum(currentAlbumIndex)
@@ -75,7 +75,7 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     /// Remove observer when viewDidDisappear
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-         NSNotificationCenter.defaultCenter().removeObserver(self, name: "sendImageToTV", object: nil)
+         NSNotificationCenter.defaultCenter().removeObserver(self, name: multiScreenManager.serviceConnectedObserverIdentifier, object: nil)
     }
     
     /// Method to setup the navigation bar color and font
@@ -112,18 +112,6 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     {
         
         var index = (viewController as PhotoFullScreenVC).pageIndex
-        if (index == 0) || (index == NSNotFound) {
-            return nil
-        }
-        index--
-        
-        return viewControllerAtIndex(index)
-    }
-    
-    /// Delegate used to load the next Album image
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController?
-    {
-        var index = (viewController as PhotoFullScreenVC).pageIndex
         
         if index == NSNotFound {
             return nil
@@ -135,6 +123,19 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
             return nil
         }
         return viewControllerAtIndex(index)
+    }
+    
+    /// Delegate used to load the next Album image
+    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController?
+    {
+        var index = (viewController as PhotoFullScreenVC).pageIndex
+        if (index == 0) || (index == NSNotFound) {
+            return nil
+        }
+        index--
+        
+        return viewControllerAtIndex(index)
+        
     }
     
     /// Delegate method that capture when the animation pager stops
@@ -166,7 +167,6 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
         return pageContentViewController
     }
     
-    
     /// Method used to display the hidden navigation bar
     func showNavigationBar(){
         if ((self.navigationController?.navigationBar.hidden) == true){
@@ -178,7 +178,7 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     }
     
     /// Method used to update current visible index
-    func  updateCurrentIndex(index : Int){
+    func updateCurrentIndex(index : Int){
         currentIndex = index
     }
     
@@ -195,7 +195,6 @@ class PhotoFullScreenPagerVC: CommonVC , UIPageViewControllerDataSource, UIPageV
     
     /// Method used to send the current Photo to the TV
     func sendToTv() {
-        
         /// Check if there is an application current connected
         if(multiScreenManager.isApplicationConnected() == true){
             /// Set the current photo index

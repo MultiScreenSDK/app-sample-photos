@@ -9,10 +9,10 @@
 import UIKit
 import AssetsLibrary
 
-/// HomePhotoGalleryVC extend from CommonVC
+/// HomePhotoGalleryVC extend from BaseVC
 ///
 /// This class is used to display the gallery in a UITableView
-class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate, HomePhotoGalleryHeaderViewDelegate, HomePhotoGalleryVCCellDelegate {
+class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate, HomePhotoGalleryHeaderViewDelegate, HomePhotoGalleryVCCellDelegate {
     
     // UITableView to diplay the gallery photos
     @IBOutlet weak var tableView: UITableView!
@@ -84,14 +84,12 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         let defaults = NSUserDefaults.standardUserDefaults()
         
         // Display Welcome View only one time
-        if(!defaults.boolForKey("hideWelcomeView!")){
-            
+        if(!defaults.boolForKey("hideWelcomeView")){
             /// UIView that contains the welcome view
             self.welcomeView = NSBundle.mainBundle().loadNibNamed("WelcomeView", owner: self, options: nil)[0] as? UIView
             self.welcomeView.frame =  UIScreen.mainScreen().bounds
             view.window?.addSubview(welcomeView)
             defaults.setBool(true, forKey: "hideWelcomeView")
-            
         }
     }
     
@@ -107,6 +105,8 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
             cellHeight = screenSize.size.width/screenSizeDivisor
         }
         tableView.reloadData()
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     
@@ -184,10 +184,20 @@ class HomePhotoGalleryVC: CommonVC, UITableViewDataSource, UITableViewDelegate,U
         
         // Adding the photos to the cell
         var currentAssetIndex = indexPath.row * 5
+        
+        // Index Used to sort the photo in desc order
+        var reverseIndex =  0
+        
         for (var i=0; i<5; i++) {
             
+             // Index Used to sort the photo in desc order
+            reverseIndex = gallery.getNumOfAssetsByAlbum(indexPath.section) - currentAssetIndex - 1
+            if(reverseIndex<0){
+                reverseIndex = gallery.getNumOfAssetsByAlbum(indexPath.section)
+            }
+            
             /// Retrieve an image from the device photo gallery
-            gallery.requestImageAtIndex(indexPath.section,index: currentAssetIndex, containerId:i, isThumbnail: true, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!, assetIndex:Int, containerId: Int ) -> Void in
+            gallery.requestImageAtIndex(indexPath.section,index: reverseIndex, containerId:i, isThumbnail: true, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!, assetIndex:Int, containerId: Int ) -> Void in
                 // If there is no Image then disable the UIImageVIew
                 if(image == nil){
                     cell.buttonPhoto[containerId].enabled = false

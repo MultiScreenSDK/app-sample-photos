@@ -20,17 +20,12 @@ class WelcomeView: UIView {
     @IBAction func getStart(sender: UIButton) {
         self.removeFromSuperview()
     }
-    
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-        
+    override func awakeFromNib(){
+        super.awakeFromNib()
         /// Adding borders to the get start button
         getStartButton.layer.cornerRadius = 0
         getStartButton.layer.borderWidth = 0.5
         getStartButton.layer.borderColor = UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1).CGColor
     }
-    
-
+  
 }
