@@ -8,12 +8,25 @@ import android.net.Uri;
  */
 public class Photo {
 
+    // Photo id
     private int resourceId;
+
+    // Has the path location of the picture
     public Uri uri;
+
+    // Photo date taken
     public String date;
+
+    // Used to set the thumbnail path
     public String thumb;
+
+    // Used to set the picture bitmap (never used for this sample)
     private Bitmap image;
+
+    // Picture name
     private String title;
+
+    // Photo position into array
     private int position;
 
     /**

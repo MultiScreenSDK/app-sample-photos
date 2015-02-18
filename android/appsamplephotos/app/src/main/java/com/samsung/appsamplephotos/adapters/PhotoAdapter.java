@@ -2,12 +2,9 @@ package com.samsung.appsamplephotos.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Point;
-import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,14 +19,12 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.samsung.appsamplephotos.R;
 import com.samsung.appsamplephotos.activities.ScreenSlideActivity;
-import com.samsung.appsamplephotos.controllers.PhotoController;
+import com.samsung.appsamplephotos.helpers.PhotoHelper;
 import com.samsung.appsamplephotos.models.Gallery;
 import com.samsung.appsamplephotos.models.Photo;
 import com.samsung.appsamplephotos.utils.Constants;
-import com.squareup.picasso.Picasso;
 
 import org.lucasr.twowayview.widget.StaggeredGridLayoutManager;
 import org.lucasr.twowayview.widget.TwoWayView;
@@ -49,14 +44,19 @@ public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     ImageLoader picture = ImageLoader.getInstance();
     DisplayImageOptions options;
 
-    public PhotoAdapter(Context context, TwoWayView recyclerView, Gallery gallery, ArrayList<Photo> dataSource){
+    public PhotoAdapter(Context context, TwoWayView recyclerView, Gallery gallery){
         this.context    = context;
-        this.photos  = dataSource;
+        this.photos  = gallery.getPhotos();
         this.currentGallery = gallery;
         this.mRecyclerView = recyclerView;
+        setImageLoaderConfig();
+        optionImages();
+    }
+
+    private void setImageLoaderConfig() {
         File cacheDir;
         if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED))
-            cacheDir=new File(android.os.Environment.getExternalStorageDirectory(),"neongall");
+            cacheDir=new File(android.os.Environment.getExternalStorageDirectory(),Constants.APP_TAG);
         else
             cacheDir=context.getCacheDir();
         if(!cacheDir.exists())
@@ -66,21 +66,19 @@ public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 .memoryCache(new WeakMemoryCache())
                 .denyCacheImageMultipleSizesInMemory()
                 .discCache(new UnlimitedDiscCache(cacheDir))
+                .memoryCacheSize(1048576 * 20)
                 .threadPriority(Thread.NORM_PRIORITY - 2)
                 .build();
-        //this.picture.init(ImageLoaderConfiguration.createDefault(context));
         this.picture.init(config);
-        optionImages();
     }
 
     private void optionImages(){
         DisplayImageOptions.Builder builder = new DisplayImageOptions.Builder();
-        builder.cacheOnDisc(false);
-        builder.cacheInMemory(true);
+        builder.cacheOnDisc(true);
+        builder.cacheInMemory(false);
         builder.considerExifParams(true);
         builder.imageScaleType(ImageScaleType.IN_SAMPLE_INT);
         builder.bitmapConfig(Bitmap.Config.RGB_565);
-        builder.resetViewBeforeLoading(true);
         this.options = builder.build();
     }
 
@@ -108,58 +106,50 @@ public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     public void Grid(ViewHolder viewHolder, int position){
         final View itemView = viewHolder.itemView;
-        //holder.title.setText(mItems.get(position).toString());
 
         final StaggeredGridLayoutManager.LayoutParams lp = (StaggeredGridLayoutManager.LayoutParams) itemView.getLayoutParams();
 
         final Photo photo = this.photos.get(position);
 
+        int width = getDisplaySize().x;
+
+        setRowBounds(position, lp, width);
+
+        LinearLayout.LayoutParams lpt = new LinearLayout.LayoutParams(lp.height,lp.width);
+
+        viewHolder.photoImageView.setLayoutParams(new LinearLayout.LayoutParams(lpt));
+
+        itemView.setLayoutParams(lp);
+
+        if (viewHolder.photoImageView.getDrawable() == null) {
+            picture.displayImage("file:/" + photo.getUri().toString(), viewHolder.photoImageView, this.options);
+        }
+
+        viewHolder.viewHolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PhotoHelper.getInstance().setCurrentGallery(currentGallery);
+                Intent intent = new Intent(context, ScreenSlideActivity.class);
+                intent.putExtra(Constants.PHOTO_ID,photo.getPosition());
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                context.startActivity(intent);
+            }
+        });
+    }
+
+    /**
+     * Return the screen size
+     * @return
+     */
+    private Point getDisplaySize() {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = wm.getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        int width = size.x;
-        int height = size.y;
+        return size;
+    }
 
-        /*boolean isVertical = (mRecyclerView.getOrientation() == TwoWayLayoutManager.Orientation.VERTICAL);
-        final View itemView = viewHolder.itemView;
-
-        final int itemId = position;
-
-            final int dimenId;
-            if (itemId % 3 == 0) {
-                dimenId = R.dimen.staggered_child_medium;
-            } else if (itemId % 5 == 0) {
-                dimenId = R.dimen.staggered_child_large;
-            } else if (itemId % 7 == 0) {
-                dimenId = R.dimen.staggered_child_xlarge;
-            } else {
-                dimenId = R.dimen.staggered_child_small;
-            }
-
-            final int span;
-            if (itemId == 2) {
-                span = 2;
-            } else {
-                span = 1;
-            }
-
-            final int size = this.context.getResources().getDimensionPixelSize(dimenId);
-        final StaggeredGridLayoutManager.LayoutParams lp =
-                (StaggeredGridLayoutManager.LayoutParams) itemView.getLayoutParams();
-
-        if (!isVertical) {
-            lp.span = span;
-            lp.width = size;
-            itemView.setLayoutParams(lp);
-        } else {
-            lp.span = span;
-            lp.height = size;
-            itemView.setLayoutParams(lp);
-        }*/
-        //viewHolder.viewHolder.setLayoutParams(itlp);
-        //viewHolder.photoImageView.setLayoutParams(lp);
-
+    public void setRowBounds(int position, StaggeredGridLayoutManager.LayoutParams lp, int width) {
         if ((position / 5) % 2 == 0) {
             if ((position % 5) == 0) {
                 lp.height = width / 2;
@@ -184,38 +174,6 @@ public class PhotoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }
 
         }
-
-        LinearLayout.LayoutParams lpt = new LinearLayout.LayoutParams(lp.height,lp.width);
-
-        viewHolder.photoImageView.setLayoutParams(new LinearLayout.LayoutParams(lpt));
-
-        itemView.setLayoutParams(lp);
-
-        viewHolder.photoImageView.setImageBitmap(null);
-
-        /*Picasso.with(holder.restaurantImage.getContext()).load(restaurant.restaurantCoverImage.url).fit().centerInside().into(holder.restaurantImage);
-        holder.restaurantImage.setTag(restaurant);*/
-
-        Log.e(Constants.APP_TAG,"Loading image position: " + position);
-
-        picture.displayImage("file:/" + photo.getUri().toString(), viewHolder.photoImageView, this.options);
-
-
-        /*Picasso.with(viewHolder.photoImageView.getContext()).load(new File(photo.getUri().toString()))
-                .resize(lp.height,lp.width)
-                .centerCrop()
-                .into(viewHolder.photoImageView);*/
-
-        viewHolder.viewHolder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PhotoController.getInstance().setCurrentGallery(currentGallery);
-                Intent intent = new Intent(context, ScreenSlideActivity.class);
-                intent.putExtra(Constants.PHOTO_ID,photo.getPosition());
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                context.startActivity(intent);
-            }
-        });
     }
 
     @Override

@@ -8,10 +8,10 @@ import android.text.style.MetricAffectingSpan;
 import android.util.LruCache;
 
 /**
- * Created by Nestor on 2/2/15.
+ * Created by Koombea on 2/2/15.
  */
 public class TypefaceSpan extends MetricAffectingSpan {
-    /** An <code>LruCache</code> for previously loaded typefaces. */
+
     private static LruCache<String, Typeface> sTypefaceCache =
             new LruCache<String, Typeface>(12);
 

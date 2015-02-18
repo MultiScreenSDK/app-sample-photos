@@ -3,23 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivity">
-
-    <!--<se.emilsjolander.stickylistheaders.ExpandableStickyListHeadersListView
-        android:id="@+id/galleryListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>-->
-
-    <!--<org.lucasr.twowayview.widget.TwoWayView
-        android:id="@+id/my_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible"
-        app:twowayview_layoutManager="StaggeredGridLayoutManager"
-        app:twowayview_numColumns="4"
-        app:twowayview_numRows="0"
-        android:padding="0.5dp" />-->
+    tools:context=".GalleryActivity">
 
     <FrameLayout android:id="@+id/container"
         android:layout_width="match_parent"

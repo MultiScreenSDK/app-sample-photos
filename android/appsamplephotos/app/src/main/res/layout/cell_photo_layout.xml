@@ -11,6 +11,6 @@
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"
         android:src="@null"
-        android:background="@color/background_cell_gray"/>
+        android:background="@null"/>
 
 </LinearLayout>
