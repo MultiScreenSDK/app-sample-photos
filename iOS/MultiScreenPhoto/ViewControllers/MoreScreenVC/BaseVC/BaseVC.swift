@@ -107,7 +107,6 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
         /// UIView that contains a list of options
         moreMenuView = UIView(frame: UIScreen.mainScreen().bounds)
         moreMenuView.backgroundColor = UIColor.clearColor()
-        moreMenuView.tag = 2
         
         /// Add a gesture recognizer to dismiss the current view on tap
         let tap = UITapGestureRecognizer()
@@ -161,15 +160,6 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
         alertView = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: "OK")
         alertView.alertViewStyle = .Default
         alertView.show()
-    }
-    
-    /// UIGestureRecognizerDelegate used to disable the tap event if the tapped View is not the main View
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool{
-        if (touch.view.tag == 2){
-            closeMoreMenuView()
-            return true
-        }
-        return false
     }
     
 }

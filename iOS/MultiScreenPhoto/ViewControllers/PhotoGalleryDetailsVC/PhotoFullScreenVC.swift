@@ -66,14 +66,14 @@ class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate, UIGestureRecogni
         
         view.addSubview(scrollView)
         
-        /*
+        
         // Adding a tap recognizer to display the hidden navigation bar on tap
         var singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "showNavigationBar")
         singleTapGestureRecognizer.numberOfTapsRequired = 1
         singleTapGestureRecognizer.enabled = true
         singleTapGestureRecognizer.cancelsTouchesInView = false
         scrollView.addGestureRecognizer(singleTapGestureRecognizer)
-*/
+
     }
     
     override func viewWillAppear(animated: Bool) {
