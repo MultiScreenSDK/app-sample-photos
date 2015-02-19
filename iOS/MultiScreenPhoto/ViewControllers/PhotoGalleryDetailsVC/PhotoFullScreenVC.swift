@@ -25,9 +25,6 @@ class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate, UIGestureRecogni
     // Gallery Instance, this instance contains an Array of albums
     var gallery = Gallery.sharedInstance
     
-    // UIPageViewController used to paginate photos
-    var pageViewController : UIPageViewController?
-    
     // index of the current photo displayed
     var pageIndex : Int = 0
     
@@ -35,7 +32,9 @@ class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate, UIGestureRecogni
     var pageAlbumIndex : Int = 0
     
     var scrollView: UIScrollView!
+    var image: UIImage!
     var imageView: UIImageView!
+    
     var delegate: PhotoFullScreenVCDelegate!
     
     override func viewDidLoad()
@@ -48,35 +47,22 @@ class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate, UIGestureRecogni
         /// Request the current image at index, from the device photo album
         gallery.requestImageAtIndex(pageAlbumIndex,index: pageIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!,assetIndex:Int, containerId: Int) -> Void in
             /// Add the Image to the scrollView
-            self.addScrollView(image)
+            self.image = image
+            self.imageView.image = image
+            self.imageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size:image.size)
+            
+            self.updateScrollView()
+            
         })
         
         //self.automaticallyAdjustsScrollViewInsets = false;
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        delegate.updateCurrentIndex(pageIndex)
-    }
-    
-    /// Method used to add the Scrolling image programatically
-    func addScrollView(image: UIImage){
         
         /// Configuring the ScrollView content size
         scrollView = UIScrollView(frame: view.frame)
-        imageView = UIImageView(image: image)
-        imageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size:image.size)
-        scrollView.addSubview(imageView)
         scrollView.delegate = self
-        scrollView.contentSize = image.size
         
-        let scrollViewFrame = scrollView.frame
-        let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
-        let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height
-        let minScale = min(scaleWidth, scaleHeight);
-        scrollView.minimumZoomScale = minScale;
-        scrollView.maximumZoomScale = 1.0
-        scrollView.zoomScale = minScale;
+        imageView = UIImageView()
+        scrollView.addSubview(imageView)
         
         view.addSubview(scrollView)
         
@@ -86,30 +72,45 @@ class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate, UIGestureRecogni
         singleTapGestureRecognizer.enabled = true
         singleTapGestureRecognizer.cancelsTouchesInView = false
         scrollView.addGestureRecognizer(singleTapGestureRecognizer)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        delegate.updateCurrentIndex(pageIndex)
+        updateScrollView()
+    }
+    
+    override func viewWillLayoutSubviews(){
+        updateScrollView()
+    }
+    
+    /// Method used to set the scrollView zooming scale and content size
+    func updateScrollView(){
         
-        /// Center the scrollView to the super view
+        if((image) != nil){
+            /// Configuring the ScrollView content size
+            scrollView.contentSize = image.size
+        }
+        
+        let scrollViewFrame = scrollView.frame
+        let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
+        let scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height
+        let minScale = min(scaleWidth, scaleHeight);
+        scrollView.minimumZoomScale = minScale;
+        scrollView.maximumZoomScale = 1.0
+        scrollView.zoomScale = minScale;
+        scrollView.frame =  view.frame
+        
         centerScrollViewContents()
     }
 
     /// Method used to center the scrollView Image to the content frame
     func centerScrollViewContents() {
+        var offsetX = max((scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5, 0.0);
+        var offsetY = max((scrollView.bounds.size.height - scrollView.contentSize.height) * 0.5, 0.0);
         
-        scrollView.frame =  view.frame
-        
-        let boundsSize = scrollView.bounds.size
-        var imageFrame = imageView.frame
-        if imageFrame.size.width < boundsSize.width {
-          imageFrame.origin.x = (boundsSize.width - imageFrame.size.width) / 2.0
-        } else {
-            imageFrame.origin.x = 0.0
-        }
-        if imageFrame.size.height < boundsSize.height {
-            imageFrame.origin.y = (boundsSize.height - imageFrame.size.height) / 2.0
-        } else {
-            imageFrame.origin.y = 0.0
-        }
-        
-        imageView.frame = imageFrame
+        imageView.center = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,
+            scrollView.contentSize.height * 0.5 + offsetY);
     }
     
     /// Method used to show the hidden navigation bar
@@ -128,10 +129,6 @@ class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate, UIGestureRecogni
         centerScrollViewContents()
     }
     
-    // Delegate used to center the image to the scrollView when the device is rotated.
-    override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        centerScrollViewContents()
-    }
     
     
 }
