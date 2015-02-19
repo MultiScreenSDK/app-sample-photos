@@ -14,9 +14,9 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.samsung.appsamplephotos.R;
-import com.samsung.appsamplephotos.controllers.Callback;
-import com.samsung.appsamplephotos.controllers.MultiScreenController;
-import com.samsung.appsamplephotos.controllers.PhotoController;
+import com.samsung.appsamplephotos.utils.Callback;
+import com.samsung.appsamplephotos.helpers.MultiScreenHelper;
+import com.samsung.appsamplephotos.helpers.PhotoHelper;
 import com.samsung.appsamplephotos.fragments.ServiceFragment;
 import com.samsung.appsamplephotos.utils.Constants;
 
@@ -28,8 +28,9 @@ import com.samsung.appsamplephotos.utils.Constants;
 public class BaseActivity extends FragmentActivity {
 
     private MenuItem connectivityMenuItem;
-    public PhotoController photoHelper;
-    public MultiScreenController msHelper;
+    public PhotoHelper photoHelper;
+    public MultiScreenHelper msHelper;
+    public ScreenSlideActivity screenSlideActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +52,8 @@ public class BaseActivity extends FragmentActivity {
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
                 new IntentFilter(Constants.SERVICE_EVENT));
 
-        photoHelper = PhotoController.getInstance();
-        msHelper = MultiScreenController.getInstance();
+        photoHelper = PhotoHelper.getInstance();
+        msHelper = MultiScreenHelper.getInstance();
     }
 
 
@@ -109,13 +110,13 @@ public class BaseActivity extends FragmentActivity {
      */
     public void setCastIcon() {
         if (connectivityMenuItem != null) {
-            if (MultiScreenController.getInstance().getCastStatus() == MultiScreenController.castStatusTypes.SERVICESFOUND) {
+            if (MultiScreenHelper.getInstance().getCastStatus() == MultiScreenHelper.castStatusTypes.SERVICESFOUND) {
                 connectivityMenuItem.setVisible(true);
                 connectivityMenuItem.setIcon(getResources().getDrawable(R.drawable.ic_cast_off));
-            } else if (MultiScreenController.getInstance().getCastStatus() == MultiScreenController.castStatusTypes.CONNECTEDTOSERVICE) {
+            } else if (MultiScreenHelper.getInstance().getCastStatus() == MultiScreenHelper.castStatusTypes.CONNECTEDTOSERVICE) {
                 connectivityMenuItem.setVisible(true);
                 connectivityMenuItem.setIcon(getResources().getDrawable(R.drawable.ic_cast_on));
-            } else if (MultiScreenController.getInstance().getCastStatus() == MultiScreenController.castStatusTypes.NOSERVICES) {
+            } else if (MultiScreenHelper.getInstance().getCastStatus() == MultiScreenHelper.castStatusTypes.NOSERVICES) {
                 connectivityMenuItem.setVisible(false);
             }
         }
@@ -126,7 +127,7 @@ public class BaseActivity extends FragmentActivity {
      * to get the response from the SDK.
      */
     public void connectApplication() {
-        MultiScreenController.getInstance().connectApplication(this, new Callback() {
+        MultiScreenHelper.getInstance().connectApplication(this, new Callback() {
             @Override
             public void onSuccess() {
                 // Connect to application successfully, update cast icon and launch the app on the client
@@ -159,7 +160,7 @@ public class BaseActivity extends FragmentActivity {
      * If there are detected devices the call onSuccess, if there are not detected devices the OnError callback.
      */
     private void findDevices() {
-        MultiScreenController.getInstance().findServices(this, new Callback() {
+        MultiScreenHelper.getInstance().findServices(this, new Callback() {
             @Override
             public void onSuccess() {
                 // Services detected, update cast icon
@@ -169,12 +170,12 @@ public class BaseActivity extends FragmentActivity {
             @Override
             public void onError(Object error) {
                 // Find devices fails
-                MultiScreenController.getInstance().setCastStatus(MultiScreenController.castStatusTypes.NOSERVICES);
+                MultiScreenHelper.getInstance().setCastStatus(MultiScreenHelper.castStatusTypes.NOSERVICES);
                 setCastIcon();
             }
         });
         // Start search for available services in local network
-        MultiScreenController.getInstance().startSearch();
+        MultiScreenHelper.getInstance().startSearch();
     }
 
     /**
@@ -189,6 +190,7 @@ public class BaseActivity extends FragmentActivity {
             if (service == Constants.NO_SERVICE) {
                 new findDevicesTask().execute();
                 setCastIcon();
+                if (screenSlideActivity != null) screenSlideActivity.prepareToSend(true);
             } else
                 connectApplication();
         }

@@ -1,8 +1,8 @@
 package com.samsung.appsamplephotos.fragments;
 
-
 import android.content.Context;
 import android.graphics.Point;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.Display;
@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.samsung.appsamplephotos.R;
 import com.samsung.appsamplephotos.adapters.PhotoAdapter;
-import com.samsung.appsamplephotos.controllers.PhotoController;
+import com.samsung.appsamplephotos.helpers.PhotoHelper;
 import com.samsung.appsamplephotos.models.Gallery;
 import com.samsung.appsamplephotos.models.Photo;
 
@@ -37,7 +37,6 @@ public class GalleryFragment extends Fragment {
     private LinearLayout mBucketContainer;
     private View rootView;
     private ArrayList<Gallery> galleries = new ArrayList<Gallery>();
-    ArrayList<Photo> dataSource = new ArrayList<Photo>();
 
     public static GalleryFragment newInstance() {
         GalleryFragment fragment = new GalleryFragment();
@@ -66,8 +65,8 @@ public class GalleryFragment extends Fragment {
             rootView = inflater.inflate(R.layout.fragment_gallery, container, false);
             mBucketContainer = (LinearLayout) rootView.findViewById(R.id.bucket_view_container);
 
-            galleries.clear();
-            galleries =  PhotoController.getInstance().getGalleries();
+            if (galleries.isEmpty())
+                galleries = PhotoHelper.getInstance().getGalleries();
 
             addContainerItem(galleries,mInflater,mContainer);
 
@@ -77,28 +76,39 @@ public class GalleryFragment extends Fragment {
 
     public void addContainerItem(final ArrayList<Gallery> galleries,LayoutInflater inflater,ViewGroup container){
         for (final Gallery gallery : galleries) {
+
             View child = inflater.inflate(R.layout.bucket_collection_container, container, false);
+
             TextView bucketTitle = (TextView) child.findViewById(R.id.bucketTitle);
-            bucketTitle.setTypeface(customFont(getActivity()));
             RelativeLayout headerCollectionLayout = (RelativeLayout) child.findViewById(R.id.headerCollectionLayout);
             final TwoWayView recyclerView = (TwoWayView) child.findViewById(R.id.recycler_collection_view);
             final ImageView arrowImageView = (ImageView) child.findViewById(R.id.arrowImageView);
-            final PhotoAdapter photoAdapter = new PhotoAdapter(getActivity(),recyclerView, gallery, dataSource);
+            final PhotoAdapter photoAdapter = new PhotoAdapter(getActivity(),recyclerView, gallery);
+
+            bucketTitle.setTypeface(customFont(getActivity()));
 
             headerCollectionLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (recyclerView.getVisibility() == View.GONE) {
-                        dataSource.clear();
+
                         if (gallery.getPhotos().isEmpty()) {
-                            gallery.getPhotos().addAll(PhotoController.getInstance().getImageInfos(getActivity(), gallery.getId(), 3, 0));
-                            //getGalleryImages(recyclerView, gallery,  photoAdapter);
+                            getGalleryImages(recyclerView, gallery,  photoAdapter);
+                        } else {
+                            if (recyclerView.getChildCount() == 0) {
+                                addCollectionImage(recyclerView, photoAdapter);
+                            }
                         }
-                        dataSource.addAll(gallery.getPhotos());
+                        gallery.isOpen = true;
+
                         arrowImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up));
                         setViewHeight(recyclerView,photoAdapter);
                         recyclerView.setVisibility(View.VISIBLE);
+
                     } else {
+
+                        gallery.isOpen = false;
+
                         arrowImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down));
                         setViewHeight(recyclerView,photoAdapter);
                         recyclerView.setVisibility(View.GONE);
@@ -106,40 +116,94 @@ public class GalleryFragment extends Fragment {
                 }
             });
 
-            bucketTitle.setText(gallery.getName());
-            if (!gallery.getName().equals("Camera")) {
-                recyclerView.setVisibility(View.GONE);
-                arrowImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down));
-            } else {
 
-                gallery.clearPhotos();
-                //getGalleryImages(recyclerView,gallery, photoAdapter);
-                gallery.getPhotos().addAll(PhotoController.getInstance().getImageInfos(getActivity(), gallery.getId(), 0, 3));
-                dataSource.addAll(gallery.getPhotos());
-                recyclerView.setVisibility(View.VISIBLE);
-                arrowImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up));
-            }
-            addCollectionImage(recyclerView, photoAdapter);
+            setupBucketView(gallery, bucketTitle, recyclerView, photoAdapter, arrowImageView);
+
             mBucketContainer.addView(child);
         }
     }
 
-    /*private void getGalleryImages(TwoWayView recyclerView,Gallery gallery, PhotoAdapter photoAdapter) {
-        ArrayList<Photo> arrayPhoto = PhotoController.getInstance().getImageInfos(getActivity(), gallery.getId(), 3, gallery.positionLoaded);
-        gallery.getPhotos().addAll(arrayPhoto);
-        dataSource.clear();
-        dataSource.addAll(gallery.getPhotos());
-        //photoAdapter.notifyDataSetChanged();
-        addCollectionImage(recyclerView, photoAdapter);
-        gallery.positionLoaded += 3;
-        if (50 > gallery.positionLoaded) {
-            getGalleryImages(recyclerView,gallery, photoAdapter);
+    private void setupBucketView(Gallery gallery, TextView bucketTitle, TwoWayView recyclerView, PhotoAdapter photoAdapter, ImageView arrowImageView) {
+        bucketTitle.setText(gallery.getName());
+        if (!gallery.isOpen) {
+            recyclerView.setVisibility(View.GONE);
+            arrowImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_down));
+        } else {
+            if (gallery.getPhotos().isEmpty() || gallery.getPhotos().size() < gallery.count) {
+                gallery.positionLoaded = gallery.getPhotos().size();
+                getGalleryImages(recyclerView, gallery, photoAdapter);
+            } else {
+                addCollectionImage(recyclerView, photoAdapter);
+            }
+            recyclerView.setVisibility(View.VISIBLE);
+            arrowImageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_arrow_up));
         }
-    }*/
+    }
 
-    public void addCollectionImage(TwoWayView recyclerView,PhotoAdapter photoAdapter){
-        recyclerView.setAdapter(photoAdapter);
-        setViewHeight(recyclerView,photoAdapter);
+    private static class TaskParams {
+        TwoWayView recyclerView;
+        Gallery gallery;
+        PhotoAdapter photoAdapter;
+
+        TaskParams(TwoWayView recyclerView,Gallery gallery, PhotoAdapter photoAdapter) {
+            this.recyclerView = recyclerView;
+            this.gallery = gallery;
+            this.photoAdapter = photoAdapter;
+        }
+    }
+
+    private void getGalleryImages(TwoWayView recyclerView,Gallery gallery, PhotoAdapter photoAdapter) {
+        if (getActivity() != null) {
+            TaskParams taskParams = new TaskParams(recyclerView, gallery, photoAdapter);
+            new LoadGalleryTask().execute(taskParams);
+        }
+    }
+
+    private class LoadGalleryTask extends AsyncTask<TaskParams, Void, Void> {
+
+        TwoWayView recyclerView;
+        Gallery gallery;
+        PhotoAdapter photoAdapter;
+        Context context;
+
+        @Override
+        protected Void doInBackground(TaskParams... params) {
+            recyclerView = params[0].recyclerView;
+            gallery = params[0].gallery;
+            photoAdapter = params[0].photoAdapter;
+            context = getActivity();
+
+            loadGallery(gallery, recyclerView, photoAdapter, context);
+            return null;
+        }
+
+    }
+
+    public void loadGallery (Gallery gallery,TwoWayView recyclerView, PhotoAdapter photoAdapter,  Context context ) {
+        ArrayList<Photo> photoArrayList = PhotoHelper.getInstance().getImageInfos(context, gallery, 10, gallery.positionLoaded);
+
+        gallery.getPhotos().addAll(photoArrayList);
+        gallery.positionLoaded += 10;
+        gallery.photoLoaded += photoArrayList.size();
+
+        addCollectionImage(recyclerView, photoAdapter);
+        if (gallery.count > gallery.positionLoaded && getActivity() != null) {
+            loadGallery(gallery, recyclerView, photoAdapter, context);
+        }
+    }
+
+    public void addCollectionImage(final TwoWayView recyclerView,final PhotoAdapter photoAdapter){
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                public void run() {
+                    if (recyclerView.getAdapter() == null)
+                        recyclerView.setAdapter(photoAdapter);
+                    else
+                        photoAdapter.notifyDataSetChanged();
+                    setViewHeight(recyclerView, photoAdapter);
+                }
+            });
+        }
     }
 
     private void setViewHeight(TwoWayView recyclerView, PhotoAdapter photoAdapter) {

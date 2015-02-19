@@ -7,11 +7,25 @@ import java.util.ArrayList;
  */
 public class Gallery {
 
+    // Bucket id
     private String id;
+
+    // Bucket name
     private String name;
+
+    // Used to store the photo array
     private ArrayList<Photo> photos;
+
+    // Number of the position loaded for pagination
     public int positionLoaded;
+
+    // Keep the number of photos loaded in the main screen
+    public int photoLoaded;
+
+    // Used to store the number of bucket photos.
     public int count;
+
+    // Property to check if the bucket windows is open or not in the display screen
     public boolean isOpen;
 
     /**

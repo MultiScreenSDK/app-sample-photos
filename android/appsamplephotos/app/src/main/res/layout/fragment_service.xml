@@ -92,7 +92,7 @@
             android:id="@+id/selectedToLayout"
             android:layout_width="248dp"
             android:layout_height="wrap_content"
-            android:background="@color/cell_gray"
+            android:background="@color/gray"
             android:layout_centerInParent="true"
             android:orientation="vertical">
 

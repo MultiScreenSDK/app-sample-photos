@@ -1,45 +1,38 @@
 package com.samsung.appsamplephotos.activities;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
-import android.provider.MediaStore;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.WindowManager;
 
 import com.samsung.appsamplephotos.R;
 import com.samsung.appsamplephotos.adapters.ScreenSlidePagerAdapter;
-import com.samsung.appsamplephotos.controllers.MultiScreenController;
-import com.samsung.appsamplephotos.controllers.PhotoController;
-import com.samsung.appsamplephotos.fragments.ServiceFragment;
+import com.samsung.appsamplephotos.helpers.MultiScreenHelper;
 import com.samsung.appsamplephotos.models.Photo;
 import com.samsung.appsamplephotos.utils.Constants;
 import com.samsung.appsamplephotos.utils.ZoomOutPageTransformer;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static android.graphics.Bitmap.*;
-
+/**
+ * This class handle the photo preview pager. If a connection is available
+ * send the image to the device as a publish message
+ */
 public class ScreenSlideActivity extends BaseActivity {
 
     private ViewPager mPager;
     private PagerAdapter mPagerAdapter;
+
+    // Id of the currently photo displayed
     private int photoId;
+
+    // Position of the currently photo displayed
     private int currentPosition;
 
     @Override
@@ -47,10 +40,12 @@ public class ScreenSlideActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
 
-        getActionBar().setHomeButtonEnabled(true);
-        getActionBar().setIcon(getResources().getDrawable(R.drawable.ic_back));
+        setBackButton();
 
+        // Set the activity in the base activity
+        screenSlideActivity = this;
 
+        // Try to get the photo id selected
         Bundle extras = getIntent().getExtras();
         if (extras !=null) photoId     =  (Integer) extras.get(Constants.PHOTO_ID);
 
@@ -58,8 +53,14 @@ public class ScreenSlideActivity extends BaseActivity {
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(),photoId);
         mPager.setAdapter(mPagerAdapter);
         mPager.setCurrentItem(photoId);
-        prepareToSend();
+
+        // Prepare photo to send when activity start (send photo by default)
+        prepareToSend(true);
+
+        // Set the scroll effect
         mPager.setPageTransformer(true, new ZoomOutPageTransformer());
+
+        // Set the page change listener
         mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i2) {
@@ -73,17 +74,30 @@ public class ScreenSlideActivity extends BaseActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
+                // Prepare photo for send just the stop scrolling
                 if (state == ViewPager.SCROLL_STATE_IDLE) {
-                    prepareToSend();
+                    prepareToSend(false);
                 }
             }
         });
     }
 
-    public void prepareToSend() {
-        if (MultiScreenController.getInstance().getCastStatus() ==  MultiScreenController.castStatusTypes.CONNECTEDTOSERVICE) {
+    /**
+     * Set back button in the action bar
+     */
+    public void setBackButton() {
+        getActionBar().setHomeButtonEnabled(true);
+        getActionBar().setIcon(getResources().getDrawable(R.drawable.ic_back));
+    }
+
+    /**
+     * Prepare a image to convert to bytes and send to the client after time end only when a connection is set
+     * @param onFirstTime
+     */
+    public void prepareToSend(boolean onFirstTime) {
+        if (MultiScreenHelper.getInstance().getCastStatus() ==  MultiScreenHelper.castStatusTypes.CONNECTEDTOSERVICE) {
             final int position = mPager.getCurrentItem();
-            if (position != currentPosition) {
+            if (position != currentPosition || onFirstTime) {
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -98,6 +112,10 @@ public class ScreenSlideActivity extends BaseActivity {
         }
     }
 
+    /**
+     * Async task to convert photo to bytes, when task finish publish a message to
+     * the client
+     */
     private class sendImageTask extends AsyncTask<Uri, Void, byte[]> {
 
         @Override
@@ -123,9 +141,17 @@ public class ScreenSlideActivity extends BaseActivity {
         @Override
         protected void onPostExecute(byte[] bytes) {
             super.onPostExecute(bytes);
-            MultiScreenController.getInstance().publishToApplication(bytes);
+            MultiScreenHelper.getInstance().publishToApplication(bytes);
         }
 
     }
 
+    /**
+     * Set current activity null in teh base activity when close preview pager
+     */
+    @Override
+    protected void onStop() {
+        super.onStop();
+        screenSlideActivity = null;
+    }
 }

@@ -34,7 +34,10 @@ public class CompatibleListActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compatible_list);
+        setupView();
+    }
 
+    public void setupView() {
         compatibleTextView = (TextView) findViewById(R.id.compatibleTextView);
         screenSizeBtn = (Button) findViewById(R.id.screenSizeBtn);
         inchesListView = (ListView) findViewById(R.id.inchesListView);
@@ -48,12 +51,16 @@ public class CompatibleListActivity extends FragmentActivity {
         });
         screenSizeBtn.setTypeface(italicFont(this));
         compatibleTextView.setTypeface(customFont(this));
+
+        // Get the inch list
         String [] screenSize = getResources().getStringArray(R.array.screen_sizes);
         for (String inch : screenSize) {
             inchesArray.add(inch);
         }
+
         ScreenSizeAdapter adapter = new ScreenSizeAdapter(inchesArray);
         inchesListView.setAdapter(adapter);
+
         screenSizeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,24 +132,8 @@ public class CompatibleListActivity extends FragmentActivity {
                     inchesListView.setVisibility(View.GONE);
                     screenSizeBtn.setText(screenSize.get(position));
                     screenSizeBtn.setCompoundDrawablesWithIntrinsicBounds(null,null,getResources().getDrawable(R.drawable.ic_arrow_down),null);
-                    String [] inches;
-                    switch (position) {
-                        case 0:
-                            inches = getResources().getStringArray(R.array.models_10_inches);
-                            break;
-                        case 1:
-                            inches = getResources().getStringArray(R.array.models_20_inches);
-                            break;
-                        case 2:
-                            inches = getResources().getStringArray(R.array.models_30_inches);
-                            break;
-                        case 3:
-                            inches = getResources().getStringArray(R.array.models_30_inches);
-                            break;
-                        default:
-                            inches = getResources().getStringArray(R.array.screen_sizes);
-                            break;
-                    }
+
+                    String [] inches = getSizeValue(position);
                     modelsArray.clear();
                     for (String inch : inches) {
                         modelsArray.add(inch);
@@ -154,6 +145,21 @@ public class CompatibleListActivity extends FragmentActivity {
             return row;
         }
 
+    }
+
+    private String[] getSizeValue(int position) {
+        switch (position) {
+            case 0:
+                return getResources().getStringArray(R.array.models_10_inches);
+            case 1:
+                return getResources().getStringArray(R.array.models_20_inches);
+            case 2:
+                return getResources().getStringArray(R.array.models_30_inches);
+            case 3:
+                return getResources().getStringArray(R.array.models_30_inches);
+            default:
+                return getResources().getStringArray(R.array.screen_sizes);
+        }
     }
 
     public class ModelAdapter extends BaseAdapter {

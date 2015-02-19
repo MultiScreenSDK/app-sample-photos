@@ -11,13 +11,12 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.samsung.appsamplephotos.R;
-import com.samsung.appsamplephotos.controllers.PhotoController;
+import com.samsung.appsamplephotos.helpers.PhotoHelper;
 import com.samsung.appsamplephotos.models.Photo;
 import com.samsung.appsamplephotos.utils.Constants;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
-import java.util.zip.Inflater;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,7 +41,7 @@ public class ScreenSlidePageFragment extends Fragment {
         Bundle bundle = getArguments();
         photoIdSelected = bundle.getInt(Constants.PHOTO_ID);
 
-        Photo photo = PhotoController.getInstance().getPhotoByPosition(photoIdSelected);
+        Photo photo = PhotoHelper.getInstance().getPhotoByPosition(photoIdSelected);
         Picasso.with(getActivity()).load(new File(photo.getUri().toString()))
                 .fit()
                 .centerInside()
