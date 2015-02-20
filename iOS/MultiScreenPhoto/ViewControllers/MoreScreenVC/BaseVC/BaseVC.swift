@@ -96,9 +96,11 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
     func showCastMenuView(){
         /// UIView that contains a list of available services
         var viewArray = NSBundle.mainBundle().loadNibNamed("ServicesView", owner: self, options: nil)
-        self.servicesView = viewArray[0] as ServicesView
-        self.servicesView.frame = UIScreen.mainScreen().bounds
-       view.window?.addSubview(self.servicesView)
+        servicesView = viewArray[0] as ServicesView
+        servicesView.frame = UIScreen.mainScreen().bounds
+        
+        /// Adding UIVIew to superView
+        addUIViewToWindowSuperView(servicesView)
     }
     
     /// Method to show the More menu
@@ -123,19 +125,13 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
         moreMenuButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         moreMenuView.addSubview(moreMenuButton)
         
-        /// Adding UIVIew to superView
-        moreMenuView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        view.window?.addSubview(moreMenuView)
-        
         /// Adding menuButton constraints
         let moreButtonDict = ["button": moreMenuButton]
         moreMenuView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[button(97)]-(20)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: moreButtonDict))
         moreMenuView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(45)-[button(34)]", options: NSLayoutFormatOptions(0), metrics: nil, views: moreButtonDict))
         
-        /// Adding moreMenuView constraints
-        let moreViewDict = ["view": moreMenuView]
-        view.window?.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: moreViewDict))
-        view.window?.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: moreViewDict))
+        /// Adding UIVIew to superView
+        addUIViewToWindowSuperView(moreMenuView)
     }
     
     /// Method used to close the more menu view
@@ -162,4 +158,22 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
         alertView.show()
     }
     
+    func addUIViewToWindowSuperView(view: UIView){
+        
+        /// Adding UIVIew to superView
+        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        var window = UIApplication.sharedApplication().keyWindow
+        if (window == nil){
+            window = UIApplication.sharedApplication().windows[0] as? UIWindow
+        }
+        
+        window?.subviews[0].addSubview(view)
+        
+        /// Adding view constraints
+        let viewDict = ["view": view]
+        window?.subviews[0].addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewDict))
+        window?.subviews[0].addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewDict))
+        
+    }
 }
