@@ -181,7 +181,6 @@
                 android:text="@string/send_email"
                 android:layout_marginTop="3dp"
                 android:linksClickable="true"
-                android:autoLink="web|email"
                 android:textColor="@color/white" />
 
             <TextView

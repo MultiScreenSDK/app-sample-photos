@@ -1,8 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:samsung="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".GalleryActivity">
     <item android:id="@+id/action_connectivity"
         android:icon="@drawable/ic_cast_off"
-        android:showAsAction="always"
+        samsung:showAsAction="always"
         android:visible="false"
         android:title="@string/action_connectivity" />
     <item android:id="@+id/action_more"

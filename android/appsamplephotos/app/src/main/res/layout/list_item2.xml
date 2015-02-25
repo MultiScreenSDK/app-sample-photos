@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        android:weightSum="1.0"
+        android:background="@color/background_cell_gray"
+        android:paddingRight="3dp"
+        android:paddingLeft="3dp"
+        android:id="@+id/banner_view">
+
+        <RelativeLayout
+            android:id="@+id/song_fragment_artist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center_vertical|center_horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1.0">
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@color/background_cell_gray">
+
+                    <com.samsung.appsamplephotos.ui.RecyclingImageView
+                        android:id="@+id/image1"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/cell_min_height"
+                        android:background="#fffff300"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="centerCrop" />
+
+                    <View
+                        android:id="@+id/dividerLine"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/background_cell_gray"
+                        android:layout_below="@+id/image1" />
+
+                    <com.samsung.appsamplephotos.ui.RecyclingImageView
+                        android:id="@+id/image4"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/cell_min_height"
+                        android:background="#ff4c8bff"
+                        android:contentDescription="@string/app_name"
+                        android:layout_below="@+id/dividerLine"
+                        android:scaleType="centerCrop" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/background_cell_gray" />
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="@color/background_cell_gray">
+
+                    <com.samsung.appsamplephotos.ui.RecyclingImageView
+                        android:id="@+id/image2"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/cell_min_height"
+                        android:background="#ff43ff1a"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="centerCrop"
+                        />
+
+                    <View
+                        android:id="@+id/dividerLine2"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="@color/background_cell_gray"
+                        android:layout_below="@+id/image2" />
+
+                    <com.samsung.appsamplephotos.ui.RecyclingImageView
+                        android:id="@+id/image5"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/cell_min_height"
+                        android:background="#ffff48d2"
+                        android:contentDescription="@string/app_name"
+                        android:layout_below="@+id/dividerLine2"
+                        android:scaleType="centerCrop"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/background_cell_gray" />
+
+        <RelativeLayout
+            android:background="#c8000000"
+            android:id="@+id/song_fragment_searchable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.50"
+            android:gravity="center_vertical|center_horizontal">
+
+            <com.samsung.appsamplephotos.ui.RecyclingImageView
+                android:id="@+id/image3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cell_height"
+                android:background="#ffff311b"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/background_cell_gray" />
+
+</RelativeLayout>
