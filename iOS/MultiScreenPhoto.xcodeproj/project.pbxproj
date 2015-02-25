@@ -44,15 +44,13 @@
 		9A8EFE161A88FDC7001FEE0A /* WebSocketTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF11A88FDC7001FEE0A /* WebSocketTransport.swift */; };
 		9A8EFE171A88FDC7001FEE0A /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF51A88FDC7001FEE0A /* GCDAsyncUdpSocket.m */; };
 		9A8EFE181A88FDC7001FEE0A /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF51A88FDC7001FEE0A /* GCDAsyncUdpSocket.m */; };
-		9A8EFE191A88FDC7001FEE0A /* README.markdown in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF61A88FDC7001FEE0A /* README.markdown */; };
-		9A8EFE1A1A88FDC7001FEE0A /* README.markdown in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF61A88FDC7001FEE0A /* README.markdown */; };
 		9A8EFE1B1A88FDC7001FEE0A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF81A88FDC7001FEE0A /* LICENSE */; };
 		9A8EFE1C1A88FDC7001FEE0A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF81A88FDC7001FEE0A /* LICENSE */; };
-		9A8EFE1D1A88FDC7001FEE0A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF91A88FDC7001FEE0A /* README.md */; };
-		9A8EFE1E1A88FDC7001FEE0A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF91A88FDC7001FEE0A /* README.md */; };
 		9A8EFE1F1A88FDC7001FEE0A /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDFA1A88FDC7001FEE0A /* WebSocket.swift */; };
 		9A8EFE201A88FDC7001FEE0A /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8EFDFA1A88FDC7001FEE0A /* WebSocket.swift */; };
 		9A8EFE251A891E33001FEE0A /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A8EFE241A891E33001FEE0A /* Roboto-Italic.ttf */; };
+		9AA2D6CC1A9E34690060EDE8 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF61A88FDC7001FEE0A /* README.markdown */; };
+		9AA2D6CD1A9E34690060EDE8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF91A88FDC7001FEE0A /* README.md */; };
 		9AC49E591A71A5A800F391C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E581A71A5A800F391C0 /* AppDelegate.swift */; };
 		9AC49E5B1A71A5A800F391C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E5A1A71A5A800F391C0 /* ViewController.swift */; };
 		9AC49E5E1A71A5A800F391C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AC49E5C1A71A5A800F391C0 /* Main.storyboard */; };
@@ -494,6 +492,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AA2D6CC1A9E34690060EDE8 /* README.markdown in Resources */,
+				9AA2D6CD1A9E34690060EDE8 /* README.md in Resources */,
 				9AD370051A8BC5F900111DA9 /* ServicesView.xib in Resources */,
 				9AC49E5E1A71A5A800F391C0 /* Main.storyboard in Resources */,
 				9AC7F2D01A7C2A3F00CBC946 /* Roboto-Light.ttf in Resources */,
@@ -541,8 +541,6 @@
 				9A8EFE091A88FDC7001FEE0A /* Message.swift in Sources */,
 				9A8EFDFF1A88FDC7001FEE0A /* ChannelClient.swift in Sources */,
 				9AC49EBC1A71A60D00F391C0 /* MultiScreenManager.swift in Sources */,
-				9A8EFE191A88FDC7001FEE0A /* README.markdown in Sources */,
-				9A8EFE1D1A88FDC7001FEE0A /* README.md in Sources */,
 				9AC49E5B1A71A5A800F391C0 /* ViewController.swift in Sources */,
 				9AC7F2D61A805CAA00CBC946 /* HomePhotoGalleryHeaderView.swift in Sources */,
 				9A8EFE0B1A88FDC7001FEE0A /* MSFDiscoveryProvider.swift in Sources */,
@@ -584,8 +582,6 @@
 				9A8EFE0A1A88FDC7001FEE0A /* Message.swift in Sources */,
 				9A8EFE001A88FDC7001FEE0A /* ChannelClient.swift in Sources */,
 				9AC7F2D71A805CAA00CBC946 /* HomePhotoGalleryHeaderView.swift in Sources */,
-				9A8EFE1A1A88FDC7001FEE0A /* README.markdown in Sources */,
-				9A8EFE1E1A88FDC7001FEE0A /* README.md in Sources */,
 				9AC49EB91A71A60D00F391C0 /* Gallery.swift in Sources */,
 				9A8EFE0C1A88FDC7001FEE0A /* MSFDiscoveryProvider.swift in Sources */,
 				9A8EFE141A88FDC7001FEE0A /* ServiceSearch.swift in Sources */,

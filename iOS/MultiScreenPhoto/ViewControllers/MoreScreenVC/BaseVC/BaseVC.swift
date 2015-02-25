@@ -56,8 +56,8 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
         /// Configuring setting icon
         self.navigationItem.rightBarButtonItem = nil;
         let imageSettingsButton = UIImage(named: "btn_more_menu") as UIImage?
-        let settingsButton = UIButton(frame: CGRectMake(0,0,20,22))
-        settingsButton.imageEdgeInsets = UIEdgeInsetsMake(0,8,0,8)
+        let settingsButton = UIButton(frame: CGRectMake(0, 0, 20, 22))
+        settingsButton.imageEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 8)
         
         settingsButton.addTarget(self, action: Selector("showMoreMenuView"), forControlEvents: UIControlEvents.TouchUpInside)
         settingsButton.setImage(imageSettingsButton, forState: UIControlState.Normal)
@@ -69,21 +69,21 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
         
         /// Configuring cast icon
         /// Check if there is services availables
-        if(multiScreenManager.getServices().count > 0){
+        if(multiScreenManager.services.count > 0){
             
             /// Check if there is an application current connected
-            if(multiScreenManager.isApplicationConnected() == true){
+            if(multiScreenManager.isConnected == true){
                 imageCastButton = UIImage(named: "icon_cast_connect")
             }else{
                 imageCastButton = UIImage(named: "icon_cast_discovered")
             }
             
-            let castButton = UIButton(frame: CGRectMake(0,0,22,17))
+            let castButton = UIButton(frame: CGRectMake(0, 0, 22, 17))
             castButton.addTarget(self, action: Selector("showCastMenuView"), forControlEvents: UIControlEvents.TouchUpInside)
             castButton.setBackgroundImage(imageCastButton, forState: UIControlState.Normal)
             var addCastButton: UIBarButtonItem = UIBarButtonItem(customView: castButton)
             
-            self.navigationItem.rightBarButtonItems = [addSettingsButton,addSpacerButton,addCastButton]
+            self.navigationItem.rightBarButtonItems = [addSettingsButton, addSpacerButton, addCastButton]
         
         }else{
             self.navigationItem.rightBarButtonItems = [addSettingsButton]
@@ -117,10 +117,10 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
         moreMenuView.addGestureRecognizer(tap)
         
         /// Creating and adding Menu Button
-        var moreMenuButton = UIButton(frame: CGRectMake(0,45,97,34))
+        var moreMenuButton = UIButton(frame: CGRectMake(0, 45, 97, 34))
         moreMenuButton.addTarget(self, action: Selector("goToMoreScreenVC"), forControlEvents: UIControlEvents.TouchUpInside)
         moreMenuButton.backgroundColor = UIColor.whiteColor()
-        moreMenuButton.setAttributedTitle(NSMutableAttributedString(string: "MORE", attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 18.0)!]), forState: UIControlState.Normal)
+        moreMenuButton.setAttributedTitle(NSMutableAttributedString(string: "MORE", attributes: [NSFontAttributeName: UIFont(name: "Roboto-Light", size: 18.0)!]), forState: UIControlState.Normal)
         moreMenuButton.titleLabel?.textColor = UIColor.grayColor()
         moreMenuButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         moreMenuView.addSubview(moreMenuButton)
@@ -147,12 +147,12 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
         
         /// UIViewController that contains a detailed tutorial
         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("MoreScreenVC") as MoreScreenVC
-        self.navigationController?.pushViewController(viewController, animated:true)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     
     /// Method that displays an Alert dialogs
-    func displayAlertWithTitle( title:NSString, message:NSString) {
+    func displayAlertWithTitle( title: NSString, message: NSString) {
         alertView = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: "OK")
         alertView.alertViewStyle = .Default
         alertView.show()

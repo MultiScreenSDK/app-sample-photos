@@ -11,7 +11,7 @@ import UIKit
 /// PhotoFullScreenPagerVC
 ///
 /// This class is used to show the pagination of the current photos album
-class PhotoFullScreenPagerVC: BaseVC , UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate,PhotoFullScreenVCDelegate {
+class PhotoFullScreenPagerVC: BaseVC, UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIGestureRecognizerDelegate, UIAlertViewDelegate, PhotoFullScreenVCDelegate {
     
     //Gallery Instance, this instance contains an Array of albums
     var gallery = Gallery.sharedInstance
@@ -23,13 +23,13 @@ class PhotoFullScreenPagerVC: BaseVC , UIPageViewControllerDataSource, UIPageVie
     var timer: NSTimer!
     
     //UIPageViewController used to paginate photos
-    var pageViewController : UIPageViewController?
+    var pageViewController: UIPageViewController?
     
     //index of the current photo displayed
-    var currentIndex : Int = 0
+    var currentIndex: Int = 0
     
     //index of the current Album displayed
-    var currentAlbumIndex : Int = 0
+    var currentAlbumIndex: Int = 0
     
     
     override func viewDidLoad() {
@@ -41,10 +41,10 @@ class PhotoFullScreenPagerVC: BaseVC , UIPageViewControllerDataSource, UIPageVie
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendToTv", name: multiScreenManager.serviceConnectedObserverIdentifier, object: nil)
         
         //number of assets in current album
-        numberOfAssets = gallery.getNumOfAssetsByAlbum(currentAlbumIndex)
+        numberOfAssets = gallery.numberOfAssetsAtAlbumIndex[currentAlbumIndex]
         
         //Setting the pageViewController pages
-        pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: [UIPageViewControllerOptionInterPageSpacingKey : 10])
+        pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: [UIPageViewControllerOptionInterPageSpacingKey: 10])
         pageViewController!.dataSource = self
         pageViewController!.delegate = self
         
@@ -88,7 +88,7 @@ class PhotoFullScreenPagerVC: BaseVC , UIPageViewControllerDataSource, UIPageVie
         // Configuring back icon
         self.navigationItem.leftBarButtonItems = nil;
         let imageBackButton = UIImage(named: "btn_back_arrow") as UIImage?
-        let backButton = UIButton(frame: CGRectMake(0,0,11,19))
+        let backButton = UIButton(frame: CGRectMake(0, 0, 11, 19))
         backButton.addTarget(self, action: Selector("goBack"), forControlEvents: UIControlEvents.TouchUpInside)
         backButton.setBackgroundImage(imageBackButton, forState: UIControlState.Normal)
         var addBackButton: UIBarButtonItem = UIBarButtonItem(customView: backButton)
@@ -174,7 +174,7 @@ class PhotoFullScreenPagerVC: BaseVC , UIPageViewControllerDataSource, UIPageVie
     }
     
     /// Method used to update current visible index
-    func updateCurrentIndex(index : Int){
+    func updateCurrentIndex(index: Int){
         currentIndex = index
     }
     
@@ -192,10 +192,10 @@ class PhotoFullScreenPagerVC: BaseVC , UIPageViewControllerDataSource, UIPageVie
     /// Method used to send the current Photo to the TV
     func sendToTv() {
         /// Check if there is an application current connected
-        if(multiScreenManager.isApplicationConnected() == true){
+        if(multiScreenManager.isConnected == true){
             /// Set the current photo index
             /// Request the current image at index, from the device photo album
-            gallery.requestImageAtIndex(currentAlbumIndex,index: currentIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!,assetIndex:Int, containerId: Int ) -> Void in
+            gallery.requestImageAtIndex(currentAlbumIndex, index: currentIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject: AnyObject]!, assetIndex: Int, containerId: Int ) -> Void in
                 /// Send the returned image to the TV
                 self.multiScreenManager.sendPhotoToTv(image)
             })

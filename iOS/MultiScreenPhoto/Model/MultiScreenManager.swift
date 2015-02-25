@@ -12,14 +12,14 @@ import SystemConfiguration
 /// A MultiScreenManager represents an instance of MultiScreenFramework
 
 /// Use this class to search for near services, connect to a service and send photo to a service
-class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
+class MultiScreenManager: NSObject, ServiceSearchDelegate, ChannelDelegate {
     
     /// Application url
     var appURL: String =  "http://multiscreen.samsung.com/app-sample-photos/tv/index.html"
     /// Application Channel
     var channelId: String = "com.samsung.multiscreen.photos"
     /// Application instance
-    var app : Application!
+    var app: Application!
     /// Search service instance
     let search = Service.search()
     
@@ -31,6 +31,20 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
     
     // Array of services
     var services = [Service]()
+    
+    // Current service connected
+    var isConnected: Bool {
+        get {
+           return app != nil && app!.isConnected;
+        }
+    }
+    
+    // is an Application connected
+    var currentService: Service {
+        get {
+            return app.service
+        }
+    }
     
     /// MultiScreenManager shared instance used as singleton
     class var sharedInstance: MultiScreenManager {
@@ -70,7 +84,7 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
     
     //onServiceLost delegate method
     func onServiceLost(service: Service) {
-        removeObject(&services,object: service)
+        removeObject(&services, object: service)
         /// post a notification to the NSNotificationCenter
         postNotification()
     }
@@ -82,8 +96,8 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
         postNotification()
     }
     
-    func removeObject<T:Equatable>(inout arr:Array<T>, object:T) -> T? {
-        if let found = find(arr,object) {
+    func removeObject<T: Equatable>(inout arr: Array<T>, object: T) -> T? {
+        if let found = find(arr, object) {
             return arr.removeAtIndex(found)
         }
         return nil
@@ -106,38 +120,17 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
         postNotification()
     }
     
-    /// Check is there is an app connected
-    ///
-    /// :return:  true or false
-    func isApplicationConnected()->Bool {
-        return app != nil && app!.isConnected;
-    }
-    
-    /// Return the current service connected
-    ///
-    /// :return: current Service
-    func getApplicationCurrentService()->Service{
-        return app.service
-    }
-    
-    /// Return all services found in the Wifi network
-    ///
-    /// :return: Array of Services
-    func getServices() -> [Service]{
-        return services
-    }
-    
     /// Return all services availables but not current connected
     ///
     /// :return: Array of Services
-    func getServicesNotConnected() -> [Service]{
+    func servicesNotConnected() -> [Service]{
         
         var servicesArray = [Service]()
-        for (value) in getServices() {
+        for (value) in services {
             /// Check if the application is connected
-            if(isApplicationConnected() == true){
+            if(isConnected == true){
                 /// if the application is connected ignore the current service
-                if(getApplicationCurrentService().id != value.id){
+                if(currentService.id != value.id){
                     servicesArray.append(value)
                 }
             }else{
@@ -147,34 +140,28 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
         return servicesArray
     }
     
-    /// Return a service by index
-    ///
-    /// :param: service index
-    /// :return: service
-    func getServiceWithIndex(index : Int)->Service{
-        return services[index]
-    }
-    
    
     /// Connect to an Application
     ///
     /// :param: selected service
     /// :param: completionHandler The callback handler,  return true or false
-    func createApplication(service: Service,completionHandler: ((Bool!) -> Void)!){
-        app = service.createApplication(NSURL(string: appURL)!,channelURI:channelId, args: nil)
+    func createApplication(service: Service, completionHandler: ((Bool!) -> Void)!){
+        app = service.createApplication(NSURL(string: appURL)!, channelURI: channelId, args: ["cmd line params": "cmd line values"])
         app.delegate = self
         app.connectionTimeout = 30
-        app.connect(["name":UIDevice.currentDevice().name])
-        app.start { (success, error) -> Void in
-            completionHandler(success)
-        }
+        app.connect(["name": UIDevice.currentDevice().name], completionHandler: { (client, error) -> Void in
+            if(error == nil){
+                completionHandler(true)
+            }else{
+                completionHandler(false)
+            }
+        })
     }
     
     /// Close the current connected application
     ///
     /// :param: completionHandler The callback handler,  return true or false
     func closeApplication(completionHandler: ((Bool!) -> Void)!){
-        app.stop({ (success, error) -> Void in })
         app.disconnect({ (channel, error) -> Void in
             if(error == nil){
                 completionHandler(true)
@@ -187,9 +174,9 @@ class MultiScreenManager: NSObject , ServiceSearchDelegate, ChannelDelegate {
     /// Send Photo the the connected Service
     ///
     /// :param: UIImage to be sent
-    func sendPhotoToTv(image :UIImage){
-        if (isApplicationConnected()){
-            app.publish(event: "showPhoto", message: nil, data: UIImageJPEGRepresentation(image,0.6))
+    func sendPhotoToTv(image: UIImage){
+        if (isConnected){
+            app.publish(event: "showPhoto", message: nil, data: UIImageJPEGRepresentation(image, 0.6), target: MessageTarget.Host.rawValue)
         }
     }
     

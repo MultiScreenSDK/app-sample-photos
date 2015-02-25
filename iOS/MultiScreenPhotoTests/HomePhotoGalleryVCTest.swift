@@ -14,7 +14,7 @@ class HomePhotoGalleryVCTest: XCTestCase {
    
     var homePhotoGalleryVC: HomePhotoGalleryVC!
     var gallery: Gallery!
-    var album : ALAssetsGroup!
+    var album: ALAssetsGroup!
     
     override func setUp() {
         super.setUp()
@@ -37,18 +37,18 @@ class HomePhotoGalleryVCTest: XCTestCase {
         XCTAssertNotNil(homePhotoGalleryVC.tableView, "testTableViewShouldExistWhenInitObject() is not null when init object")
     }
     
-    func testNumOfRowsInSectionWhenAlbumIsExpanded(){
+    func testNumberOfRowsInSectionWhenAlbumIsExpanded(){
         gallery.albums = [album]
-        gallery.setIsAlbumExpanded(0, isExpanded:true)
-        gallery.setNumOfAssetsByAlbum(0, count: 15)
-        XCTAssertEqual(homePhotoGalleryVC.numOfRowsInSection(0),3, "testNumOfRowsInSectionWhenAlbumIsExpanded() will return 3")
+        gallery.isAlbumExpandedAtIndex[0]  =  true
+        gallery.numberOfAssetsAtAlbumIndex[0] = 15
+        XCTAssertEqual(homePhotoGalleryVC.numberOfRowsInSection(0), 3, "testNumberOfRowsInSectionWhenAlbumIsExpanded() will return 3")
     }
     
-    func testNumOfRowsInSectionWhenAlbumIsCollapseEqualZero(){
+    func testNumberOfRowsInSectionWhenAlbumIsCollapseEqualZero(){
         gallery.albums = [album]
-        gallery.setIsAlbumExpanded(0, isExpanded:false)
-        gallery.setNumOfAssetsByAlbum(0, count: 15)
-        XCTAssertEqual(homePhotoGalleryVC.numOfRowsInSection(0),0, "testNumOfRowsInSectionWhenAlbumIsCollapseEqualZero() will return 0")
+        gallery.isAlbumExpandedAtIndex[0] = false
+        gallery.numberOfAssetsAtAlbumIndex[0]  = 15
+        XCTAssertEqual(homePhotoGalleryVC.numberOfRowsInSection(0), 0, "testNumberOfRowsInSectionWhenAlbumIsCollapseEqualZero() will return 0")
     }
     
     

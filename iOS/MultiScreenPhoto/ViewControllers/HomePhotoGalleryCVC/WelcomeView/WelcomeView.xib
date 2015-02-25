@@ -34,7 +34,7 @@
                             <rect key="frame" x="24" y="298" width="333" height="294"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jJ9-Fn-xP5">
-                                    <rect key="frame" x="75.5" y="262" width="182" height="32"/>
+                                    <rect key="frame" x="75" y="262" width="182" height="32"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="182" id="Iqk-n0-OPq"/>
                                         <constraint firstAttribute="height" constant="32" id="XVU-Jg-Kj9"/>
@@ -51,7 +51,7 @@
                                         <action selector="getStart:" destination="iN0-l3-epB" eventType="touchUpInside" id="S90-Lx-QOJ"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Jv-pu-dsi">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="83" translatesAutoresizingMaskIntoConstraints="NO" id="2Jv-pu-dsi">
                                     <rect key="frame" x="0.0" y="0.0" width="83" height="23"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="83" id="apk-x5-iE1"/>
@@ -61,7 +61,7 @@
                                     <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View photos from your mobile device on a 2015 Samsung Smart TV." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIy-69-bWr">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View photos from your mobile device on a 2015 Samsung Smart TV." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="329" translatesAutoresizingMaskIntoConstraints="NO" id="TIy-69-bWr">
                                     <rect key="frame" x="0.0" y="26" width="329" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="MtX-nd-NTv"/>
@@ -77,7 +77,7 @@
                                         <constraint firstAttribute="width" constant="40" id="qS7-0f-MbI"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make sure your TV and mobile device are on the same WiFi network." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCq-x2-elD">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make sure your TV and mobile device are on the same WiFi network." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="269" translatesAutoresizingMaskIntoConstraints="NO" id="dCq-x2-elD">
                                     <rect key="frame" x="60" y="117" width="269" height="81"/>
                                     <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="13"/>
                                     <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

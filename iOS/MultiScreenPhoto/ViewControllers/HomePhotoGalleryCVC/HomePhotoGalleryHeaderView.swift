@@ -12,7 +12,7 @@ import UIKit
 ///
 /// This delegate is used to know which header was clicked
 protocol HomePhotoGalleryHeaderViewDelegate {
-    func headerClicked(section : Int)
+    func headerClicked(section: Int)
 }
 
 /// HomePhotoGalleryHeaderView
@@ -22,11 +22,11 @@ class HomePhotoGalleryHeaderView: UITableViewHeaderFooterView {
 
     /// This is the title of the header
     @IBOutlet weak var headerTitle: UIButton!
-    /// Arrow image that changes depending of the section state (collapsed, or expanded)
+    /// Arrow image that changes depending of the section state (collapsed or expanded)
     @IBOutlet weak var imageViewArrow: UIImageView!
     
     /// Cell Separator
-    @IBOutlet weak var imageViewSeparator : UIImageView!
+    @IBOutlet weak var imageViewSeparator: UIImageView!
     
     var delegate: HomePhotoGalleryHeaderViewDelegate!
     
@@ -49,7 +49,7 @@ class HomePhotoGalleryHeaderView: UITableViewHeaderFooterView {
         let black4 = UIColor(red: color, green: color, blue: color, alpha: 0.3).CGColor
         let black5 = UIColor(red: color, green: color, blue: color, alpha: 0.1).CGColor
         let black6 = UIColor(red: color, green: color, blue: color, alpha: 0.1).CGColor
-        gradient.colors = [UIColor.clearColor().CGColor,black6,black5,black4,black3,black2,black]
+        gradient.colors = [UIColor.clearColor().CGColor, black6, black5, black4, black3, black2, black]
         imageViewSeparator.layer.insertSublayer(gradient, atIndex: 0)
     }
     

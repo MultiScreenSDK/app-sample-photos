@@ -12,7 +12,7 @@ import UIKit
 ///
 /// This delegate is used to know which photo was selected
 protocol HomePhotoGalleryVCCellDelegate {
-    func photoSelected(indexPath : NSIndexPath)
+    func photoSelected(indexPath: NSIndexPath)
 }
 
 /// HomePhotoGalleryVCCell
@@ -23,10 +23,10 @@ class HomePhotoGalleryVCCell: UITableViewCell {
     // UIButton Array that contains the Images for each cell
     @IBOutlet var buttonPhoto: [UIButton]!
     
-    var delegate : HomePhotoGalleryVCCellDelegate!
+    var delegate: HomePhotoGalleryVCCellDelegate!
     
     // Current photo album index
-    var section : Int!
+    var section: Int!
 
     override func awakeFromNib() {
         super.awakeFromNib()

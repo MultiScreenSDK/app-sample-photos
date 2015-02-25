@@ -12,7 +12,7 @@ import MessageUI
 /// MoreScreenVC
 ///
 /// This class is used to show the 'How to use' ViewController
-class MoreScreenVC: UIViewController,MFMailComposeViewControllerDelegate {
+class MoreScreenVC: UIViewController, MFMailComposeViewControllerDelegate {
     
     /// Button used to display a list of compatible devices
     @IBOutlet weak var compatibleButton: UIButton!
@@ -50,7 +50,7 @@ class MoreScreenVC: UIViewController,MFMailComposeViewControllerDelegate {
         /// Configuring the back icon
         self.navigationItem.leftBarButtonItems = nil;
         let imageBackButton = UIImage(named: "btn_back_more") as UIImage?
-        let backMoreButton = UIButton(frame: CGRectMake(0,0,65,17))
+        let backMoreButton = UIButton(frame: CGRectMake(0, 0, 65, 17))
         backMoreButton.addTarget(self, action: Selector("goBack"), forControlEvents: UIControlEvents.TouchUpInside)
         backMoreButton.setBackgroundImage(imageBackButton, forState: UIControlState.Normal)
         var addBackButton: UIBarButtonItem = UIBarButtonItem(customView: backMoreButton)

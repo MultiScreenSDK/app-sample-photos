@@ -56,7 +56,7 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         disconnectButton.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1).CGColor
         
         /// Configuring the tableView separator style
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier:servicesFoundTVCellID)
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: servicesFoundTVCellID)
         if tableView.respondsToSelector("setSeparatorInset:") {
             tableView.separatorInset = UIEdgeInsetsZero
         }
@@ -85,13 +85,13 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
     func refreshTableView(){
         
         /// Populate Temp services array with services not connected
-        services = multiScreenManager.getServicesNotConnected()
+        services = multiScreenManager.servicesNotConnected()
         
         /// Used to change the Cast icon, depending is a service is connected or not
-        if(multiScreenManager.isApplicationConnected()){
+        if(multiScreenManager.isConnected){
             title.text = "Connected to:"
             icon.image = UIImage(named: "icon_cast_connect")
-            serviceConnectedName.text =  multiScreenManager.getApplicationCurrentService().name
+            serviceConnectedName.text =  multiScreenManager.currentService.name
             /// Used to change the header size
             if(services.count>0){
                 headerViewConstraint.constant = 161
@@ -131,7 +131,7 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
         /// Setting the custom cell view
-        var cell : UITableViewCell
+        var cell: UITableViewCell
         cell = tableView.dequeueReusableCellWithIdentifier(servicesFoundTVCellID, forIndexPath: indexPath) as UITableViewCell
         
         // Set tableView separator style
@@ -153,7 +153,7 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         cell.textLabel?.textColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
         cell.textLabel?.textAlignment = .Left
         cell.textLabel?.frame.origin.x = -20
-        cell.textLabel?.attributedText = NSMutableAttributedString(string: "\(services[indexPath.row].name)", attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 14.0)!])
+        cell.textLabel?.attributedText = NSMutableAttributedString(string: "\(services[indexPath.row].name)", attributes: [NSFontAttributeName: UIFont(name: "Roboto-Light", size: 14.0)!])
         cell.backgroundColor = UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 1)
         
         return cell
@@ -167,8 +167,9 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         title.text = "Connecting"
         /// If cell is selected then connect and start the application
         multiScreenManager.createApplication(services[indexPath.row] as Service, completionHandler: { (success: Bool!) -> Void in
-            if((success) == true){
-                //self.closeView()
+            if((success) == false){
+               self.displayAlertWithTitle("", message: "Connection could not be established")
+               self.closeView()
             }
         })
     }
@@ -199,6 +200,13 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
             return true
         }
         return false
+    }
+    
+    /// Method that displays an Alert dialogs
+    func displayAlertWithTitle( title: NSString, message: NSString) {
+        var  alertView:UIAlertView = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: "OK")
+        alertView.alertViewStyle = .Default
+        alertView.show()
     }
     
     
