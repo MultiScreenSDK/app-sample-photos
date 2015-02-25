@@ -103,17 +103,6 @@ class Gallery: NSObject {
         return albums[albumIndex].valueForProperty(ALAssetsGroupPropertyName) as String
     }
     
-    
-    /// Returns index of current expanded album
-    /// :return:  album index
-    func indexOfExpandedAlbum() -> Int{
-        for (index, value) in enumerate(isAlbumExpandedAtIndex) {
-            if (value){
-                return index
-            }
-        }
-        return NSNotFound
-    }
    
     /// Retrieve an image from the device photo gallery
     ///

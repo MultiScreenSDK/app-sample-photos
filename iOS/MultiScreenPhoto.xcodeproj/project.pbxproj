@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9A227B1B1A8D434300FE3B4B /* WelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A227B1A1A8D434300FE3B4B /* WelcomeView.xib */; };
-		9A227B1E1A8E559400FE3B4B /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A227B1D1A8E559400FE3B4B /* BaseVC.swift */; };
-		9A227B1F1A8E559400FE3B4B /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A227B1D1A8E559400FE3B4B /* BaseVC.swift */; };
 		9A56D16E1A77EC180026EFF3 /* HomePhotoGalleryVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D16D1A77EC180026EFF3 /* HomePhotoGalleryVCCell.swift */; };
 		9A56D16F1A77EC180026EFF3 /* HomePhotoGalleryVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A56D16D1A77EC180026EFF3 /* HomePhotoGalleryVCCell.swift */; };
 		9A75A9481A83C1920051ABB6 /* GalleryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A75A9471A83C1920051ABB6 /* GalleryTest.swift */; };
@@ -51,8 +49,9 @@
 		9A8EFE251A891E33001FEE0A /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9A8EFE241A891E33001FEE0A /* Roboto-Italic.ttf */; };
 		9AA2D6CC1A9E34690060EDE8 /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF61A88FDC7001FEE0A /* README.markdown */; };
 		9AA2D6CD1A9E34690060EDE8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 9A8EFDF91A88FDC7001FEE0A /* README.md */; };
+		9AA2D6D01A9E6DCF0060EDE8 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA2D6CF1A9E6DCF0060EDE8 /* BaseVC.swift */; };
+		9AA2D6D11A9E6E3C0060EDE8 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA2D6CF1A9E6DCF0060EDE8 /* BaseVC.swift */; };
 		9AC49E591A71A5A800F391C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E581A71A5A800F391C0 /* AppDelegate.swift */; };
-		9AC49E5B1A71A5A800F391C0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC49E5A1A71A5A800F391C0 /* ViewController.swift */; };
 		9AC49E5E1A71A5A800F391C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AC49E5C1A71A5A800F391C0 /* Main.storyboard */; };
 		9AC49E601A71A5A800F391C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AC49E5F1A71A5A800F391C0 /* Images.xcassets */; };
 		9AC49E631A71A5A800F391C0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AC49E611A71A5A800F391C0 /* LaunchScreen.xib */; };
@@ -107,7 +106,6 @@
 
 /* Begin PBXFileReference section */
 		9A227B1A1A8D434300FE3B4B /* WelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeView.xib; sourceTree = "<group>"; };
-		9A227B1D1A8E559400FE3B4B /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		9A56D16D1A77EC180026EFF3 /* HomePhotoGalleryVCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomePhotoGalleryVCCell.swift; sourceTree = "<group>"; };
 		9A75A9471A83C1920051ABB6 /* GalleryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryTest.swift; sourceTree = "<group>"; };
 		9A75A94B1A83DC3B0051ABB6 /* BaseVCTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVCTest.swift; sourceTree = "<group>"; };
@@ -133,10 +131,10 @@
 		9A8EFDFA1A88FDC7001FEE0A /* WebSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocket.swift; sourceTree = "<group>"; };
 		9A8EFE231A8901C6001FEE0A /* MultiScreenPhoto-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MultiScreenPhoto-Bridging-Header.h"; sourceTree = "<group>"; };
 		9A8EFE241A891E33001FEE0A /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		9AA2D6CF1A9E6DCF0060EDE8 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		9AC49E531A71A5A800F391C0 /* MultiScreenPhoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MultiScreenPhoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC49E571A71A5A800F391C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9AC49E581A71A5A800F391C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9AC49E5A1A71A5A800F391C0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9AC49E5D1A71A5A800F391C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9AC49E5F1A71A5A800F391C0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9AC49E621A71A5A800F391C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -184,15 +182,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9A227B1C1A8E559400FE3B4B /* BaseVC */ = {
-			isa = PBXGroup;
-			children = (
-				9A227B1D1A8E559400FE3B4B /* BaseVC.swift */,
-			);
-			name = BaseVC;
-			path = MoreScreenVC/BaseVC;
-			sourceTree = "<group>";
-		};
 		9A8EFDE31A88FDC7001FEE0A /* common */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +232,14 @@
 			path = starscream;
 			sourceTree = "<group>";
 		};
+		9AA2D6CE1A9E6DCF0060EDE8 /* BaseVC */ = {
+			isa = PBXGroup;
+			children = (
+				9AA2D6CF1A9E6DCF0060EDE8 /* BaseVC.swift */,
+			);
+			path = BaseVC;
+			sourceTree = "<group>";
+		};
 		9AC49E4A1A71A5A800F391C0 = {
 			isa = PBXGroup;
 			children = (
@@ -268,7 +265,6 @@
 				9AC49EA91A71A60D00F391C0 /* ViewControllers */,
 				9AC49E781A71A5F500F391C0 /* Frameworks */,
 				9AC49E581A71A5A800F391C0 /* AppDelegate.swift */,
-				9AC49E5A1A71A5A800F391C0 /* ViewController.swift */,
 				9AC49E5C1A71A5A800F391C0 /* Main.storyboard */,
 				9AC49E5F1A71A5A800F391C0 /* Images.xcassets */,
 				9AC49E611A71A5A800F391C0 /* LaunchScreen.xib */,
@@ -342,7 +338,7 @@
 		9AC49EA91A71A60D00F391C0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9A227B1C1A8E559400FE3B4B /* BaseVC */,
+				9AA2D6CE1A9E6DCF0060EDE8 /* BaseVC */,
 				9AD36FE81A8A9FC000111DA9 /* MoreScreenVC */,
 				9AD370001A8BC5F900111DA9 /* ServicesView */,
 				9AC49EAC1A71A60D00F391C0 /* HomePhotoGalleryCVC */,
@@ -533,6 +529,7 @@
 				9A8EFE171A88FDC7001FEE0A /* GCDAsyncUdpSocket.m in Sources */,
 				9A8EFDFD1A88FDC7001FEE0A /* Channel.swift in Sources */,
 				9A56D16E1A77EC180026EFF3 /* HomePhotoGalleryVCCell.swift in Sources */,
+				9AA2D6D01A9E6DCF0060EDE8 /* BaseVC.swift in Sources */,
 				9A8EFDFB1A88FDC7001FEE0A /* Application.swift in Sources */,
 				9A8EFE011A88FDC7001FEE0A /* ChannelTransport.swift in Sources */,
 				9A8EFE071A88FDC7001FEE0A /* MDNSDiscoveryProvider.swift in Sources */,
@@ -541,7 +538,6 @@
 				9A8EFE091A88FDC7001FEE0A /* Message.swift in Sources */,
 				9A8EFDFF1A88FDC7001FEE0A /* ChannelClient.swift in Sources */,
 				9AC49EBC1A71A60D00F391C0 /* MultiScreenManager.swift in Sources */,
-				9AC49E5B1A71A5A800F391C0 /* ViewController.swift in Sources */,
 				9AC7F2D61A805CAA00CBC946 /* HomePhotoGalleryHeaderView.swift in Sources */,
 				9A8EFE0B1A88FDC7001FEE0A /* MSFDiscoveryProvider.swift in Sources */,
 				9A8EFE131A88FDC7001FEE0A /* ServiceSearch.swift in Sources */,
@@ -553,7 +549,6 @@
 				9A8EFE051A88FDC7001FEE0A /* JSON.swift in Sources */,
 				9AC49ECC1A71A60D00F391C0 /* PhotoFullScreenVC.swift in Sources */,
 				9AD370031A8BC5F900111DA9 /* ServicesView.swift in Sources */,
-				9A227B1E1A8E559400FE3B4B /* BaseVC.swift in Sources */,
 				9AC49E591A71A5A800F391C0 /* AppDelegate.swift in Sources */,
 				9AC49EC61A71A60D00F391C0 /* WelcomeView.swift in Sources */,
 				9AC49EC01A71A60D00F391C0 /* HomePhotoGalleryVC.swift in Sources */,
@@ -586,6 +581,7 @@
 				9A8EFE0C1A88FDC7001FEE0A /* MSFDiscoveryProvider.swift in Sources */,
 				9A8EFE141A88FDC7001FEE0A /* ServiceSearch.swift in Sources */,
 				9A8EFE121A88FDC7001FEE0A /* Service.swift in Sources */,
+				9AA2D6D11A9E6E3C0060EDE8 /* BaseVC.swift in Sources */,
 				9A8EFE101A88FDC7001FEE0A /* RPCMessaje.swift in Sources */,
 				9A8EFE201A88FDC7001FEE0A /* WebSocket.swift in Sources */,
 				9A8EFE0E1A88FDC7001FEE0A /* Requester.swift in Sources */,
@@ -596,7 +592,6 @@
 				ED5BA8061A93E36A00621EF6 /* HomePhotoGalleryVCCellTest.swift in Sources */,
 				9AC49ECB1A71A60D00F391C0 /* PhotoFullScreenPagerVC.swift in Sources */,
 				ED5BA80A1A93E55100621EF6 /* PhotoFullScreenPagerVCTest.swift in Sources */,
-				9A227B1F1A8E559400FE3B4B /* BaseVC.swift in Sources */,
 				ED5BA8041A93E05200621EF6 /* HomePhotoGalleryVCTest.swift in Sources */,
 				9AC49ECD1A71A60D00F391C0 /* PhotoFullScreenVC.swift in Sources */,
 				9A75A94C1A83DC3B0051ABB6 /* BaseVCTest.swift in Sources */,

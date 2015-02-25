@@ -44,6 +44,8 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
     override func awakeFromNib(){
         super.awakeFromNib()
         
+        multiScreenManager.startSearching()
+        
         // Add an observer to check for services status and manage the cast icon
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshTableView", name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
         
@@ -190,6 +192,11 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         NSNotificationCenter.defaultCenter().removeObserver(self, name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: multiScreenManager.serviceConnectedObserverIdentifier, object: nil)
+        
+        if(multiScreenManager.isConnected){
+            multiScreenManager.stopSearching()
+        }
+        
         self.removeFromSuperview()
     }
     

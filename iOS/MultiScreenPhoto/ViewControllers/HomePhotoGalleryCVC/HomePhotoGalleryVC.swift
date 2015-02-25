@@ -39,9 +39,6 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
     //Welcome view displayed the first time the app runs
     var welcomeView: UIView!
   
-    // Used to determinate which section is opened
-    var expandedSectionIndex = 0
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -63,16 +60,13 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
        NSNotificationCenter.defaultCenter().removeObserver(self, name: ALAssetsLibraryChangedNotification, object: nil)
     }
     
-     // Request for photo library access and retrieving albums
+    // Request for photo library access and retrieving albums
     func retrieveAlbums(){
         gallery.retrieveAlbums { (result: Bool!) -> Void in
             if(result == true){
-                self.expandedSectionIndex = self.gallery.indexOfExpandedAlbum()
-                self.dataSourceAlbumCountToRemove = self.numberOfRowsInSection(self.expandedSectionIndex)
                 self.tableView!.reloadData()
             }else{
                 self.displayAlertWithTitle("Access", message: "Could not access the photo library")
-                self.expandedSectionIndex = NSNotFound
             }
         }
     }

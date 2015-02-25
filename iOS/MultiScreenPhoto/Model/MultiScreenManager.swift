@@ -60,6 +60,8 @@ class MultiScreenManager: NSObject, ServiceSearchDelegate, ChannelDelegate {
     }
     
     override init() {
+        super.init()
+        search.delegate = self
     }
     
     /// Post a notification to the NSNotificationCenter
@@ -70,12 +72,11 @@ class MultiScreenManager: NSObject, ServiceSearchDelegate, ChannelDelegate {
     
     /// Start searching for services inside the Wifi network
     func startSearching(){
-        search.delegate = self
         search.start()
     }
     
     // Stop searching for services inside the Wifi network
-    func StopSearching(){
+    func stopSearching(){
         search.stop()
         services.removeAll(keepCapacity: false)
         /// post a notification to the NSNotificationCenter
@@ -110,12 +111,14 @@ class MultiScreenManager: NSObject, ServiceSearchDelegate, ChannelDelegate {
     }
     
     func onConnect(client: ChannelClient, error: NSError?) {
+        stopSearching()
          NSNotificationCenter.defaultCenter().postNotificationName(serviceConnectedObserverIdentifier, object: self)
         /// post a notification to the NSNotificationCenter
         postNotification()
     }
     
     func onDisconnect(client: ChannelClient, error: NSError?) {
+        startSearching()
         /// post a notification to the NSNotificationCenter
         postNotification()
     }
