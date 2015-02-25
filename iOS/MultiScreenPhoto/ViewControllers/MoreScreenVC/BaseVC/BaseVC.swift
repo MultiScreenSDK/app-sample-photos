@@ -69,7 +69,7 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
         
         /// Configuring cast icon
         /// Check if there is services availables
-        if(multiScreenManager.services.count > 0){
+        if(multiScreenManager.services.count > 0 || multiScreenManager.isConnected){
             
             /// Check if there is an application current connected
             if(multiScreenManager.isConnected == true){
