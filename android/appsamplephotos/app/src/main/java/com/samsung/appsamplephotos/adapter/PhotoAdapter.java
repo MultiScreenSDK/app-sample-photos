@@ -179,6 +179,7 @@ public class PhotoAdapter extends BaseExpandableListAdapter {
         public ImageView imageView3;
         public ImageView imageView4;
         public ImageView imageView5;
+        public View fadeLine;
     }
 
     @Override
@@ -186,16 +187,18 @@ public class PhotoAdapter extends BaseExpandableListAdapter {
 
         String headerTitle = (String) getGroup(groupPosition);
 
-
-
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.header_gallery_layout, null);
         }
 
-        TextView lblListHeader = (TextView) convertView
-                .findViewById(R.id.bucketTitle);
+        TextView lblListHeader = (TextView) convertView.findViewById(R.id.bucketTitle);
+        ImageView fadeLine = (ImageView) convertView.findViewById(R.id.fadeLine);
+
         lblListHeader.setTypeface(Utils.customFont(_context));
         lblListHeader.setText(headerTitle);
+
+        if (isExpanded) fadeLine.setVisibility(View.GONE);
+        else fadeLine.setVisibility(View.VISIBLE);
 
         return convertView;
     }
@@ -226,6 +229,7 @@ public class PhotoAdapter extends BaseExpandableListAdapter {
             holder.imageView3 = (ImageView) convertView.findViewById(R.id.image3);
             holder.imageView4 = (ImageView) convertView .findViewById(R.id.image4);
             holder.imageView5 = (ImageView) convertView.findViewById(R.id.image5);
+            holder.fadeLine   = convertView.findViewById(R.id.fadeLine);
             convertView.setTag(holder);
         }
         else {
@@ -237,6 +241,9 @@ public class PhotoAdapter extends BaseExpandableListAdapter {
         final Cursor cursor = _listDataChild.get(_listDataHeader.get(groupPosition));
 
         loadPathImages(cursor, holder, groupPosition, childPosition);
+
+        if (isLastChild) holder.fadeLine.setVisibility(View.VISIBLE);
+        else holder.fadeLine.setVisibility(View.GONE);
 
         return convertView;
     }

@@ -105,6 +105,7 @@ public class BaseActivity extends ActionBarActivity {
         // Detect the menu item selected
         switch (item.getItemId()) {
             case R.id.action_connectivity:
+                new findDevicesTask().execute();
                 // Start Service fragment when cast icon is selected
                 Intent intent = new Intent(getApplicationContext(), ServiceFragment.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

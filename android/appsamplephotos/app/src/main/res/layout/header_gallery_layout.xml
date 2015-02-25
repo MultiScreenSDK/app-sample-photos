@@ -10,9 +10,10 @@
         android:background="@color/background_cell_gray">
 
         <ImageView
+            android:id="@+id/fadeLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-2dp"
+            android:layout_alignParentBottom="true"
             android:src="@drawable/img_bucket_bottom"
             android:scaleType="fitXY"/>
 

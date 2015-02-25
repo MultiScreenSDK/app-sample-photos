@@ -228,6 +228,7 @@ public class MultiScreenHelper {
                 @Override
                 public void onSuccess(Client client) {
                     //
+                    stopSearch();
                     castStatus = castStatusTypes.CONNECTEDTOSERVICE;
                     Log.e(Constants.APP_TAG, "Application connect onSuccess() " + client.toString());
                     if (callback != null) callback.onSuccess();

@@ -1,7 +1,9 @@
 package com.samsung.appsamplephotos.helper;
 
+import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.provider.MediaStore;
 
@@ -103,6 +105,21 @@ public class PhotoHelper {
         galleries = new ArrayList<Gallery>(map.values());
 
         if (callback != null) callback.onSuccess();
+    }
+
+    public Cursor getPhotoCursor(Context context,String galleryId) {
+        String[] projection = {MediaStore.Images.Media._ID,
+                MediaStore.Images.Media.DISPLAY_NAME,
+                MediaStore.Images.Media.MINI_THUMB_MAGIC,MediaStore.Images.Media.DATA,MediaStore.Images.ImageColumns._ID };
+        final String selection = MediaStore.Images.ImageColumns.BUCKET_ID
+                + " = " + DatabaseUtils.sqlEscapeString(galleryId);
+        // Create the cursor pointing to the SDCard
+        Cursor cursor = ((Activity)context).managedQuery( MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                projection, // Which columns to return
+                selection,       // Return all rows
+                null,
+                null);
+        return cursor;
     }
 
     /**

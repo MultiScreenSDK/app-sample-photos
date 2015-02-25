@@ -69,21 +69,7 @@ public class ScreenSlideActivity extends BaseActivity implements OnClickListener
 
         cursor = gallery.cursor;
 
-
-
-
-
-        String[] projection = {MediaStore.Images.Media._ID,
-                MediaStore.Images.Media.DISPLAY_NAME,
-                MediaStore.Images.Media.MINI_THUMB_MAGIC,MediaStore.Images.Media.DATA,MediaStore.Images.ImageColumns._ID };
-        final String selection = MediaStore.Images.ImageColumns.BUCKET_ID
-                + " = " + DatabaseUtils.sqlEscapeString(gallery.getId());
-        // Create the cursor pointing to the SDCard
-        Cursor newCursor  = managedQuery( MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                projection, // Which columns to return
-                selection,       // Return all rows
-                null,
-                null);
+        Cursor newCursor = PhotoHelper.getInstance().getPhotoCursor(this,gallery.getId());
 
         mPager = (ViewPager) findViewById(R.id.pager);
         mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(),newCursor);
