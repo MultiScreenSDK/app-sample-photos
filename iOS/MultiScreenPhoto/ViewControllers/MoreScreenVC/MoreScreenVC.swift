@@ -65,10 +65,23 @@ class MoreScreenVC: UIViewController,MFMailComposeViewControllerDelegate {
     /// Method used to capture the event when the compatibleButton button is clicked
     /// If it was clicked then displays the CompatibleListView
     @IBAction func compatibleDevices(sender: AnyObject) {
-        self.compatibleListView = NSBundle.mainBundle().loadNibNamed("CompatibleListView", owner: self, options: nil)[0] as? UIView
-        self.compatibleListView.frame = UIScreen.mainScreen().bounds
-        view.window?.addSubview(compatibleListView)
+        compatibleListView = NSBundle.mainBundle().loadNibNamed("CompatibleListView", owner: self, options: nil)[0] as? UIView
+        compatibleListView.frame = UIScreen.mainScreen().bounds
         
+        /// Adding UIVIew to superView
+        compatibleListView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        var window = UIApplication.sharedApplication().keyWindow
+        if (window == nil){
+            window = UIApplication.sharedApplication().windows[0] as? UIWindow
+        }
+        
+        window?.subviews[0].addSubview(compatibleListView)
+        
+        /// Adding compatibleListView constraints
+        let compatibleListViewDict = ["view": compatibleListView]
+        window?.subviews[0].addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: compatibleListViewDict))
+        window?.subviews[0].addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: compatibleListViewDict))
     }
     
     /// Method used to capture the event when the email is clicked

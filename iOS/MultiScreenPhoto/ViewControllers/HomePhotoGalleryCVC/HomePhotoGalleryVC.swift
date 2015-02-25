@@ -86,9 +86,12 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIA
         // Display Welcome View only one time
         if(!defaults.boolForKey("hideWelcomeView")){
             /// UIView that contains the welcome view
-            self.welcomeView = NSBundle.mainBundle().loadNibNamed("WelcomeView", owner: self, options: nil)[0] as? UIView
-            self.welcomeView.frame =  UIScreen.mainScreen().bounds
-            view.window?.addSubview(welcomeView)
+            welcomeView = NSBundle.mainBundle().loadNibNamed("WelcomeView", owner: self, options: nil)[0] as? UIView
+            welcomeView.frame =  UIScreen.mainScreen().bounds
+            
+            /// Adding UIVIew to superView
+            addUIViewToWindowSuperView(welcomeView)
+            
             defaults.setBool(true, forKey: "hideWelcomeView")
         }
     }

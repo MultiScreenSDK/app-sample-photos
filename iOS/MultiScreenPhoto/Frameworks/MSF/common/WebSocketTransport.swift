@@ -70,12 +70,13 @@ class WebSocketTransport: ChannelTransport, WebSocketDelegate {
 
     //MARK: - WebsocketDelegate -
 
-    func websocketDidConnect() {
+
+    func websocketDidConnect(socket: WebSocket) {
         isConnecting = false
         delegate?.didConnect(nil)
     }
 
-    func websocketDidDisconnect(error: NSError?) {
+    func websocketDidDisconnect(socket: WebSocket, error: NSError?) {
         if isConnecting  {
             isConnecting = false
             delegate?.didConnect(error)
@@ -84,15 +85,12 @@ class WebSocketTransport: ChannelTransport, WebSocketDelegate {
         }
     }
 
-    func websocketDidWriteError(error: NSError?) {
-        delegate.onError(error!)
-    }
-
-    func websocketDidReceiveMessage(text: String) {
+    func websocketDidReceiveMessage(socket: WebSocket, text: String) {
         delegate.processTextMessage(text)
     }
 
-    func websocketDidReceiveData(data: NSData) {
+    func websocketDidReceiveData(socket: WebSocket, data: NSData) {
         delegate.processDataMessage(data)
     }
+
 }

@@ -100,11 +100,7 @@ class PhotoFullScreenPagerVC: BaseVC , UIPageViewControllerDataSource, UIPageVie
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer!) -> Bool {
-        return false;
-    }
-    
+       
     // MARK: - Page View Controller delegates
     
     /// Delegate used to load the previous Album image
