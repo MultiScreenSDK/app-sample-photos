@@ -60,6 +60,8 @@ class MultiScreenManager: NSObject, ServiceSearchDelegate, ChannelDelegate {
     }
     
     override init() {
+        super.init()
+        search.delegate = self
     }
     
     /// Post a notification to the NSNotificationCenter
@@ -70,7 +72,6 @@ class MultiScreenManager: NSObject, ServiceSearchDelegate, ChannelDelegate {
     
     /// Start searching for services inside the Wifi network
     func startSearching(){
-        search.delegate = self
         search.start()
     }
     

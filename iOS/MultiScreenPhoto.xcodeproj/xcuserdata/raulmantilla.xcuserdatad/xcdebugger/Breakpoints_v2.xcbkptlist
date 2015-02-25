@@ -20,12 +20,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MultiScreenPhoto/Model/MultiScreenManager.swift"
-            timestampString = "446587787.669747"
+            timestampString = "446589168.95438"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "startSearching()"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "stopSearching()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -36,12 +36,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MultiScreenPhoto/Model/MultiScreenManager.swift"
-            timestampString = "446587788.518763"
+            timestampString = "446589169.925409"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "stopSearching()"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "startSearching()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
