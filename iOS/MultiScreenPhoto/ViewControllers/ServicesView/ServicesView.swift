@@ -167,8 +167,9 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         title.text = "Connecting"
         /// If cell is selected then connect and start the application
         multiScreenManager.createApplication(services[indexPath.row] as Service, completionHandler: { (success: Bool!) -> Void in
-            if((success) == true){
-                //self.closeView()
+            if((success) == false){
+               self.displayAlertWithTitle("", message: "Connection could not be established")
+               self.closeView()
             }
         })
     }
@@ -199,6 +200,13 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
             return true
         }
         return false
+    }
+    
+    /// Method that displays an Alert dialogs
+    func displayAlertWithTitle( title: NSString, message: NSString) {
+        var  alertView:UIAlertView = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: "OK")
+        alertView.alertViewStyle = .Default
+        alertView.show()
     }
     
     
