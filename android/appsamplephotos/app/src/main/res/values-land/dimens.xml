@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="welcome_padding">25dp</dimen>
+    <dimen name="cell_height">300dip</dimen>
+    <dimen name="cell_min_height">150dip</dimen>
+</resources>
