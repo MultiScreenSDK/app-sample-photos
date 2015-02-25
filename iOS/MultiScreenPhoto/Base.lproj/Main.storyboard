@@ -74,7 +74,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tl6-ZE-mLg">
                                                 <rect key="frame" x="8" y="0.0" width="359" height="533"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Multiscreen Photos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUN-Vi-RHc">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Multiscreen Photos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="199" translatesAutoresizingMaskIntoConstraints="NO" id="dUN-Vi-RHc">
                                                         <rect key="frame" x="8" y="8" width="199" height="17"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="199" id="8R6-hr-WUe"/>
@@ -97,7 +97,7 @@
                                                             </constraint>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View photos from your mobile device on a 2015 Samsung Smart TV" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJc-Vi-qLE">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View photos from your mobile device on a 2015 Samsung Smart TV" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="351" translatesAutoresizingMaskIntoConstraints="NO" id="xJc-Vi-qLE">
                                                         <rect key="frame" x="8" y="31" width="351" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="VdY-OH-oHU"/>
@@ -106,7 +106,7 @@
                                                         <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to connect:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJN-ld-oDy">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to connect:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="122" translatesAutoresizingMaskIntoConstraints="NO" id="wJN-ld-oDy">
                                                         <rect key="frame" x="8" y="93" width="122" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="122" id="6GK-DI-0ud"/>
@@ -129,7 +129,7 @@
                                                             </constraint>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. Your mobile device and TV must be on the same WiFI network." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWR-UD-BOt">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. Your mobile device and TV must be on the same WiFI network." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="351" translatesAutoresizingMaskIntoConstraints="NO" id="pWR-UD-BOt">
                                                         <rect key="frame" x="8" y="210" width="351" height="29"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="29" id="2K5-cI-ggc"/>
@@ -138,7 +138,7 @@
                                                         <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. When your mobile device discovers a TV             will appear on the top right corner of the screen" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyB-qq-CBf">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. When your mobile device discovers a TV             will appear on the top right corner of the screen" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="none" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="341" translatesAutoresizingMaskIntoConstraints="NO" id="zyB-qq-CBf">
                                                         <rect key="frame" x="8" y="244" width="341" height="42"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="42" id="06E-kO-I1K"/>
@@ -154,7 +154,7 @@
                                                             <constraint firstAttribute="width" constant="22" id="lnN-3B-vkr"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4. Tap" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSF-cl-GmM">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4. Tap" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="33" translatesAutoresizingMaskIntoConstraints="NO" id="gSF-cl-GmM">
                                                         <rect key="frame" x="8" y="299" width="33" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="33" id="43u-a5-cIw"/>
@@ -164,7 +164,7 @@
                                                         <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to select the tv you wish to use." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lC-yd-57d">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to select the tv you wish to use." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="165" translatesAutoresizingMaskIntoConstraints="NO" id="8lC-yd-57d">
                                                         <rect key="frame" x="75" y="298" width="165" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="165" id="PzS-J2-dRq"/>
@@ -174,7 +174,7 @@
                                                         <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5. When" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M8h-dx-3Fi">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5. When" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="44" translatesAutoresizingMaskIntoConstraints="NO" id="M8h-dx-3Fi">
                                                         <rect key="frame" x="8" y="335" width="44" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="tEK-HS-guh"/>
@@ -191,7 +191,7 @@
                                                             <constraint firstAttribute="height" constant="17" id="WEC-XG-DRH"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="turns to " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdw-bs-QfK">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="turns to " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="46" translatesAutoresizingMaskIntoConstraints="NO" id="Jdw-bs-QfK">
                                                         <rect key="frame" x="87" y="335" width="46" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="HtN-Bq-VtX"/>
@@ -208,7 +208,7 @@
                                                             <constraint firstAttribute="height" constant="17" id="roH-Mn-yKb"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=",  you are connected." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxv-Fi-hx2">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=",  you are connected." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="115" translatesAutoresizingMaskIntoConstraints="NO" id="mxv-Fi-hx2">
                                                         <rect key="frame" x="158" y="335" width="115" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="LRT-bn-goC"/>
@@ -218,7 +218,7 @@
                                                         <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sy0-hd-viQ">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="44" translatesAutoresizingMaskIntoConstraints="NO" id="Sy0-hd-viQ">
                                                         <rect key="frame" x="8" y="381" width="44" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="KiX-iv-IX6"/>
@@ -228,7 +228,7 @@
                                                         <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to disconnect or switch to another TV." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYc-3e-U7o">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to disconnect or switch to another TV." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="212" translatesAutoresizingMaskIntoConstraints="NO" id="YYc-3e-U7o">
                                                         <rect key="frame" x="65" y="381" width="212" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="D4T-NW-LYf"/>
@@ -238,7 +238,7 @@
                                                         <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIJ-XP-DNy">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="59" translatesAutoresizingMaskIntoConstraints="NO" id="bIJ-XP-DNy">
                                                         <rect key="frame" x="8" y="420" width="59" height="21"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="qzL-fN-5Xu"/>
@@ -260,7 +260,7 @@
                                                             </constraint>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Send an email to " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLQ-Dg-NFg">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Send an email to " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="96" translatesAutoresizingMaskIntoConstraints="NO" id="FLQ-Dg-NFg">
                                                         <rect key="frame" x="8" y="476" width="96" height="11"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="11" id="Kge-w7-3ab"/>
@@ -296,7 +296,7 @@
                                                             <action selector="contactEmail:" destination="8at-00-pmU" eventType="touchUpInside" id="6JA-bA-y3k"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="we'd be happy to answer all your questions." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3jZ-Md-5SU">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="we'd be happy to answer all your questions." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="228" translatesAutoresizingMaskIntoConstraints="NO" id="3jZ-Md-5SU">
                                                         <rect key="frame" x="8" y="495" width="228" height="11"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="11" id="V78-qq-wnp"/>
@@ -333,7 +333,7 @@
                                                             <action selector="compatibleDevices:" destination="8at-00-pmU" eventType="touchUpInside" id="wPO-5n-O8X"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you want more information about the MultiScreen SDK?" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7F-Ee-RtS">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you want more information about the MultiScreen SDK?" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="351" translatesAutoresizingMaskIntoConstraints="NO" id="b7F-Ee-RtS">
                                                         <rect key="frame" x="8" y="446" width="351" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="L0I-0k-beO"/>
@@ -356,7 +356,7 @@
                                                             <constraint firstAttribute="height" constant="17" id="jUF-VW-Tw8"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. You need a compatible Samsung 2015 Smart TV" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kwQ-IF-bHU">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. You need a compatible Samsung 2015 Smart TV" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="342" translatesAutoresizingMaskIntoConstraints="NO" id="kwQ-IF-bHU">
                                                         <rect key="frame" x="8" y="121" width="342" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="cHg-4D-g8Q"/>

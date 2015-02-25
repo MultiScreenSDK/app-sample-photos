@@ -12,7 +12,7 @@ import AssetsLibrary
 /// HomePhotoGalleryVC extend from BaseVC
 ///
 /// This class is used to display the gallery in a UITableView
-class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate, HomePhotoGalleryHeaderViewDelegate, HomePhotoGalleryVCCellDelegate {
+class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, HomePhotoGalleryHeaderViewDelegate, HomePhotoGalleryVCCellDelegate {
     
     // UITableView to diplay the gallery photos
     @IBOutlet weak var tableView: UITableView!
@@ -40,7 +40,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIA
     var welcomeView: UIView!
   
     // Used to determinate which section is opened
-    var openSectionIndex = 0
+    var expandedSectionIndex = 0
     
     override func viewDidLoad() {
         
@@ -52,7 +52,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIA
         retrieveAlbums()
         
         // Add an observer to check if a new photo was added
-        NSNotificationCenter.defaultCenter().addObserverForName(ALAssetsLibraryChangedNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (mote :NSNotification!) -> Void in
+        NSNotificationCenter.defaultCenter().addObserverForName(ALAssetsLibraryChangedNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (mote: NSNotification!) -> Void in
             self.retrieveAlbums()
         }
         
@@ -65,15 +65,14 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIA
     
      // Request for photo library access and retrieving albums
     func retrieveAlbums(){
-        gallery.retrieveAlbums { (result:Bool!) -> Void in
+        gallery.retrieveAlbums { (result: Bool!) -> Void in
             if(result == true){
-                self.openSectionIndex = self.gallery.getIndexFromCurrentAlbumExpanded()
-                self.dataSourceAlbumCountToRemove = self.numOfRowsInSection(self.openSectionIndex)
+                self.expandedSectionIndex = self.gallery.indexOfExpandedAlbum()
+                self.dataSourceAlbumCountToRemove = self.numberOfRowsInSection(self.expandedSectionIndex)
                 self.tableView!.reloadData()
             }else{
-                self.displayAlertWithTitle("Access",
-                    message: "Could not access the photo library")
-                self.openSectionIndex = NSNotFound
+                self.displayAlertWithTitle("Access", message: "Could not access the photo library")
+                self.expandedSectionIndex = NSNotFound
             }
         }
     }
@@ -124,23 +123,23 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIA
         
         // Align the title to the left
         self.navigationItem.leftBarButtonItem = nil;
-        var TitleLabel: UIBarButtonItem = UIBarButtonItem(title: "Photos", style: .Plain, target: nil, action: nil)
-        TitleLabel.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Roboto-Light", size: 20)!], forState: UIControlState.Normal)
+        var titleLabel: UIBarButtonItem = UIBarButtonItem(title: "Photos", style: .Plain, target: nil, action: nil)
+        titleLabel.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Roboto-Light", size: 20)!], forState: UIControlState.Normal)
         
         /// Adding left space to the title
         var addSpacerButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
         addSpacerButton.width = 5
         
-        self.navigationItem.leftBarButtonItems = [addSpacerButton,TitleLabel]
+        self.navigationItem.leftBarButtonItems = [addSpacerButton, titleLabel]
         
     }
     
     
     /// Method used to calculate the number of rows for a given section and number of assets for album
-    func numOfRowsInSection(section: Int)-> Int{
-        if(gallery.getIsAlbumExpanded(section)){
-            var numRow = Double(gallery.getNumOfAssetsByAlbum(section)) / 5
-            var numRowMod = gallery.getNumOfAssetsByAlbum(section) % 5
+    func numberOfRowsInSection(section: Int) -> Int{
+        if(gallery.isAlbumExpandedAtIndex[section]){
+            var numRow = Double(gallery.numberOfAssetsAtAlbumIndex[section]) / 5
+            var numRowMod = gallery.numberOfAssetsAtAlbumIndex[section] % 5
             if(numRow > 0){
                 if(numRowMod != 0){
                     numRow = numRow + 1
@@ -154,7 +153,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIA
     // MARK: - Table view data source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int{
-        return gallery.getNumOfAlbums()
+        return gallery.albums.count
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -162,7 +161,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIA
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return numOfRowsInSection(section)
+        return numberOfRowsInSection(section)
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
@@ -171,7 +170,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIA
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
-        var cell : HomePhotoGalleryVCCell
+        var cell: HomePhotoGalleryVCCell
         
         // Selecting the correct cell layout depending of the current index
         if(indexPath.row % 2 == 0){
@@ -194,13 +193,13 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIA
         for (var i=0; i<5; i++) {
             
              // Index Used to sort the photo in desc order
-            reverseIndex = gallery.getNumOfAssetsByAlbum(indexPath.section) - currentAssetIndex - 1
+            reverseIndex = gallery.numberOfAssetsAtAlbumIndex[indexPath.section] - currentAssetIndex - 1
             if(reverseIndex<0){
-                reverseIndex = gallery.getNumOfAssetsByAlbum(indexPath.section)
+                reverseIndex = gallery.numberOfAssetsAtAlbumIndex[indexPath.section]
             }
             
             /// Retrieve an image from the device photo gallery
-            gallery.requestImageAtIndex(indexPath.section,index: reverseIndex, containerId:i, isThumbnail: true, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!, assetIndex:Int, containerId: Int ) -> Void in
+            gallery.requestImageAtIndex(indexPath.section, index: reverseIndex, containerId: i, isThumbnail: true, completionHandler: {(image: UIImage!, info: [NSObject: AnyObject]!, assetIndex: Int, containerId: Int ) -> Void in
                 // If there is no Image then disable the UIImageVIew
                 if(image == nil){
                     cell.buttonPhoto[containerId].enabled = false
@@ -224,11 +223,11 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIA
         var headerView = viewArray[0] as HomePhotoGalleryHeaderView
         
         // Adding the title to the header
-        headerView.headerTitle.setTitle(gallery.getAlbumName(section), forState: UIControlState.Normal)
+        headerView.headerTitle.setTitle(gallery.albumNameAtIndex(section), forState: UIControlState.Normal)
         headerView.delegate = self
         headerView.section = section
         // Set if header is expanded
-        headerView.state = gallery.getIsAlbumExpanded(section)
+        headerView.state = gallery.isAlbumExpandedAtIndex[section]
         // Setting the Up and Down Arrow Icon
         headerView.setArrowIcon()
         
@@ -236,15 +235,15 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIA
     }
     
     /// Method used to update the Arrow icon for each Header
-    func updateHeaderView(section : Int){
+    func updateHeaderView(section: Int){
         var headerView: HomePhotoGalleryHeaderView = tableView!.headerViewForSection(section) as HomePhotoGalleryHeaderView
-        headerView.state = gallery.getIsAlbumExpanded(section)
+        headerView.state = gallery.isAlbumExpandedAtIndex[section]
         headerView.setArrowIcon()
     }
     
     // Method called from header delegate to collapse o expand the row
-    func headerClicked(section : Int){
-        if(gallery.getIsAlbumExpanded(section)){
+    func headerClicked(section: Int){
+        if(gallery.isAlbumExpandedAtIndex[section]){
             collapseSection(section)
         }else{
             expandSection(section)
@@ -253,15 +252,15 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIA
     }
     
     // Animate the section to collapse
-    func collapseSection(section : Int){
+    func collapseSection(section: Int){
         
-        dataSourceAlbumCountToRemove = Int(self.numOfRowsInSection(section))
+        dataSourceAlbumCountToRemove = Int(self.numberOfRowsInSection(section))
         var indexPathsToDelete = [NSIndexPath]()
         for (var i=0;i < dataSourceAlbumCountToRemove; i++) {
             indexPathsToDelete.append(NSIndexPath(forRow: i, inSection: section))
         }
         
-        gallery.setIsAlbumExpanded(section, isExpanded: false)
+        gallery.isAlbumExpandedAtIndex[section] = false
         tableView!.beginUpdates()
         tableView!.deleteRowsAtIndexPaths(indexPathsToDelete, withRowAnimation: UITableViewRowAnimation.Top)
         tableView!.endUpdates()
@@ -273,10 +272,10 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIA
     }
     
     // Animate the section to expand
-    func expandSection(section : Int){
+    func expandSection(section: Int){
         
-        gallery.setIsAlbumExpanded(section, isExpanded: true)
-        dataSourceAlbumCountToInsert = Int(self.numOfRowsInSection(section))
+        gallery.isAlbumExpandedAtIndex[section] = true
+        dataSourceAlbumCountToInsert = Int(self.numberOfRowsInSection(section))
         
         /*
         Create an array containing the index paths of the rows to insert: These correspond to the rows for each quotation in the current section.
@@ -297,7 +296,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate,UIA
     }
     
     /// HomePhotoGalleryVCCell Delegate method
-    func photoSelected(indexPath : NSIndexPath){
+    func photoSelected(indexPath: NSIndexPath){
         
          /// UIViewController that shows a detailed photo
         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("PhotoFullScreenPagerVCID") as PhotoFullScreenPagerVC

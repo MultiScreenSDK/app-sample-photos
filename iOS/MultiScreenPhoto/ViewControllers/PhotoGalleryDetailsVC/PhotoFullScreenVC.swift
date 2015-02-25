@@ -19,17 +19,17 @@ protocol PhotoFullScreenVCDelegate {
 /// PhotoFullScreenVC
 ///
 /// This class is used to show a full size photo, allows the panning option
-class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate, UIGestureRecognizerDelegate {
+class PhotoFullScreenVC: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
     
     // Gallery Instance, this instance contains an Array of albums
     var gallery = Gallery.sharedInstance
     
     // index of the current photo displayed
-    var pageIndex : Int = 0
+    var pageIndex: Int = 0
     
     // index of the current Album displayed
-    var pageAlbumIndex : Int = 0
+    var pageAlbumIndex: Int = 0
     
     var scrollView: UIScrollView!
     var image: UIImage!
@@ -45,11 +45,11 @@ class PhotoFullScreenVC: UIViewController,UIScrollViewDelegate, UIGestureRecogni
         view.backgroundColor = UIColor(red: 21/255, green: 21/255, blue: 21/255, alpha: 1)
         
         /// Request the current image at index, from the device photo album
-        gallery.requestImageAtIndex(pageAlbumIndex,index: pageIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!,assetIndex:Int, containerId: Int) -> Void in
+        gallery.requestImageAtIndex(pageAlbumIndex, index: pageIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject: AnyObject]!, assetIndex: Int, containerId: Int) -> Void in
             /// Add the Image to the scrollView
             self.image = image
             self.imageView.image = image
-            self.imageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size:image.size)
+            self.imageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: image.size)
             
             self.updateScrollView()
             

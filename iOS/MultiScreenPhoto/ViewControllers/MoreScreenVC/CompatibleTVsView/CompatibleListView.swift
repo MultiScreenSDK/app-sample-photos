@@ -11,7 +11,7 @@ import UIKit
 /// CompatibleListView
 ///
 /// This class is used to display a list of compatible devices
-class CompatibleListView: UIView,UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate {
+class CompatibleListView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
    
     
     // UITableView to diplay the gallery photos
@@ -21,10 +21,10 @@ class CompatibleListView: UIView,UITableViewDelegate, UITableViewDataSource,UIGe
     var dataSourceCountToInsert = 0
     var dataSourceCountToRemove = 0
     
-    // Used to determinate which section is opened
-    var openSectionIndex = NSNotFound
+    // Used to determinate which section is expanded
+    var expandedSectionIndex = NSNotFound
     
-    /// Arrow image that changes depending of the section state (collapsed, or expanded)
+    /// Arrow image that changes depending of the section state (collapsed or expanded)
     @IBOutlet weak var imageViewArrow: UIImageView!
     
     /// UIButton that contains the name of the selected inches
@@ -32,7 +32,7 @@ class CompatibleListView: UIView,UITableViewDelegate, UITableViewDataSource,UIGe
     
     var inchesArray = []
     var modelsArray = []
-    var isExpandedInchesSection = false
+    var isInchesSectionExpanded = false
     
     /// Identifier for UITableview cell
     let compatibleTVCell = "CompatibleTVCellID"
@@ -41,7 +41,7 @@ class CompatibleListView: UIView,UITableViewDelegate, UITableViewDataSource,UIGe
         
         
         /// Configuring the tableView cell and separator style
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier:compatibleTVCell)
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: compatibleTVCell)
         
         /// Configuring the tableView separator style
         if tableView.respondsToSelector("setSeparatorInset:") {
@@ -74,7 +74,7 @@ class CompatibleListView: UIView,UITableViewDelegate, UITableViewDataSource,UIGe
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return numOfRowsInSection(section);
+        return numberOfRowsInSection(section);
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
@@ -90,7 +90,7 @@ class CompatibleListView: UIView,UITableViewDelegate, UITableViewDataSource,UIGe
         var text: String
         
         /// Setting the custom cell view
-        var cell : UITableViewCell
+        var cell: UITableViewCell
         cell = tableView.dequeueReusableCellWithIdentifier(compatibleTVCell, forIndexPath: indexPath) as UITableViewCell
         
         if(indexPath.section == 0){
@@ -124,7 +124,7 @@ class CompatibleListView: UIView,UITableViewDelegate, UITableViewDataSource,UIGe
         /// Adding the text for each cell
         cell.textLabel?.textColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1)
         cell.textLabel?.textAlignment = .Left
-        cell.textLabel?.attributedText = NSMutableAttributedString(string: text, attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 12.0)!])
+        cell.textLabel?.attributedText = NSMutableAttributedString(string: text, attributes: [NSFontAttributeName: UIFont(name: "Roboto-Light", size: 12.0)!])
         cell.backgroundColor = UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 1)
         
         return cell
@@ -138,7 +138,7 @@ class CompatibleListView: UIView,UITableViewDelegate, UITableViewDataSource,UIGe
             var selectedInches = inchesArray[indexPath.row] as NSDictionary
             modelsArray = selectedInches.objectForKey("models") as NSArray
             expandSection(1)
-            isExpandedInchesSection = false
+            isInchesSectionExpanded = false
             
             imageViewArrow.image = UIImage(named: "icon_arrow_down")!
             /// Change the title of the selectedInchesTitle
@@ -151,13 +151,13 @@ class CompatibleListView: UIView,UITableViewDelegate, UITableViewDataSource,UIGe
     /// If it was clicked then expand or collapse the tableView
     @IBAction func dropDownButtonSelected(sender: UIButton) {
         
-        if(isExpandedInchesSection){
+        if(isInchesSectionExpanded){
             collapseSection(0)
-            isExpandedInchesSection = false
+            isInchesSectionExpanded = false
             imageViewArrow.image = UIImage(named: "icon_arrow_down")!
         }else{
             expandSection(0)
-            isExpandedInchesSection = true
+            isInchesSectionExpanded = true
             imageViewArrow.image = UIImage(named: "icon_arrow_up")!
         }
         
@@ -165,8 +165,8 @@ class CompatibleListView: UIView,UITableViewDelegate, UITableViewDataSource,UIGe
     
     
     /// Method used to calculate the number of rows for a given section
-    func numOfRowsInSection(section: Int)-> Int{
-        if(section == openSectionIndex && openSectionIndex != NSNotFound){
+    func numberOfRowsInSection(section: Int) -> Int{
+        if(section == expandedSectionIndex && expandedSectionIndex != NSNotFound){
             if (section == 0){
                 return inchesArray.count
             }else{
@@ -177,9 +177,9 @@ class CompatibleListView: UIView,UITableViewDelegate, UITableViewDataSource,UIGe
     }
     
     // Animate the section to collapse
-    func collapseSection(section : Int){
+    func collapseSection(section: Int){
         
-        openSectionIndex = NSNotFound
+        expandedSectionIndex = NSNotFound
         
         var indexPathsToDelete = [NSIndexPath]()
         for (var i=0;i < dataSourceCountToRemove; i++) {
@@ -194,22 +194,22 @@ class CompatibleListView: UIView,UITableViewDelegate, UITableViewDataSource,UIGe
     }
     
     // Animate the section to expand
-    func expandSection(section : Int){
+    func expandSection(section: Int){
         
-        var previousOpenSectionIndex = openSectionIndex;
+        var previousExpandedSectionIndex = expandedSectionIndex;
         
         /*
         Create an array containing the index paths of the rows to delete: These correspond to the rows for each quotation in the current section.
         */
         var indexPathsToDelete = [NSIndexPath]()
-        if (previousOpenSectionIndex != NSNotFound) {
+        if (previousExpandedSectionIndex != NSNotFound) {
             for (var i=0;i < dataSourceCountToRemove; i++) {
-                indexPathsToDelete.append(NSIndexPath(forRow: i, inSection: previousOpenSectionIndex))
+                indexPathsToDelete.append(NSIndexPath(forRow: i, inSection: previousExpandedSectionIndex))
             }
         }
         
-        openSectionIndex = section;
-        dataSourceCountToInsert = self.numOfRowsInSection(section)
+        expandedSectionIndex = section;
+        dataSourceCountToInsert = self.numberOfRowsInSection(section)
         dataSourceCountToRemove = dataSourceCountToInsert
         
         /*
@@ -217,13 +217,13 @@ class CompatibleListView: UIView,UITableViewDelegate, UITableViewDataSource,UIGe
         */
         var indexPathsToInsert = [NSIndexPath]()
         for (var i=0;i < dataSourceCountToInsert; i++) {
-            indexPathsToInsert.append(NSIndexPath(forRow: i, inSection: openSectionIndex))
+            indexPathsToInsert.append(NSIndexPath(forRow: i, inSection: expandedSectionIndex))
         }
         
         // style the animation so that there's a smooth flow in either direction
-        var insertAnimation : UITableViewRowAnimation
-        var deleteAnimation :UITableViewRowAnimation
-        if (previousOpenSectionIndex == NSNotFound || section < previousOpenSectionIndex) {
+        var insertAnimation: UITableViewRowAnimation
+        var deleteAnimation: UITableViewRowAnimation
+        if (previousExpandedSectionIndex == NSNotFound || section < previousExpandedSectionIndex) {
             insertAnimation = UITableViewRowAnimation.Top;
             deleteAnimation = UITableViewRowAnimation.Bottom;
         }

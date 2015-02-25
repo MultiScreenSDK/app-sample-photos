@@ -30,7 +30,7 @@ class PhotoFullScreenPagerVCTest: XCTestCase {
     func testRequestImageAtIndex(){
         let albumIndex = 0
         let currentIndex = 0
-        gallery.requestImageAtIndex(albumIndex,index: currentIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject : AnyObject]!,assetIndex:Int, containerId: Int ) -> Void in
+        gallery.requestImageAtIndex(albumIndex, index: currentIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject: AnyObject]!, assetIndex: Int, containerId: Int ) -> Void in
             XCTAssertTrue(image.isKindOfClass(UIImage), "testRequestImageAtIndex() image should be of type UIImage")
         })
         
@@ -39,7 +39,7 @@ class PhotoFullScreenPagerVCTest: XCTestCase {
     func testUpdateCurrentIndex(){
         let currentIndex = 0
         photoFullScreenPagerVC.updateCurrentIndex(10)
-            XCTAssertEqual(photoFullScreenPagerVC.currentIndex,10, "testUpdateCurrentIndex() image should be equal 10")
+            XCTAssertEqual(photoFullScreenPagerVC.currentIndex, 10, "testUpdateCurrentIndex() image should be equal 10")
         
     }
 }
