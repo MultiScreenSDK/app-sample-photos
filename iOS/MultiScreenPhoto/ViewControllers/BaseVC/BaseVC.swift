@@ -1,5 +1,5 @@
 //
-//  CommonVC.swift
+//  BaseVC.swift
 //  multiscreen-demo
 //
 //  Created by Raul Mantilla on 20/01/15.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-/// CommonVC, it's a reusable UIViewController
+/// BaseVC, it's a reusable UIViewController
 ///
 /// This class is inherited from other View Controllers to reuse methods 
 /// for the navigation bar
-class CommonVC: UIViewController, UIGestureRecognizerDelegate {
+class BaseVC: UIViewController, UIGestureRecognizerDelegate {
     
     /// MultiScreenManager instance that manage the interaction with the services
     var multiScreenManager = MultiScreenManager.sharedInstance
@@ -32,15 +32,15 @@ class CommonVC: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         //Method to configure the Cast icon and Settings icon
-        updateCastButton()
+        setCastIcon()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         // Add an observer to check for services status and manage the cast icon
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateCastButton", name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
-        updateCastButton()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "setCastIcon", name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
+        setCastIcon()
     }
     
     /// Remove observer when viewDidDisappear
@@ -49,15 +49,15 @@ class CommonVC: UIViewController, UIGestureRecognizerDelegate {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
     }
     
-    /// Method called by the updateCastButton observer
+    /// Method called by the servicesChanged observer
     /// Add or remove the cast icon from the Navigation bar
-    func updateCastButton() {
+    func setCastIcon() {
         
         /// Configuring setting icon
         self.navigationItem.rightBarButtonItem = nil;
         let imageSettingsButton = UIImage(named: "btn_more_menu") as UIImage?
-        let settingsButton = UIButton(frame: CGRectMake(0,0,20,22))
-        settingsButton.imageEdgeInsets = UIEdgeInsetsMake(0,8,0,8)
+        let settingsButton = UIButton(frame: CGRectMake(0, 0, 20, 22))
+        settingsButton.imageEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 8)
         
         settingsButton.addTarget(self, action: Selector("showMoreMenuView"), forControlEvents: UIControlEvents.TouchUpInside)
         settingsButton.setImage(imageSettingsButton, forState: UIControlState.Normal)
@@ -69,21 +69,21 @@ class CommonVC: UIViewController, UIGestureRecognizerDelegate {
         
         /// Configuring cast icon
         /// Check if there is services availables
-        if(multiScreenManager.getServices().count > 0){
+        if(multiScreenManager.services.count > 0 || multiScreenManager.isConnected){
             
             /// Check if there is an application current connected
-            if(multiScreenManager.isApplicationConnected() == true){
+            if(multiScreenManager.isConnected == true){
                 imageCastButton = UIImage(named: "icon_cast_connect")
             }else{
                 imageCastButton = UIImage(named: "icon_cast_discovered")
             }
             
-            let castButton = UIButton(frame: CGRectMake(0,0,22,17))
+            let castButton = UIButton(frame: CGRectMake(0, 0, 22, 17))
             castButton.addTarget(self, action: Selector("showCastMenuView"), forControlEvents: UIControlEvents.TouchUpInside)
             castButton.setBackgroundImage(imageCastButton, forState: UIControlState.Normal)
             var addCastButton: UIBarButtonItem = UIBarButtonItem(customView: castButton)
             
-            self.navigationItem.rightBarButtonItems = [addSettingsButton,addSpacerButton,addCastButton]
+            self.navigationItem.rightBarButtonItems = [addSettingsButton, addSpacerButton, addCastButton]
         
         }else{
             self.navigationItem.rightBarButtonItems = [addSettingsButton]
@@ -96,9 +96,11 @@ class CommonVC: UIViewController, UIGestureRecognizerDelegate {
     func showCastMenuView(){
         /// UIView that contains a list of available services
         var viewArray = NSBundle.mainBundle().loadNibNamed("ServicesView", owner: self, options: nil)
-        self.servicesView = viewArray[0] as ServicesView
-        self.servicesView.frame = UIScreen.mainScreen().bounds
-       view.window?.addSubview(self.servicesView)
+        servicesView = viewArray[0] as ServicesView
+        servicesView.frame = UIScreen.mainScreen().bounds
+        
+        /// Adding UIVIew to superView
+        addUIViewToWindowSuperView(servicesView)
     }
     
     /// Method to show the More menu
@@ -115,27 +117,21 @@ class CommonVC: UIViewController, UIGestureRecognizerDelegate {
         moreMenuView.addGestureRecognizer(tap)
         
         /// Creating and adding Menu Button
-        var moreMenuButton = UIButton(frame: CGRectMake(0,45,97,34))
+        var moreMenuButton = UIButton(frame: CGRectMake(0, 45, 97, 34))
         moreMenuButton.addTarget(self, action: Selector("goToMoreScreenVC"), forControlEvents: UIControlEvents.TouchUpInside)
         moreMenuButton.backgroundColor = UIColor.whiteColor()
-        moreMenuButton.setAttributedTitle(NSMutableAttributedString(string: "MORE", attributes: [NSFontAttributeName:UIFont(name: "Roboto-Light", size: 18.0)!]), forState: UIControlState.Normal)
+        moreMenuButton.setAttributedTitle(NSMutableAttributedString(string: "MORE", attributes: [NSFontAttributeName: UIFont(name: "Roboto-Light", size: 18.0)!]), forState: UIControlState.Normal)
         moreMenuButton.titleLabel?.textColor = UIColor.grayColor()
         moreMenuButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         moreMenuView.addSubview(moreMenuButton)
-        
-        /// Adding UIVIew to superView
-        moreMenuView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        view.window?.addSubview(moreMenuView)
         
         /// Adding menuButton constraints
         let moreButtonDict = ["button": moreMenuButton]
         moreMenuView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:[button(97)]-(20)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: moreButtonDict))
         moreMenuView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(45)-[button(34)]", options: NSLayoutFormatOptions(0), metrics: nil, views: moreButtonDict))
         
-        /// Adding moreMenuView constraints
-        let moreViewDict = ["view": moreMenuView]
-        view.window?.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: moreViewDict))
-        view.window?.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: moreViewDict))
+        /// Adding UIVIew to superView
+        addUIViewToWindowSuperView(moreMenuView)
     }
     
     /// Method used to close the more menu view
@@ -151,28 +147,33 @@ class CommonVC: UIViewController, UIGestureRecognizerDelegate {
         
         /// UIViewController that contains a detailed tutorial
         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier("MoreScreenVC") as MoreScreenVC
-        self.navigationController?.pushViewController(viewController, animated:true)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     
     /// Method that displays an Alert dialogs
-    func displayAlertWithTitle( title:NSString, message:NSString) {
+    func displayAlertWithTitle( title: NSString, message: NSString) {
         alertView = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: "OK")
         alertView.alertViewStyle = .Default
         alertView.show()
     }
     
-    /// Return an UIImage from a given UIColor
-    /// This method is used for the translucent Navigation Bar
-    func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
-        var rect = CGRectMake(0, 0, size.width, size.height)
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        color.setFill()
-        UIRectFill(rect)
-        var image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
+    func addUIViewToWindowSuperView(view: UIView){
+        
+        /// Adding UIVIew to superView
+        view.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        var window = UIApplication.sharedApplication().keyWindow
+        if (window == nil){
+            window = UIApplication.sharedApplication().windows[0] as? UIWindow
+        }
+        
+        window?.subviews[0].addSubview(view)
+        
+        /// Adding view constraints
+        let viewDict = ["view": view]
+        window?.subviews[0].addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewDict))
+        window?.subviews[0].addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewDict))
+        
     }
-  
-    
 }
