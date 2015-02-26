@@ -159,7 +159,9 @@ public class GalleryActivity extends BaseActivity {
             // Adding child data
             listDataHeader.add(gallery.getName());
 
-            String[] projection = {MediaStore.Images.Media._ID,
+            cursor = PhotoHelper.getInstance().getPhotoCursor(this,gallery.getId());
+
+            /*String[] projection = {MediaStore.Images.Media._ID,
                     MediaStore.Images.Media.DISPLAY_NAME,
                     MediaStore.Images.Media.MINI_THUMB_MAGIC,MediaStore.Images.Media.DATA,MediaStore.Images.ImageColumns._ID };
             final String selection = MediaStore.Images.ImageColumns.BUCKET_ID
@@ -169,7 +171,7 @@ public class GalleryActivity extends BaseActivity {
                     projection, // Which columns to return
                     selection,       // Return all rows
                     null,
-                    null);
+                    null);*/
             // Get the column index of the Thumbnails Image ID
             columnIndex = cursor.getColumnIndex(MediaStore.Images.Media.DATA);
 
