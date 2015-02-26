@@ -35,6 +35,9 @@ class HomePhotoGalleryVCCell: UITableViewCell {
         for (button) in buttonPhoto {
             button.layer.borderColor = UIColor(red: 42.0/255.0, green: 42.0/255.0, blue: 42.0/255.0, alpha: 1.0).CGColor
             button.layer.borderWidth = 0.5
+            button.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Fill;
+            button.contentVerticalAlignment = UIControlContentVerticalAlignment.Fill
+            button.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
         }
     }
     

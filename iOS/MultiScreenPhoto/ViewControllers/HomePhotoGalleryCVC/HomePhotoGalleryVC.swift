@@ -46,19 +46,22 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         //Start searching for avaliables services in the network
         multiScreenManager.startSearching()
         
-        retrieveAlbums()
-        
-        // Add an observer to check if a new photo was added
-        NSNotificationCenter.defaultCenter().addObserverForName(ALAssetsLibraryChangedNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (mote: NSNotification!) -> Void in
+        // Add an observer to retreive the album when the app EnterForeground
+        NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillEnterForegroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (mote: NSNotification!) -> Void in
+            
             self.retrieveAlbums()
         }
+        
+        // Request for photo library access and retrieving albums
+        retrieveAlbums()
         
     }
     
     /// Remove observer when deinit
     deinit {
-       NSNotificationCenter.defaultCenter().removeObserver(self, name: ALAssetsLibraryChangedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
+    
     
     // Request for photo library access and retrieving albums
     func retrieveAlbums(){
@@ -91,6 +94,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
         // Method to setup the navigation bar color and fonts
         setUpNavigationBar()
         
@@ -100,6 +104,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         } else {
             cellHeight = screenSize.size.width/screenSizeDivisor
         }
+        
         tableView.reloadData()
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -127,7 +132,6 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         self.navigationItem.leftBarButtonItems = [addSpacerButton, titleLabel]
         
     }
-    
     
     /// Method used to calculate the number of rows for a given section and number of assets for album
     func numberOfRowsInSection(section: Int) -> Int{
@@ -201,7 +205,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
                     cell.buttonPhoto[containerId].enabled = true
                 }
                 // Setting an UIImage to the UIImageView
-                cell.buttonPhoto[containerId].setBackgroundImage(image, forState: UIControlState.Normal)
+                cell.buttonPhoto[containerId].setImage(image, forState: UIControlState.Normal)
                 cell.buttonPhoto[containerId].tag = assetIndex
             })
             currentAssetIndex = currentAssetIndex + 1

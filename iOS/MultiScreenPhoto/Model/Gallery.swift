@@ -15,7 +15,7 @@ import AssetsLibrary
 class Gallery: NSObject {
     
     //iOS library to retreive the photos from the device
-    var assetsLibrary: ALAssetsLibrary!
+    var assetsLibrary: ALAssetsLibrary! = ALAssetsLibrary()
     /// Array of albums
     var albums: [ALAssetsGroup] = []
     /// Array of numbers of assets by album
@@ -41,8 +41,6 @@ class Gallery: NSObject {
     ///
     /// :param: completionHandler The callback handler,  return true or false
     func retrieveAlbums(completionHandler: ((Bool!) -> Void)!){
-        
-        assetsLibrary = ALAssetsLibrary()
         
         self.albums = []
         self.numberOfAssetsAtAlbumIndex = []
@@ -73,9 +71,9 @@ class Gallery: NSObject {
                 }
             }else{
                 
-               dispatch_async(dispatch_get_main_queue(),{
+                dispatch_async(dispatch_get_main_queue(),{
                     completionHandler(true)
-               })
+                })
             }
         }
         
@@ -103,7 +101,7 @@ class Gallery: NSObject {
         return albums[albumIndex].valueForProperty(ALAssetsGroupPropertyName) as String
     }
     
-   
+    
     /// Retrieve an image from the device photo gallery
     ///
     /// :param: album index
@@ -113,10 +111,10 @@ class Gallery: NSObject {
     /// :param: completionHandler The callback handler,  returns UIImage and Info
     func requestImageAtIndex(album: Int, index: Int, containerId:Int, isThumbnail: Bool, completionHandler: ((UIImage!, [NSObject: AnyObject]!, Int, Int) -> Void)!){
         
-        let assetsGroup:ALAssetsGroup = albums[album]
-        
-        /// If album has images in it
-        if(numberOfAssetsAtAlbumIndex[album] > index){
+        ///Check if the album has images
+        if(numberOfAssetsAtAlbumIndex.count > 0 && numberOfAssetsAtAlbumIndex[album] > index){
+            
+            let assetsGroup:ALAssetsGroup = albums[album]
             
             /// Enumerate asset for a given index
             assetsGroup.enumerateAssetsAtIndexes(NSIndexSet(index: index), options: nil, usingBlock: {
@@ -126,10 +124,10 @@ class Gallery: NSObject {
                     var image: UIImage
                     
                     if(isThumbnail){
-                         // If is a thumbnail then retrieve a small size photo
+                        // If is a thumbnail then retrieve a small size photo
                         image = self.thumnailForAsset(asset)
                     }else{
-                         // Retrieve a medium size photo
+                        // Retrieve a medium size photo
                         image = self.imageForAsset(asset)
                     }
                     
@@ -143,6 +141,7 @@ class Gallery: NSObject {
                 return completionHandler(nil, nil, index, containerId)
             })
         }
+        
     }
     
     /// Retrieve a medium size photo
@@ -167,7 +166,7 @@ class Gallery: NSObject {
     func thumnailForAsset(asset: ALAsset!) -> UIImage{
         var cgImage: CGImageRef
         if (asset.thumbnail() != nil){
-            cgImage = asset.thumbnail().takeUnretainedValue()
+            cgImage = asset.aspectRatioThumbnail().takeUnretainedValue()
             return UIImage(CGImage: cgImage)!
         }
         return UIImage(named: "placeholder-image")!
