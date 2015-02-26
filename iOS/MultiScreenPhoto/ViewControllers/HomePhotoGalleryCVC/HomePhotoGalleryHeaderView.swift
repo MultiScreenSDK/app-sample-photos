@@ -36,28 +36,9 @@ class HomePhotoGalleryHeaderView: UITableViewHeaderFooterView {
     /// Current state of the album, expanded = true, collapsed = false
     var state = false
     
-    /*
-    override func awakeFromNib(){
-        super.awakeFromNib()
-    // imageViewArrow.image = UIImage(named: "icon_arrow_down")!
-    }
-*/
-    
     override func drawRect(rect: CGRect)
     {
-        let gradient = CAGradientLayer()
-        gradient.frame = imageViewSeparator.bounds;
-        let color: CGFloat = 24/255
-        let black = UIColor(red: color, green: color, blue: color, alpha: 0.7).CGColor
-        let black2 = UIColor(red: color, green: color, blue: color, alpha: 0.7).CGColor
-        let black3 = UIColor(red: color, green: color, blue: color, alpha: 0.4).CGColor
-        let black4 = UIColor(red: color, green: color, blue: color, alpha: 0.3).CGColor
-        let black5 = UIColor(red: color, green: color, blue: color, alpha: 0.1).CGColor
-        let black6 = UIColor(red: color, green: color, blue: color, alpha: 0.1).CGColor
-        gradient.colors = [UIColor.clearColor().CGColor, black6, black5, black4, black3, black2, black]
-        imageViewSeparator.layer.insertSublayer(gradient, atIndex: 0)
         setArrowIcon()
-        
     }
     
     /// Method used to capture the event when a header is clicked
@@ -74,10 +55,7 @@ class HomePhotoGalleryHeaderView: UITableViewHeaderFooterView {
         }else{
             imageViewArrow.image = UIImage(named: "icon_arrow_down")!
         }
-        /// If the header is the first in the list then hidde the separator image.
-        if(section == 0){
-            imageViewSeparator.hidden = true
-        }
+         imageViewSeparator.hidden = state
     }
     
 

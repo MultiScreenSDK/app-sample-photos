@@ -37,6 +37,11 @@ class Gallery: NSObject {
         return Static.instance!
     }
     
+    override init() {
+        super.init()
+    }
+    
+    
     /// Retrieve albums from the device photo gallery and save the data into the albums Array, numberOfAssetsAtAlbumIndex Array and isAlbumExpandedAtIndex Array.
     ///
     /// :param: completionHandler The callback handler,  return true or false
@@ -44,7 +49,7 @@ class Gallery: NSObject {
         
         self.albums = []
         self.numberOfAssetsAtAlbumIndex = []
-        self.isAlbumExpandedAtIndex = []
+         self.isAlbumExpandedAtIndex = []
         
         /// Enumeration Block
         let enumGroupBlock: ALAssetsLibraryGroupsEnumerationResultsBlock = {(assetsGroup: ALAssetsGroup!, stop: UnsafeMutablePointer<ObjCBool>) -> Void in

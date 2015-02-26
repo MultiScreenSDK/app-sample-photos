@@ -182,7 +182,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         cell.section = indexPath.section
         
         cell.delegate = self
-        cell.layer.zPosition = -1//CGFloat(indexPath.row) * -1
+        //cell.layer.zPosition = -1//CGFloat(indexPath.row) * -1
         
         // Adding the photos to the cell
         var currentAssetIndex = indexPath.row * 5
