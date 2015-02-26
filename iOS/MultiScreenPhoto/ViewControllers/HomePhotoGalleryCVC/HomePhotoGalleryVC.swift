@@ -21,9 +21,10 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
     var dataSourceAlbumCountToInsert = 0
     var dataSourceAlbumCountToRemove = 0
     
-    // Identifiers for UITableview cells
+    // Identifiers for UITableview cells and header
     let reuseIdentifierTVCell1 = "HomePhotoGalleryVCCell1"
     let reuseIdentifierTVCell2 = "HomePhotoGalleryVCCell2"
+    let reuseIdentifierForHeaderView = "HomePhotoGalleryHeaderView"
     
     //Size of the cell
     var cellHeight: CGFloat!
@@ -55,13 +56,14 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         // Request for photo library access and retrieving albums
         retrieveAlbums()
         
+        self.tableView.registerNib(UINib(nibName: reuseIdentifierForHeaderView, bundle: nil), forHeaderFooterViewReuseIdentifier: reuseIdentifierForHeaderView);
+        
     }
     
     /// Remove observer when deinit
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
-    
     
     // Request for photo library access and retrieving albums
     func retrieveAlbums(){
@@ -216,9 +218,9 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
     
     func tableView(tableView: UITableView!, viewForHeaderInSection section: Int) -> UIView! {
         
-        /// UIView that contains the header view for each cell
-        var viewArray = NSBundle.mainBundle().loadNibNamed("HomePhotoGalleryHeaderView", owner: self, options: nil)
-        var headerView = viewArray[0] as HomePhotoGalleryHeaderView
+        var headerView: HomePhotoGalleryHeaderView
+        
+        headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(reuseIdentifierForHeaderView) as HomePhotoGalleryHeaderView
         
         // Adding the title to the header
         headerView.headerTitle.setTitle(gallery.albumNameAtIndex(section), forState: UIControlState.Normal)
@@ -226,18 +228,10 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         headerView.section = section
         // Set if header is expanded
         headerView.state = gallery.isAlbumExpandedAtIndex[section]
-        // Setting the Up and Down Arrow Icon
-        headerView.setArrowIcon()
         
         return headerView
     }
     
-    /// Method used to update the Arrow icon for each Header
-    func updateHeaderView(section: Int){
-        var headerView: HomePhotoGalleryHeaderView = tableView!.headerViewForSection(section) as HomePhotoGalleryHeaderView
-        headerView.state = gallery.isAlbumExpandedAtIndex[section]
-        headerView.setArrowIcon()
-    }
     
     // Method called from header delegate to collapse o expand the row
     func headerClicked(section: Int){
@@ -265,7 +259,6 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         
        
         dataSourceAlbumCountToRemove = 0
-        updateHeaderView(section)
         
     }
     
@@ -280,7 +273,6 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         */
         
         var indexPathsToInsert = [NSIndexPath]()
-        updateHeaderView(section)
         for (var i=0;i < dataSourceAlbumCountToInsert; i++) {
             indexPathsToInsert.append(NSIndexPath(forRow: i, inSection: section))
         }
