@@ -37,9 +37,6 @@ class PhotoFullScreenPagerVC: BaseVC, UIPageViewControllerDataSource, UIPageView
         
         self.navigationController?.interactivePopGestureRecognizer.delegate = self
         
-        // Add an observer to check for if a tv is connected
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendToTv", name: multiScreenManager.serviceConnectedObserverIdentifier, object: nil)
-        
         //number of assets in current album
         numberOfAssets = gallery.numberOfAssetsAtAlbumIndex[currentAlbumIndex]
         
@@ -60,7 +57,21 @@ class PhotoFullScreenPagerVC: BaseVC, UIPageViewControllerDataSource, UIPageView
         
         /// Used to diable the scrollview auto Adjusts
         self.automaticallyAdjustsScrollViewInsets = false;
-        
+     
+    }
+    
+    // Request for photo library access and retrieving albums
+    func retrieveAlbums(){
+        gallery.retrieveAlbums { (result: Bool!) -> Void in
+            if(result == true){
+                //number of assets in current album
+                if(self.gallery.albums.count <= self.currentAlbumIndex || self.gallery.numberOfAssetsAtAlbumIndex[self.currentAlbumIndex] != self.numberOfAssets){
+                    self.goBack()
+                }
+            }else{
+                self.displayAlertWithTitle("Access", message: "Could not access the photo library")
+            }
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -72,10 +83,22 @@ class PhotoFullScreenPagerVC: BaseVC, UIPageViewControllerDataSource, UIPageView
         startSendImageTimer()
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Add an observer to retreive the album when the app EnterForeground
+        // Add an observer to retreive the album when the app EnterForeground
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "retrieveAlbums", name: UIApplicationWillEnterForegroundNotification, object: nil)
+        
+        // Add an observer to check for if a tv is connected
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendToTv", name: multiScreenManager.serviceConnectedObserverIdentifier, object: nil)
+    }
+    
     /// Remove observer when viewDidDisappear
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
          NSNotificationCenter.defaultCenter().removeObserver(self, name: multiScreenManager.serviceConnectedObserverIdentifier, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
     
     /// Method to setup the navigation bar color and font

@@ -36,10 +36,5 @@ class PhotoFullScreenPagerVCTest: XCTestCase {
         
     }
     
-    func testUpdateCurrentIndex(){
-        let currentIndex = 0
-        photoFullScreenPagerVC.updateCurrentIndex(10)
-            XCTAssertEqual(photoFullScreenPagerVC.currentIndex, 10, "testUpdateCurrentIndex() image should be equal 10")
-        
-    }
+    
 }

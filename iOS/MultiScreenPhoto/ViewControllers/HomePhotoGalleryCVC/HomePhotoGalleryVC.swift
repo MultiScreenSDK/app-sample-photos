@@ -47,12 +47,6 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         //Start searching for avaliables services in the network
         multiScreenManager.startSearching()
         
-        // Add an observer to retreive the album when the app EnterForeground
-        NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillEnterForegroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) { (mote: NSNotification!) -> Void in
-            
-            self.retrieveAlbums()
-        }
-        
         // Request for photo library access and retrieving albums
         retrieveAlbums()
         
@@ -60,10 +54,6 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         
     }
     
-    /// Remove observer when deinit
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
-    }
     
     // Request for photo library access and retrieving albums
     func retrieveAlbums(){
@@ -79,6 +69,9 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        // Add an observer to retreive the album when the app EnterForeground
+         NSNotificationCenter.defaultCenter().addObserver(self, selector: "retrieveAlbums", name: UIApplicationWillEnterForegroundNotification, object: nil)
+        
         let defaults = NSUserDefaults.standardUserDefaults()
         
         // Display Welcome View only one time
@@ -92,6 +85,12 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
             
             defaults.setBool(true, forKey: "hideWelcomeView")
         }
+    }
+    
+    /// Remove observer when viewDidDisappear
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -39,7 +39,7 @@ class Gallery: NSObject {
     
     override init() {
         super.init()
-        isAlbumExpandedAtIndex = []
+        isAlbumExpandedAtIndex.removeAll(keepCapacity: false)
     }
     
     
@@ -48,8 +48,8 @@ class Gallery: NSObject {
     /// :param: completionHandler The callback handler,  return true or false
     func retrieveAlbums(completionHandler: ((Bool!) -> Void)!){
         
-        albums = []
-        numberOfAssetsAtAlbumIndex = []
+        albums.removeAll(keepCapacity: false)
+        numberOfAssetsAtAlbumIndex.removeAll(keepCapacity: false)
         
         /// Temporal array of albums state (true, false)
         var tempIsAlbumExpandedAtIndex: [Bool] = []
@@ -125,7 +125,6 @@ class Gallery: NSObject {
         
         
         if(albums.count > album && numberOfAssetsAtAlbumIndex.count > 0 && numberOfAssetsAtAlbumIndex[album] > index){
-
             
             let assetsGroup:ALAssetsGroup = albums[album]
             
