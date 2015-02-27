@@ -196,8 +196,11 @@ class PhotoFullScreenPagerVC: BaseVC, UIPageViewControllerDataSource, UIPageView
             /// Set the current photo index
             /// Request the current image at index, from the device photo album
             gallery.requestImageAtIndex(currentAlbumIndex, index: currentIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject: AnyObject]!, assetIndex: Int, containerId: Int ) -> Void in
+                
                 /// Send the returned image to the TV
-                self.multiScreenManager.sendPhotoToTv(image)
+                if (image != nil){
+                    self.multiScreenManager.sendPhotoToTv(image)
+                }
             })
         }
     }

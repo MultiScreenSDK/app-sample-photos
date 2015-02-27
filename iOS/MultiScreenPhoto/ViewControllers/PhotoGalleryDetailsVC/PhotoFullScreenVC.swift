@@ -49,9 +49,11 @@ class PhotoFullScreenVC: UIViewController, UIScrollViewDelegate, UIGestureRecogn
             /// Add the Image to the scrollView
             self.image = image
             self.imageView.image = image
-            self.imageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: image.size)
-            
+            if(image != nil){
+                self.imageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: image.size)
+            }
             self.updateScrollView()
+           
             
         })
         

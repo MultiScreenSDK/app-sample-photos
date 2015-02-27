@@ -137,7 +137,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
     
     /// Method used to calculate the number of rows for a given section and number of assets for album
     func numberOfRowsInSection(section: Int) -> Int{
-        if(gallery.isAlbumExpandedAtIndex[section]){
+        if(gallery.albums.count > 0 && gallery.isAlbumExpandedAtIndex[section]){
             var numRow = Double(gallery.numberOfAssetsAtAlbumIndex[section]) / 5
             var numRowMod = gallery.numberOfAssetsAtAlbumIndex[section] % 5
             if(numRow > 0){
@@ -182,7 +182,6 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         cell.section = indexPath.section
         
         cell.delegate = self
-        //cell.layer.zPosition = -1//CGFloat(indexPath.row) * -1
         
         // Adding the photos to the cell
         var currentAssetIndex = indexPath.row * 5

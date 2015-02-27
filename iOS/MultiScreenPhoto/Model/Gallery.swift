@@ -39,6 +39,7 @@ class Gallery: NSObject {
     
     override init() {
         super.init()
+        isAlbumExpandedAtIndex = []
     }
     
     
@@ -47,9 +48,11 @@ class Gallery: NSObject {
     /// :param: completionHandler The callback handler,  return true or false
     func retrieveAlbums(completionHandler: ((Bool!) -> Void)!){
         
-        self.albums = []
-        self.numberOfAssetsAtAlbumIndex = []
-         self.isAlbumExpandedAtIndex = []
+        albums = []
+        numberOfAssetsAtAlbumIndex = []
+        
+        /// Temporal array of albums state (true, false)
+        var tempIsAlbumExpandedAtIndex: [Bool] = []
         
         /// Enumeration Block
         let enumGroupBlock: ALAssetsLibraryGroupsEnumerationResultsBlock = {(assetsGroup: ALAssetsGroup!, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
@@ -60,14 +63,14 @@ class Gallery: NSObject {
                     /// Set the Camera Roll to the first position
                     if(UInt32(assetsGroup.valueForProperty("ALAssetsGroupPropertyType").intValue) == ALAssetsGroupSavedPhotos){
                         /// set this album not expanded
-                        self.isAlbumExpandedAtIndex.insert(true, atIndex: 0)
+                        tempIsAlbumExpandedAtIndex.insert(true, atIndex: 0)
                         /// Adding the assetGroup to the album Array
                         self.albums.insert(assetsGroup, atIndex: 0)
                         /// Adding the number of photos by album assetGroup
                         self.numberOfAssetsAtAlbumIndex.insert(assetsGroup.numberOfAssets(), atIndex: 0)
                     }else{
                         /// set this album not expanded
-                        self.isAlbumExpandedAtIndex.append(false)
+                        tempIsAlbumExpandedAtIndex.append(false)
                         /// Adding the assetGroup to the album Array
                         self.albums.append(assetsGroup)
                         /// Adding the number of photos by album assetGroup
@@ -75,6 +78,10 @@ class Gallery: NSObject {
                     }
                 }
             }else{
+                
+                if(self.isAlbumExpandedAtIndex.count != tempIsAlbumExpandedAtIndex.count){
+                    self.isAlbumExpandedAtIndex = tempIsAlbumExpandedAtIndex
+                }
                 
                 dispatch_async(dispatch_get_main_queue(),{
                     completionHandler(true)
@@ -116,8 +123,9 @@ class Gallery: NSObject {
     /// :param: completionHandler The callback handler,  returns UIImage and Info
     func requestImageAtIndex(album: Int, index: Int, containerId:Int, isThumbnail: Bool, completionHandler: ((UIImage!, [NSObject: AnyObject]!, Int, Int) -> Void)!){
         
-        ///Check if the album has images
-        if(numberOfAssetsAtAlbumIndex.count > 0 && numberOfAssetsAtAlbumIndex[album] > index){
+        
+        if(albums.count > album && numberOfAssetsAtAlbumIndex.count > 0 && numberOfAssetsAtAlbumIndex[album] > index){
+
             
             let assetsGroup:ALAssetsGroup = albums[album]
             
