@@ -79,10 +79,8 @@
 		9ADE3DF91AA4FBBC00EA5132 /* WebSocketTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADE3DD41AA4FBBC00EA5132 /* WebSocketTransport.swift */; };
 		9ADE3DFA1AA4FBBC00EA5132 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ADE3DD81AA4FBBC00EA5132 /* GCDAsyncUdpSocket.m */; };
 		9ADE3DFB1AA4FBBC00EA5132 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ADE3DD81AA4FBBC00EA5132 /* GCDAsyncUdpSocket.m */; };
-		9ADE3DFD1AA4FBBC00EA5132 /* README.markdown in Sources */ = {isa = PBXBuildFile; fileRef = 9ADE3DD91AA4FBBC00EA5132 /* README.markdown */; };
 		9ADE3DFE1AA4FBBC00EA5132 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9ADE3DDB1AA4FBBC00EA5132 /* LICENSE */; };
 		9ADE3DFF1AA4FBBC00EA5132 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9ADE3DDB1AA4FBBC00EA5132 /* LICENSE */; };
-		9ADE3E011AA4FBBC00EA5132 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 9ADE3DDC1AA4FBBC00EA5132 /* README.md */; };
 		9ADE3E021AA4FBBC00EA5132 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADE3DDD1AA4FBBC00EA5132 /* WebSocket.swift */; };
 		9ADE3E031AA4FBBC00EA5132 /* WebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADE3DDD1AA4FBBC00EA5132 /* WebSocket.swift */; };
 		ED16CF961A93DC9000F25C30 /* WelcomeViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED16CF951A93DC9000F25C30 /* WelcomeViewTest.swift */; };
@@ -591,12 +589,10 @@
 				9ADE3DE91AA4FBBC00EA5132 /* JSON.swift in Sources */,
 				ED5BA8041A93E05200621EF6 /* HomePhotoGalleryVCTest.swift in Sources */,
 				9ADE3DE11AA4FBBC00EA5132 /* Channel.swift in Sources */,
-				9ADE3E011AA4FBBC00EA5132 /* README.md in Sources */,
 				9AC49ECD1A71A60D00F391C0 /* PhotoFullScreenVC.swift in Sources */,
 				9A75A94C1A83DC3B0051ABB6 /* BaseVCTest.swift in Sources */,
 				9AC49EBD1A71A60D00F391C0 /* MultiScreenManager.swift in Sources */,
 				9ADE3DEB1AA4FBBC00EA5132 /* MDNSDiscoveryProvider.swift in Sources */,
-				9ADE3DFD1AA4FBBC00EA5132 /* README.markdown in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
