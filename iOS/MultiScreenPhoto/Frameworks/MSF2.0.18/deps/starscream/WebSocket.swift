@@ -257,7 +257,7 @@ public class WebSocket : NSObject, NSStreamDelegate {
     func stream(aStream: NSStream!, handleEvent eventCode: NSStreamEvent) {
 
         if eventCode == .HasBytesAvailable {
-            if(aStream == inputStream) {
+            if (aStream == inputStream) {
                 processInputStream()
             }
         } else if eventCode == .ErrorOccurred {
@@ -415,7 +415,7 @@ public class WebSocket : NSObject, NSStreamDelegate {
             let isMasked = (MaskMask & buffer[1])
             let payloadLen = (PayloadLenMask & buffer[1])
             var offset = 2
-            if((isMasked > 0 || (RSVMask & buffer[0]) > 0) && receivedOpcode != OpCode.Pong.rawValue) {
+            if ((isMasked > 0 || (RSVMask & buffer[0]) > 0) && receivedOpcode != OpCode.Pong.rawValue) {
                 let errCode = CloseCode.ProtocolError.rawValue
                 let error = self.errorWithDetail("masked and rsv data is not currently supported", code: errCode)
                 if let disconnect = self.disconnectedBlock {
@@ -535,7 +535,7 @@ public class WebSocket : NSObject, NSStreamDelegate {
                 return
             }
             var isNew = false
-            if(response == nil) {
+            if (response == nil) {
                 if receivedOpcode == OpCode.ContinueFrame.rawValue  {
                     let errCode = CloseCode.ProtocolError.rawValue
                     let error = self.errorWithDetail("first frame can't be a continue frame",
@@ -572,7 +572,7 @@ public class WebSocket : NSObject, NSStreamDelegate {
                 response!.bytesLeft -= Int(len)
                 response!.frameCount++
                 response!.isFin = isFin > 0 ? true : false
-                if(isNew) {
+                if (isNew) {
                     readStack.append(response!)
                 }
                 processResponse(response!)
@@ -580,7 +580,7 @@ public class WebSocket : NSObject, NSStreamDelegate {
 
             let step = Int(offset+len)
             let extra = bufferLen-step
-            if(extra > 0) {
+            if (extra > 0) {
                 processExtra((buffer+step), bufferLen: extra)
             }
         }
@@ -654,7 +654,7 @@ public class WebSocket : NSObject, NSStreamDelegate {
             //stream isn't ready, let's wait
             var tries = 0;
             while self.outputStream == nil || !self.connected {
-                if(tries < 5) {
+                if (tries < 5) {
                     sleep(1);
                 } else {
                     break;

@@ -1,10 +1,26 @@
-//
-//  HomePhotoGalleryVC.swift
-//  multiscreen-demo
-//
-//  Created by Raul Mantilla on 14/01/15.
-//  Copyright (c) 2015 Koombea. All rights reserved.
-//
+/*
+
+Copyright (c) 2014 Samsung Electronics
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+*/
 
 import UIKit
 import AssetsLibrary
@@ -58,9 +74,9 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
     // Request for photo library access and retrieving albums
     func retrieveAlbums(){
         gallery.retrieveAlbums { (result: Bool!) -> Void in
-            if(result == true){
+            if (result == true){
                 self.tableView!.reloadData()
-            }else{
+            } else {
                 self.displayAlertWithTitle("Access", message: "Could not access the photo library")
             }
         }
@@ -75,7 +91,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         let defaults = NSUserDefaults.standardUserDefaults()
         
         // Display Welcome View only one time
-        if(!defaults.boolForKey("hideWelcomeView")){
+        if (!defaults.boolForKey("hideWelcomeView")){
             /// UIView that contains the welcome view
             welcomeView = NSBundle.mainBundle().loadNibNamed("WelcomeView", owner: self, options: nil)[0] as? UIView
             welcomeView.frame =  UIScreen.mainScreen().bounds
@@ -136,11 +152,11 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
     
     /// Method used to calculate the number of rows for a given section and number of assets for album
     func numberOfRowsInSection(section: Int) -> Int{
-        if(gallery.albums.count > 0 && gallery.isAlbumExpandedAtIndex[section]){
+        if (gallery.albums.count > 0 && gallery.isAlbumExpandedAtIndex[section]){
             var numRow = Double(gallery.numberOfAssetsAtAlbumIndex[section]) / 5
             var numRowMod = gallery.numberOfAssetsAtAlbumIndex[section] % 5
-            if(numRow > 0){
-                if(numRowMod != 0){
+            if (numRow > 0){
+                if (numRowMod != 0){
                     numRow = numRow + 1
                 }
             }
@@ -172,9 +188,9 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         var cell: HomePhotoGalleryVCCell
         
         // Selecting the correct cell layout depending of the current index
-        if(indexPath.row % 2 == 0){
+        if (indexPath.row % 2 == 0){
             cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierTVCell1) as HomePhotoGalleryVCCell
-        }else{
+        } else {
             cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierTVCell2) as HomePhotoGalleryVCCell
         }
         // Used to know the section of the cell
@@ -192,16 +208,16 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
             
              // Index Used to sort the photo in desc order
             reverseIndex = gallery.numberOfAssetsAtAlbumIndex[indexPath.section] - currentAssetIndex - 1
-            if(reverseIndex<0){
+            if (reverseIndex<0){
                 reverseIndex = gallery.numberOfAssetsAtAlbumIndex[indexPath.section]
             }
             
             /// Retrieve an image from the device photo gallery
             gallery.requestImageAtIndex(indexPath.section, index: reverseIndex, containerId: i, isThumbnail: true, completionHandler: {(image: UIImage!, info: [NSObject: AnyObject]!, assetIndex: Int, containerId: Int ) -> Void in
                 // If there is no Image then disable the UIImageVIew
-                if(image == nil){
+                if (image == nil){
                     cell.buttonPhoto[containerId].enabled = false
-                }else{
+                } else {
                     cell.buttonPhoto[containerId].enabled = true
                 }
                 // Setting an UIImage to the UIImageView
@@ -233,12 +249,11 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
     
     // Method called from header delegate to collapse o expand the row
     func headerClicked(section: Int){
-        if(gallery.isAlbumExpandedAtIndex[section]){
+        if (gallery.isAlbumExpandedAtIndex[section]){
             collapseSection(section)
-        }else{
+        } else {
             expandSection(section)
         }
-       
     }
     
     // Animate the section to collapse

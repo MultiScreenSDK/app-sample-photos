@@ -135,9 +135,14 @@ import Foundation
         if args != nil {
             params["args"] = args
         }
-        sendRPC(method, params: params) { (message) -> Void in
-            completionHandler(success: message.error == nil, error: message.error)
-        }
+        let data = JSON.jsonDataForObject(params)
+        Requester.doPost(restEndpoint, payload: data, headers: ["Content-Type":"application/json;charset=UTF-8"], timeout: 10, completionHandler: { (responseHeaders, data, error) -> Void in
+            //TODO: override the error message with the one provided by the server if it was sent
+            //            if data != nil {
+            //                let message = JSON.parse(data: data!) as [String:AnyObject]
+            //            }
+            completionHandler(success: error == nil, error: error)
+        })
     }
 
     ///  Stops the application on the TV
@@ -154,9 +159,7 @@ import Foundation
         }
         sendRPC(method, params: params) { (message) -> Void in
             dispatch_async(dispatch_get_main_queue(), {() -> Void in
-                self.disconnect({ [unowned self] (client, error) -> Void in
-                    completionHandler(success: message.error == nil, error: message.error)
-                })
+                completionHandler(success: message.error == nil, error: message.error)
             })
         }
     }
@@ -184,19 +187,37 @@ import Foundation
 
     }
 
+    ///  MARK: override channel connect
+
+    public override func connect(attributes: [String : String]?, completionHandler: ((client: ChannelClient?, error: NSError?) -> Void)!) {
+        start { [unowned self] (success, error) -> Void in
+            if error != nil {
+                dispatch_async(dispatch_get_main_queue()) { () -> Void in
+                    if completionHandler != nil {
+                        completionHandler(client: nil, error: error)
+                    }
+                    self.delegate?.onConnect?(nil, error: error)
+                    NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: ChannelEvent.Connect.rawValue, object: self, userInfo: ["client": NSNull(), "error": error!] ))
+                }
+            } else {
+                self.superConnect(attributes, completionHandler: completionHandler)
+            }
+        }
+    }
+
+    private func superConnect(attributes: [String : String]?, completionHandler: ((client: ChannelClient?, error: NSError?) -> Void)!) {
+        super.connect(attributes, completionHandler: completionHandler)
+    }
+
     ///  Disconnects your client with the host TV app
     ///
     ///  :param: leaveHostRunning True leaves the TV app running False stops the TV app if yours is the last client
     ///  :param: completionHandler The callback handler
-    public func disconnect(#leaveHostRunning: Bool, completionHandler: (client: ChannelClient, error: NSError?) -> Void) {
-        if !leaveHostRunning && clients.count < 3 {
-            stop { (success, error) -> Void in
-                completionHandler(client: self.me, error: error) //TODO check that sel.me is not nil
-            }
+    public func disconnect(#leaveHostRunning: Bool, completionHandler: ((client: ChannelClient, error: NSError?) -> Void)!) {
+        if !leaveHostRunning {
+            disconnect(completionHandler)
         } else {
-            self.disconnect { (client, error) -> Void in
-                completionHandler(client: client,error: error)
-            }
+            superDisconnect(completionHandler)
         }
     }
 
@@ -204,47 +225,32 @@ import Foundation
     ///
     ///  :param: leaveHostRunning True leaves the TV app running False stops the TV app if yours is the last client
     public func disconnect(#leaveHostRunning: Bool) {
-        if !leaveHostRunning && clients.count < 3 {
-            stop { (success, error) -> Void in
-            }
-        } else {
-            self.appDisconnect()
-        }
+        disconnect(leaveHostRunning: leaveHostRunning, completionHandler: nil)
     }
 
     /// Disconnect from the channel and terminate the host application if you are the last client
-    public override func disconnect() {
-        disconnect(leaveHostRunning:false)
+    public override func disconnect(completionHandler: ((client: ChannelClient, error: NSError?) -> Void)!) {
+        if clients.count < 3 {
+            stop { [unowned self] (success, error) -> Void in
+                //self.superDisconnect(completionHandler)
+            }
+        } else {
+            superDisconnect(completionHandler)
+        }
     }
 
-    private func appDisconnect() {
-        super.disconnect()
+    private func superDisconnect(completionHandler: ((client: ChannelClient, error: NSError?) -> Void)!) {
+        super.disconnect(completionHandler)
     }
 
     internal func clientDisconnect(notification: NSNotification!) {
         if let userInfo: [String:ChannelClient]? = notification.userInfo as? [String:ChannelClient] {
             if userInfo!["client"]!.isHost {
-                self.disconnect()
+                self.superDisconnect(nil)
             }
         }
     }
-
-    override func didConnect(error: NSError?) {
-        if error == nil {
-            start { (success, error) -> Void in
-                if error != nil {
-                    // app launch error handler
-                    self.delegate?.onError?(error!)
-                    NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: ChannelEvent.Error.rawValue, object: self, userInfo: ["error":error!]))
-                }
-            }
-        } else {
-            // websocket error handler
-            super.didConnect(error)
-        }
-    }
-
-
+    
     // MARK: - Printable -
     public var description: String {
         return uri

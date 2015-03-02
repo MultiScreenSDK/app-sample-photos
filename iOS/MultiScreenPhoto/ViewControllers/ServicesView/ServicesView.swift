@@ -1,10 +1,26 @@
-//
-//  ServicesView.swift
-//  MultiScreenPhoto
-//
-//  Created by Raul Mantilla on 29/01/15.
-//  Copyright (c) 2015 Koombea. All rights reserved.
-//
+/*
+
+Copyright (c) 2014 Samsung Electronics
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+*/
 
 import UIKit
 
@@ -41,6 +57,7 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
     @IBOutlet weak var connectingIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var lineImage: UIImageView!
+    
     override func awakeFromNib(){
         super.awakeFromNib()
         
@@ -90,18 +107,18 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         services = multiScreenManager.servicesNotConnected()
         
         /// Used to change the Cast icon, depending is a service is connected or not
-        if(multiScreenManager.isConnected){
+        if (multiScreenManager.isConnected){
             title.text = "Connected to:"
             icon.image = UIImage(named: "icon_cast_connect")
             serviceConnectedName.text =  multiScreenManager.currentService.name
             /// Used to change the header size
-            if(services.count>0){
+            if (services.count>0){
                 headerViewConstraint.constant = 161
-            }else{
+            } else {
                 headerViewConstraint.constant = 123
             }
             lineImage.backgroundColor = UIColor.whiteColor()
-        }else{
+        } else {
             title.text = "Connect to:"
             icon.image = UIImage(named: "icon_cast_discovered")
             lineImage.backgroundColor = UIColor.blackColor()
@@ -169,7 +186,7 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         title.text = "Connecting"
         /// If cell is selected then connect and start the application
         multiScreenManager.createApplication(services[indexPath.row] as Service, completionHandler: { (success: Bool!) -> Void in
-            if((success) == false){
+            if ((success) == false){
                self.displayAlertWithTitle("", message: "Connection could not be established")
                self.closeView()
             }
@@ -193,7 +210,7 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         
         NSNotificationCenter.defaultCenter().removeObserver(self, name: multiScreenManager.serviceConnectedObserverIdentifier, object: nil)
         
-        if(multiScreenManager.isConnected){
+        if (multiScreenManager.isConnected){
             multiScreenManager.stopSearching()
         }
         

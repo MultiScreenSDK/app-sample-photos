@@ -147,10 +147,10 @@
                             </constraints>
                         </view>
                         <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="IF1-Mc-qAF">
-                            <rect key="frame" x="64" y="284" width="192" height="174"/>
+                            <rect key="frame" x="64" y="284" width="192" height="155"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="174" id="xfI-cq-36P"/>
+                                <constraint firstAttribute="height" constant="155" id="xfI-cq-36P"/>
                             </constraints>
                             <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>

@@ -201,11 +201,13 @@ class MSFDiscoveryProvider: ServiceSearchProviderBase {
                         if !unresolvedServices.containsObject(sid) {
                             unresolvedServices.addObject(sid)
                             Service.getByURI(uri, timeout: NSTimeInterval(1)) { [unowned self] (service, error) -> Void in
-                                if service != nil {
-                                    self.unresolvedServices.removeObject(sid)
-                                    self.services[sid] = NSDate(timeIntervalSinceNow: NSTimeInterval(ttl/1000.0))
-                                    self.delegate?.onServiceFound(service!, provider: self)
-                                }
+                                dispatch_async(self.accessQueue, { () -> Void in
+                                    if service != nil {
+                                        self.unresolvedServices.removeObject(sid)
+                                        self.services[sid] = NSDate(timeIntervalSinceNow: NSTimeInterval(ttl/1000.0))
+                                        self.delegate?.onServiceFound(service!, provider: self)
+                                    }
+                                })
                             }
                         }
                     } else {

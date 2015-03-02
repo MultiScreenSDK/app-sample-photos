@@ -1,10 +1,26 @@
-//
-//  Gallery.swift
-//  multiscreen-demo
-//
-//  Created by Raul Mantilla on 14/01/15.
-//  Copyright (c) 2015 Koombea. All rights reserved.
-//
+/*
+
+Copyright (c) 2014 Samsung Electronics
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+*/
 
 import UIKit
 import AssetsLibrary
@@ -58,17 +74,17 @@ class Gallery: NSObject {
         let enumGroupBlock: ALAssetsLibraryGroupsEnumerationResultsBlock = {(assetsGroup: ALAssetsGroup!, stop: UnsafeMutablePointer<ObjCBool>) -> Void in
             if (assetsGroup != nil) {
                 
-                if(assetsGroup.numberOfAssets() > 0){
+                if (assetsGroup.numberOfAssets() > 0){
                     
                     /// Set the Camera Roll to the first position
-                    if(UInt32(assetsGroup.valueForProperty("ALAssetsGroupPropertyType").intValue) == ALAssetsGroupSavedPhotos){
+                    if (UInt32(assetsGroup.valueForProperty("ALAssetsGroupPropertyType").intValue) == ALAssetsGroupSavedPhotos){
                         /// set this album not expanded
                         tempIsAlbumExpandedAtIndex.insert(true, atIndex: 0)
                         /// Adding the assetGroup to the album Array
                         self.albums.insert(assetsGroup, atIndex: 0)
                         /// Adding the number of photos by album assetGroup
                         self.numberOfAssetsAtAlbumIndex.insert(assetsGroup.numberOfAssets(), atIndex: 0)
-                    }else{
+                    } else {
                         /// set this album not expanded
                         tempIsAlbumExpandedAtIndex.append(false)
                         /// Adding the assetGroup to the album Array
@@ -77,9 +93,9 @@ class Gallery: NSObject {
                         self.numberOfAssetsAtAlbumIndex.append(assetsGroup.numberOfAssets())
                     }
                 }
-            }else{
+            } else {
                 
-                if(self.isAlbumExpandedAtIndex.count != tempIsAlbumExpandedAtIndex.count){
+                if (self.isAlbumExpandedAtIndex.count != tempIsAlbumExpandedAtIndex.count){
                     self.isAlbumExpandedAtIndex = tempIsAlbumExpandedAtIndex
                 }
                 
@@ -102,10 +118,6 @@ class Gallery: NSObject {
         })
     }
     
-    func reverseArray(arrayObject: Array<AnyObject>) -> Array<AnyObject>{
-        return arrayObject.reverse()
-    }
-    
     /// Returns the album name
     /// :param:  album index
     /// :return: the album name
@@ -124,7 +136,7 @@ class Gallery: NSObject {
     func requestImageAtIndex(album: Int, index: Int, containerId:Int, isThumbnail: Bool, completionHandler: ((UIImage!, [NSObject: AnyObject]!, Int, Int) -> Void)!){
         
         
-        if(albums.count > album && numberOfAssetsAtAlbumIndex.count > 0 && numberOfAssetsAtAlbumIndex[album] > index){
+        if (albums.count > album && numberOfAssetsAtAlbumIndex.count > 0 && numberOfAssetsAtAlbumIndex[album] > index){
             
             let assetsGroup:ALAssetsGroup = albums[album]
             
@@ -135,10 +147,10 @@ class Gallery: NSObject {
                     
                     var image: UIImage
                     
-                    if(isThumbnail){
+                    if (isThumbnail){
                         // If is a thumbnail then retrieve a small size photo
                         image = self.thumnailForAsset(asset)
-                    }else{
+                    } else {
                         // Retrieve a medium size photo
                         image = self.imageForAsset(asset)
                     }
@@ -148,7 +160,7 @@ class Gallery: NSObject {
                     })
                 }
             })
-        }else{
+        } else {
             dispatch_async(dispatch_get_main_queue(),{
                 return completionHandler(nil, nil, index, containerId)
             })

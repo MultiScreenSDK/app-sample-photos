@@ -20,7 +20,7 @@
                     <rect key="frame" x="60" y="147" width="200" height="288"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mVd-oP-mLL">
-                            <rect key="frame" x="0.0" y="0.0" width="200" height="48"/>
+                            <rect key="frame" x="0.0" y="0.0" width="200" height="45"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This app works with 2015 J Series Samsung SmartTVs." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="181" translatesAutoresizingMaskIntoConstraints="NO" id="uMi-hR-hhs">
                                     <rect key="frame" x="8" y="3" width="181" height="37"/>
@@ -30,12 +30,15 @@
                                 </label>
                             </subviews>
                             <color key="backgroundColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="q6E-4T-AU8"/>
+                            </constraints>
                         </view>
-                        <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="42" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="LCb-Cx-4HR">
-                            <rect key="frame" x="0.0" y="45" width="200" height="216"/>
+                        <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="42" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="LCb-Cx-4HR">
+                            <rect key="frame" x="0.0" y="45" width="200" height="239"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="216" id="YHW-RD-sOl"/>
+                                <constraint firstAttribute="height" constant="239" id="YHW-RD-sOl"/>
                             </constraints>
                             <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -51,7 +54,6 @@
                         <constraint firstItem="LCb-Cx-4HR" firstAttribute="top" secondItem="DcW-Ej-cDq" secondAttribute="top" constant="45" id="HJf-GL-6Is"/>
                         <constraint firstItem="LCb-Cx-4HR" firstAttribute="leading" secondItem="DcW-Ej-cDq" secondAttribute="leading" id="I4R-uK-jkN"/>
                         <constraint firstItem="LCb-Cx-4HR" firstAttribute="trailing" secondItem="mVd-oP-mLL" secondAttribute="trailing" id="f3V-oK-Hid"/>
-                        <constraint firstItem="LCb-Cx-4HR" firstAttribute="bottom" secondItem="mVd-oP-mLL" secondAttribute="bottom" constant="213" id="hV5-Uv-tH5"/>
                         <constraint firstItem="LCb-Cx-4HR" firstAttribute="leading" secondItem="mVd-oP-mLL" secondAttribute="leading" id="kpD-Uq-GVz"/>
                         <constraint firstAttribute="height" constant="288" id="yMv-Sa-bQ5"/>
                         <constraint firstItem="mVd-oP-mLL" firstAttribute="top" secondItem="DcW-Ej-cDq" secondAttribute="top" id="ygZ-zO-zs8"/>

@@ -477,7 +477,7 @@ class RPCResultHandler {
                     isConnected = true
                     startConnectionAliveCheck()
                     delegate?.onConnect?(me, error: nil)
-                    NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: message.event, object: self, userInfo: ["client": me] ))
+                    NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: ChannelEvent.Connect.rawValue, object: self, userInfo: ["client": me] ))
                 }
                 delegate?.onReady?()
                 NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: message.event, object: self))

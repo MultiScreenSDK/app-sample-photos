@@ -1,10 +1,26 @@
-//
-//  PhotoFullScreenVC.swift
-//  multiscreen-demo
-//
-//  Created by Raul Mantilla on 14/01/15.
-//  Copyright (c) 2015 Koombea. All rights reserved.
-//
+/*
+
+Copyright (c) 2014 Samsung Electronics
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+*/
 
 import UIKit
 
@@ -63,12 +79,12 @@ class PhotoFullScreenPagerVC: BaseVC, UIPageViewControllerDataSource, UIPageView
     // Request for photo library access and retrieving albums
     func retrieveAlbums(){
         gallery.retrieveAlbums { (result: Bool!) -> Void in
-            if(result == true){
+            if (result == true){
                 //number of assets in current album
-                if(self.gallery.albums.count <= self.currentAlbumIndex || self.gallery.numberOfAssetsAtAlbumIndex[self.currentAlbumIndex] != self.numberOfAssets){
+                if (self.gallery.albums.count <= self.currentAlbumIndex || self.gallery.numberOfAssetsAtAlbumIndex[self.currentAlbumIndex] != self.numberOfAssets){
                     self.goBack()
                 }
-            }else{
+            } else {
                 self.displayAlertWithTitle("Access", message: "Could not access the photo library")
             }
         }
@@ -190,7 +206,7 @@ class PhotoFullScreenPagerVC: BaseVC, UIPageViewControllerDataSource, UIPageView
     func showNavigationBar(){
         if ((self.navigationController?.navigationBar.hidden) == true){
             self.navigationController?.setNavigationBarHidden(false, animated: true)
-        }else{
+        } else {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
             
         }
@@ -215,7 +231,7 @@ class PhotoFullScreenPagerVC: BaseVC, UIPageViewControllerDataSource, UIPageView
     /// Method used to send the current Photo to the TV
     func sendToTv() {
         /// Check if there is an application current connected
-        if(multiScreenManager.isConnected == true){
+        if (multiScreenManager.isConnected == true){
             /// Set the current photo index
             /// Request the current image at index, from the device photo album
             gallery.requestImageAtIndex(currentAlbumIndex, index: currentIndex, containerId: 0, isThumbnail: false, completionHandler: {(image: UIImage!, info: [NSObject: AnyObject]!, assetIndex: Int, containerId: Int ) -> Void in
