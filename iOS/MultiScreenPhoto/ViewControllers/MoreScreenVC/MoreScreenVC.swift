@@ -102,14 +102,15 @@ class MoreScreenVC: UIViewController, MFMailComposeViewControllerDelegate {
     
     /// Method used to capture the event when the email is clicked
     @IBAction func contactEmail(sender: UIButton) {
-        
-        var picker = MFMailComposeViewController()
-        picker.mailComposeDelegate = self
-        picker.setToRecipients(["multiscreen@sisa.samsung.com"])
-        picker.setSubject("")
-        picker.setMessageBody("", isHTML: true)
-        
-        presentViewController(picker, animated: true, completion: nil)
+        if(MFMailComposeViewController.canSendMail()) {
+            var picker = MFMailComposeViewController()
+            picker.mailComposeDelegate = self
+            picker.setToRecipients(["multiscreen@sisa.samsung.com"])
+            picker.setSubject("")
+            picker.setMessageBody("", isHTML: true)
+            
+            presentViewController(picker, animated: true, completion: nil)
+        }
     }
     
     // MFMailComposeViewControllerDelegate
