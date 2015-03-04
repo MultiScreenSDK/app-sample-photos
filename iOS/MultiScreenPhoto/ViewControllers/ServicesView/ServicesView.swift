@@ -197,9 +197,6 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
     /// this will close the current service connection
     @IBAction func  closeApplication(){
         multiScreenManager.closeApplication({ (success: Bool!) -> Void in
-            /// Post a notification to the NSNotificationCenter
-            /// this notification is used to update the cast icon
-            NSNotificationCenter.defaultCenter().postNotificationName(self.multiScreenManager.servicesChangedObserverIdentifier, object: self)
             self.closeView()
         })
     }

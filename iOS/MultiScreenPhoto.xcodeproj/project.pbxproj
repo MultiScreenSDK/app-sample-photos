@@ -260,7 +260,7 @@
 		9AC49E781A71A5F500F391C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9ADE3DC51AA4FBBC00EA5132 /* MSF2.0.18 */,
+				9ADE3DC51AA4FBBC00EA5132 /* MSF */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -345,12 +345,13 @@
 			path = ServicesView;
 			sourceTree = "<group>";
 		};
-		9ADE3DC51AA4FBBC00EA5132 /* MSF2.0.18 */ = {
+		9ADE3DC51AA4FBBC00EA5132 /* MSF */ = {
 			isa = PBXGroup;
 			children = (
 				9ADE3DC61AA4FBBC00EA5132 /* common */,
 				9ADE3DD51AA4FBBC00EA5132 /* deps */,
 			);
+			name = MSF;
 			path = MSF2.0.18;
 			sourceTree = "<group>";
 		};
