@@ -26,11 +26,11 @@ import UIKit
 
 /// BaseVC, it's a reusable UIViewController
 ///
-/// This class is inherited from other View Controllers to reuse methods 
+/// Base class for other View Controllers to reuse methods
 /// for the navigation bar
 class BaseVC: UIViewController, UIGestureRecognizerDelegate {
     
-    /// MultiScreenManager instance that manage the interaction with the services
+    /// MultiScreenManager instance that manages the interaction with the services
     var multiScreenManager = MultiScreenManager.sharedInstance
     
     /// UIView that contains a list of available services
@@ -47,7 +47,7 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //Method to configure the Cast icon and Settings icon
+        //configure the Cast icon and Settings icon
         setCastIcon()
     }
     
@@ -59,14 +59,16 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
         setCastIcon()
     }
     
-    /// Remove observer when viewDidDisappear
+    
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
+        
+        // Remove observer
         NSNotificationCenter.defaultCenter().removeObserver(self, name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
     }
     
-    /// Method called by the servicesChanged observer
     /// Add or remove the cast icon from the Navigation bar
+    /// Called by the servicesChanged observer
     func setCastIcon() {
         
         /// Configuring setting icon
@@ -84,7 +86,7 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
         addSpacerButton.width = 20
         
         /// Configuring cast icon
-        /// Check if there is services availables
+        /// Show cast icon only if atleast one service/TV is available
         if (multiScreenManager.services.count > 0 || multiScreenManager.isConnected){
             
             /// Check if there is an application current connected
@@ -106,9 +108,9 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    /// Method to show a list of available services
-    /// User can connect to a selected service
-    /// User can disconnect from a selected service
+    /// Shows a list of available services
+    /// User can connect to a service
+    /// User can disconnect from a connected service
     func showCastMenuView(){
         /// UIView that contains a list of available services
         var viewArray = NSBundle.mainBundle().loadNibNamed("ServicesView", owner: self, options: nil)
@@ -119,7 +121,7 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
         addUIViewToWindowSuperView(servicesView)
     }
     
-    /// Method to show the More menu
+    /// Show the More menu
     func showMoreMenuView(){
         
         /// UIView that contains a list of options
@@ -150,15 +152,15 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
         addUIViewToWindowSuperView(moreMenuView)
     }
     
-    /// Method used to close the more menu view
+    /// Closes more menu view
     func closeMoreMenuView(){
         moreMenuView.removeFromSuperview()
     }
     
-    /// Method that shows a How to use tutorial
+    /// Shows How to use tutorial
     func goToMoreScreenVC(){
         
-        /// Method used to close the more menu view
+        /// Close the more menu view
         closeMoreMenuView()
         
         /// UIViewController that contains a detailed tutorial
@@ -167,7 +169,7 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
     }
     
     
-    /// Method that displays an Alert dialogs
+    /// Displays an Alert dialog
     func displayAlertWithTitle( title: NSString, message: NSString) {
         alertView = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: "OK")
         alertView.alertViewStyle = .Default

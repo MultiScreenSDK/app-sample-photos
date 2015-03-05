@@ -57,14 +57,14 @@ class HomePhotoGalleryHeaderView: UITableViewHeaderFooterView {
         setArrowIcon()
     }
     
-    /// Method used to capture the event when a header is clicked
+    /// Capture the event when a header is clicked
     @IBAction func selectedButton(sender: UIButton) {
         state = !state
         setArrowIcon()
         delegate.headerClicked(section)
     }
     
-    /// Method used to change the imageViewArrow depending of the current album state
+    /// Change the imageViewArrow depending on the current album state
     func setArrowIcon(){
         if (state == true){
             imageViewArrow.image = UIImage(named: "icon_arrow_up")!

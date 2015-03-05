@@ -34,9 +34,9 @@ class Gallery: NSObject {
     var assetsLibrary: ALAssetsLibrary! = ALAssetsLibrary()
     /// Array of albums
     var albums: [ALAssetsGroup] = []
-    /// Array of numbers of assets by album
+    /// Array of number of assets by album
     var numberOfAssetsAtAlbumIndex: [Int] = []
-    /// Array of albums state (true, false)
+    /// Array of albums expanded state (true, false)
     var isAlbumExpandedAtIndex: [Bool] = []
     
     /// Gallery shared instance used as singleton
@@ -67,7 +67,7 @@ class Gallery: NSObject {
         albums.removeAll(keepCapacity: false)
         numberOfAssetsAtAlbumIndex.removeAll(keepCapacity: false)
         
-        /// Temporal array of albums state (true, false)
+        /// Temporay array of albums expanded state (true, false)
         var tempIsAlbumExpandedAtIndex: [Bool] = []
         
         /// Enumeration Block
@@ -148,8 +148,8 @@ class Gallery: NSObject {
                     var image: UIImage
                     
                     if (isThumbnail){
-                        // If is a thumbnail then retrieve a small size photo
-                        image = self.thumnailForAsset(asset)
+                        // If it is a thumbnail then retrieve a small size photo
+                        image = self.thumbnailForAsset(asset)
                     } else {
                         // Retrieve a medium size photo
                         image = self.imageForAsset(asset)
@@ -179,7 +179,7 @@ class Gallery: NSObject {
             cgImage = assetRep.fullScreenImage().takeUnretainedValue()
             return UIImage(CGImage: cgImage)!
         }
-        return thumnailForAsset(asset)
+        return thumbnailForAsset(asset)
     }
     
     
@@ -187,7 +187,7 @@ class Gallery: NSObject {
     ///
     /// :param: ALAsset
     /// :return: UIImage to be displayed
-    func thumnailForAsset(asset: ALAsset!) -> UIImage{
+    func thumbnailForAsset(asset: ALAsset!) -> UIImage{
         var cgImage: CGImageRef
         if (asset.thumbnail() != nil){
             cgImage = asset.aspectRatioThumbnail().takeUnretainedValue()

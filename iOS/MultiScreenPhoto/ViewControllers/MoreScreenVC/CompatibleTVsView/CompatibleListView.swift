@@ -111,7 +111,7 @@ class CompatibleListView: UIView, UITableViewDelegate, UITableViewDataSource, UI
     }
     
     
-    /// Method used to close the current View
+    /// Closes the current View
     func closeView() {
         self.removeFromSuperview()
     }

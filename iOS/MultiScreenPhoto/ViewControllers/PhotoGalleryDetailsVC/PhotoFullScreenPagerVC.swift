@@ -71,7 +71,7 @@ class PhotoFullScreenPagerVC: BaseVC, UIPageViewControllerDataSource, UIPageView
         view.addSubview(pageViewController!.view)
         pageViewController!.didMoveToParentViewController(self)
         
-        /// Used to diable the scrollview auto Adjusts
+        /// Used to disable the scrollview auto Adjusts
         self.automaticallyAdjustsScrollViewInsets = false;
      
     }
@@ -92,7 +92,7 @@ class PhotoFullScreenPagerVC: BaseVC, UIPageViewControllerDataSource, UIPageView
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        // Method to setup the navigation bar color and font
+        // Setup the navigation bar color and font
         setUpNavigationBar()
         
         // Start timer to send the image to the TV
@@ -102,11 +102,9 @@ class PhotoFullScreenPagerVC: BaseVC, UIPageViewControllerDataSource, UIPageView
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Add an observer to retreive the album when the app EnterForeground
-        // Add an observer to retreive the album when the app EnterForeground
+        // Add an observer to retreive the album when the app Enter Foreground
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "retrieveAlbums", name: UIApplicationWillEnterForegroundNotification, object: nil)
         
-        // Add an observer to check for if a tv is connected
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "sendToTv", name: multiScreenManager.serviceConnectedObserverIdentifier, object: nil)
     }
     
@@ -117,7 +115,7 @@ class PhotoFullScreenPagerVC: BaseVC, UIPageViewControllerDataSource, UIPageView
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
     
-    /// Method to setup the navigation bar color and font
+    /// Setup the navigation bar color and font
     func setUpNavigationBar(){
         
         //Translucent Navigation Bar
@@ -134,7 +132,7 @@ class PhotoFullScreenPagerVC: BaseVC, UIPageViewControllerDataSource, UIPageView
         self.navigationItem.leftBarButtonItems = [addBackButton]
         
     }
-    /// Method used to dismiss the current view controller
+    /// Dismiss the current view controller
     func goBack(){
         self.navigationController?.popViewControllerAnimated(true)
     }
@@ -182,7 +180,7 @@ class PhotoFullScreenPagerVC: BaseVC, UIPageViewControllerDataSource, UIPageView
         
     }
     
-    /// Method used to load PhotoFullScreenVC viewController to be add it to the pageViewController
+    /// Load PhotoFullScreenVC viewController to be added to the pageViewController
     /// The returned viewController is the one that displays the photo
     func viewControllerAtIndex(index: Int) -> PhotoFullScreenVC?
     {
@@ -195,14 +193,14 @@ class PhotoFullScreenPagerVC: BaseVC, UIPageViewControllerDataSource, UIPageView
         let pageContentViewController = PhotoFullScreenVC()
          pageContentViewController.delegate = self
         
-        // Pass the image index to be load
+        // Pass the image index to be loaded
         pageContentViewController.pageIndex = index
         pageContentViewController.pageAlbumIndex = currentAlbumIndex
         
         return pageContentViewController
     }
     
-    /// Method used to display the hidden navigation bar
+    /// Display the hidden navigation bar
     func showNavigationBar(){
         if ((self.navigationController?.navigationBar.hidden) == true){
             self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -212,25 +210,25 @@ class PhotoFullScreenPagerVC: BaseVC, UIPageViewControllerDataSource, UIPageView
         }
     }
     
-    /// Method used to update current visible index
+    /// Update current visible index
     func updateCurrentIndex(index: Int){
         currentIndex = index
     }
     
-    /// Method used to hide the navigation bar
+    /// Hide the navigation bar
     func hiddeNavBar() {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    /// Method used to start the timer to send the Photo to the TV
+    /// Start the timer to send the Photo to the TV
     func startSendImageTimer(){
         timer = NSTimer(timeInterval: 0.1, target: self, selector: Selector("sendToTv"), userInfo: nil, repeats: false)
         NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
     }
     
-    /// Method used to send the current Photo to the TV
+    /// Send the current Photo to the TV
     func sendToTv() {
-        /// Check if there is an application current connected
+        /// Check if there is an application currently connected
         if (multiScreenManager.isConnected == true){
             /// Set the current photo index
             /// Request the current image at index, from the device photo album

@@ -49,13 +49,13 @@ class MoreScreenVC: UIViewController, MFMailComposeViewControllerDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        // Method to setup the navigation bar color and fonts
+        // Setup the navigation bar color and fonts
         setUpNavigationBar()
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
-    // Method to setup the navigation bar color and fonts
+    // Setup the navigation bar color and fonts
     func setUpNavigationBar(){
         
         /// Set the Navigation Bar color
@@ -73,12 +73,12 @@ class MoreScreenVC: UIViewController, MFMailComposeViewControllerDelegate {
         self.navigationItem.leftBarButtonItems = [addBackButton]
         
     }
-    /// Method used to close the current View
+    /// Close the current View
     func goBack(){
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    /// Method used to capture the event when the compatibleButton button is clicked
+    /// Capture the event when the compatibleButton is clicked
     /// If it was clicked then displays the CompatibleListView
     @IBAction func compatibleDevices(sender: AnyObject) {
         compatibleListView = NSBundle.mainBundle().loadNibNamed("CompatibleListView", owner: self, options: nil)[0] as? UIView
@@ -100,7 +100,7 @@ class MoreScreenVC: UIViewController, MFMailComposeViewControllerDelegate {
         window?.subviews[0].addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[view]|", options: NSLayoutFormatOptions(0), metrics: nil, views: compatibleListViewDict))
     }
     
-    /// Method used to capture the event when the email is clicked
+    /// Capture the event when the email is clicked
     @IBAction func contactEmail(sender: UIButton) {
         if(MFMailComposeViewController.canSendMail()) {
             var picker = MFMailComposeViewController()

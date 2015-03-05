@@ -102,7 +102,7 @@ class PhotoFullScreenVC: UIViewController, UIScrollViewDelegate, UIGestureRecogn
         updateScrollView()
     }
     
-    /// Method used to set the scrollView zooming scale and content size
+    /// Set the scrollView zooming scale and content size
     func updateScrollView(){
         
         if ((image) != nil){
@@ -122,7 +122,7 @@ class PhotoFullScreenVC: UIViewController, UIScrollViewDelegate, UIGestureRecogn
         centerScrollViewContents()
     }
 
-    /// Method used to center the scrollView Image to the content frame
+    /// Center the scrollView Image to the content frame
     func centerScrollViewContents() {
         var offsetX = max((scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5, 0.0);
         var offsetY = max((scrollView.bounds.size.height - scrollView.contentSize.height) * 0.5, 0.0);
@@ -131,7 +131,7 @@ class PhotoFullScreenVC: UIViewController, UIScrollViewDelegate, UIGestureRecogn
             scrollView.contentSize.height * 0.5 + offsetY);
     }
     
-    /// Method used to show the hidden navigation bar
+    /// Show the hidden navigation bar
     func showNavigationBar(){
         delegate.showNavigationBar()
     }

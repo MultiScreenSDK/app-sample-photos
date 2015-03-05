@@ -47,7 +47,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
     
     let screenSize: CGRect = UIScreen.mainScreen().bounds
     
-    // Used to calculate the size of the large photo depending of the screen size
+    // Used to calculate the size of the large photo depending on the screen size
     let screenSizeDivisor = CGFloat(2.03)
    
     //Gallery Instance, this instance contains an Array of albums
@@ -63,7 +63,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         //Start searching for avaliables services in the network
         multiScreenManager.startSearching()
         
-        // Request for photo library access and retrieving albums
+        // Request for photo library access and retrieve the albums
         retrieveAlbums()
         
         self.tableView.registerNib(UINib(nibName: reuseIdentifierForHeaderView, bundle: nil), forHeaderFooterViewReuseIdentifier: reuseIdentifierForHeaderView);
@@ -71,7 +71,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
     }
     
     
-    // Request for photo library access and retrieving albums
+    // Request for photo library access and retrieve the albums
     func retrieveAlbums(){
         gallery.retrieveAlbums { (result: Bool!) -> Void in
             if (result == true){
@@ -85,12 +85,12 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Add an observer to retreive the album when the app EnterForeground
+        // Add an observer to retreive the album when the app Enter Foreground
          NSNotificationCenter.defaultCenter().addObserver(self, selector: "retrieveAlbums", name: UIApplicationWillEnterForegroundNotification, object: nil)
         
         let defaults = NSUserDefaults.standardUserDefaults()
         
-        // Display Welcome View only one time
+        // Display Welcome View only the first time
         if (!defaults.boolForKey("hideWelcomeView")){
             /// UIView that contains the welcome view
             welcomeView = NSBundle.mainBundle().loadNibNamed("WelcomeView", owner: self, options: nil)[0] as? UIView
@@ -112,7 +112,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Method to setup the navigation bar color and fonts
+        // Setup the navigation bar color and fonts
         setUpNavigationBar()
         
         // Calculate the cell size
@@ -128,7 +128,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
     }
     
     
-    // Method to setup the navigation bar color and fonts
+    // Setup the navigation bar color and fonts
     func setUpNavigationBar(){
        
         //Navigation Bar
@@ -150,7 +150,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         
     }
     
-    /// Method used to calculate the number of rows for a given section and number of assets for album
+    /// Calculate the number of rows for a given section and number of assets for album
     func numberOfRowsInSection(section: Int) -> Int{
         if (gallery.albums.count > 0 && gallery.isAlbumExpandedAtIndex[section]){
             var numRow = Double(gallery.numberOfAssetsAtAlbumIndex[section]) / 5
@@ -187,7 +187,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         
         var cell: HomePhotoGalleryVCCell
         
-        // Selecting the correct cell layout depending of the current index
+        // Selecting the correct cell layout depending on the current index
         if (indexPath.row % 2 == 0){
             cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifierTVCell1) as HomePhotoGalleryVCCell
         } else {
@@ -247,7 +247,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
     }
     
     
-    // Method called from header delegate to collapse o expand the row
+    // Method called from header delegate to collapse or expand the row
     func headerClicked(section: Int){
         if (gallery.isAlbumExpandedAtIndex[section]){
             collapseSection(section)
@@ -309,7 +309,7 @@ class HomePhotoGalleryVC: BaseVC, UITableViewDataSource, UITableViewDelegate, UI
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
-    /// Used to calculate the cell Size, depending of the orientation
+    /// Used to calculate the cell Size, depending on the orientation
     override func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
         if UIDevice.currentDevice().orientation.isLandscape.boolValue {
             cellHeight = screenSize.size.height/screenSizeDivisor

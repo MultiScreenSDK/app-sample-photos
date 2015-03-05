@@ -26,13 +26,13 @@ import UIKit
 
 /// WelcomeView
 ///
-/// This class is used to show the 'Welcome' view the first time the app runs
+/// This class is used to show the 'Welcome' view, the first time the app runs
 class WelcomeView: UIView {
     
     // UIButton the close the current view when clicked
     @IBOutlet weak var getStartButton: UIButton!
     
-    /// Methos used to close the current View
+    /// Close the current View
     @IBAction func getStart(sender: UIButton) {
         self.removeFromSuperview()
     }

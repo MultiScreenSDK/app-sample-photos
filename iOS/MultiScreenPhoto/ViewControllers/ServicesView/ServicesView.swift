@@ -27,7 +27,7 @@ import UIKit
 
 /// ServicesView
 ///
-/// This class is used to display a list of near services in the same Network
+/// This class is used to display a list of services/TVs in the same Network
 class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
     
     /// MultiScreenManager instance that manage the interaction with the services
@@ -53,7 +53,7 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
     /// Disconnect button
     @IBOutlet weak var disconnectButton: UIButton!
     
-    /// Used to displays an activy indicator while connecting
+    /// Used to display an activy indicator while connecting
     @IBOutlet weak var connectingIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var lineImage: UIImageView!
@@ -66,7 +66,7 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         // Add an observer to check for services status and manage the cast icon
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshTableView", name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
         
-        // Add an observer to check for if a tv is connected
+        // Add an observer to check if a tv is connected
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "serviceConnected", name: multiScreenManager.serviceConnectedObserverIdentifier, object: nil)
         
         /// Adding border and color to disconnect button
@@ -100,13 +100,13 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         
     }
     
-    /// Method used to reload table view with services not connected
+    /// Reload table view with services not connected
     func refreshTableView(){
         
         /// Populate Temp services array with services not connected
         services = multiScreenManager.servicesNotConnected()
         
-        /// Used to change the Cast icon, depending is a service is connected or not
+        /// Used to change the Cast icon, depending on whether a service is connected or not
         if (multiScreenManager.isConnected){
             title.text = "Connected to:"
             icon.image = UIImage(named: "icon_cast_connect")
@@ -193,7 +193,7 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         })
     }
     
-    /// Method used to capture the event when the disconnectButton button is clicked
+    /// Capture the event when the disconnectButton button is clicked
     /// this will close the current service connection
     @IBAction func  closeApplication(){
         multiScreenManager.closeApplication({ (success: Bool!) -> Void in
@@ -201,7 +201,7 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         })
     }
     
-    /// Method used to close the current View
+    /// Close the current View
     func closeView() {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
         
@@ -223,7 +223,7 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         return false
     }
     
-    /// Method that displays an Alert dialogs
+    /// Displays an Alert dialog
     func displayAlertWithTitle( title: NSString, message: NSString) {
         var  alertView:UIAlertView = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: "OK")
         alertView.alertViewStyle = .Default

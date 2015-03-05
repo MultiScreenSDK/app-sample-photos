@@ -39,23 +39,24 @@ class MultiScreenManager: NSObject, ServiceSearchDelegate, ChannelDelegate {
     /// Search service instance
     let search = Service.search()
     
-    /// Name of the observer identifier for service found
+    /// Name of the observer identifier for services found
     let servicesChangedObserverIdentifier: String = "servicesChanged"
     
-    /// Name of the observer identifier for service found
+    /// Name of the observer identifier for service connected
     let serviceConnectedObserverIdentifier: String = "serviceConnected"
     
-    // Array of services
+    /// Array of services/TVs
     var services = [Service]()
     
-    // Current service connected
+
+    /// returns the status if the channel/app is connected
     var isConnected: Bool {
         get {
            return app != nil && app!.isConnected;
         }
     }
     
-    // is an Application connected
+    /// returns the currently connected service
     var currentService: Service {
         get {
             return app.service
@@ -86,12 +87,12 @@ class MultiScreenManager: NSObject, ServiceSearchDelegate, ChannelDelegate {
         NSNotificationCenter.defaultCenter().postNotificationName(servicesChangedObserverIdentifier, object: self)
     }
     
-    /// Start searching for services inside the Wifi network
+    /// Start the search for services/TVs
     func startSearching(){
         search.start()
     }
     
-    // Stop searching for services inside the Wifi network
+    /// Stop the search for services/TVs
     func stopSearching(){
         search.stop()
         services.removeAll(keepCapacity: false)
@@ -99,14 +100,14 @@ class MultiScreenManager: NSObject, ServiceSearchDelegate, ChannelDelegate {
         postNotification()
     }
     
-    //onServiceLost delegate method
+    /// onServiceLost delegate method
     func onServiceLost(service: Service) {
         removeObject(&services, object: service)
         /// post a notification to the NSNotificationCenter
         postNotification()
     }
     
-    //onServiceFound delegate method
+    /// onServiceFound delegate method
     func onServiceFound(service: Service) {
         services.append(service)
         /// post a notification to the NSNotificationCenter
@@ -132,7 +133,6 @@ class MultiScreenManager: NSObject, ServiceSearchDelegate, ChannelDelegate {
             NSNotificationCenter.defaultCenter().postNotificationName(serviceConnectedObserverIdentifier, object: self)
             /// post a notification to the NSNotificationCenter
             postNotification()
-            
         }
     }
     
@@ -142,7 +142,7 @@ class MultiScreenManager: NSObject, ServiceSearchDelegate, ChannelDelegate {
         postNotification()
     }
     
-    /// Return all services availables but not current connected
+    /// Return all services availables but not currently connected
     ///
     /// :return: Array of Services
     func servicesNotConnected() -> [Service]{
