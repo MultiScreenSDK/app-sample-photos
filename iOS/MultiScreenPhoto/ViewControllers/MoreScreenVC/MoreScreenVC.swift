@@ -110,6 +110,8 @@ class MoreScreenVC: UIViewController, MFMailComposeViewControllerDelegate {
             picker.setMessageBody("", isHTML: true)
             
             presentViewController(picker, animated: true, completion: nil)
+        } else {
+            self.displayAlertWithTitle("", message: "Please set up a Mail account in order to send email")
         }
     }
     
@@ -128,5 +130,11 @@ class MoreScreenVC: UIViewController, MFMailComposeViewControllerDelegate {
         }
     }
 
+    /// Displays an Alert dialog
+    func displayAlertWithTitle( title: NSString, message: NSString) {
+        var  alertView:UIAlertView = UIAlertView(title: title, message: message, delegate: self, cancelButtonTitle: "OK")
+        alertView.alertViewStyle = .Default
+        alertView.show()
+    }
     
 }
