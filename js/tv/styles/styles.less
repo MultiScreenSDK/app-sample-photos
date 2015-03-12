@@ -48,3 +48,20 @@ body{
   max-height:100%;
   display:none;
 }
+
+.progress {
+  position: relative;
+  bottom: 10%;
+  width: 164px;
+  height: 23px;
+  margin: 0 auto 0 auto;
+  background-image: url("../images/undulateprogress.png");
+  background-repeat: no-repeat;
+
+  -webkit-animation: undulate 2.5s steps(59) infinite;
+}
+
+@-webkit-keyframes undulate {
+  from { background-position: 0px 0px; }
+  to { background-position: 0px -1357px; }
+}

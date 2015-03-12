@@ -101,6 +101,8 @@ $(function () {
         ui.filePhoto.on('change', function(event){
             var file = event.target.files[0];
             if (file) {
+                // Let the TV know a photo is coming
+                app.publish('photoTransfer');
 
                 // Publish the file to the channel
                 app.publish('showPhoto', {}, 'broadcast', file);
