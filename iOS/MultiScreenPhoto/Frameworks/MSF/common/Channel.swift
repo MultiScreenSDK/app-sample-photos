@@ -570,14 +570,17 @@ class RPCResultHandler {
     internal func checkConnectionAlive() {
         if lastPingDate == nil {
             stopConnectionAliveCheck()
-            transport.close(force: true)
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0)) { [unowned self]  () -> Void in
+                self.transport.close(force: true)
+            }
         } else {
             if isConnected && me != nil {
                 lastPingDate = nil
-                self.emit(event: ChannelEvent.Ping.rawValue, message: "", target: self.me, data: nil)
+                emit(event: ChannelEvent.Ping.rawValue, message: "", target: me, data: nil)
             }
         }
     }
+
 }
 
 
