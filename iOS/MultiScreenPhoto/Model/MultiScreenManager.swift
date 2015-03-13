@@ -198,6 +198,7 @@ class MultiScreenManager: NSObject, ServiceSearchDelegate, ChannelDelegate {
     /// :param: UIImage to be sent
     func sendPhotoToTv(image: UIImage){
         if (isConnected){
+            app.publish(event: "photoTransfer", message: nil)
             app.publish(event: "showPhoto", message: nil, data: UIImageJPEGRepresentation(image, 0.6), target: MessageTarget.Host.rawValue)
         }
     }
