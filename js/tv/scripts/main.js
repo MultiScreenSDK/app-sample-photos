@@ -4,6 +4,7 @@ $(function(){
 
     var prevImage;
     var imgContainer = $('#imgContainer');
+    var progress = $('#undulatingProgress');
     var EXIF = window.EXIF;
 
     window.msf.local(function(err, service){
@@ -14,7 +15,12 @@ $(function(){
             if(err) return console.error(err);
         });
 
+        channel.on('photoTransfer',function(){
+            progress.addClass('progress');
+        });
+
         channel.on('showPhoto',function(msg, from, payload){
+            progress.removeClass('progress');
             showPhoto(payload);
         });
 
