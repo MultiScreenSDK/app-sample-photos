@@ -196,9 +196,10 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
     /// Capture the event when the disconnectButton button is clicked
     /// this will close the current service connection
     @IBAction func  closeApplication(){
-        multiScreenManager.closeApplication({ (success: Bool!) -> Void in
+        multiScreenManager.closeApplication({ [unowned self](success: Bool!) -> Void in
             self.closeView()
         })
+        
     }
     
     /// Close the current View

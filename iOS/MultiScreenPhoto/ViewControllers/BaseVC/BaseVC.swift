@@ -42,13 +42,42 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
     /// Cast icon Image variable
     var imageCastButton: UIImage!
     
+    var imageConnectedCastButton: UIImage!
+    var imageDisconnectedCastButton: UIImage!
+    var imageSettingsButton: UIImage!
+    var settingsButton: UIButton!
+    var castButton: UIButton!
+    var addCastButton: UIBarButtonItem!
+    var addSettingsButton: UIBarButtonItem!
+    var addSpacerButton: UIBarButtonItem!
+    
     /// Alert view to displaye popup messages
     var alertView: UIAlertView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //configure the Cast icon and Settings icon
-        setCastIcon()
+        imageConnectedCastButton = UIImage(named: "icon_cast_connect")
+        imageDisconnectedCastButton = UIImage(named: "icon_cast_discovered")
+        imageSettingsButton = UIImage(named: "btn_more_menu") as UIImage?
+        
+        /// Configuring setting icon
+        settingsButton = UIButton(frame: CGRectMake(0, 0, 20, 22))
+        settingsButton.imageEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 8)
+        settingsButton.addTarget(self, action: Selector("showMoreMenuView"), forControlEvents: UIControlEvents.TouchUpInside)
+        settingsButton.setImage(imageSettingsButton, forState: UIControlState.Normal)
+        addSettingsButton = UIBarButtonItem(customView: settingsButton)
+        
+        /// Configuring Spacer between buttons
+        addSpacerButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
+        addSpacerButton.width = 20
+
+        /// Configuring cast icon
+        castButton = UIButton(frame: CGRectMake(0, 0, 22, 17))
+        castButton.addTarget(self, action: Selector("showCastMenuView"), forControlEvents: UIControlEvents.TouchUpInside)
+        castButton.setBackgroundImage(imageDisconnectedCastButton, forState: UIControlState.Normal)
+        addCastButton = UIBarButtonItem(customView: castButton)
+    
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -56,6 +85,7 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
         
         // Add an observer to check for services status and manage the cast icon
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "setCastIcon", name: multiScreenManager.servicesChangedObserverIdentifier, object: nil)
+        //configure the Cast icon and Settings icon
         setCastIcon()
     }
     
@@ -70,40 +100,18 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
     /// Add or remove the cast icon from the Navigation bar
     /// Called by the servicesChanged observer
     func setCastIcon() {
-        
-        /// Configuring setting icon
-        self.navigationItem.rightBarButtonItem = nil;
-        let imageSettingsButton = UIImage(named: "btn_more_menu") as UIImage?
-        let settingsButton = UIButton(frame: CGRectMake(0, 0, 20, 22))
-        settingsButton.imageEdgeInsets = UIEdgeInsetsMake(0, 8, 0, 8)
-        
-        settingsButton.addTarget(self, action: Selector("showMoreMenuView"), forControlEvents: UIControlEvents.TouchUpInside)
-        settingsButton.setImage(imageSettingsButton, forState: UIControlState.Normal)
-        var addSettingsButton: UIBarButtonItem = UIBarButtonItem(customView: settingsButton)
-        
-        /// Configuring Spacer between buttons
-        var addSpacerButton: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
-        addSpacerButton.width = 20
-        
-        /// Configuring cast icon
         /// Show cast icon only if atleast one service/TV is available
         if (multiScreenManager.services.count > 0 || multiScreenManager.isConnected){
             
-            /// Check if there is an application current connected
             if (multiScreenManager.isConnected == true){
-                imageCastButton = UIImage(named: "icon_cast_connect")
-            } else {
-                imageCastButton = UIImage(named: "icon_cast_discovered")
+                castButton.setBackgroundImage(imageConnectedCastButton, forState: UIControlState.Normal)
             }
-            
-            let castButton = UIButton(frame: CGRectMake(0, 0, 22, 17))
-            castButton.addTarget(self, action: Selector("showCastMenuView"), forControlEvents: UIControlEvents.TouchUpInside)
-            castButton.setBackgroundImage(imageCastButton, forState: UIControlState.Normal)
-            var addCastButton: UIBarButtonItem = UIBarButtonItem(customView: castButton)
-            
+            else {
+                castButton.setBackgroundImage(imageDisconnectedCastButton, forState: UIControlState.Normal)
+            }
             self.navigationItem.rightBarButtonItems = [addSettingsButton, addSpacerButton, addCastButton]
-        
-        } else {
+        }
+        else {
             self.navigationItem.rightBarButtonItems = [addSettingsButton]
         }
     }
