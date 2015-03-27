@@ -183,9 +183,14 @@ class ServicesView: UIView, UITableViewDelegate, UITableViewDataSource, UIGestur
         
         connectingIndicator.hidden = false
         connectingIndicator.startAnimating()
+        if (multiScreenManager.isConnected) {
+            multiScreenManager.closeApplication({ (success: Bool!) -> Void in
+                //
+            })
+        }
         title.text = "Connecting"
         /// If cell is selected then connect and start the application
-        multiScreenManager.createApplication(services[indexPath.row] as Service, completionHandler: { (success: Bool!) -> Void in
+        multiScreenManager.createApplication(services[indexPath.row] as Service, completionHandler: { [unowned self](success: Bool!) -> Void in
             if ((success) == false){
                self.displayAlertWithTitle("", message: "Connection could not be established")
                self.closeView()
