@@ -121,26 +121,7 @@ class MultiScreenManager: NSObject, ServiceSearchDelegate, ChannelDelegate {
         return nil
     }
     
-    //MARK: - ChannelDelegate -
     
-    func onError(error: NSError) {
-        println(error.localizedDescription)
-    }
-    
-    func onConnect(client: ChannelClient, error: NSError?) {
-        if (error == nil) {
-            stopSearching()
-            NSNotificationCenter.defaultCenter().postNotificationName(serviceConnectedObserverIdentifier, object: self)
-            /// post a notification to the NSNotificationCenter
-            postNotification()
-        }
-    }
-    
-    func onDisconnect(client: ChannelClient, error: NSError?) {
-        startSearching()
-        /// post a notification to the NSNotificationCenter
-        postNotification()
-    }
     
     /// Return all services availables but not currently connected
     ///
@@ -193,7 +174,7 @@ class MultiScreenManager: NSObject, ServiceSearchDelegate, ChannelDelegate {
         })
     }
     
-    /// Send Photo the the connected Service
+    /// Send Photo to the the connected Service
     ///
     /// :param: UIImage to be sent
     func sendPhotoToTv(image: UIImage){
@@ -203,4 +184,37 @@ class MultiScreenManager: NSObject, ServiceSearchDelegate, ChannelDelegate {
         }
     }
     
+    //MARK: - ChannelDelegate -
+    
+    ///  Called when a Channel Error is fired
+    ///
+    ///  :param: error: The error
+    func onError(error: NSError) {
+        println(error.localizedDescription)
+    }
+    
+    ///  Called when the Channel is connected
+    ///
+    ///  :param: client: The Client that just connected to the Channel
+    ///
+    ///  :param: error: An error info if any
+    func onConnect(client: ChannelClient, error: NSError?) {
+        if (error == nil) {
+            stopSearching()
+            NSNotificationCenter.defaultCenter().postNotificationName(serviceConnectedObserverIdentifier, object: self)
+            /// post a notification to the NSNotificationCenter
+            postNotification()
+        }
+    }
+    
+    ///  Called when the Channel is disconnected
+    ///
+    ///  :param: client The Client that just disconnected from the Channel
+    ///
+    ///  :param: error: An error info if any
+    func onDisconnect(client: ChannelClient, error: NSError?) {
+        startSearching()
+        /// post a notification to the NSNotificationCenter
+        postNotification()
+    }
 }
