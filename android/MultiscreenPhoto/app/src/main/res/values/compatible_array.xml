@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="screen_sizes">
+        <item>10 inches</item>
+        <item>20 inches</item>
+        <item>30 inches</item>
+        <item>40 inches</item>
+    </string-array>
+    <string-array name="models_10_inches">
+        <item>J9500</item>
+        <item>J9100</item>
+        <item>J9000</item>
+        <item>J8500</item>
+        <item>J7500</item>
+        <item>J7100</item>
+        <item>J6700</item>
+        <item>J6500</item>
+        <item>J6300</item>
+        <item>J6200</item>
+        <item>J5500</item>
+        <item>J5000</item>
+    </string-array>
+    <string-array name="models_20_inches">
+        <item>UN48H5500AFXZA</item>
+        <item>UN48H5500AFXZA</item>
+        <item>UN48H5500AFXZA</item>
+    </string-array>
+    <string-array name="models_30_inches">
+        <item>UN48H5500AFXZB</item>
+        <item>UN48H5500AFXZB</item>
+        <item>UN48H5500AFXZB</item>
+        <item>UN48H5500AFXZB</item>
+    </string-array>
+    <string-array name="models_40_inches">
+        <item>UN48H5500AFXZC</item>
+        <item>UN48H5500AFXZC</item>
+        <item>UN48H5500AFXZC</item>
+        <item>UN48H5500AFXZC</item>
+    </string-array>
+</resources>

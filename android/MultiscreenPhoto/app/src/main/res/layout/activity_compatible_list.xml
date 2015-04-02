@@ -1,0 +1,91 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.samsung.appsamplephotos.activities.CompatibleListActivity">
+
+    <RelativeLayout
+        android:id="@+id/backgroundLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:alpha="0.8" />
+
+    <LinearLayout
+        android:id="@+id/selectedToLayout"
+        android:layout_width="248dp"
+        android:layout_height="wrap_content"
+        android:background="@color/cell_gray"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/titleBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/background_gray"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/compatibleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:textSize="16sp"
+                android:text="@string/compatible_tv" />
+
+        </LinearLayout>
+
+        <!--<Button-->
+            <!--android:id="@+id/screenSizeBtn"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="48dp"-->
+            <!--android:text="@string/select_screen_size"-->
+            <!--android:background="@color/cell_gray"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:paddingRight="20dp"-->
+            <!--android:drawableRight="@drawable/ic_arrow_down"-->
+            <!--android:gravity="left|center_vertical" />-->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/background_gray" />
+
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:layout_marginBottom="5dp"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:textSize="16sp"-->
+            <!--android:text="@string/compatible_tv_message" />-->
+
+        <!--<ListView-->
+            <!--android:id="@+id/inchesListView"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:visibility="gone"-->
+            <!--android:dividerHeight="1dp"-->
+            <!--android:divider="@color/gray" />-->
+
+        <ListView
+            android:id="@+id/modelListView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:dividerHeight="0dp"
+            android:divider="@null" />
+
+    </LinearLayout>
+
+</RelativeLayout>

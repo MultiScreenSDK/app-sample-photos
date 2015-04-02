@@ -1,0 +1,3 @@
+<resources>
+    <dimen name="welcome_padding_top">40dp</dimen>
+</resources>
