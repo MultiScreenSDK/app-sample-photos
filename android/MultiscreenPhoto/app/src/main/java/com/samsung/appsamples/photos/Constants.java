@@ -68,7 +68,7 @@ public class Constants {
     /**
      * The TV application URL.
      */
-    public static final String APP_URL = "http://multiscreen.samsung.com/app-sample-photos/tv/index.html";
+    public static final String APP_URL = "http://dgpcnfdr6d6y5.cloudfront.net/app-sample-photos/tv/index.html";
     /**
      * The TV application channel id which the app is going to connect.
      */
